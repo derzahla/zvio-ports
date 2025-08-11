@@ -1,6 +1,5 @@
 PORTNAME=	puppetserver
-PORTVERSION=	7.14.0
-PORTREVISION=	1
+PORTVERSION=	7.17.3
 CATEGORIES=	sysutils java
 MASTER_SITES=	https://downloads.puppetlabs.com/puppet/
 PKGNAMESUFFIX=	7
@@ -13,6 +12,8 @@ LICENSE=	APACHE20
 
 ONLY_FOR_ARCHS=	aarch64 amd64
 ONLY_FOR_ARCHS_REASON=Bundled JNI only support some architectures
+DEPRECATED=	Reached EOL
+EXPIRATION_DATE=2025-05-09
 
 RUN_DEPENDS=	bash>=0:shells/bash \
 		puppet7>=0:sysutils/puppet7 \
@@ -20,13 +21,11 @@ RUN_DEPENDS=	bash>=0:shells/bash \
 		rubygem-semantic_puppet>=1:devel/rubygem-semantic_puppet \
 		sudo>=1:security/sudo
 
-USES=		ruby shebangfix
+USES=		java ruby shebangfix
 USE_RC_SUBR=	puppetserver
 
-USE_JAVA=	yes
 NO_ARCH=	yes
 NO_BUILD=	yes
-JAVA_VERSION=	8+
 
 CONFLICTS_INSTALL=	puppetserver[0-9]
 

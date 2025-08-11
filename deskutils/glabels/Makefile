@@ -1,6 +1,6 @@
 PORTNAME=	glabels
 PORTVERSION=	3.4.1
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	deskutils
 MASTER_SITES=	GNOME
 
@@ -14,10 +14,11 @@ LIB_DEPENDS=	libsecret-1.so:security/libsecret \
 
 USES=		desktop-file-utils gettext gmake gnome libtool pathfix \
 		pkgconfig shared-mime-info tar:xz
-USE_GNOME=	cairo gdkpixbuf2 gtk30 intltool librsvg2
+USE_GNOME=	cairo gdkpixbuf gtk30 intltool librsvg2
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 
 GLIB_SCHEMAS=	org.gnome.glabels-3.gschema.xml
 

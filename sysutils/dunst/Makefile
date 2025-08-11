@@ -1,6 +1,6 @@
 PORTNAME=	dunst
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.9.1
+DISTVERSION=	1.12.2
 CATEGORIES=	sysutils
 
 MAINTAINER=	dmgk@FreeBSD.org
@@ -19,11 +19,12 @@ USES=		gmake gnome perl5 pkgconfig xorg
 USE_GITHUB=	yes
 GH_ACCOUNT=	dunst-project
 
-USE_GNOME=	cairo gdkpixbuf2 pango
+USE_GNOME=	cairo gdkpixbuf pango
 USE_PERL5=	build
 USE_XORG=	x11 xext xinerama xrandr xscrnsaver
 
-MAKE_ARGS=	MANPREFIX="${PREFIX}/man" SYSCONFDIR="${PREFIX}/etc" SYSTEMD=0
+MAKE_ARGS=	MANPREFIX="${PREFIX}/share/man" SYSCONFDIR="${PREFIX}/etc" \
+		SYSTEMD=0
 
 OPTIONS_DEFINE=	DUNSTIFY WAYLAND
 OPTIONS_DEFAULT=	DUNSTIFY WAYLAND

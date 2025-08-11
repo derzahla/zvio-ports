@@ -1,27 +1,23 @@
 # pkg-help formatted with fmt 59 63
 
 PORTNAME=	bind
-PORTVERSION=	${ISCVERSION:S/-P/P/:S/b/.b/:S/a/.a/:S/rc/.rc/}
+DISTVERSION=	9.21.7
 .if defined(BIND_TOOLS_SLAVE)
 # dns/bind-tools here
 PORTREVISION=	0
 .else
 # XXX: correct version
 # dns/bind9xx here
-PORTREVISION=	1
+PORTREVISION=	0
 .endif
 CATEGORIES=	dns net
-# XXX: put the ISC master_site
-#MASTER_SITES=	ISC/bind9/${ISCVERSION}
-MASTER_SITES=	LOCAL/mat/bind
+MASTER_SITES=	ISC/bind9/${DISTVERSION}
 .if defined(BIND_TOOLS_SLAVE)
 PKGNAMESUFFIX=	-tools
 .else
 # XXX: correct SUFFIX.
 PKGNAMESUFFIX=	9-devel
 .endif
-# XXX: correct DISTNAME.
-#DISTNAME=	${PORTNAME}-${ISCVERSION}
 
 MAINTAINER=	mat@FreeBSD.org
 WWW=		https://www.isc.org/bind/
@@ -41,40 +37,31 @@ LICENSE_FILE=	${WRKSRC}/COPYRIGHT
 
 LIB_DEPENDS=	libuv.so:devel/libuv \
 		libnghttp2.so:www/libnghttp2 \
-		libxml2.so:textproc/libxml2
+		liburcu.so:sysutils/liburcu
 
 .if !defined(BIND_TOOLS_SLAVE)
 RUN_DEPENDS=	bind-tools>0:dns/bind-tools
 .endif
 
-# XXX: remove tar:bz2
-USES=		autoreconf compiler:c11 cpe libedit libtool pkgconfig ssl tar:bz2
-# ISC releases things like 9.8.0-P1, which our versioning doesn't like
-ISCVERSION=	9.19.3.2022.06.16
-# XXX: Remove gitlab
-USE_GITLAB=	yes
-GL_SITE=	https://gitlab.isc.org
-GL_ACCOUNT=	isc-projects
-GL_PROJECT=	bind9
-GL_TAGNAME=	84854b3f22b885ba4cfbf34697de4fbed1cad0a2
+USES=		autoreconf compiler:c11 cpe gnome libedit libtool pkgconfig ssl tar:xz
 
 CPE_VENDOR=	isc
-CPE_VERSION=	${ISCVERSION:C/-.*//}
-.if ${ISCVERSION:M*-*}
-CPE_UPDATE=	${ISCVERSION:C/.*-//:tl}
+CPE_VERSION=	${DISTVERSION:C/-.*//}
+.if ${DISTVERSION:M*-*}
+CPE_UPDATE=	${DISTVERSION:C/.*-//:tl}
 .endif
+USE_GNOME=	libxml2
 
 GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--disable-linux-caps \
-		--localstatedir=/var \
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
+CONFIGURE_ARGS=	--localstatedir=/var \
 		--sysconfdir=${ETCDIR} \
-		--with-dlopen=yes \
 		--with-libxml2 \
-		--with-openssl=${OPENSSLBASE} \
-		--enable-dnsrps \
-		--with-readline=libedit
-CONFIGURE_ENV=	READLINE_CFLAGS="-L${LOCALBASE}/lib"
+		--with-openssl=${OPENSSLBASE}
 ETCDIR=		${PREFIX}/etc/namedb
+
+# FIXME: figure out why build fails if enabled
+CONFIGURE_ARGS+=	--disable-tracing
 
 .if defined(BIND_TOOLS_SLAVE)
 EXTRA_PATCHES=		${PATCHDIR}/extrapatch-bind-tools
@@ -95,7 +82,7 @@ MAKE_JOBS_UNSAFE=	yes
 
 OPTIONS_DEFAULT=	GSSAPI_NONE IDN JSON LMDB \
 			TCP_FASTOPEN DNSTAP
-OPTIONS_DEFINE=		DNSTAP DOCS FIXED_RRSET GEOIP IDN JSON LARGE_FILE LMDB \
+OPTIONS_DEFINE=		DNSTAP DOCS GEOIP IDN JSON LARGE_FILE LMDB \
 			OVERRIDECACHE QUERYTRACE \
 			START_LATE TCP_FASTOPEN
 
@@ -103,7 +90,7 @@ OPTIONS_SINGLE=		GSSAPI
 OPTIONS_SINGLE_GSSAPI=	GSSAPI_BASE GSSAPI_HEIMDAL GSSAPI_MIT GSSAPI_NONE
 
 .if defined(BIND_TOOLS_SLAVE)
-OPTIONS_EXCLUDE=	DNSTAP DOCS GEOIP LMDB \
+OPTIONS_EXCLUDE=	DOCS GEOIP LMDB \
 			OVERRIDECACHE QUERYTRACE START_LATE \
 			TCP_FASTOPEN
 .endif	# BIND_TOOLS_SLAVE
@@ -111,9 +98,8 @@ OPTIONS_EXCLUDE=	DNSTAP DOCS GEOIP LMDB \
 OPTIONS_SUB=	yes
 
 DNSTAP_DESC=		Provides fast passive logging of DNS messages
-FIXED_RRSET_DESC=	Enable fixed rrset ordering
-GSSAPI_BASE_DESC=	Using Heimdal in base
-GSSAPI_HEIMDAL_DESC=	Using security/heimdal
+GSSAPI_BASE_DESC=	Using Heimdal in base (nsupdate is broken)
+GSSAPI_HEIMDAL_DESC=	Using security/heimdal (nsupdate is broken)
 GSSAPI_MIT_DESC=	Using security/krb5
 GSSAPI_NONE_DESC=	Disable
 LARGE_FILE_DESC=	64-bit file support
@@ -131,8 +117,6 @@ DOCS_USES=	gmake python:env
 DNSTAP_CONFIGURE_ENABLE=	dnstap
 DNSTAP_LIB_DEPENDS=		libfstrm.so:devel/fstrm \
 				libprotobuf-c.so:devel/protobuf-c
-
-FIXED_RRSET_CONFIGURE_ENABLE=	fixed-rrset
 
 GEOIP_CONFIGURE_ENABLE=	geoip
 GEOIP_CONFIGURE_WITH=	maxminddb
@@ -181,11 +165,14 @@ TCP_FASTOPEN_CONFIGURE_ENABLE=	tcp-fastopen
 .include <bsd.port.options.mk>
 
 .if defined(WITH_DEBUG)
-CONFIGURE_ARGS+=	--enable-developer \
-			--enable-symtable
+CONFIGURE_ARGS+=	--enable-developer
 USES+=			perl5
 USE_PERL5=		build
 BUILD_DEPENDS+=		cmocka>0:sysutils/cmocka
+.endif
+
+.if !${PORT_OPTIONS:MDOCS}
+CONFIGURE_ENV+=		ac_cv_path_SPHINX_BUILD=
 .endif
 
 .include <bsd.port.pre.mk>
@@ -196,10 +183,7 @@ SUB_LIST+=	ENGINES=/usr/lib/engines
 SUB_LIST+=	ENGINES=${LOCALBASE}/lib/engines
 .endif
 
-# XXX: Remove first REINPLACE_CMD
 post-patch:
-	@${REINPLACE_CMD} -e '/^m4_define(\[bind_SRCID/s/\[m4.*\]/${GL_TAGNAME}/' \
-		${WRKSRC}/configure.ac
 .for FILE in check/named-checkconf.rst named/named.rst nsupdate/nsupdate.rst \
 	rndc/rndc.rst
 	@${REINPLACE_CMD} -e 's#/etc/named.conf#${ETCDIR}/named.conf#g' \
@@ -222,15 +206,10 @@ post-install:
 	${INSTALL_DATA} ${FILESDIR}/localhost-reverse.db ${STAGEDIR}${ETCDIR}/primary
 	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.dist ${STAGEDIR}${PREFIX}/etc/mtree/BIND.chroot.dist.sample
 	${INSTALL_DATA} ${FILESDIR}/BIND.chroot.local.dist ${STAGEDIR}${PREFIX}/etc/mtree/BIND.chroot.local.dist.sample
-	${INSTALL_DATA} ${WRKSRC}/bin/rndc/rndc.conf \
-		${STAGEDIR}${ETCDIR}/rndc.conf.sample
-# FIXME: this is strange.
-	@${RM} -rf ${STAGEDIR}/wrkdirs
 
 post-install-DOCS-on:
 	${MKDIR} ${STAGEDIR}${DOCSDIR}/arm
-	${INSTALL_DATA} ${WRKSRC}/CHANGES* \
-		${WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/README.md ${STAGEDIR}${DOCSDIR}
 	cd ${WRKSRC}/doc/arm/_build/html && ${COPYTREE_SHARE} . ${STAGEDIR}${DOCSDIR}/arm
 .else
 

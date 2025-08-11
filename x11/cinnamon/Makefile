@@ -1,6 +1,6 @@
 PORTNAME=	cinnamon
 PORTVERSION=	5.4.9
-PORTREVISION=	5
+PORTREVISION=	8
 CATEGORIES=	x11 gnome
 DIST_SUBDIR=	gnome
 
@@ -50,7 +50,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}dbus>0:devel/py-dbus@${PY_FLAVOR} \
 USES=		compiler:c11 cpe gettext-runtime gettext-tools:run gl gnome gstreamer \
 		meson perl5 pkgconfig python shebangfix xorg
 CPE_VENDOR=	linuxmint
-USE_GNOME=	cairo gdkpixbuf2 glib20 gtk30 intltool introspection libxml2 pygobject3
+USE_GNOME=	cairo gdkpixbuf glib20 gtk30 intltool introspection libxml2 pygobject3
 USE_XORG=	x11 xfixes
 USE_GL=		gl
 USE_PERL5=	build
@@ -69,7 +69,7 @@ MESON_ARGS=	-Ddisable_networkmanager=true
 GLIB_SCHEMAS=	org.cinnamon.gschema.xml
 
 OPTIONS_DEFINE=	DOCS NLS
-OPTIONS_DEFAULT=	DOCS NLS
+OPTIONS_EXCLUDE=	DOCS
 OPTIONS_SUB=	yes
 
 DOCS_BUILD_DEPENDS=	gtkdocize:textproc/gtk-doc

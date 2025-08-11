@@ -14,6 +14,8 @@
     SUBDIR += alias-fonts
     SUBDIR += another-htmllint
     SUBDIR += anthy
+    SUBDIR += anthy-unicode
+    SUBDIR += aobook
     SUBDIR += bible_names-fpw
     SUBDIR += boiled-mozc
     SUBDIR += bookview
@@ -28,6 +30,7 @@
     SUBDIR += cmigemo
     SUBDIR += cmigemo-dict
     SUBDIR += cp5022x-el
+    SUBDIR += cskk
     SUBDIR += csrd
     SUBDIR += ctags
     SUBDIR += dams
@@ -46,20 +49,20 @@
     SUBDIR += edyvalue
     SUBDIR += eijiro-fpw
     SUBDIR += epwutil
-    SUBDIR += esecanna
-    SUBDIR += esecanna-module-vje25
-    SUBDIR += esecanna-module-vje30
-    SUBDIR += esecanna-module-wnn6
     SUBDIR += eterm
     SUBDIR += fcitx-anthy
     SUBDIR += fcitx-mozc
     SUBDIR += fcitx-skk
     SUBDIR += fcitx5-anthy
+    SUBDIR += fcitx5-cskk
     SUBDIR += flower-fpw
     SUBDIR += foldoc-fpw
     SUBDIR += font-aozoramincho
     SUBDIR += font-ayu18
     SUBDIR += font-ayu20
+    SUBDIR += font-bizin-gothic
+    SUBDIR += font-bizud-gothic
+    SUBDIR += font-bizud-mincho
     SUBDIR += font-cica
     SUBDIR += font-elisa10
     SUBDIR += font-elisa8
@@ -88,6 +91,12 @@
     SUBDIR += font-mona
     SUBDIR += font-mona-ipa
     SUBDIR += font-mona-ttf
+    SUBDIR += font-moralerspace
+    SUBDIR += font-moralerspace-hw
+    SUBDIR += font-moralerspace-hwjpdoc
+    SUBDIR += font-moralerspace-hwnf
+    SUBDIR += font-moralerspace-jpdoc
+    SUBDIR += font-moralerspace-nf
     SUBDIR += font-motoya-al
     SUBDIR += font-mplus-bitmap
     SUBDIR += font-mplus-ipa
@@ -107,6 +116,7 @@
     SUBDIR += font-std
     SUBDIR += font-takao
     SUBDIR += font-udev-gothic
+    SUBDIR += font-udev-gothic-hs
     SUBDIR += font-udev-gothic-nf
     SUBDIR += font-ume
     SUBDIR += font-vlgothic
@@ -129,12 +139,12 @@
     SUBDIR += japaneseAFM
     SUBDIR += jargon-fpw
     SUBDIR += jcode.pl
-    SUBDIR += jed
     SUBDIR += jishyo
     SUBDIR += jls
     SUBDIR += jvim3
     SUBDIR += kakasi
     SUBDIR += kasumi
+    SUBDIR += kasumi-unicode
     SUBDIR += kbanner
     SUBDIR += kcc
     SUBDIR += kcode
@@ -143,6 +153,7 @@
     SUBDIR += kiten
     SUBDIR += kon2-14dot
     SUBDIR += kon2-16dot
+    SUBDIR += kterm
     SUBDIR += latex-jlisting
     SUBDIR += leafrogue
     SUBDIR += less
@@ -162,6 +173,7 @@
     SUBDIR += mecab-ipadic-eucjp
     SUBDIR += mecab-ipadic-sjis
     SUBDIR += mecab-ipadic-utf8
+    SUBDIR += mecab-jawiki
     SUBDIR += mh
     SUBDIR += migemo
     SUBDIR += migemo.el
@@ -169,6 +181,7 @@
     SUBDIR += mozc-el
     SUBDIR += mozc-server
     SUBDIR += mozc-tool
+    SUBDIR += multiskkserv
     SUBDIR += mypaedia-fpw-package
     SUBDIR += namazu
     SUBDIR += namazu2
@@ -181,7 +194,6 @@
     SUBDIR += ng-devel
     SUBDIR += ngraph-fonts
     SUBDIR += nkf
-    SUBDIR += onew
     SUBDIR += p5-2chproxy
     SUBDIR += p5-Date-Japanese-Era
     SUBDIR += p5-Date-Japanese-Holiday
@@ -213,8 +225,12 @@
     SUBDIR += pejv-fpw
     SUBDIR += plain2
     SUBDIR += plan
-    SUBDIR += prn
+    SUBDIR += prn-ps
+    SUBDIR += py-SudachiPy
+    SUBDIR += py-fugashi
+    SUBDIR += py-ipadic
     SUBDIR += py-jaconv
+    SUBDIR += py-unidic
     SUBDIR += qkc
     SUBDIR += qolibri
     SUBDIR += quit
@@ -241,6 +257,7 @@
     SUBDIR += sj3-lib
     SUBDIR += sj3-server
     SUBDIR += skk
+    SUBDIR += skk-jawiki
     SUBDIR += skk-jisyo
     SUBDIR += skk-jisyo-cdb
     SUBDIR += skk-tools
@@ -253,6 +270,7 @@
     SUBDIR += sourcehanserif-otf
     SUBDIR += spoqahansans-ttf
     SUBDIR += srd-fpw-package
+    SUBDIR += sudachi
     SUBDIR += suicavalue
     SUBDIR += tdiary
     SUBDIR += tegaki-zinnia-japanese
@@ -273,7 +291,6 @@
     SUBDIR += wdic-fpw
     SUBDIR += web1913-fpw
     SUBDIR += webalizer
-    SUBDIR += wnn7egg
     SUBDIR += wordnet-fpw
     SUBDIR += wordpress
     SUBDIR += wwasw-fpw

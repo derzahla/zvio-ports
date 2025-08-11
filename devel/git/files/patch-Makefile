@@ -1,12 +1,10 @@
---- Makefile.orig	2022-10-02 23:02:46 UTC
+--- Makefile.orig	2025-01-10 17:43:46 UTC
 +++ Makefile
-@@ -542,17 +542,17 @@ bindir = $(prefix)/bin
- 
+@@ -613,16 +613,16 @@ mandir = $(prefix)/share/man
  prefix = $(HOME)
  bindir = $(prefix)/bin
--mandir = $(prefix)/share/man
+ mandir = $(prefix)/share/man
 -infodir = $(prefix)/share/info
-+mandir = $(prefix)/man
 +infodir = $(prefix)/info
  gitexecdir = libexec/git-core
  mergetoolsdir = $(gitexecdir)/mergetools
@@ -23,7 +21,7 @@
  ETC_GITCONFIG = $(sysconfdir)/gitconfig
  ETC_GITATTRIBUTES = $(sysconfdir)/gitattributes
  lib = lib
-@@ -577,8 +577,8 @@ INSTALL = install
+@@ -647,8 +647,8 @@ INSTALL = install
  TAR = tar
  FIND = find
  INSTALL = install
@@ -34,20 +32,20 @@
  XGETTEXT = xgettext
  MSGCAT = msgcat
  MSGFMT = msgfmt
-@@ -1539,9 +1539,9 @@ ifndef NO_OPENSSL
+@@ -1696,9 +1696,9 @@ ifndef NO_OPENSSL
  
  ifndef NO_OPENSSL
  	OPENSSL_LIBSSL = -lssl
--	ifdef OPENSSLDIR
+-        ifdef OPENSSLDIR
 -		BASIC_CFLAGS += -I$(OPENSSLDIR)/include
--		OPENSSL_LINK = -L$(OPENSSLDIR)/$(lib) $(CC_LD_DYNPATH)$(OPENSSLDIR)/$(lib)
+-		OPENSSL_LINK = $(call libpath_template,$(OPENSSLDIR)/$(lib))
 +	ifdef OPENSSLBASE
 +		BASIC_CFLAGS += -I$(OPENSSLBASE)/include
 +		OPENSSL_LINK = -L$(OPENSSLBASE)/$(lib) $(CC_LD_DYNPATH)$(OPENSSLBASE)/$(lib)
- 	else
+         else
  		OPENSSL_LINK =
- 	endif
-@@ -2442,7 +2442,7 @@ else # NO_PERL
+         endif
+@@ -2627,7 +2627,7 @@ else # NO_PERL
  	chmod +x $@+ && \
  	mv $@+ $@
  else # NO_PERL
@@ -55,17 +53,8 @@
 +$(SCRIPT_PERL_GEN) git-instaweb git-request-pull: % : unimplemented.sh
  	$(QUIET_GEN) \
  	sed -e '1s|#!.*/sh|#!$(SHELL_PATH_SQ)|' \
- 	    -e 's|@@REASON@@|NO_PERL=$(NO_PERL)|g' \
-@@ -2458,7 +2458,7 @@ $(SCRIPT_PYTHON_GEN): % : %.py
- $(SCRIPT_PYTHON_GEN): GIT-CFLAGS GIT-PREFIX GIT-PYTHON-VARS
- $(SCRIPT_PYTHON_GEN): % : %.py
- 	$(QUIET_GEN) \
--	sed -e '1s|#!.*python|#!$(PYTHON_PATH_SQ)|' \
-+	sed -e '1s|#!.*python.*|#!$(PYTHON_PATH_SQ)|' \
- 	    $< >$@+ && \
- 	chmod +x $@+ && \
- 	mv $@+ $@
-@@ -3238,7 +3238,7 @@ install: all
+ 	    -e 's|@REASON@|NO_PERL=$(NO_PERL)|g' \
+@@ -3489,7 +3489,7 @@ install: all
  	$(INSTALL) $(SCRIPTS) '$(DESTDIR_SQ)$(gitexec_instdir_SQ)'
  	$(INSTALL) -m 644 $(SCRIPT_LIB) '$(DESTDIR_SQ)$(gitexec_instdir_SQ)'
  	$(INSTALL) $(INSTALL_STRIP) $(install_bindir_xprograms) '$(DESTDIR_SQ)$(bindir_SQ)'

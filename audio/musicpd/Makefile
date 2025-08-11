@@ -1,5 +1,6 @@
 PORTNAME=	musicpd
-PORTVERSION=	0.23.15
+PORTVERSION=	0.23.17
+PORTREVISION=	3
 CATEGORIES=	audio
 MASTER_SITES=	https://www.musicpd.org/download/mpd/${PORTVERSION:R}/
 DISTNAME=	mpd-${PORTVERSION}
@@ -23,6 +24,7 @@ MESON_ARGS=	--auto-features=disabled \
 		-Dbzip2=enabled \
 		-Dhttpd=true \
 		-Dicu=enabled \
+		-Dmpcdec=disabled \
 		-Doss=enabled \
 		-Dpipe=true \
 		-Dsyslog=enabled \
@@ -46,7 +48,7 @@ OPTIONS_RADIO_RESAMPLER=	SAMPLERATE SOXR
 OPTIONS_MULTI=	DOCUMENTATION FILE_FORMAT
 OPTIONS_MULTI_FILE_FORMAT=	\
 			ADPLUG AUDIOFILE FAAD FFMPEG FLAC FLUIDSYNTH \
-			GME MAD MIKMOD MODPLUG MPG123 MUSEPACK \
+			GME MAD MIKMOD MODPLUG MPG123 \
 			OPUS SIDPLAY SNDFILE TWOLAME \
 			VORBIS WAVPACK WILDMIDI
 
@@ -108,8 +110,6 @@ MODPLUG_MESON_ENABLED=	modplug
 MODPLUG_LIB_DEPENDS=	libmodplug.so:audio/libmodplug
 MPG123_MESON_ENABLED=	mpg123
 MPG123_LIB_DEPENDS=	libmpg123.so:audio/mpg123
-MUSEPACK_MESON_ENABLED=	mpcdec
-MUSEPACK_LIB_DEPENDS=	libmpcdec.so:audio/musepack
 NFS_MESON_ENABLED=	nfs
 NFS_LIB_DEPENDS=	libnfs.so:net/libnfs
 OPENMPT_MESON_ENABLED=	openmpt
@@ -242,8 +242,8 @@ do-install:
 
 do-install-MANPAGES-on:
 	${INSTALL_MAN} ${WRKSRC}/_build/doc/${PORTNAME}.1 \
-		${STAGEDIR}${PREFIX}/man/man1
+		${STAGEDIR}${PREFIX}/share/man/man1
 	${INSTALL_MAN} ${WRKSRC}/_build/doc/${PORTNAME}.conf.5 \
-		${STAGEDIR}${PREFIX}/man/man5
+		${STAGEDIR}${PREFIX}/share/man/man5
 
 .include <bsd.port.mk>

@@ -1,11 +1,11 @@
---- chrome/browser/enterprise/connectors/reporting/crash_reporting_context.cc.orig	2023-04-22 17:45:15 UTC
+--- chrome/browser/enterprise/connectors/reporting/crash_reporting_context.cc.orig	2024-11-04 08:56:03 UTC
 +++ chrome/browser/enterprise/connectors/reporting/crash_reporting_context.cc
-@@ -18,7 +18,7 @@
+@@ -20,7 +20,7 @@
  
  namespace enterprise_connectors {
  
--#if !BUILDFLAG(IS_FUCHSIA) && !BUILDFLAG(IS_CHROMEOS_ASH)
-+#if !BUILDFLAG(IS_FUCHSIA) && !BUILDFLAG(IS_CHROMEOS_ASH) && !BUILDFLAG(IS_BSD)
+-#if !BUILDFLAG(IS_CHROMEOS)
++#if !BUILDFLAG(IS_CHROMEOS) && !BUILDFLAG(IS_BSD)
  
  namespace {
  

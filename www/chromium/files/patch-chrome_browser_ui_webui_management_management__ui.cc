@@ -1,8 +1,8 @@
---- chrome/browser/ui/webui/management/management_ui.cc.orig	2024-02-23 21:04:38 UTC
+--- chrome/browser/ui/webui/management/management_ui.cc.orig	2025-03-05 08:14:56 UTC
 +++ chrome/browser/ui/webui/management/management_ui.cc
-@@ -98,11 +98,11 @@ content::WebUIDataSource* CreateAndAddManagementUIHtml
-       {kManagementOnFileTransferVisibleData,
+@@ -175,11 +175,11 @@ void ManagementUI::GetLocalizedStrings(
         IDS_MANAGEMENT_FILE_TRANSFER_VISIBLE_DATA},
+       {kManagementReportFileEvents, IDS_MANAGEMENT_REPORT_FILE_EVENTS},
  #endif  // BUILDFLAG(IS_CHROMEOS)
 -#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)

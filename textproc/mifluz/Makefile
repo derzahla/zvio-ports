@@ -1,6 +1,6 @@
 PORTNAME=	mifluz
 PORTVERSION=	0.26.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	textproc
 MASTER_SITES=	GNU
 
@@ -10,10 +10,14 @@ WWW=		https://www.gnu.org/software/mifluz/
 
 LICENSE=	GPLv3
 
+DEPRECATED=	Obsolete, no activity upstream since 2014 and unmaintained in tree for years
+EXPIRATION_DATE=2025-04-30
+
 USES=		bison compiler iconv libtool localbase:ldflags pathfix
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--enable-posixmutexes \
 		--localstatedir="${PREFIX}/var" \
 		--without-unac

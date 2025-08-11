@@ -1,9 +1,9 @@
 PORTNAME=	clawsker
-PORTVERSION=	1.3.8
+DISTVERSION=	1.4.0
 CATEGORIES=	mail perl5
 MASTER_SITES=	http://www.claws-mail.org/tools/
 
-MAINTAINER=	bofh@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Applet to edit Claws Mail's hidden preferences
 WWW=		https://www.claws-mail.org/clawsker.php
 
@@ -25,9 +25,6 @@ OPTIONS_DEFINE=	DOCS NLS
 OPTIONS_SUB=	yes
 
 NLS_USES=	gettext-tools
-
-post-patch:
-	@${REINPLACE_CMD} '/^MANDIR/ s|DATADIR|PREFIX|' ${WRKSRC}/Makefile
 
 post-patch-NLS-off:
 	@${REINPLACE_CMD} '/-C po/d' ${WRKSRC}/Makefile

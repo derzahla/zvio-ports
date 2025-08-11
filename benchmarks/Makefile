@@ -34,11 +34,12 @@
     SUBDIR += ior
     SUBDIR += iorate
     SUBDIR += iozone
-    SUBDIR += iozone21
+    SUBDIR += ipc-bench
     SUBDIR += iperf
     SUBDIR += iperf3
     SUBDIR += kdiskmark
     SUBDIR += libcelero
+    SUBDIR += libcpucycles
     SUBDIR += libmicro
     SUBDIR += linux-gputest
     SUBDIR += linux-unigine-heaven
@@ -82,7 +83,6 @@
     SUBDIR += py-throughpy
     SUBDIR += py-zopkio
     SUBDIR += raidtest
-    SUBDIR += ramspeed
     SUBDIR += randomio
     SUBDIR += rubygem-benchmark
     SUBDIR += rubygem-benchmark-ips

@@ -1,13 +1,15 @@
 PORTNAME=	yuzu
 PORTVERSION=	s20240301
-PORTREVISION=	1
+PORTREVISION=	5
 CATEGORIES=	emulators wayland
 .if make(makesum)
 MASTER_SITES=	https://api.yuzu-emu.org/gamedb/?dummy=/:gamedb
 .else
 MASTER_SITES=	LOCAL/jbeich:gamedb
 .endif
+MASTER_SITES+=	https://codeberg.org/TxzK/${PORTNAME}/archive/${GH_TAGNAME}${EXTRACT_SUFX}?dummy=/
 DISTFILES=	${PORTNAME}-s20230424/compatibility_list.json:gamedb
+DISTFILES+=	${DISTNAME}${EXTRACT_SUFX}
 EXTRACT_ONLY=	${DISTFILES:N*\:gamedb:C/\:.*//}
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -23,13 +25,12 @@ LICENSE_FILE_MIT=	${WRKSRC}/externals/sirit/externals/SPIRV-Headers/LICENSE
 
 ONLY_FOR_ARCHS=	aarch64 amd64
 ONLY_FOR_ARCHS_REASON=	requires int128 and dynarmic backend
-
+# XXX Need Ryujinx or a Yuzu fork that regularly improves game compatibility
 DEPRECATED=	Project discontinued
 
 BUILD_DEPENDS=	boost-libs>0:devel/boost-libs \
 		nlohmann-json>0:devel/nlohmann-json \
 		simpleini>0:devel/simpleini \
-		xbyak>0:devel/xbyak \
 		glslangValidator:graphics/glslang \
 		vulkan-headers>0:graphics/vulkan-headers \
 		vulkan-utility-libraries>0:graphics/vulkan-utility-libraries
@@ -41,14 +42,14 @@ LIB_DEPENDS=	liblz4.so:archivers/liblz4 \
 		libenet.so:net/enet
 TEST_DEPENDS=	catch2>0:devel/catch2
 
-FLAVORS=	qt5 qt6
-qt5_CONFLICTS_INSTALL=	${PORTNAME}-qt6
-qt6_PKGNAMESUFFIX=	-qt6
-qt6_CONFLICTS_INSTALL=	${PORTNAME}
-qt6_OPTIONS_SLAVE=	QT6
-qt6_OPTIONS_EXCLUDE=	QT5
+FLAVORS=	qt6 qt5
+qt5_PKGNAMESUFFIX=	-qt5
+qt5_CONFLICTS_INSTALL=	${PORTNAME}
+qt5_OPTIONS_SLAVE=	QT5
+qt5_OPTIONS_EXCLUDE=	QT6
+qt6_CONFLICTS_INSTALL=	${PORTNAME}-qt5
 
-USE_GITHUB=	yes
+USE_GITHUB=	nodefault
 GH_ACCOUNT=	yuzu-mirror
 GH_TAGNAME=	15e6e48bef
 GH_TUPLE=	yuzu-mirror:mbedtls:v2.16.9-115-g8c88150ca:mbedtls/externals/mbedtls \
@@ -60,12 +61,14 @@ GH_TUPLE=	yuzu-mirror:mbedtls:v2.16.9-115-g8c88150ca:mbedtls/externals/mbedtls \
 		arun11299:cpp-jwt:v1.4-18-g10ef573:cpp_jwt/externals/cpp-jwt \
 		arsenm:sanitizers-cmake:aab6948:sanitizers_cmake/externals/cubeb/cmake/sanitizers-cmake \
 		eggert:tz:2022g-11-g16ce126a:tz/externals/nx_tzdb/tzdb_to_nx/externals/tz/tz \
+		herumi:xbyak:v6.68:xbyak/externals/xbyak \
 		kinetiknz:cubeb:cubeb-0.2-1452-g48689ae:cubeb/externals/cubeb \
 		lat9nq:tzdb_to_nx:221202-15-g9792969:tzdb_to_nx/externals/nx_tzdb/tzdb_to_nx \
 		yhirose:cpp-httplib:v0.14.1:cpp_httplib/externals/cpp-httplib
 
-USES=		cmake:testing elfctl localbase:ldflags pkgconfig sdl ssl
+USES=		cmake:testing localbase:ldflags pkgconfig sdl ssl
 USE_SDL=	sdl2
+WRKSRC=		${WRKDIR}/${PORTNAME}
 CMAKE_ON=	Boost_USE_STATIC_LIBS
 CMAKE_ON+=	BUNDLE_SPEEX # only used by cubeb tests
 CMAKE_ON+=	CMAKE_DISABLE_FIND_PACKAGE_LLVM # only need Demangle but llvm* is huge
@@ -76,12 +79,11 @@ CMAKE_OFF+=	${ARCH:Maarch64:C/.+/YUZU_USE_PRECOMPILED_HEADERS DYNARMIC_USE_PRECO
 CMAKE_OFF+=	${CMAKE_TESTING_ON}
 CMAKE_TESTING_ON=	YUZU_TESTS
 LDFLAGS+=	-Wl,--as-needed # Qt5Network
-ELF_FEATURES=	${PLIST_FILES:Mbin/*:S/^/+wxneeded:/}
 PLIST_FILES=	bin/${PORTNAME}-cmd \
 		bin/${PORTNAME}-room
 
 OPTIONS_DEFINE=	ALSA GUI PULSEAUDIO JACK LTO NLS SNDIO VAAPI VULKAN WEBENGINE
-OPTIONS_DEFAULT=PULSEAUDIO JACK LTO QT5 SNDIO VAAPI VULKAN WEBENGINE
+OPTIONS_DEFAULT=PULSEAUDIO JACK LTO QT6 SNDIO VAAPI VULKAN WEBENGINE
 OPTIONS_SINGLE=	GUI
 OPTIONS_SINGLE_GUI=	QT5 QT6
 OPTIONS_SLAVE=		${${FLAVOR}_OPTIONS_SLAVE}
@@ -141,7 +143,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's/@GIT_BRANCH@/master/' \
 		-e 's/@GIT_DESC@/${GH_TAGNAME}/' \
 		${WRKSRC}/src/common/scm_rev.cpp.in
-# Temporarily use ConsoleKit2 like sysutils/gnome-settings-daemon
+# https://github.com/ConsoleKit2/ConsoleKit2/issues/150
 	@${REINPLACE_CMD} -e 's,/login1,/ConsoleKit/Manager,' \
 		-e 's,login1,ConsoleKit,' \
 		${WRKSRC}/src/${PORTNAME}/main.cpp
@@ -157,27 +159,9 @@ post-patch-VAAPI-off:
 	@${REINPLACE_CMD} -i .nova '/pkg_check.*libva/d' \
 		${WRKSRC}/CMakeLists.txt
 
-# XXX Drop after FreeBSD 13.2 EOL around 2024-05-01 (don't forget distinfo)
-.if !exists(/usr/include/c++/v1/__ranges/as_rvalue_view.h) || make(makesum) || make(fetch)
-. if !exists(/usr/include/c++/v1/__memory/concepts.h)
-USES+=		llvm:min=14,build,export
-PATH:=		${LLVM_PREFIX}/bin:${PATH} # XXX _CMAKE_TOOLCHAIN_SUFFIX vs. devel/llvm*
-CONFIGURE_ENV+=	CC="${CC}" CXX="${CXX}" CPP="${CPP}"
-. endif
-
-# XXX Move into separate port and standardize via USES
-GH_TUPLE+=	llvm:llvm-project:llvmorg-16.0.1:libcxx
-CXXFLAGS+=	-nostdinc++ -isystem${WRKDIR}/libcxx_prefix/include/c++/v1
-# Don't link against new libc++ to avoid ABI mismatch in Qt
-#LDFLAGS+=	-nostdlib++ -L${WRKDIR}/libcxx_prefix/lib -l:libc++.a -lcxxrt
-
-pre-configure:	bundled-libcxx
-bundled-libcxx:
-	@${SETENV} ${CONFIGURE_ENV} ${CMAKE_BIN} ${CMAKE_ARGS:M*Ninja*} \
-		-DLIBCXX_INCLUDE_BENCHMARKS:BOOL=OFF \
-		-DCMAKE_INSTALL_PREFIX:PATH=${WRKDIR}/libcxx_prefix \
-		-B ${WRKDIR}/libcxx_build -S ${WRKSRC_libcxx}/libcxx
-	@${DO_MAKE_BUILD:NDESTDIR*} install -C ${WRKDIR}/libcxx_build
+post-install:
+.if exists(/usr/bin/elfctl)
+	${ELFCTL} -e +wxneeded ${STAGEDIR}${PREFIX}/bin/*
 .endif
 
 .include <bsd.port.mk>

@@ -1,6 +1,5 @@
 PORTNAME=	magic
-DISTVERSION=	8.3.315
-PORTREVISION=	1
+DISTVERSION=	8.3.522
 CATEGORIES=	cad
 MASTER_SITES=	http://opencircuitdesign.com/magic/archive/
 
@@ -9,17 +8,16 @@ COMMENT=	Interactive editor for VLSI layouts
 WWW=		http://opencircuitdesign.com/magic/
 
 LICENSE=	MIT
-LICENSE_FILE=	${FILESDIR}/license.txt
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libBLT25.so:x11-toolkits/blt \
-		libfontconfig.so:x11-fonts/fontconfig \
+LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2
 RUN_DEPENDS=	bash:shells/bash
 
-USES=		gmake gnome gl localbase:ldflags python:build shebangfix tk:tea tar:tgz xorg
-USE_GNOME=	cairo
-USE_XORG=	ice x11 xext xi xmu
+USES=		gmake gnome gl localbase:ldflags python:build shebangfix tar:tgz tk:tea xorg
 USE_GL=		gl glu
+USE_GNOME=	cairo
+USE_XORG=	ice sm x11 xext xi xmu
 
 SHEBANG_FILES=	scripts/preproc.py tcltk/magic.sh.in tcltk/ext2sim.sh.in tcltk/ext2spice.sh.in
 
@@ -29,8 +27,6 @@ CONFIGURE_WRKSRC=	${WRKSRC}/scripts
 
 ALL_TARGET=	tcllibrary
 
-CFLAGS+=	-Wno-return-type # workaround for https://github.com/RTimothyEdwards/magic/issues/67
-
 DESKTOP_ENTRIES="Magic" "" "" "${PORTNAME}" "" ""
 
 PORTSCOUT=	limit:^8\.
@@ -39,7 +35,7 @@ BINARY_ALIAS=	python3=${PYTHON_CMD} # this is needed, see https://github.com/RTi
 
 .include <bsd.port.pre.mk>
 
-.if ${OPSYS} == FreeBSD && ( ${OSVERSION} >= 1400079 || ( ${OSVERSION} >= 1302505 && ${OSVERSION} < 1400000 ))
+.if ${OPSYS} == FreeBSD
 CFLAGS+=	-Wno-error=int-conversion
 .endif
 

@@ -1,9 +1,8 @@
 PORTNAME=	wine
-DISTVERSION=	8.0.2
-PORTREVISION=	1
+DISTVERSION=	10.0
 PORTEPOCH=	1
 CATEGORIES=	emulators
-MASTER_SITES=	https://dl.winehq.org/wine/source/8.0/
+MASTER_SITES=	https://dl.winehq.org/wine/source/10.0/
 
 MAINTAINER=	gerald@FreeBSD.org
 COMMENT=	Microsoft Windows compatibility environment
@@ -15,9 +14,11 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 ONLY_FOR_ARCHS=	amd64 i386
 
-BUILD_DEPENDS=	${LOCALBASE}/bin/flex:textproc/flex llvm${_LLVM_VERSION}>=0:devel/llvm${_LLVM_VERSION}
+BUILD_DEPENDS=	${LOCALBASE}/bin/flex:textproc/flex
 
-USES=		bison cpe desktop-file-utils gmake localbase \
+# Only devel/llvm17 and later come with necessary include files - PR274542
+USES=		bison cpe desktop-file-utils gmake \
+		llvm:min=17,build,noexport localbase \
 		pkgconfig sdl shebangfix tar:xz
 USE_GCC=	yes
 USE_SDL=	sdl2
@@ -36,21 +37,23 @@ CONFIGURE_ARGS+=--verbose \
 		--without-gettext --without-gettextpo \
 		--without-gphoto \
 		--without-gssapi \
-		--without-gstreamer \
 		--without-inotify \
 		--without-krb5 \
-		--with-mingw CROSSCC="clang" CROSSCFLAGS="-isystem ${FILESDIR}/clang" \
+		--with-mingw CROSSCC="clang" \
 		--without-netapi \
+		--without-odbc \
 		--without-opencl \
 		--without-osmesa \
-		--with-pcap \
+		--without-pcap \
+		--without-pcsclite \
 		--with-pthread \
 		--without-pulse \
 		--without-sane \
 		--with-sdl \
 		--without-udev \
 		--without-unwind \
-		--without-usb
+		--without-usb \
+		--without-wayland
 CONFIGURE_ENV=	CPPBIN="${CPP}" FLEX="${LOCALBASE}/bin/flex"
 WINELIBDIR=	${PREFIX}/lib
 .if !defined(USE_LDCONFIG32)
@@ -59,10 +62,12 @@ USE_LDCONFIG=	${WINELIBDIR} ${WINELIBDIR}/wine
 SHEBANG_FILES=	tools/make_requests tools/winemaker/winemaker \
 		tools/winedump/function_grep.pl
 
-BINARY_ALIAS+=	clang=${LOCALBASE}/bin/clang${_LLVM_VERSION} \
-		lld-link=${LOCALBASE}/bin/lld-link${_LLVM_VERSION}
+BINARY_ALIAS+=	clang=${LOCALBASE}/bin/clang${LLVM_VERSION} \
+		lld-link=${LOCALBASE}/bin/lld-link${LLVM_VERSION}
 
 SUB_FILES=	pkg-message
+
+PIE_UNSAFE=	yes
 
 PORTDATA=	wine.inf
 
@@ -77,9 +82,11 @@ WINEMAKER_DESC=	Fully support winemaker (requires Perl)
 GECKO_DESC=	Bundle Gecko MSI package for Wine
 MONO_DESC=	Bundle Mono MSI package for Wine
 
-PORTSCOUT=	limit:^8\.0
+PORTSCOUT=	limit:^9\.0
 
 ALSA_CONFIGURE_WITH=	alsa
+ALSA_USES=		gnome gstreamer
+ALSA_USE=		GNOME=glib20
 ALSA_LIB_DEPENDS=	libasound.so:audio/alsa-lib
 ALSA_RUN_DEPENDS=	alsa-plugins>0:audio/alsa-plugins
 
@@ -96,6 +103,8 @@ GNUTLS_LIB_DEPENDS=	libgnutls.so:security/gnutls
 MONO_RUN_DEPENDS=	wine-mono>0:emulators/wine-mono
 
 OSS_CONFIGURE_WITH=	oss
+OSS_USES=		gnome gstreamer
+OSS_USE=		GNOME=glib20
 
 V4L_CONFIGURE_WITH=	v4l2
 V4L_BUILD_DEPENDS=	${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat
@@ -112,10 +121,12 @@ X11_LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 
 .include <bsd.port.pre.mk>
 
-.if (${LLVM_DEFAULT} == 10 || ${LLVM_DEFAULT} == 11)
-_LLVM_VERSION=	15
+.if ${PORT_OPTIONS:MALSA} || ${PORT_OPTIONS:MOSS}
+CONFIGURE_ARGS+=	--with-gstreamer
+PLIST_SUB+=		GSTREAMER=""
 .else
-_LLVM_VERSION=	${LLVM_DEFAULT}
+CONFIGURE_ARGS+=	--without-gstreamer
+PLIST_SUB+=		GSTREAMER="@comment "
 .endif
 
 .if ${ARCH} == amd64
@@ -137,11 +148,12 @@ post-patch:
 	${REINPLACE_CMD} '/Exec/s|wine|wine64|g' ${WRKSRC}/loader/wine.desktop
 
 .else
+EXTRA_PATCHES+=	files/extra-patch-tools-winebuild-res32
 PLIST_SUB+=		WINE32="" WINE64="@comment " WINEARCH="i386"
 .endif
 
 pre-build:
-	cd ${WRKSRC} && ${MAKE_CMD} depend
+	cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} ${MAKE_CMD} depend
 
 post-install:
 .if ${ARCH} == i386
@@ -158,7 +170,7 @@ post-install:
 .endif
 
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-.for i in README ANNOUNCE AUTHORS
+.for i in ANNOUNCE.md AUTHORS README.md
 	${INSTALL_DATA} ${WRKSRC}/${i} ${STAGEDIR}${DOCSDIR}
 .endfor
 	${INSTALL_DATA} ${WRKSRC}/programs/winedbg/README ${STAGEDIR}${DOCSDIR}/README.winedbg

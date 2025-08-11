@@ -2,8 +2,7 @@ PORTNAME=	arcconf
 DISTVERSION=	4.09.00.${BUILD}
 PORTEPOCH=	1
 CATEGORIES=	sysutils
-MASTER_SITES=   https://repo.nepustil.net/distfiles/
-#MASTER_SITES=	https://download.adaptec.com/raid/storage_manager/
+MASTER_SITES=	https://download.adaptec.com/raid/storage_manager/
 DISTNAME=	arcconf_B${BUILD}
 
 MAINTAINER=	michael@fuckner.net

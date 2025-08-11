@@ -1,5 +1,6 @@
 PORTNAME=	megatools
 PORTVERSION=	1.11.1.20230212
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	https://megatools.megous.com/builds/
 
@@ -12,8 +13,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libcurl.so:ftp/curl
 
-USES=		compiler:c11 gettext-runtime gmake gnome libtool pathfix \
-		pkgconfig ssl meson
+USES=		compiler:c11 gettext-runtime gmake gnome pathfix pkgconfig \
+		ssl meson
 USE_GNOME=	glib20
 
 INSTALL_TARGET=	install-strip

@@ -1,5 +1,5 @@
 PORTNAME=	apache24
-PORTVERSION=	2.4.62
+PORTVERSION=	2.4.63
 CATEGORIES=	www
 MASTER_SITES=	APACHE_HTTPD
 DISTNAME=	httpd-${PORTVERSION}
@@ -20,6 +20,7 @@ USES=		apache:server,2.4 autoreconf compiler:c11 cpe iconv libtool perl5 tar:bzi
 USE_PERL5=	run
 USE_RC_SUBR=	apache24 htcacheclean
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 
 CONFLICTS_INSTALL=	py*-circuits # bin/htpasswd
 
@@ -91,6 +92,7 @@ SOCACHE_DC_LIB_DEPENDS=		libdistcache.so:security/distcache
 #  apu-1-config --(includes|ldflags) and apr_rules.mk
 SSL_CONFIGURE_ON=		--with-ssl=${OPENSSLBASE}
 SSL_USES=			ssl
+TLS_BROKEN=			Module removed upstream, replaced by security/mod_tls
 SUEXEC_SYSLOG_CONFIGURE_ON=	--without-suexec-logfile --with-suexec-syslog
 XML2ENC_USE=			GNOME=libxml2
 XML2ENC_USES=			gnome

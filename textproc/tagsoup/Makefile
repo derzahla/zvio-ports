@@ -11,8 +11,11 @@ WWW=		http://vrici.lojban.org/~cowan/XML/tagsoup
 
 LICENSE=	APACHE20
 
-USE_JAVA=	yes
-JAVA_RUN=	jre
+BROKEN=		Unfetchable
+DEPRECATED=	Unfetchable and upstream is gone
+EXPIRATION_DATE=2025-04-30
+
+USES=		java
 
 NO_ARCH=	yes
 NO_BUILD=	yes

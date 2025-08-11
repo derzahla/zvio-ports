@@ -1,6 +1,6 @@
 PORTNAME=	librsvg
 PORTVERSION=	2.40.21
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	graphics gnome
 MASTER_SITES=	GNOME
 PKGNAMESUFFIX=	2
@@ -35,11 +35,12 @@ VAPI_USES=		vala:build
 VAPI_CONFIGURE_ON=	--enable-vala=yes
 VAPI_CONFIGURE_OFF=	--enable-vala=no
 
-USE_GNOME=	cairo gnomeprefix gdkpixbuf2 introspection:build \
+USE_GNOME=	cairo gnomeprefix gdkpixbuf introspection:build \
 		libxml2 pango
 CPE_VENDOR=	gnome
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 INSTALL_TARGET=	install-strip
 CONFIGURE_ARGS=	--disable-Bsymbolic
 

@@ -1,5 +1,5 @@
 PORTNAME=	vcmi
-PORTVERSION=	1.4.2
+PORTVERSION=	1.6.7
 CATEGORIES=	games
 
 MAINTAINER=	danfe@FreeBSD.org
@@ -17,6 +17,9 @@ RUN_DEPENDS=	bash:shells/bash
 
 USES=		cmake pkgconfig sdl shebangfix
 USE_GITHUB=	yes
+GH_PROJECT=	innoextract:inex
+GH_TAGNAME=	9977089:inex
+GH_SUBDIR=	launcher/lib/innoextract:inex
 USE_SDL=	image2 mixer2 sdl2 ttf2
 SHEBANG_FILES=	vcmibuilder
 CMAKE_ARGS=	-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON \
@@ -35,6 +38,9 @@ QT_USES=	qt:5
 QT_USE=		QT=buildtools:build,linguisttools:build,qmake:build \
 		QT=core,gui,network,widgets
 QT_CMAKE_OFF=	-DENABLE_LAUNCHER:BOOL=OFF -DENABLE_EDITOR:BOOL=OFF
+
+post-patch:
+	@${REINPLACE_CMD} -e '/QT NAMES/s, Qt6,,' ${WRKSRC}/CMakeLists.txt
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}

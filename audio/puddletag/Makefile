@@ -1,5 +1,6 @@
 PORTNAME=	puddletag
-DISTVERSION=	2.2.0
+DISTVERSION=	2.4.0
+PORTREVISION=	1
 CATEGORIES=	audio python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,8 +19,21 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}configobj>=0:devel/py-configobj@${PY_FLAVOR}
 		${PYTHON_PKGNAMEPREFIX}unidecode>=0:converters/py-unidecode@${PY_FLAVOR} \
 		chromaprint>=0:audio/chromaprint
 
-USES=		pyqt:5 python
-USE_PYTHON=	autoplist distutils
+USES=		desktop-file-utils pyqt:5 python
 USE_PYQT=	pyqt5:run
+USE_PYTHON=	autoplist distutils
+
+NO_ARCH=	yes
+
+OPTIONS_DEFINE=		LEVENSHTEIN LXML PYACOUSTID
+OPTIONS_DEFAULT=	LEVENSHTEIN LXML PYACOUSTID
+
+LEVENSHTEIN_DESC=	Enable better string matching
+LXML_DESC=		Enable better HTML parsing
+PYACOUSTID_DESC=	Enable support for tagging audio files using web based Tag Sources
+
+LEVENSHTEIN_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}Levenshtein>=0:devel/py-Levenshtein@${PY_FLAVOR}
+LXML_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}lxml>=0:devel/py-lxml@${PY_FLAVOR}
+PYACOUSTID_RUN_DEPENDS=		${PYTHON_PKGNAMEPREFIX}pyacoustid>=0:audio/py-pyacoustid@${PY_FLAVOR}
 
 .include <bsd.port.mk>

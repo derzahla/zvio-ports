@@ -1,7 +1,7 @@
 PORTNAME=		vm-bhyve
 DISTVERSIONPREFIX=	v
-DISTVERSION=		1.5.0-26
-DISTVERSIONSUFFIX=	-ge45b81d
+DISTVERSION=		1.6.2-15
+DISTVERSIONSUFFIX=	-gd5b493a
 CATEGORIES=		sysutils
 PKGNAMESUFFIX=		-devel
 
@@ -11,8 +11,6 @@ WWW=		https://github.com/churchers/vm-bhyve
 
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
-
-RUN_DEPENDS=	${LOCALBASE}/share/certs/ca-root-nss.crt:security/ca_root_nss
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	churchers
@@ -37,6 +35,6 @@ do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/rc.d/vm ${STAGEDIR}${PREFIX}/etc/rc.d
 	(cd ${WRKSRC}/lib/ && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/lib/vm-bhyve)
 	(cd ${WRKSRC}/sample-templates/ && ${COPYTREE_SHARE} . ${STAGEDIR}${EXAMPLESDIR})
-	${INSTALL_MAN} ${WRKSRC}/vm.8 ${STAGEDIR}${MAN8PREFIX}/man/man8
+	${INSTALL_MAN} ${WRKSRC}/vm.8 ${STAGEDIR}${PREFIX}/share/man/man8
 
 .include <bsd.port.mk>

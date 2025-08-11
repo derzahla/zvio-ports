@@ -1,6 +1,6 @@
 PORTNAME=	CheckM
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.2.0
+DISTVERSION=	1.2.3
 PORTREVISION=	1
 CATEGORIES=	biology python
 
@@ -10,6 +10,9 @@ WWW=		https://ecogenomics.github.io/CheckM/
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+DEPRECATED=	Depends on expired science/py-DendroPy
+EXPIRATION_DATE=2025-06-01
 
 RUN_DEPENDS=	${PYNUMPY} \
 		${PYTHON_PKGNAMEPREFIX}DendroPy>0:science/py-DendroPy@${PY_FLAVOR} \

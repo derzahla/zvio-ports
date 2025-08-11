@@ -1,7 +1,7 @@
 PORTNAME=	rosenpass
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.2.1
-PORTREVISION=	2
+DISTVERSION=	0.2.2
+PORTREVISION=	7
 CATEGORIES=	net net-vpn security
 
 MAINTAINER=	fuz@FreeBSD.org
@@ -23,17 +23,16 @@ CARGO_INSTALL_PATH=	rosenpass
 
 PLIST_FILES=	bin/rosenpass \
 		bin/rp \
-		man/man1/rosenpass.1.gz \
-		man/man1/rp.1.gz
+		share/man/man1/rosenpass.1.gz \
+		share/man/man1/rp.1.gz
 
 pre-configure:
 	${REINPLACE_CMD} -e 's,%%BASH%%,${LOCALBASE}/bin/bash,' ${WRKSRC}/rp
 
 post-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/rp ${STAGEDIR}${PREFIX}/bin/
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/rosenpass
 .for man in rp.1 rosenpass.1
-	${INSTALL_MAN} ${WRKSRC}/doc/${man} ${STAGEDIR}${MANPREFIX}/man/man${man:E}/${man}
+	${INSTALL_MAN} ${WRKSRC}/doc/${man} ${STAGEDIR}${PREFIX}/share/man/man${man:E}/${man}
 .endfor
 
 .include <bsd.port.mk>

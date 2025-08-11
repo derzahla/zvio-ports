@@ -1,6 +1,6 @@
---- chrome/browser/ui/views/compose/compose_dialog_view.cc.orig	2024-02-23 21:04:38 UTC
+--- chrome/browser/ui/views/compose/compose_dialog_view.cc.orig	2025-01-15 09:18:26 UTC
 +++ chrome/browser/ui/views/compose/compose_dialog_view.cc
-@@ -144,7 +144,7 @@ void ComposeDialogView::OnBeforeBubbleWidgetInit(
+@@ -160,7 +160,7 @@ void ComposeDialogView::OnBeforeBubbleWidgetInit(
      views::Widget::InitParams* params,
      views::Widget* widget) const {
    WebUIBubbleDialogView::OnBeforeBubbleWidgetInit(params, widget);

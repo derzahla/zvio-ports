@@ -1,6 +1,6 @@
 PORTNAME=	sgmlformat
 PORTVERSION=	1.7
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	textproc print
 MASTER_SITES=	LOCAL/kuriyama
 
@@ -9,6 +9,7 @@ COMMENT=	Generates groff and HTML from linuxdoc and docbook SGML documents
 
 USES=		perl5 uidfix
 USE_PERL5=	run
+MAKE_ARGS=	MANDIR="${PREFIX}/share/man/man"
 MAKE_ENV=	STAGEDIR=${STAGEDIR}
 
 # There are two ports that satisfy the nsgmls requirement.
@@ -24,6 +25,8 @@ WITH_OPENJADE=	yes
 RUN_DEPENDS=	openjade>0:textproc/openjade
 .else
 RUN_DEPENDS=	nsgmls:textproc/jade
+DEPRECATED=	Depends on expired textproc/jade
+EXPIRATION_DATE=2025-03-31
 .endif
 RUN_DEPENDS+=	linuxdoc>0:textproc/linuxdoc \
 		docbook-sgml>0:textproc/docbook-sgml \

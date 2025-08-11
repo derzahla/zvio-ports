@@ -1,6 +1,6 @@
 PORTNAME=	nautilus-python
 DISTVERSION=	1.2.3
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	x11-fm gnome python
 MASTER_SITES=	GNOME
 
@@ -8,12 +8,14 @@ MAINTAINER=	daniel@shafer.cc
 COMMENT=	Python nautilus bindings
 WWW=		https://wiki.gnome.org/Projects/NautilusPython
 
+BROKEN=		does not work with latest nautilus
+
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		gmake gnome libtool localbase pathfix pkgconfig python \
 		tar:xz
-USE_GNOME=	cairo gdkpixbuf2 nautilus3 pygobject3
+USE_GNOME=	cairo gdkpixbuf nautilus3 pygobject3
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes

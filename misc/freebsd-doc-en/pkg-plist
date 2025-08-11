@@ -419,6 +419,23 @@
 %%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/parallels-freebsd7.png
 %%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/parallels-freebsd8.png
 %%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/parallels-freebsd9.png
+%%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/qemu-freebsd01.png
+%%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/qemu-freebsd02.png
+%%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/qemu-freebsd03.png
+%%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/qemu-freebsd04.png
+%%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/qemu-freebsd05.png
+%%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/qemu-freebsd06.png
+%%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/qemu-freebsd07.png
+%%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/qemu-freebsd08.png
+%%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/qemu-freebsd09.png
+%%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/qemu-freebsd12.png
+%%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/qemu-freebsd13.png
+%%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/qemu-freebsd14.png
+%%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/qemu-freebsd15.png
+%%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/qemu-freebsd16.png
+%%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/qemu-freebsd17.png
+%%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/qemu-freebsd18.png
+%%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/qemu-freebsd19.png
 %%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/virtualpc-freebsd1.png
 %%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/virtualpc-freebsd10.png
 %%HTML%%%%DOCBASE%%/images/books/handbook/virtualization/virtualpc-freebsd11.png
@@ -515,6 +532,7 @@
 %%HTML%%%%DOCBASE%%/pgpkeys/art.key
 %%HTML%%%%DOCBASE%%/pgpkeys/arved.key
 %%HTML%%%%DOCBASE%%/pgpkeys/asami.key
+%%HTML%%%%DOCBASE%%/pgpkeys/ashafer.key
 %%HTML%%%%DOCBASE%%/pgpkeys/ashish.key
 %%HTML%%%%DOCBASE%%/pgpkeys/asiciliano.key
 %%HTML%%%%DOCBASE%%/pgpkeys/asomers.key
@@ -544,6 +562,7 @@
 %%HTML%%%%DOCBASE%%/pgpkeys/bland.key
 %%HTML%%%%DOCBASE%%/pgpkeys/bmah.key
 %%HTML%%%%DOCBASE%%/pgpkeys/bms.key
+%%HTML%%%%DOCBASE%%/pgpkeys/bnovkov.key
 %%HTML%%%%DOCBASE%%/pgpkeys/bofh.key
 %%HTML%%%%DOCBASE%%/pgpkeys/br.key
 %%HTML%%%%DOCBASE%%/pgpkeys/brian.key
@@ -584,6 +603,7 @@
 %%HTML%%%%DOCBASE%%/pgpkeys/csjp.key
 %%HTML%%%%DOCBASE%%/pgpkeys/culot.key
 %%HTML%%%%DOCBASE%%/pgpkeys/cy.key
+%%HTML%%%%DOCBASE%%/pgpkeys/dab.key
 %%HTML%%%%DOCBASE%%/pgpkeys/daichi.key
 %%HTML%%%%DOCBASE%%/pgpkeys/damien.key
 %%HTML%%%%DOCBASE%%/pgpkeys/danfe.key
@@ -593,6 +613,7 @@
 %%HTML%%%%DOCBASE%%/pgpkeys/davide.key
 %%HTML%%%%DOCBASE%%/pgpkeys/db.key
 %%HTML%%%%DOCBASE%%/pgpkeys/dbaio.key
+%%HTML%%%%DOCBASE%%/pgpkeys/dch.key
 %%HTML%%%%DOCBASE%%/pgpkeys/dchagin.key
 %%HTML%%%%DOCBASE%%/pgpkeys/dcs.key
 %%HTML%%%%DOCBASE%%/pgpkeys/dd.key
@@ -676,10 +697,12 @@
 %%HTML%%%%DOCBASE%%/pgpkeys/hmp.key
 %%HTML%%%%DOCBASE%%/pgpkeys/hq.key
 %%HTML%%%%DOCBASE%%/pgpkeys/hrs.key
+%%HTML%%%%DOCBASE%%/pgpkeys/igoro.key
 %%HTML%%%%DOCBASE%%/pgpkeys/ijliao.key
 %%HTML%%%%DOCBASE%%/pgpkeys/imp.key
 %%HTML%%%%DOCBASE%%/pgpkeys/itetcu.key
 %%HTML%%%%DOCBASE%%/pgpkeys/ivoras.key
+%%HTML%%%%DOCBASE%%/pgpkeys/ivy.key
 %%HTML%%%%DOCBASE%%/pgpkeys/jacula.key
 %%HTML%%%%DOCBASE%%/pgpkeys/jadawin.key
 %%HTML%%%%DOCBASE%%/pgpkeys/jah.key
@@ -707,6 +730,7 @@
 %%HTML%%%%DOCBASE%%/pgpkeys/jkois.key
 %%HTML%%%%DOCBASE%%/pgpkeys/jkoshy.key
 %%HTML%%%%DOCBASE%%/pgpkeys/jlaffaye.key
+%%HTML%%%%DOCBASE%%/pgpkeys/jlduran.key
 %%HTML%%%%DOCBASE%%/pgpkeys/jlh.key
 %%HTML%%%%DOCBASE%%/pgpkeys/jmb.key
 %%HTML%%%%DOCBASE%%/pgpkeys/jmelo.key
@@ -737,6 +761,7 @@
 %%HTML%%%%DOCBASE%%/pgpkeys/kevlo.key
 %%HTML%%%%DOCBASE%%/pgpkeys/keymaster.key
 %%HTML%%%%DOCBASE%%/pgpkeys/khng.key
+%%HTML%%%%DOCBASE%%/pgpkeys/khorben.key
 %%HTML%%%%DOCBASE%%/pgpkeys/kib.key
 %%HTML%%%%DOCBASE%%/pgpkeys/kmoore.key
 %%HTML%%%%DOCBASE%%/pgpkeys/knu.key
@@ -845,6 +870,7 @@
 %%HTML%%%%DOCBASE%%/pgpkeys/olivier.key
 %%HTML%%%%DOCBASE%%/pgpkeys/olivierd.key
 %%HTML%%%%DOCBASE%%/pgpkeys/osa.key
+%%HTML%%%%DOCBASE%%/pgpkeys/osamaabb.key
 %%HTML%%%%DOCBASE%%/pgpkeys/oshogbo.key
 %%HTML%%%%DOCBASE%%/pgpkeys/otis.key
 %%HTML%%%%DOCBASE%%/pgpkeys/patrick.key
@@ -995,6 +1021,7 @@
 %%HTML%%%%DOCBASE%%/pgpkeys/zack.key
 %%HTML%%%%DOCBASE%%/pgpkeys/zeising.key
 %%HTML%%%%DOCBASE%%/pgpkeys/zi.key
+%%HTML%%%%DOCBASE%%/pgpkeys/ziaee.key
 %%HTML%%%%DOCBASE%%/pgpkeys/zirias.key
 %%HTML%%%%DOCBASE%%/pgpkeys/zlei.key
 %%HTML%%%%DOCBASE%%/pgpkeys/zml.key

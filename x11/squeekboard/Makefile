@@ -1,7 +1,7 @@
 PORTNAME=	squeekboard
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.22.0
-PORTREVISION=	5
+DISTVERSION=	1.43.1
+PORTREVISION=	4
 CATEGORIES=	x11 wayland
 
 PATCH_SITES=	${GL_SITE}/${GL_ACCOUNT}/${GL_PROJECT}/-/commit/
@@ -24,7 +24,7 @@ RUN_DEPENDS=	gsettings-desktop-schemas>0:devel/gsettings-desktop-schemas
 
 USES=		cargo compiler:c11 gettext-tools gnome meson pkgconfig python:build shebangfix
 USE_GITLAB=	yes
-USE_GNOME=	cairo gdkpixbuf2 gnomedesktop3 gtk30
+USE_GNOME=	cairo gdkpixbuf gnomedesktop3 gtk30
 GL_SITE=	https://gitlab.gnome.org
 GL_ACCOUNT=	World/Phosh
 SHEBANG_FILES=	tools/entry.py
@@ -32,14 +32,14 @@ MAKE_ENV=	${CARGO_ENV}
 CARGO_BUILD=	no
 CARGO_INSTALL=	no
 CARGO_TEST=	no
-TARGET_ORDER_OVERRIDE=	750:cargo-configure
-CARGO_CARGOTOML=	${BUILD_WRKSRC}/Cargo.toml
 MESON_ARGS=	-Dstrict=false
-MESON_ARGS+=	-Dnewer=true # XXX Cargo.lock
+GLIB_SCHEMAS=	sm.puri.Squeekboard.gschema.xml
 PLIST_FILES=	bin/${PORTNAME} \
 		bin/${PORTNAME}-entry \
 		bin/${PORTNAME}-test-layout \
 		share/applications/sm.puri.Squeekboard.desktop \
+		share/locale/be/LC_MESSAGES/${PORTNAME}.mo \
+		share/locale/bg/LC_MESSAGES/${PORTNAME}.mo \
 		share/locale/ca/LC_MESSAGES/${PORTNAME}.mo \
 		share/locale/cs/LC_MESSAGES/${PORTNAME}.mo \
 		share/locale/de/LC_MESSAGES/${PORTNAME}.mo \
@@ -54,6 +54,7 @@ PLIST_FILES=	bin/${PORTNAME} \
 		share/locale/he/LC_MESSAGES/${PORTNAME}.mo \
 		share/locale/hi/LC_MESSAGES/${PORTNAME}.mo \
 		share/locale/hr/LC_MESSAGES/${PORTNAME}.mo \
+		share/locale/ht/LC_MESSAGES/${PORTNAME}.mo \
 		share/locale/hu/LC_MESSAGES/${PORTNAME}.mo \
 		share/locale/it/LC_MESSAGES/${PORTNAME}.mo \
 		share/locale/ka/LC_MESSAGES/${PORTNAME}.mo \
@@ -73,18 +74,12 @@ PLIST_FILES=	bin/${PORTNAME} \
 		share/locale/zh_CN/LC_MESSAGES/${PORTNAME}.mo \
 		${NULL}
 
-post-extract:
-.if ${MESON_ARGS:M-Dnewer=true}
-	@${CP} -p ${WRKSRC}/Cargo.lock.newer ${WRKSRC}/Cargo.lock
-.endif
-
 post-patch:
 # Make each cargo subcommand very verbose
 	@${REINPLACE_CMD} -e '/^cargo/s/"$$@"/--verbose --verbose &/' \
 		${WRKSRC}/cargo.sh
-
-post-configure:
-# Provide preprocessed Cargo.toml for USES=cargo
-	@${DO_MAKE_BUILD} -C ${BUILD_WRKSRC} Cargo.toml
+# https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=254091
+	@${REINPLACE_CMD} -e "/sed/s/'-i',/& '',/" \
+		${WRKSRC}/meson.build
 
 .include <bsd.port.mk>

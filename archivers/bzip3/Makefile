@@ -1,5 +1,6 @@
 PORTNAME=	bzip3
-DISTVERSION=	1.4.0
+DISTVERSION=	1.5.1
+PORTREVISION=	1
 CATEGORIES=	archivers
 MASTER_SITES=	https://github.com/kspalaiologos/${PORTNAME}/releases/download/${DISTVERSION}/
 
@@ -7,10 +8,13 @@ MAINTAINER=	ehaupt@FreeBSD.org
 COMMENT=	Better and stronger spiritual successor to BZip2
 WWW=		https://github.com/kspalaiologos/bzip3
 
-LICENSE=	LGPL3
-LICENSE_FILE=	${WRKSRC}/LICENSE
+LICENSE=	APACHE20 BSD2CLAUSE LGPL3+
+LICENSE_COMB=	multi
+LICENSE_FILE_APACHE20=	${WRKSRC}/3rdparty/libsais-LICENSE
+LICENSE_FILE_LGPL3+ =	${WRKSRC}/LICENSE
 
-USES=		cmake pathfix tar:xz
+USES=		cmake cpe pathfix tar:xz
+CPE_VENDOR=	bzip3_project
 USE_LDCONFIG=	yes
 
 .include <bsd.port.mk>

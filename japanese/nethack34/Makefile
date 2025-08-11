@@ -1,6 +1,6 @@
 PORTNAME=	nethack
 PORTVERSION=	3.4.3
-PORTREVISION=	7
+PORTREVISION=	8
 CATEGORIES=	japanese games
 MASTER_SITES=	SF
 DISTNAME=	${PORTNAME}-${PORTVERSION:S/.//g}-src
@@ -41,7 +41,7 @@ X11_VARS=	GRAPHICS=X11_GRAPHICS
 
 .include <bsd.port.options.mk>
 
-.if ${OPSYS} == FreeBSD && ( ${OSVERSION} >= 1400091 || ( ${OSVERSION} >= 1302507 && ${OSVERSION} < 1400000 ))
+.if ${OPSYS} == FreeBSD
 CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 .endif
 

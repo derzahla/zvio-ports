@@ -1,11 +1,12 @@
 PORTNAME=	verilator
 DISTVERSIONPREFIX=	v
-DISTVERSION=	5.020
+DISTVERSION=	5.034
 CATEGORIES=	cad
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Synthesizable Verilog to C++ compiler
-WWW=		https://www.veripool.org/projects/verilator/wiki/Intro
+WWW=		https://www.veripool.org/verilator/ \
+		https://github.com/verilator/verilator
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -32,6 +33,7 @@ SHEBANG_FILES=	bin/verilator_ccache_report \
 		bin/verilator_profcfunc
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ENV=	INSTALL_PROGRAM="${INSTALL_SCRIPT}"
 CONFIGURE_ARGS=	AR=${LOCALBASE}/bin/ar \
 		PYTHON3=${PYTHON_CMD}
@@ -62,11 +64,19 @@ pre-configure:
 	cd ${WRKSRC} && \
 		autoconf
 
-post-build:
-	@${STRIP_CMD} ${WRKSRC}/bin/verilator_bin
+post-install:
+	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/verilator_bin
+
+post-install-INSTALL_DBG_EXECUTABLES-on:
+	@${STRIP_CMD} \
+		${STAGEDIR}${PREFIX}/share/verilator/bin/verilator_bin_dbg \
+		${STAGEDIR}${PREFIX}/share/verilator/bin/verilator_coverage_bin_dbg
 
 post-install-INSTALL_DBG_EXECUTABLES-off:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/verilator_bin
-	@${RM} ${STAGEDIR}${PREFIX}/bin/verilator_bin_dbg ${STAGEDIR}${PREFIX}/bin/verilator_coverage_bin_dbg
+	@${RM} \
+		${STAGEDIR}${PREFIX}/bin/verilator_bin_dbg \
+		${STAGEDIR}${PREFIX}/bin/verilator_coverage_bin_dbg \
+		${STAGEDIR}${PREFIX}/share/verilator/bin/verilator_bin_dbg \
+		${STAGEDIR}${PREFIX}/share/verilator/bin/verilator_coverage_bin_dbg
 
 .include <bsd.port.mk>

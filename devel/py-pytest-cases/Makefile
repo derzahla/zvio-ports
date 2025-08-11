@@ -12,8 +12,11 @@ WWW=		https://smarie.github.io/python-pytest-cases/ \
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+DEPRECATED=	Depends on expired devel/py-makefun
+EXPIRATION_DATE=2025-06-01
+
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=39.2:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}setuptools_scm>=0:devel/py-setuptools_scm@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}setuptools-scm>=0:devel/py-setuptools-scm@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}decopatch>=0:devel/py-decopatch@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}makefun>=1.9.5:devel/py-makefun@${PY_FLAVOR}

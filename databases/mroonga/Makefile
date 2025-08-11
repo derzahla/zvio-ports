@@ -1,7 +1,7 @@
 PORTNAME=	mroonga
-PORTVERSION=	13.05
+DISTVERSION=	14.13
 CATEGORIES=	databases textproc
-MASTER_SITES=	http://packages.groonga.org/source/mroonga/
+MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/v${DISTVERSION}/
 
 MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Open-source fulltext search engine for MySQL
@@ -24,6 +24,8 @@ CONFIGURE_ARGS=	--with-mysql-build="$$(cd ${PORTSDIR}/${_MYSQL_SERVER}; ${MAKE} 
 		--with-mysql-source="$$(cd ${PORTSDIR}/${_MYSQL_SERVER}; ${MAKE} -V WRKSRC)"
 
 SUB_FILES=	pkg-message
+
+PORTDOCS=	*
 
 OPTIONS_DEFINE=	DOCS
 

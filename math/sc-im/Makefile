@@ -1,6 +1,6 @@
 PORTNAME=		sc-im
 DISTVERSIONPREFIX=	v
-DISTVERSION=		0.8.3
+DISTVERSION=		0.8.4
 CATEGORIES=		math
 
 MAINTAINER=	bapt@FreeBSD.org
@@ -22,7 +22,7 @@ WRKSRC_SUBDIR=	src
 CFLAGS+=	-DXLSX_EXPORT -DXLS
 LIBS+=		-lxlsreader -lxlsxwriter
 MAKE_ENV+=	LDLIBS="${LIBS}"
-MAKE_ARGS+=	CC="${CC}" prefix="${PREFIX}" MANDIR="${MANPREFIX}/man/man1"
+MAKE_ARGS+=	CC="${CC}" prefix="${PREFIX}" MANDIR="${PREFIX}/share/man/man1"
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/sc-im

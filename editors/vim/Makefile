@@ -1,7 +1,6 @@
 PORTNAME=	vim
-PORTVERSION=	9.0.2143
+PORTVERSION=	9.1.1199
 DISTVERSIONPREFIX=	v
-PORTREVISION=	1
 CATEGORIES=	editors
 
 MAINTAINER=	adamw@FreeBSD.org
@@ -19,6 +18,7 @@ USE_GITHUB=	yes
 
 # Vim will try to link against libcanberra if it's installed
 CONFIGURE_ARGS=	--disable-canberra \
+		--disable-libsodium \
 		--enable-cscope \
 		--enable-gui=${GUI} \
 		--enable-multibyte \
@@ -29,6 +29,7 @@ MAKE_ARGS=	STRIP="${STRIP_CMD}" \
 
 CPE_VERSION=	${PORTVERSION:R}
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 PLIST_SUB=	VIM_VER=${VIM_VER}
 PORTDATA=	${VIM_VER}
 PORTSCOUT=	ignore:1
@@ -63,7 +64,7 @@ GUI=		gtk2
 CONFIGURE_ARGS+=--enable-xim --enable-fontset
 PLIST_SUB+=	GUI="" DESKTOP=""
 USES+=		desktop-file-utils gnome xorg
-USE_GNOME=	gdkpixbuf2 gtk20
+USE_GNOME=	gdkpixbuf gtk20
 USE_XORG=	ice sm x11 xpm xt
 
 .elif ${FLAVOR:U} == gtk3
@@ -71,7 +72,7 @@ GUI=		gtk3
 CONFIGURE_ARGS+=--enable-xim --enable-fontset
 PLIST_SUB+=	GUI="" DESKTOP=""
 USES+=		desktop-file-utils gnome xorg
-USE_GNOME=	cairo gdkpixbuf2 gtk30
+USE_GNOME=	cairo gdkpixbuf gtk30
 USE_XORG=	ice sm x11 xpm xt
 
 .elif ${FLAVOR:U} == motif
@@ -183,7 +184,7 @@ do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/src/vim ${STAGEDIR}${PREFIX}/bin
 	${INSTALL_DATA} ${WRKSRC}/runtime/defaults.vim ${STAGEDIR}${DATADIR}/${VIM_VER}
 	${INSTALL_DATA} ${FILESDIR}/defaults_freebsd.vim ${STAGEDIR}${DATADIR}/${VIM_VER}
-	${INSTALL_MAN} ${WRKSRC}/runtime/doc/vim.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/runtime/doc/vim.1 ${STAGEDIR}${PREFIX}/share/man/man1
 
 .else  # flavor != tiny
 post-install:

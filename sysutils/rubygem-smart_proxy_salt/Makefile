@@ -1,5 +1,6 @@
 PORTNAME=	smart_proxy_salt
-PORTVERSION=	5.0.1
+PORTVERSION=	5.1.0
+PORTREVISION=	1
 CATEGORIES=	sysutils ruby
 MASTER_SITES=	RG
 
@@ -9,9 +10,12 @@ WWW=		https://github.com/theforeman/smart_proxy_salt
 
 LICENSE=	GPLv3
 
+DEPRECATED=	Depends on expired net/py-libcloud
+EXPIRATION_DATE=2025-06-01
+
 RUN_DEPENDS=	foreman-proxy>=1.8.0:net/foreman-proxy \
 		${PYTHON_PKGNAMEPREFIX}salt>0:sysutils/py-salt@${PY_FLAVOR} \
-		rubygem-smart_proxy_dynflow>=0.5.0:sysutils/rubygem-smart_proxy_dynflow
+		rubygem-smart_proxy_dynflow>=0.5.0<1:sysutils/rubygem-smart_proxy_dynflow
 
 USES=		cpe gem python shebangfix
 
@@ -21,7 +25,6 @@ CPE_VENDOR=	theforeman
 
 SHEBANG_FILES=	bin/foreman-node \
 		sbin/upload-salt-reports
-python_OLD_CMD=	/usr/bin/salt_python_wrapper
 
 post-patch:
 	@${REINPLACE_CMD} -e 's|%%LOCALBASE%%|${LOCALBASE}|g' ${WRKSRC}/bin/foreman-node ${WRKSRC}/sbin/upload-salt-reports

@@ -4,8 +4,6 @@ bin/chrome
 %%DATADIR%%/chrome_100_percent.pak
 %%DATADIR%%/chrome_200_percent.pak
 %%DATADIR%%/headless_command_resources.pak
-%%DATADIR%%/headless_lib_data.pak
-%%DATADIR%%/headless_lib_strings.pak
 %%DATADIR%%/libEGL.so
 %%DATADIR%%/libGLESv2.so
 %%DATADIR%%/libVkICD_mock_icd.so
@@ -128,6 +126,9 @@ bin/chrome
 %%DATADIR%%/product_logo_48.png
 %%DATADIR%%/protoc
 %%DATADIR%%/resources.pak
+%%DATADIR%%/resources/accessibility/reading_mode_gdocs_helper/content.js
+%%DATADIR%%/resources/accessibility/reading_mode_gdocs_helper/gdocs_script.js
+%%DATADIR%%/resources/accessibility/reading_mode_gdocs_helper_manifest.json
 %%DATADIR%%/resources/inspector_overlay/inspector_overlay_resources.grd
 %%DATADIR%%/resources/inspector_overlay/main.js
 %%DATADIR%%/snapshot_blob.bin
@@ -137,7 +138,7 @@ bin/chrome
 %%DEBUG%%%%DATADIR%%/character_data_generator
 %%DEBUG%%%%DATADIR%%/libVkLayer_khronos_validation.so
 %%DRIVER%%bin/chromedriver
-man/man1/chrome.1.gz
+share/man/man1/chrome.1.gz
 share/applications/chromium-browser.desktop
 share/icons/hicolor/128x128/apps/chrome.png
 share/icons/hicolor/22x22/apps/chrome.png

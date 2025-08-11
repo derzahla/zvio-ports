@@ -1,3 +1,3 @@
-TIMESTAMP = 1701363716
-SHA256 (py-serializable-0.16.0.tar.gz) = 80d3401ede78ab350d66ef8c167a688790a1ca8e11b563e8e68283bf29f34a01
-SIZE (py-serializable-0.16.0.tar.gz) = 19683
+TIMESTAMP = 1739663381
+SHA256 (py_serializable-2.0.0.tar.gz) = e9e6491dd7d29c31daf1050232b57f9657f9e8a43b867cca1ff204752cf420a5
+SIZE (py_serializable-2.0.0.tar.gz) = 51617

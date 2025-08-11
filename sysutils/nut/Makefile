@@ -1,6 +1,6 @@
 PORTNAME=	nut
-PORTVERSION=	2.8.1
-PORTREVISION=	2
+PORTVERSION=	2.8.2
+PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://www.networkupstools.org/source/${PORTVERSION:R}/
 
@@ -18,8 +18,8 @@ GNU_CONFIGURE=	yes
 USES=		autoreconf:build compiler:c11 gmake libtool pkgconfig python:build
 USE_LDCONFIG=	yes
 
-NUT_USER?=	uucp
-NUT_GROUP?=	uucp
+NUT_USER?=	nut
+NUT_GROUP?=	nut
 USERS=		${NUT_USER}
 GROUPS=		${NUT_GROUP} dialer
 STATEDIR?=	/var/db/nut
@@ -79,6 +79,8 @@ CONFIGURE_ARGS=	--sysconfdir=${PREFIX}/etc/nut \
 		--with-python3=${PYTHON_CMD} \
 		--without-nut_monitor \
 		--with-ltdl --with-nut-scanner
+
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 
 CFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib -pthread
 CPPFLAGS+=	-I${LOCALBASE}/include -L${LOCALBASE}/lib

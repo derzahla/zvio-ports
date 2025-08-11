@@ -1,8 +1,8 @@
 PORTNAME?=	postgresql
-DISTVERSION?=	16.1
+DISTVERSION?=	16.8
 # PORTREVISION must be ?= otherwise, all slave ports get this PORTREVISION and
 # not their own.  Probably best to keep it at ?=0 when reset here too.
-PORTREVISION?=	2
+PORTREVISION?=	1
 CATEGORIES?=	databases
 MASTER_SITES=	PGSQL/source/v${DISTVERSION}
 PKGNAMESUFFIX?= ${PORTVERSION:R}${COMPONENT}
@@ -25,6 +25,7 @@ USES+=		tar:bzip2 cpe
 .if !defined(NO_BUILD)
 USES+=		gmake
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 .endif
 
 PG_USER?=	postgres
@@ -69,18 +70,12 @@ GROUPS=	${PG_GROUP}
 SUB_FILES+=	502.pgsql
 .endif
 
-OPTIONS_SUB=	yes
-
-.if defined(CLIENT_ONLY)
-OPTIONS_DEFINE+=LIBEDIT DOCS
-LIBEDIT_DESC=	Use non-GPL libedit instead of readline
-.else
 MAKE_ENV+=	PATH=${PREFIX}/bin:${PATH}
 CONFIGURE_ENV+=	PATH=${PREFIX}/bin:${PATH}
-.endif
 
 .if defined(SERVER_ONLY)
-OPTIONS_DEFINE=	DTRACE LDAP INTDATE TZDATA XML DOCS
+OPTIONS_DEFINE=	DTRACE LDAP TZDATA XML DOCS
+OPTIONS_DEFAULT+=XML
 LDAP_DESC=	Build with LDAP authentication support
 TZDATA_DESC=	Use internal timezone database
 XML_DESC=	Build with XML data type
@@ -111,13 +106,7 @@ LLVM_DESC=		Build with support for JIT-compiling expressions
 LLVM_CONFIGURE_WITH=	llvm
 LLVM_CONFIGURE_ENV=	LLVM_CONFIG=${LLVM_CONFIG} \
 			CLANG=${LOCALBASE}/bin/clang${LLVM_VERSION}
-LLVM_USES=		llvm:max=15,min=11,lib
-
-# See http://www.freebsd.org/cgi/query-pr.cgi?pr=ports/76999 for more info
-# (requires dump/restore if modified.)
-OPTIONS_DEFINE+=	INTDATE
-INTDATE_DESC=		Builds with 64-bit date/time type
-OPTIONS_DEFAULT+=	INTDATE
+LLVM_USES=		llvm:min=11,lib
 
 CONFIGURE_ARGS+=	--with-icu
 LIB_DEPENDS+=		libicudata.so:devel/icu
@@ -128,28 +117,18 @@ CONFIGURE_ARGS+=	--without-icu
 
 
 .if !defined(SLAVE_ONLY)
-OPTIONS_DEFINE+=	NLS PAM GSSAPI OPTIMIZED_CFLAGS DEBUG DOCS
-KRB5_DESC=		Build with kerberos provider support
+OPTIONS_DEFINE+=	NLS PAM GSSAPI OPTIMIZED_CFLAGS DEBUG DOCS SSL
 NLS_DESC=		Use internationalized messages
 PAM_DESC=		Build with PAM Support
-MIT_KRB5_DESC=		Build with MIT kerberos support
-HEIMDAL_KRB5_DESC=	Builds with Heimdal kerberos
-GSSAPI_DESC=		Build with GSSAPI support
+GSSAPI_DESC=		Build with GSSAPI from base (security/krb5)
 OPTIMIZED_CFLAGS_DESC=	Builds with compiler optimizations (-O3)
-
-OPTIONS_DEFINE+=	SSL
 SSL_DESC=		Build with OpenSSL support
 
 OPTIONS_DEFAULT+=	SSL
 
+GSSAPI_USES=		gssapi:mit
 GSSAPI_CONFIGURE_WITH=	gssapi
 .endif # !SLAVE_ONLY
-
-.if defined(CLIENT_ONLY)
-LIBEDIT_CONFIGURE_ON+=--with-libedit-preferred
-LIBEDIT_USES=		libedit
-LIBEDIT_USES_OFF=	readline
-.endif # CLIENT_ONLY
 
 SSL_USES=		ssl
 SSL_CONFIGURE_WITH=	openssl
@@ -160,8 +139,6 @@ XML_CONFIGURE_WITH=	libxml
 XML_LIB_DEPENDS=	libxml2.so:textproc/libxml2
 
 TZDATA_CONFIGURE_OFF=	--with-system-tzdata=/usr/share/zoneinfo
-
-INTDATE_CONFIGURE_OFF=	--disable-integer-datetimes
 
 NLS_CONFIGURE_ENABLE=	nls
 NLS_USES=		gettext
@@ -193,36 +170,7 @@ CFLAGS+=	-msse2
 .endif
 
 .if !defined(SLAVE_ONLY)
-
 PATCH_DIST_STRIP=-p1
-
-.if ${PORT_OPTIONS:MGSSAPI}
-.if empty(PORT_OPTIONS:MMIT_KRB5) && empty(PORT_OPTIONS:MHEIMDAL_KRB5)
-# Kerberos libraries will pull the proper GSSAPI library
-# via linker dependencies, but otherwise we must specify
-# it explicitely: ld --as-needed is used for compilation,
-# so configure's -lgssapi_krb5 won't go.
-LDFLAGS+=	-lgssapi
-LDFLAGS_SL+=	-lgssapi
-.endif
-.endif
-
-.  if ${PORT_OPTIONS:MMIT_KRB5}
-.   if defined(IGNORE_WITH_SRC_KRB5) && (exists(/usr/lib/libkrb5.so) || exists(/usr/bin/krb5-config))
-IGNORE=	requires that you remove heimdal\'s /usr/bin/krb5-config and /usr/lib/libkrb5.so*, and set NO_KERBEROS=true in /etc/src.conf to build successfully with MIT-KRB
-.   else
-CONFIGURE_ARGS+=--with-krb5
-# Allow defining a home built MIT Kerberos by setting KRB5_HOME
-.    if defined(KRB5_HOME) && exists(${KRB5_HOME}/lib/libgssapi_krb5.a) && exists(${KRB5_HOME}/bin/krb5-config)
-LIB_DEPENDS+=	libkrb5.so.3:security/krb5
-.    endif
-.   endif
-.  endif
-
-.  if ${PORT_OPTIONS:MHEIMDAL_KRB5}
-CONFIGURE_ARGS+=--with-krb5
-.  endif
-
 .endif # !SLAVE_ONLY
 
 # For testing files in FILESDIR
@@ -240,9 +188,9 @@ pre-build:
 .if !defined(NO_BUILD) && !target(do-build)
 
 do-build:
-	@ cd ${WRKSRC}/src/backend && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} generated-headers
+	@ cd ${WRKSRC}/src/backend && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} generated-headers
 	@ for dir in ${BUILD_DIRS}; do \
-		cd ${WRKSRC}/$${dir} && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ; \
+		cd ${WRKSRC}/$${dir} && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} ; \
 	done
 
 .  if exists(${FILESDIR}/pkg-message${COMPONENT}.in)
@@ -263,7 +211,7 @@ post-patch:
 do-install:
 	@for dir in ${INSTALL_DIRS}; do \
 	    cd ${WRKSRC}/$${dir} && \
-		${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${INSTALL_TARGET}; \
+		${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} ${INSTALL_TARGET}; \
 	done
 .  if defined(SERVER_ONLY)
 	@ ${MKDIR} ${STAGEDIR}${PREFIX}/share/postgresql ;\
@@ -272,7 +220,7 @@ do-install:
 			${STAGEDIR}${PREFIX}/etc/periodic/daily
 .  endif # SERVER_ONLY
 .  if defined(CLIENT_ONLY)
-	@ cd ${WRKSRC}/src && ${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} install-local
+	@ cd ${WRKSRC}/src && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_ARGS} install-local
 .  endif
 	@ if [ -r ${PKGMESSAGE} ]; then \
 		${MKDIR} ${STAGEDIR}${DOCSDIR} ;\

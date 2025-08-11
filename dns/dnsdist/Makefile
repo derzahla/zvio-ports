@@ -1,5 +1,5 @@
 PORTNAME=	dnsdist
-DISTVERSION=	1.8.3
+DISTVERSION=	1.9.9
 CATEGORIES=	dns net
 MASTER_SITES=	https://downloads.powerdns.com/releases/
 
@@ -16,9 +16,10 @@ LICENSE_FILE_MIT=	${WRKSRC}/ext/yahttp/LICENSE
 NOT_FOR_ARCHS=	i386
 NOT_FOR_ARCHS_REASON=	archs with 32-bits time_t are no longer supported by upstream
 
-BUILD_DEPENDS=	${LOCALBASE}/lib/libatomic_ops.a:devel/libatomic_ops
-LIB_DEPENDS=	libboost_serialization.so:devel/boost-libs \
-		libh2o-evloop.so:www/h2o \
+BUILD_DEPENDS=	${LOCALBASE}/lib/libatomic_ops.a:devel/libatomic_ops \
+		boost-libs>0:devel/boost-libs
+LIB_DEPENDS=	libnghttp2.so:www/libnghttp2 \
+		libquiche.so:net/quiche \
 		libre2.so:devel/re2 \
 		libsodium.so:security/libsodium
 
@@ -29,7 +30,9 @@ USE_RC_SUBR=	dnsdist
 
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--bindir=${PREFIX}/sbin \
+		--enable-dns-over-http3 \
 		--enable-dns-over-https \
+		--enable-dns-over-quic \
 		--enable-dns-over-tls \
 		--enable-dnscrypt \
 		--sysconfdir=${ETCDIR} \
@@ -37,6 +40,7 @@ CONFIGURE_ARGS=	--bindir=${PREFIX}/sbin \
 		--with-re2
 
 INSTALL_TARGET=	install-strip
+LDFLAGS+=	-Wl,--as-needed
 
 USERS=		_dnsdist
 GROUPS=		_dnsdist
@@ -52,6 +56,7 @@ OPTIONS_SINGLE_EXTLUA=	LUA LUAJIT
 
 CDB_DESC=	CDB backend
 DNSTAP_DESC=	dnstap support (see dnstap.info)
+EXTLUA_DESC=	Lua library
 KSVOPT_DESC=	Key Value Stores
 LMDB_DESC=	LMDB backend
 LUAJIT_DESC=	Use luajit

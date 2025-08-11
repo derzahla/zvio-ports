@@ -10,7 +10,7 @@ LICENSE_FILE=	${INSTALL_WRKSRC}/COPYING
 CONFIGURE_ARGS=	--enable-elf-shlibs --enable-libuuid
 
 OPTIONS_EXCLUDE=	NLS
-MASTERDIR=	${.CURDIR}/../../sysutils/e2fsprogs-core
+MASTERDIR=	${.CURDIR}/../../filesystems/e2fsprogs-core
 MAKE_ARGS=	LIB_SUBDIRS=lib/uuid
 USE_LDCONFIG=	yes
 ALL_TARGET=	libs
@@ -39,9 +39,9 @@ post-build:
 
 post-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/misc/uuidgen ${STAGEDIR}${PREFIX}/bin/
-	${INSTALL_MAN} ${WRKSRC}/misc/uuidgen.1 ${STAGEDIR}${MAN8PREFIX}/man/man1/
+	${INSTALL_MAN} ${WRKSRC}/misc/uuidgen.1 ${STAGEDIR}${PREFIX}/share/man/man1/
 	${INSTALL_PROGRAM} ${WRKSRC}/misc/uuidd ${STAGEDIR}${PREFIX}/sbin/
-	${INSTALL_MAN} ${WRKSRC}/misc/uuidd.8 ${STAGEDIR}${MAN8PREFIX}/man/man8/
+	${INSTALL_MAN} ${WRKSRC}/misc/uuidd.8 ${STAGEDIR}${PREFIX}/share/man/man8/
 	${MKDIR} ${STAGEDIR}/var/run/libuuid
 
 .include "${MASTERDIR}/Makefile"

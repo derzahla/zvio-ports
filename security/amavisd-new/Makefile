@@ -1,6 +1,6 @@
 PORTNAME=	amavisd-new
-DISTVERSION=	2.12.2
-PORTREVISION=	1
+DISTVERSION=	2.12.3
+PORTREVISION=	6
 PORTEPOCH=	1
 CATEGORIES=	security
 
@@ -24,7 +24,7 @@ USE_GITLAB=	yes
 USE_PERL5=	run
 GL_ACCOUNT=	amavis
 GL_PROJECT=	amavis
-GL_TAGNAME=	38f86957cfc161c23d12637ce206f5ae7ec3d0a8
+GL_TAGNAME=	3290c9c2a11a8cc9595b5810b2f86c1dac25a392
 
 SHEBANG_FILES=	amavisd-agent amavisd-nanny amavisd-release p0f-analyzer.pl \
 		amavisd-snmp-subagent amavisd
@@ -99,7 +99,7 @@ RUN_DEPENDS+=	p5-IO-Socket-INET6>=0:net/p5-IO-Socket-INET6
 .endif
 
 .if ${PORT_OPTIONS:MSNMP} && ${PORT_OPTIONS:MBDB}
-USE_RC_SUBR+=	amavisd-snmp
+USE_RC_SUBR+=	amavisd_snmp
 RUN_DEPENDS+=	p5-Net-SNMP>=0:net-mgmt/p5-Net-SNMP
 .endif
 
@@ -112,7 +112,8 @@ RUN_DEPENDS+=	p5-DBD-SQLite>=0:databases/p5-DBD-SQLite
 .endif
 
 .if ${PORT_OPTIONS:MMYSQL}
-RUN_DEPENDS+=	p5-DBD-mysql>=0:databases/p5-DBD-mysql
+RUN_DEPENDS+=	${DBD_MYSQL}
+USES+=		mysql
 .endif
 
 .if ${PORT_OPTIONS:MPGSQL}
@@ -133,7 +134,7 @@ RUN_DEPENDS+=	spamassassin>=0:mail/spamassassin
 
 .if ${PORT_OPTIONS:MP0F}
 RUN_DEPENDS+=	${LOCALBASE}/bin/p0f:net-mgmt/p0f
-USE_RC_SUBR+=	amavis-p0fanalyzer
+USE_RC_SUBR+=	amavis_p0fanalyzer
 .else
 AMAVIS_NOP0F=	"@comment "
 .endif
@@ -143,14 +144,14 @@ AMAVIS_NOP0F=	"@comment "
 RUN_DEPENDS+=	file>=4.21:sysutils/file
 .endif
 
-# archivers/rar is a 32-bit binary port, we don't want the install to fail
+# archivers/rar is a x86 binary port, we don't want the install to fail
 # at that port, therefore we will block instantly here if the platform does
 # not suit rar.
 .if ${PORT_OPTIONS:MRAR}
-.if ${ARCH} == "i386"
+.if ${ARCH} == "i386" || ${ARCH} == "amd64"
 RUN_DEPENDS+=	${LOCALBASE}/bin/rar:archivers/rar
 .else
-IGNORE=	archivers/rar is a 32-bit binary port and is not compatible with ${ARCH}
+IGNORE=	archivers/rar is a x86 binary port and is not compatible with ${ARCH}
 .endif
 .endif
 
@@ -237,9 +238,9 @@ do-install:
 .for i in amavisd amavisd-agent amavisd-nanny amavisd-release amavisd-snmp-subagent
 	${INSTALL_SCRIPT} ${WRKSRC}/${i} ${STAGEDIR}${PREFIX}/sbin
 .endfor
-	${INSTALL_SCRIPT} ${WRKSRC}/amavisd.conf ${STAGEDIR}${PREFIX}/etc/amavisd.conf.sample
-	${INSTALL_SCRIPT} ${WRKSRC}/amavisd.conf-default ${STAGEDIR}${PREFIX}/etc/amavisd.conf-default
-	${INSTALL_SCRIPT} ${WRKSRC}/amavisd-custom.conf ${STAGEDIR}${PREFIX}/etc/amavisd-custom.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/amavisd.conf ${STAGEDIR}${PREFIX}/etc/amavisd.conf.sample
+	${INSTALL_DATA} ${WRKSRC}/amavisd.conf-default ${STAGEDIR}${PREFIX}/etc/amavisd.conf-default
+	${INSTALL_DATA} ${WRKSRC}/amavisd-custom.conf ${STAGEDIR}${PREFIX}/etc/amavisd-custom.conf.sample
 	${LN} -s ${PREFIX}/sbin/amavisd-release ${STAGEDIR}${PREFIX}/sbin/amavisd-requeue
 	${MKDIR} ${STAGEDIR}${AMAVISDIR}/var
 	${MKDIR} ${STAGEDIR}${AMAVISDIR}/tmp

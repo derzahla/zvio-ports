@@ -18,8 +18,8 @@
 # MAX_FILES_qt5_webengine=4096 to /usr/local/etc/poudriere.conf
 
 PORTNAME=	webengine
-DISTVERSION=	${QT5_VERSION}${QT5_KDE_PATCH}
-PORTREVISION=	5
+PORTVERSION=	${QT5_VERSION}${QT5_KDE_PATCH}
+PORTREVISION=	2
 CATEGORIES=	www
 PKGNAMEPREFIX=	qt5-
 
@@ -28,7 +28,8 @@ COMMENT=	Qt 5 library to render web content
 
 BUILD_DEPENDS=	bison:devel/bison \
 		${LOCALBASE}/include/linux/input.h:devel/evdev-proto \
-		${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat
+		${LOCALBASE}/include/linux/videodev2.h:multimedia/v4l_compat \
+		${PYTHON_PKGNAMEPREFIX}html5lib>0:www/py-html5lib@${PY_FLAVOR}
 LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
 		libdbus-1.so:devel/dbus \
 		libdouble-conversion.so:devel/double-conversion \
@@ -85,6 +86,7 @@ USE_QT=		core declarative gui location network printsupport \
 		buildtools:build designer:build qmake:build
 USE_XORG=	x11 xcb xcomposite xcursor xdamage xext xfixes xi xkbfile \
 		xorgproto xrandr xrender xscrnsaver xtst
+USE_LDCONFIG=	${PREFIX}/${QT_LIBDIR_REL}
 
 QMAKE_CONFIGURE_ARGS=	-proprietary-codecs -system-ffmpeg
 

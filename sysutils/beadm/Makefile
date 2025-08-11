@@ -1,28 +1,30 @@
 PORTNAME=	beadm
-PORTVERSION=	1.4
+PORTVERSION=	1.3.5
 PORTREVISION=	1
 CATEGORIES=	sysutils
+MASTER_SITES=	GH
 
-MAINTAINER=	kmoore@FreeBSD.org
+MAINTAINER=	vermaden@interia.pl
 COMMENT=	Solaris-like utility to manage Boot Environments on ZFS
+WWW=		https://github.com/vermaden/beadm/
 
 LICENSE=	BSD2CLAUSE
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	kmoore134
-GH_TAGNAME=	f100bec
+GH_ACCOUNT=	vermaden
 
-NO_BUILD=	YES
+NO_ARCH=	yes
+NO_BUILD=	yes
 
 CONFLICTS_INSTALL=	beadm-devel
 
 PLIST_FILES=	sbin/${PORTNAME} \
-		man/man1/${PORTNAME}.1.gz
+		share/man/man8/${PORTNAME}.8.gz
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/${PORTNAME} \
-	    ${STAGEDIR}${PREFIX}/sbin/${PORTNAME}
-	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.1 \
-	  ${STAGEDIR}${MANPREFIX}/man/man1/
+		${STAGEDIR}${PREFIX}/sbin/${PORTNAME}
+	${INSTALL_MAN} ${WRKSRC}/${PORTNAME}.8 \
+		${STAGEDIR}${PREFIX}/share/man/man8/
 
 .include <bsd.port.mk>

@@ -1,11 +1,13 @@
     COMMENT = CAD tools
 
+    SUBDIR += Clipper2
     SUBDIR += PrusaSlicer
     SUBDIR += abc
     SUBDIR += admesh
     SUBDIR += adms
     SUBDIR += alliance
     SUBDIR += antimony
+    SUBDIR += apio
     SUBDIR += appcsxcad
     SUBDIR += archimedes
     SUBDIR += astk-client
@@ -73,6 +75,7 @@
     SUBDIR += ldview
     SUBDIR += leocad
     SUBDIR += lepton-eda
+    SUBDIR += libbgcode
     SUBDIR += libgdsii
     SUBDIR += libopencad
     SUBDIR += librecad
@@ -105,6 +108,7 @@
     SUBDIR += pdnmesh
     SUBDIR += py-amaranth
     SUBDIR += py-cocotb
+    SUBDIR += py-csxcad
     SUBDIR += py-edalize
     SUBDIR += py-ezdxf
     SUBDIR += py-gdspy
@@ -138,10 +142,11 @@
     SUBDIR += stm32flash
     SUBDIR += sumo
     SUBDIR += surelog
+    SUBDIR += surfer
     SUBDIR += svlint
     SUBDIR += svls
     SUBDIR += sweethome3d
-    SUBDIR += tkgate
+    SUBDIR += symbiyosys
     SUBDIR += tochnog
     SUBDIR += uhdm
     SUBDIR += uranium

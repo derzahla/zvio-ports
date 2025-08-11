@@ -1,6 +1,6 @@
 PORTNAME=	openbgpd
 PORTVERSION=	5.2.20121209
-PORTREVISION=	4
+PORTREVISION=	5
 PORTEPOCH=	1
 CATEGORIES=	net
 MASTER_SITES=	OPENBSD/OpenBGPD
@@ -14,14 +14,17 @@ WWW=		https://www.openbgpd.org/
 LICENSE=	ISCL
 LICENSE_FILE=	${FILESDIR}/COPYING
 
+DEPRECATED=	Unsupported upstream, consider using net/openbgpd8
+EXPIRATION_DATE=2025-04-30
+
 USES=		tar:tgz uidfix
 USE_RC_SUBR=	${PORTNAME}
 
 CONFLICTS=	zebra quagga
 
 NO_WRKSUBDIR=	yes
-PLIST_FILES=	sbin/bgpctl sbin/bgpd man/man5/bgpd.conf.5.gz \
-		man/man8/bgpctl.8.gz man/man8/bgpd.8.gz
+PLIST_FILES=	sbin/bgpctl sbin/bgpd share/man/man5/bgpd.conf.5.gz \
+		share/man/man8/bgpctl.8.gz share/man/man8/bgpd.8.gz
 SUB_FILES=	pkg-message
 USERS=		_bgpd
 GROUPS=		_bgpd

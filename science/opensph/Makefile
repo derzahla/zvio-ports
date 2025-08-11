@@ -1,5 +1,6 @@
 PORTNAME=	OpenSPH
 DISTVERSION=	0.4.1
+PORTREVISION=	7
 CATEGORIES=	science
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -9,12 +10,14 @@ WWW=		https://gitlab.com/sevecekp/sph
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-ONLY_FOR_ARCHS=	amd64 i386
+ONLY_FOR_ARCHS=	aarch64 amd64 i386
 ONLY_FOR_ARCHS_REASON=	unconditional use of -msse4.1 and inclusion of immintrin.h
 
+BUILD_DEPENDS_aarch64=	${LOCALBASE}/include/sse2neon.h:devel/sse2neon
+BUILD_DEPENDS+=	${BUILD_DEPENDS_${ARCH}}
 TEST_DEPENDS=	catch>0:devel/catch
 
-USES=		compiler:c++14-lang qmake qt:5
+USES=		compiler:c++17-lang qmake qt:5
 USE_GITLAB=	yes
 USE_WX=		3.2
 
@@ -27,6 +30,8 @@ QMAKE_SOURCE_PATH=	${WRKSRC}/sph.pro
 QMAKE_ARGS=		CONFIG+=release
 
 CXXFLAGS+=	-DSPH_CONFIG_SET
+CXXFLAGS_amd64=	-msse4.1
+CXXFLAGS_i386=	-msse4.1
 
 TEST_WRKSRC=	${WRKDIR}/test
 
@@ -60,6 +65,9 @@ VDB_QMAKE_ON=			CONFIG+=use_vdb
 VDB_LIB_DEPENDS=		libImath.so:math/Imath \
 				libopenvdb.so:misc/openvdb \
 				libtbb.so:devel/onetbb
+
+post-patch: # workaround for https://gitlab.com/sevecekp/sph/-/issues/48
+	@${FIND} ${WRKSRC} -name "*.pro" | ${XARGS} ${REINPLACE_CMD} -e 's|c++14|c++17|' -e 's|-msse4.1||'
 
 do-test:
 	@${REINPLACE_CMD} -e 's|Path(.*|Path("${TEST_WRKSRC}");|' ${WRKSRC}/test/utils/Config.h

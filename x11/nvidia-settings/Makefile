@@ -1,5 +1,6 @@
 PORTNAME=	nvidia-settings
 PORTVERSION=	535.146.02
+PORTREVISION=	1
 CATEGORIES=	x11
 
 MAINTAINER=	x11@FreeBSD.org
@@ -19,7 +20,7 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libvdpau.so:multimedia/libvdpau
 
 USES=		gl gmake gnome pkgconfig gettext-runtime xorg
-USE_GNOME=	gtk30 cairo gdkpixbuf2
+USE_GNOME=	gtk30 cairo gdkpixbuf
 USE_GL=		gl
 USE_XORG=	x11 xext xv xxf86vm
 
@@ -28,9 +29,9 @@ GH_ACCOUNT=	NVIDIA
 
 PLIST_FILES=	bin/nvidia-settings \
 		libexec/nvidia-settings \
-		man/man1/nvidia-settings.1.gz \
 		lib/libnvidia-gtk3.so.${PORTVERSION} \
 		share/applications/nvidia-settings.desktop \
+		share/man/man1/nvidia-settings.1.gz \
 		share/pixmaps/nvidia-settings.png
 
 SUB_FILES=	nvidia-settings
@@ -45,7 +46,6 @@ MAKE_ENV=	NV_USE_BUNDLED_LIBJANSSON=0 \
 		XNVCTRL_LDFLAGS=-L${LOCALBASE}/lib
 
 post-patch:	.SILENT
-	${REINPLACE_CMD} -e '/^MANDIR/s|share/||' ${WRKSRC}/utils.mk
 	${REINPLACE_CMD} -E -e 's,__(PIXMAP|UTILS)_PATH__/,,' \
 		-e 's|__NVIDIA_SETTINGS_DESKTOP_CATEGORIES__|Settings;HardwareSettings;|' \
 		${WRKSRC}/doc/nvidia-settings.desktop

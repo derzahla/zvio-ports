@@ -14,22 +14,23 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 LICENSE_DISTFILES=	i2psource_${PORTVERSION}${EXTRACT_SUFX}
 
+BROKEN=		Unfetchable
+DEPRECATED=	Outdated and unsupported upstream
+EXPIRATION_DATE=2025-04-30
+
 ONLY_FOR_ARCHS=	amd64 i386
 ONLY_FOR_ARCHS_REASON=	i2p libwrapper.so library binary only available for i386 and amd64
 
 BUILD_DEPENDS=	${LOCALBASE}/lib/libgmp.a:math/gmp
 LIB_DEPENDS=	libiconv.so:converters/libiconv
 
-USES=		cpe gettext tar:bz2
+USES=		cpe gettext java:ant tar:bz2
 CPE_VENDOR=	geti2p
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
 
 USE_RC_SUBR=	i2p
-USE_ANT=	yes
-USE_JAVA=	yes
 NO_ARCH=	yes
-JAVA_BUILD=	jdk
 USE_LOCALE=	en_US.UTF-8
 ALL_TARGET=	updater tarball
 

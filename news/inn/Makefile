@@ -1,6 +1,6 @@
 PORTNAME?=		inn
-PORTVERSION?=		2.7.1
-PORTREVISION?=		1
+PORTVERSION?=		2.7.2
+PORTREVISION?=		0
 CATEGORIES=		news
 MASTER_SITES=		ISC
 MASTER_SITE_SUBDIR?=	${PORTNAME}
@@ -48,6 +48,7 @@ BLACKLISTD_CONFIGURE_WITH=	blacklist
 .if ${BRANCH:U} == 2.8
 PLIST_SUB+=		SNAPSHOT=""
 .else
+EXTRA_PATCHES+=		${FILESDIR}/extra-patch-lib_innconf.c
 PLIST_SUB+=		SNAPSHOT="@comment "
 .endif
 
@@ -58,7 +59,7 @@ VARBASE?=	/var
 HAS_CONFIGURE=		yes
 CONFIGURE_ENV+=		LOCALBASE=${LOCALBASE}
 CONFIGURE_ENV+=		ac_cv_prog_AWK="${AWK}"
-CONFIGURE_ARGS+=	--mandir=${MANPREFIX}/man		\
+CONFIGURE_ARGS+=	--mandir=${PREFIX}/share/man		\
 			--prefix=${INN_NEWSBASE}		\
 			--with-spool-dir=${INN_NEWSSPOOL}	\
 			--with-log-dir=${INN_LOGDIR}		\
@@ -71,9 +72,9 @@ CONFIGURE_ARGS+=	--mandir=${MANPREFIX}/man		\
 
 UUCP_RNEWS_RUN_DEPENDS=	uucp:net/freebsd-uucp
 
-INNLIB_LONG?=		9.0.0
-LIBVER_LONG?=		3.0.7
-LIBSTORAGEVER_LONG?=	3.1.1
+INNLIB_LONG?=		9.0.1
+LIBVER_LONG?=		3.0.8
+LIBSTORAGEVER_LONG?=	3.1.2
 PLIST_SUB+=		LIBVER=${LIBVER_LONG:R:R} LIBVER_LONG=${LIBVER_LONG} \
 			INNLIB=${INNLIB_LONG:R:R} INNLIB_LONG=${INNLIB_LONG} \
 			LIBSTORAGEVER=${LIBSTORAGEVER_LONG:R:R} LIBSTORAGEVER_LONG=${LIBSTORAGEVER_LONG}
@@ -191,9 +192,7 @@ PLIST_SUB+=	ETCFILES="${CONFIG_FILES}"
 
 .include <bsd.port.pre.mk>
 
-.if !defined(GID)
-GID!=	id -g
-.endif
+GID?=	${.MAKE.GID}
 
 post-patch:
 	@${REINPLACE_CMD} -E 's!\$$[{(]PATHETC[})]!${EXAMPLESDIR}!g' \

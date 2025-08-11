@@ -1,5 +1,5 @@
 PORTNAME=	fort
-DISTVERSION=	1.6.0
+DISTVERSION=	1.6.6
 CATEGORIES=	net
 
 MAINTAINER=	toni@devboks.com
@@ -9,11 +9,12 @@ WWW=		https://fortproject.net/en/validator
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libcurl.so:ftp/curl libjansson.so:devel/jansson \
-		libxml2.so:textproc/libxml2
+LIB_DEPENDS=	libcurl.so:ftp/curl \
+		libjansson.so:devel/jansson
 RUN_DEPENDS=	${LOCALBASE}/bin/rsync:net/rsync
 
-USES=		autoreconf compiler:c11 pkgconfig ssl
+USES=		autoreconf compiler:c11 gnome pkgconfig ssl
+USE_GNOME=	libxml2
 USE_GITHUB=	yes
 USE_RC_SUBR=	fort
 
@@ -21,6 +22,7 @@ GH_ACCOUNT=	NICMx
 GH_PROJECT=	FORT-validator
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 
 SUB_FILES=	pkg-message
 

@@ -1,6 +1,7 @@
 PORTNAME=	liblxi
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.18
+PORTREVISION=	1
 CATEGORIES=	misc
 
 MAINTAINER=	dmgk@FreeBSD.org
@@ -10,10 +11,10 @@ WWW=		https://lxi-tools.github.io
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libavahi-client.so:net/avahi-app \
-		libxml2.so:textproc/libxml2
+LIB_DEPENDS=	libavahi-client.so:net/avahi-app
 
-USES=		meson pkgconfig
+USES=		gnome meson pkgconfig
+USE_GNOME=	libxml2
 USE_GITHUB=	yes
 GH_ACCOUNT=	lxi-tools
 USE_LDCONFIG=	yes

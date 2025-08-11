@@ -1,5 +1,6 @@
 PORTNAME=	budgie-desktop
 DISTVERSION=	10.8.2
+PORTREVISION=	4
 DISTVERSIONPREFIX=	v
 CATEGORIES=	x11 budgie
 MASTER_SITES=	BUDGIE
@@ -37,7 +38,7 @@ RUN_DEPENDS=	gsettings-desktop-schemas>0:devel/gsettings-desktop-schemas \
 USES=		budgie gettext gnome gstreamer meson pkgconfig tar:xz \
 		vala:build xorg
 USE_BUDGIE=	libmagpie screensaver:build
-USE_GNOME=	cairo gdkpixbuf2 glib20 gnomedesktop3 gnomemenus3 \
+USE_GNOME=	cairo gdkpixbuf glib20 gnomedesktop3 gnomemenus3 \
 		gtk30 intltool introspection libwnck3
 USE_GSTREAMER=	libgstreamer
 USE_XORG=	x11 xcomposite
@@ -73,7 +74,7 @@ GLIB_SCHEMAS=	20_buddiesofbudgie.budgie-desktop.notifications.gschema.override \
 
 .include <bsd.port.options.mk>
 
-.if ${OPSYS} == FreeBSD && ( ${OSVERSION} >= 1400091 || ( ${OSVERSION} >= 1302507 && ${OSVERSION} < 1400000 ))
+.if ${OPSYS} == FreeBSD
 CFLAGS+=	-Wno-error=incompatible-function-pointer-types
 .endif
 

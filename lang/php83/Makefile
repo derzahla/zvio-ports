@@ -1,6 +1,6 @@
 PORTNAME=	php83
-DISTVERSION=	8.3.1
-PORTREVISION?=	0
+DISTVERSION=	8.3.19
+PORTREVISION?=	1
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP/distributions
 DISTNAME=	php-${DISTVERSION}
@@ -76,7 +76,7 @@ FPM_CONFIGURE_ON=	--enable-fpm \
 			--with-fpm-group=${WWWGRP} \
 			--with-fpm-user=${WWWOWN}
 FPM_VARS=		PHP_SAPI+=fpm \
-			USE_RC_SUBR+=php-fpm
+			USE_RC_SUBR+=php_fpm
 IPV6_CONFIGURE_OFF=	--disable-ipv6
 LINKTHR_LIBS=		-lpthread
 NOASLR_USES=	elfctl
@@ -167,20 +167,20 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/php.ini-development ${WRKSRC}/php.ini-production \
 		${WRKDIR}/php.conf ${STAGEDIR}/${PREFIX}/etc
 
-post-install-CLI-on:
-	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/bin/php
-
 post-install-CGI-on:
-	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/bin/php-cgi
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/php-cgi
+
+post-install-CLI-on:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/php
 
 post-install-EMBED-on:
-	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/lib/libphp.so
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libphp.so
 
 post-install-FPM-on:
-	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/sbin/php-fpm
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/php-fpm
 
 post-install-PHPDBG-on:
-	${STRIP_CMD} ${STAGEDIR}/${PREFIX}/bin/phpdbg
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/phpdbg
 
 .else
 do-install:
@@ -195,7 +195,7 @@ COMMENT=	The ${PHP_MODNAME} shared extension for php
 USES+=		php:ext,noflavors
 PHP_MODNAME=	${PKGNAMESUFFIX:S/-//}
 PHP_VER=	83
-IGNORE_WITH_PHP=	81 82
+IGNORE_WITH_PHP=	81 82 84
 
 EXTSUBDIR=	${DISTNAME}/ext/${PHP_MODNAME}
 WRKSRC=		${WRKDIR}/${EXTSUBDIR}
@@ -251,8 +251,8 @@ DB4_CONFIGURE_ON=	--with-db4=${LOCALBASE}
 DB4_USES=		bdb
 DB4_VARS=		WITH_BDB_HIGHEST=yes
 FLATFILE_CONFIGURE_ON=	--disable-flatfile
-GDBM_CONFIGURE_ARGS=	--with-gdbm=${LOCALBASE}
 GDBM_LIB_DEPENDS=	libgdbm.so:databases/gdbm
+GDBM_CONFIGURE_ARGS=	--with-gdbm=${LOCALBASE}
 INIFILE_CONFIGURE_OFF=	--disable-inifile
 LMDB_LIB_DEPENDS=	liblmdb.so:databases/lmdb
 LMDB_CONFIGURE_ARGS=	--with-lmdb=${LOCALBASE}
@@ -272,7 +272,7 @@ USE_GNOME=	libxml2
 .endif
 
 .if ${PHP_MODNAME} == "enchant"
-LIB_DEPENDS+=   libenchant-2.so:textproc/enchant2
+LIB_DEPENDS+=	libenchant-2.so:textproc/enchant2
 CONFIGURE_ARGS+=--with-enchant=${LOCALBASE}
 USES+=		pkgconfig
 .endif
@@ -371,11 +371,6 @@ USES+=		pkgconfig
 CPPFLAGS+=	-DU_USING_ICU_NAMESPACE=1
 .endif
 
-.if ${PHP_MODNAME} == "json"
-CONFIGURE_ARGS+=	--enable-json
-BUILD_DEPENDS=		re2c:devel/re2c
-.endif
-
 .if ${PHP_MODNAME} == "ldap"
 LIB_DEPENDS+=libsasl2.so:security/cyrus-sasl2
 CONFIGURE_ARGS+=--with-ldap=${LOCALBASE} --with-ldap-sasl=${LOCALBASE}
@@ -409,7 +404,7 @@ CONFIGURE_ARGS+= --with-unixODBC=${LOCALBASE}
 .if ${PHP_MODNAME} == "opcache"
 # This is needed by Zend extensions, keep before everything.
 PHP_MOD_PRIO=		10
-CONFIGURE_ARGS+=        --enable-opcache
+CONFIGURE_ARGS+=	--enable-opcache
 .endif
 
 .if ${PHP_MODNAME} == "pcntl"
@@ -452,10 +447,10 @@ OPTIONS_DEFAULT=	MYSQLND
 
 MYSQLND_DESC=		Use MySQL Native Driver
 
+MYSQLND_CONFIGURE_ON=	--with-pdo-mysql=mysqlnd
 MYSQLND_CONFIGURE_OFF=	--with-pdo-mysql=${LOCALBASE} \
 			--with-zlib-dir=/usr
 MYSQLND_USES_OFF=	mysql
-MYSQLND_CONFIGURE_ON=	--with-pdo-mysql=mysqlnd
 
 USE_PHP=	pdo:build
 .endif
@@ -563,7 +558,7 @@ CONFIGURE_ARGS+=	--enable-sysvshm
 .if ${PHP_MODNAME} == "tidy"
 CONFIGURE_ARGS+=	--with-tidy=${LOCALBASE}
 
-LIB_DEPENDS+=	libtidy.so:www/tidy-lib
+LIB_DEPENDS+=	libtidy5.so:www/tidy-html5
 .endif
 
 .if ${PHP_MODNAME} == "tokenizer"
@@ -583,18 +578,6 @@ CONFIGURE_ARGS+=	--enable-xmlreader
 USE_GNOME=	libxml2
 
 USE_PHP=	dom:build
-.endif
-
-.if ${PHP_MODNAME} == "xmlrpc"
-CONFIGURE_ARGS+=	--with-iconv-dir=${LOCALBASE} \
-			--with-xmlrpc
-
-USES+=		iconv:translit
-USE_GNOME=	libxml2
-
-PHP_HEADER_DIRS=	libxmlrpc
-
-USE_PHP=	xml:build
 .endif
 
 .if ${PHP_MODNAME} == "xmlwriter"

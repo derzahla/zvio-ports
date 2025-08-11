@@ -1,33 +1,33 @@
 PORTNAME=	haskell-language-server
-DISTVERSION=	2.0.0.0
-PORTREVISION=	1
+DISTVERSION=	2.9.0.1
 CATEGORIES=	devel haskell
 
 MAINTAINER=	haskell@FreeBSD.org
 COMMENT=	LSP provider implementation for Haskell language
-WWW=		https://github.com/haskell/haskell-language-server/
+WWW=		https://haskell-language-server.readthedocs.io/
 
 LICENSE=	APACHE20
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BROKEN_aarch64=	compiler crashes
+NOT_FOR_ARCHS=	i386
 
-FLAVORS=	default ghc810 ghc92
+FLAVORS=	default ghc92 ghc94
 FLAVOR?=	${FLAVORS:[1]}
 .if ${FLAVOR:U} != default
 PKGNAMESUFFIX=	-${FLAVOR}
 .endif
 
 # Do not use a flavor helper to let Uses/cabal.mk machinery to kick in
-.if ${FLAVOR:U} == ghc810
-BUILD_DEPENDS=	ghc-8.10.7:lang/ghc810
-GHC_VERSION=	8.10.7
-.elif ${FLAVOR:U} == ghc92
+.if ${FLAVOR:U} == ghc92
 BUILD_DEPENDS=	ghc-9.2.8:lang/ghc92
 GHC_VERSION=	9.2.8
+.elif ${FLAVOR:U} == ghc94
+BUILD_DEPENDS=	ghc-9.4.8:lang/ghc94
+GHC_VERSION=	9.4.8
 .endif
 
 USES=		cabal
-
 USE_GITHUB=	yes
 GH_ACCOUNT=	haskell
 
@@ -40,8 +40,6 @@ CABAL_PROJECT=		append
 CABAL_FLAGS=		-dynamic
 CABAL_EXECUTABLES=	${PORTNAME} \
 			${PORTNAME}-wrapper
-
-NOT_FOR_ARCHS=		i386
 
 .if ${FLAVOR:U} != default
 SKIP_CABAL_PLIST=	yes

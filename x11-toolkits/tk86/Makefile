@@ -33,6 +33,7 @@ TEST_TARGET=	test
 USES+=		tcl:${SHORT_TK_VER},tea xorg
 USE_LDCONFIG=	yes
 USE_XORG=	x11 xext xft xrender xscrnsaver
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--enable-xss \
 		--enable-xft \
 		--enable-man-suffix=.${MAN_SUFFIX} \
@@ -43,7 +44,7 @@ CONFIGURE_ENV=	PORTSDIR=${PORTSDIR}
 CFLAGS+=	-I${TCL_INCLUDEDIR} \
 		-I${LOCALBASE}/include
 
-TK_VERSION=	8.6.13
+TK_VERSION=	8.6.16
 TK_VER=		${TK_VERSION:R}
 TK_RC=
 SHORT_TK_VER=	${TK_VER:S/.//}

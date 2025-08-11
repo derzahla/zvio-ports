@@ -1,5 +1,6 @@
 PORTNAME=	saga
-PORTVERSION=	9.3.1
+PORTVERSION=	9.8.0
+PORTREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	SF/saga-gis/SAGA%20-%20${PORTVERSION:C/\.[[:digit:]]\.[[:digit:]]*$//}/SAGA%20-%20${PORTVERSION}
 
@@ -22,20 +23,20 @@ LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libhpdf.so:print/libharu \
 		libodbc.so:databases/unixODBC \
 		libopencv_core.so:graphics/opencv \
-		libpdal_base.so:math/pdal \
+		libpdalcpp.so:math/pdal \
 		libproj.so:graphics/proj \
 		libsvm.so:science/libsvm \
 		libsz.so:science/libaec \
 		libtiff.so:graphics/tiff
 RUN_DEPENDS:=	swig:devel/swig
 
-USES=		cmake compiler:c++17-lang desktop-file-utils dos2unix gnome \
-		iconv:wchar_t libtool localbase pkgconfig python
+USES=		cmake compiler:c++17-lang desktop-file-utils dos2unix \
+		gnome iconv:wchar_t localbase pkgconfig python
 DOS2UNIX_GLOB=	*.cpp *.h
 USE_LDCONFIG=	yes
 USE_WX=		3.2+
 
-GIT_TAGNAME=	28c26052730e
+GIT_TAGNAME=	332e77cb0
 
 CMAKE_ARGS=	-DSVM_INCLUDE:PATH=${LOCALBASE}/include/svm.h
 CMAKE_ON=	CMAKE_VERBOSE_MAKEFILE
@@ -89,7 +90,7 @@ post-patch:
 		${WRKSRC}/src/saga_core/saga_gui/CMakeLists.txt \
 		${WRKSRC}/src/saga_core/saga_gui/dlg_about.cpp
 	@${REINPLACE_CMD} -e 's|-lgomp|-lomp|' \
-		${WRKSRC}/src/accessories/templates/template4saga-tools/my_tool_library/Makefile
+		${WRKSRC}/src/saga_core/saga_api/saga_api_to_python.py
 
 post-install:
 	${MKDIR} ${STAGEDIR}${DATADIR}

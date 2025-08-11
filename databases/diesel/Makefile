@@ -1,13 +1,13 @@
 PORTNAME=	diesel
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.1.4
-PORTREVISION=	1
+DISTVERSION=	2.2.8
 CATEGORIES=	databases
 PKGNAMESUFFIX=	-cli
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Extensible ORM and Query Builder for Rust
-WWW=		https://diesel.rs
+WWW=		https://diesel.rs \
+		https://github.com/diesel-rs/diesel
 
 LICENSE=	APACHE20 MIT
 LICENSE_COMB=	dual
@@ -21,162 +21,215 @@ GH_ACCOUNT=	diesel-rs
 
 CARGO_BUILD_ARGS=	--package=diesel_cli
 CARGO_INSTALL_PATH=	diesel_cli
-CARGO_CRATES=	aho-corasick-1.1.2 \
+CARGO_CRATES=	aho-corasick-1.1.3 \
 		android-tzdata-0.1.1 \
 		android_system_properties-0.1.5 \
-		anstream-0.6.4 \
-		anstyle-1.0.4 \
-		anstyle-parse-0.2.2 \
-		anstyle-query-1.0.0 \
-		anstyle-wincon-3.0.1 \
-		argon2-0.5.2 \
+		anstream-0.6.18 \
+		anstyle-1.0.10 \
+		anstyle-parse-0.2.6 \
+		anstyle-query-1.1.2 \
+		anstyle-wincon-3.0.7 \
+		argon2-0.5.3 \
 		assert_matches-1.5.0 \
-		autocfg-1.1.0 \
+		autocfg-1.4.0 \
 		base64ct-1.6.0 \
-		bigdecimal-0.4.2 \
-		bitflags-1.3.2 \
-		bitflags-2.4.1 \
+		bigdecimal-0.4.7 \
+		bitflags-2.9.0 \
 		blake2-0.10.6 \
 		block-buffer-0.10.4 \
-		bumpalo-3.14.0 \
+		bumpalo-3.17.0 \
 		byteorder-1.5.0 \
-		cc-1.0.83 \
+		cc-1.2.16 \
 		cfg-if-1.0.0 \
-		chrono-0.4.31 \
-		clap-4.4.8 \
-		clap_builder-4.4.8 \
-		clap_complete-4.4.4 \
-		clap_derive-4.4.7 \
-		clap_lex-0.6.0 \
-		colorchoice-1.0.0 \
-		console-0.15.7 \
-		core-foundation-sys-0.8.4 \
-		cpufeatures-0.2.11 \
+		chrono-0.4.40 \
+		clap-4.5.31 \
+		clap_builder-4.5.31 \
+		clap_complete-4.5.46 \
+		clap_derive-4.5.28 \
+		clap_lex-0.7.4 \
+		cmake-0.1.54 \
+		colorchoice-1.0.3 \
+		console-0.15.11 \
+		core-foundation-sys-0.8.7 \
+		cpufeatures-0.2.17 \
 		crypto-common-0.1.6 \
-		deranged-0.3.9 \
-		diffy-0.3.0 \
+		darling-0.20.10 \
+		darling_core-0.20.10 \
+		darling_macro-0.20.10 \
+		deranged-0.3.11 \
+		diffy-0.4.2 \
 		digest-0.10.7 \
+		displaydoc-0.2.5 \
 		dotenvy-0.15.7 \
-		encode_unicode-0.3.6 \
+		either-1.14.0 \
+		encode_unicode-1.0.0 \
 		env_logger-0.8.4 \
-		equivalent-1.0.1 \
-		errno-0.3.6 \
-		fastrand-2.0.1 \
-		form_urlencoded-1.2.0 \
+		equivalent-1.0.2 \
+		errno-0.3.10 \
+		fastrand-2.3.0 \
+		fnv-1.0.7 \
+		form_urlencoded-1.2.1 \
 		generic-array-0.14.7 \
-		getrandom-0.2.11 \
-		hashbrown-0.14.2 \
-		heck-0.4.1 \
-		iana-time-zone-0.1.58 \
+		getrandom-0.2.15 \
+		getrandom-0.3.1 \
+		hashbrown-0.15.2 \
+		heck-0.5.0 \
+		iana-time-zone-0.1.61 \
 		iana-time-zone-haiku-0.1.2 \
-		idna-0.4.0 \
-		indexmap-2.1.0 \
-		insta-1.34.0 \
-		ipnet-2.9.0 \
-		ipnetwork-0.20.0 \
-		itoa-1.0.9 \
-		js-sys-0.3.65 \
-		lazy_static-1.4.0 \
-		libc-0.2.150 \
-		libm-0.2.8 \
-		libsqlite3-sys-0.27.0 \
+		icu_collections-1.5.0 \
+		icu_locid-1.5.0 \
+		icu_locid_transform-1.5.0 \
+		icu_locid_transform_data-1.5.0 \
+		icu_normalizer-1.5.0 \
+		icu_normalizer_data-1.5.0 \
+		icu_properties-1.5.1 \
+		icu_properties_data-1.5.0 \
+		icu_provider-1.5.0 \
+		icu_provider_macros-1.5.0 \
+		ident_case-1.0.1 \
+		idna-1.0.3 \
+		idna_adapter-1.2.0 \
+		indexmap-2.7.1 \
+		insta-1.42.2 \
+		ipnet-2.11.0 \
+		ipnetwork-0.21.1 \
+		is_terminal_polyfill-1.70.1 \
+		itoa-1.0.15 \
+		js-sys-0.3.77 \
+		lazy_static-1.5.0 \
+		libc-0.2.170 \
+		libm-0.2.11 \
+		libsqlite3-sys-0.31.0 \
+		link-cplusplus-1.0.10 \
 		linked-hash-map-0.5.6 \
-		linux-raw-sys-0.4.11 \
-		lock_api-0.4.11 \
-		log-0.4.20 \
-		memchr-2.6.4 \
-		mysqlclient-sys-0.2.5 \
+		linux-raw-sys-0.4.15 \
+		litemap-0.7.5 \
+		lock_api-0.4.12 \
+		log-0.4.26 \
+		matchers-0.1.0 \
+		memchr-2.7.4 \
+		mysqlclient-src-0.1.2 \
+		mysqlclient-sys-0.4.2 \
 		nu-ansi-term-0.46.0 \
-		num-bigint-0.4.4 \
-		num-integer-0.1.45 \
-		num-traits-0.2.17 \
-		once_cell-1.18.0 \
+		nu-ansi-term-0.50.1 \
+		num-bigint-0.4.6 \
+		num-conv-0.1.0 \
+		num-integer-0.1.46 \
+		num-traits-0.2.19 \
+		once_cell-1.20.3 \
+		openssl-src-300.4.2+3.4.1 \
+		openssl-sys-0.9.106 \
 		overload-0.1.1 \
-		parking_lot-0.12.1 \
-		parking_lot_core-0.9.9 \
+		parking_lot-0.12.3 \
+		parking_lot_core-0.9.10 \
 		password-hash-0.5.0 \
-		percent-encoding-2.3.0 \
-		pkg-config-0.3.27 \
+		percent-encoding-2.3.1 \
+		pin-project-1.1.10 \
+		pin-project-internal-1.1.10 \
+		pin-project-lite-0.2.16 \
+		pkg-config-0.3.32 \
 		powerfmt-0.2.0 \
-		ppv-lite86-0.2.17 \
-		pq-sys-0.4.8 \
-		proc-macro2-1.0.69 \
+		ppv-lite86-0.2.20 \
+		pq-src-0.3.4 \
+		pq-sys-0.7.0 \
+		proc-macro2-1.0.94 \
 		quickcheck-1.0.3 \
-		quote-1.0.33 \
+		quote-1.0.39 \
 		r2d2-0.8.10 \
 		rand-0.8.5 \
 		rand_chacha-0.3.1 \
 		rand_core-0.6.4 \
-		redox_syscall-0.4.1 \
-		regex-1.10.2 \
-		regex-automata-0.4.3 \
-		regex-syntax-0.8.2 \
-		rustix-0.38.24 \
-		ryu-1.0.15 \
+		redox_syscall-0.5.10 \
+		regex-1.11.1 \
+		regex-automata-0.1.10 \
+		regex-automata-0.4.9 \
+		regex-syntax-0.6.29 \
+		regex-syntax-0.8.5 \
+		rustix-0.38.44 \
+		rustversion-1.0.20 \
+		ryu-1.0.20 \
 		scheduled-thread-pool-0.2.7 \
 		scopeguard-1.2.0 \
-		serde-1.0.192 \
-		serde_derive-1.0.192 \
-		serde_json-1.0.108 \
+		serde-1.0.218 \
+		serde_derive-1.0.218 \
+		serde_json-1.0.140 \
 		serde_regex-1.1.0 \
-		serde_spanned-0.6.4 \
-		similar-2.3.0 \
-		smallvec-1.11.2 \
-		strsim-0.10.0 \
-		subtle-2.5.0 \
-		syn-2.0.39 \
-		tempfile-3.8.1 \
-		time-0.3.30 \
+		serde_spanned-0.6.8 \
+		sharded-slab-0.1.7 \
+		shlex-1.3.0 \
+		similar-2.7.0 \
+		smallvec-1.14.0 \
+		stable_deref_trait-1.2.0 \
+		strsim-0.11.1 \
+		subtle-2.6.1 \
+		syn-2.0.99 \
+		synstructure-0.13.1 \
+		tempfile-3.17.1 \
+		thiserror-1.0.69 \
+		thiserror-impl-1.0.69 \
+		thread_local-1.1.8 \
+		time-0.3.37 \
 		time-core-0.1.2 \
-		time-macros-0.2.15 \
-		tinyvec-1.6.0 \
-		tinyvec_macros-0.1.1 \
-		toml-0.7.8 \
-		toml_datetime-0.6.5 \
-		toml_edit-0.19.15 \
-		typenum-1.17.0 \
-		unicode-bidi-0.3.13 \
-		unicode-ident-1.0.12 \
-		unicode-normalization-0.1.22 \
-		url-2.4.1 \
-		utf8parse-0.2.1 \
-		uuid-1.5.0 \
+		time-macros-0.2.19 \
+		tinystr-0.7.6 \
+		toml-0.8.20 \
+		toml_datetime-0.6.8 \
+		toml_edit-0.22.24 \
+		tracing-0.1.41 \
+		tracing-attributes-0.1.28 \
+		tracing-core-0.1.33 \
+		tracing-log-0.2.0 \
+		tracing-subscriber-0.3.19 \
+		typenum-1.18.0 \
+		unicode-ident-1.0.18 \
+		url-2.5.4 \
+		utf16_iter-1.0.5 \
+		utf8_iter-1.0.4 \
+		utf8parse-0.2.2 \
+		uuid-1.15.1 \
+		valuable-0.1.1 \
 		vcpkg-0.2.15 \
-		version_check-0.9.4 \
+		version_check-0.9.5 \
 		wasi-0.11.0+wasi-snapshot-preview1 \
-		wasm-bindgen-0.2.88 \
-		wasm-bindgen-backend-0.2.88 \
-		wasm-bindgen-macro-0.2.88 \
-		wasm-bindgen-macro-support-0.2.88 \
-		wasm-bindgen-shared-0.2.88 \
+		wasi-0.13.3+wasi-0.2.2 \
+		wasm-bindgen-0.2.100 \
+		wasm-bindgen-backend-0.2.100 \
+		wasm-bindgen-macro-0.2.100 \
+		wasm-bindgen-macro-support-0.2.100 \
+		wasm-bindgen-shared-0.2.100 \
 		winapi-0.3.9 \
 		winapi-i686-pc-windows-gnu-0.4.0 \
 		winapi-x86_64-pc-windows-gnu-0.4.0 \
-		windows-core-0.51.1 \
-		windows-sys-0.45.0 \
-		windows-sys-0.48.0 \
-		windows-targets-0.42.2 \
-		windows-targets-0.48.5 \
-		windows_aarch64_gnullvm-0.42.2 \
-		windows_aarch64_gnullvm-0.48.5 \
-		windows_aarch64_msvc-0.42.2 \
-		windows_aarch64_msvc-0.48.5 \
-		windows_i686_gnu-0.42.2 \
-		windows_i686_gnu-0.48.5 \
-		windows_i686_msvc-0.42.2 \
-		windows_i686_msvc-0.48.5 \
-		windows_x86_64_gnu-0.42.2 \
-		windows_x86_64_gnu-0.48.5 \
-		windows_x86_64_gnullvm-0.42.2 \
-		windows_x86_64_gnullvm-0.48.5 \
-		windows_x86_64_msvc-0.42.2 \
-		windows_x86_64_msvc-0.48.5 \
-		winnow-0.5.19 \
-		yaml-rust-0.4.5
+		windows-core-0.52.0 \
+		windows-link-0.1.0 \
+		windows-sys-0.52.0 \
+		windows-sys-0.59.0 \
+		windows-targets-0.52.6 \
+		windows_aarch64_gnullvm-0.52.6 \
+		windows_aarch64_msvc-0.52.6 \
+		windows_i686_gnu-0.52.6 \
+		windows_i686_gnullvm-0.52.6 \
+		windows_i686_msvc-0.52.6 \
+		windows_x86_64_gnu-0.52.6 \
+		windows_x86_64_gnullvm-0.52.6 \
+		windows_x86_64_msvc-0.52.6 \
+		winnow-0.7.3 \
+		wit-bindgen-rt-0.33.0 \
+		write16-1.0.0 \
+		writeable-0.5.5 \
+		yoke-0.7.5 \
+		yoke-derive-0.7.5 \
+		zerocopy-0.7.35 \
+		zerocopy-derive-0.7.35 \
+		zerofrom-0.1.6 \
+		zerofrom-derive-0.1.6 \
+		zerovec-0.10.4 \
+		zerovec-derive-0.10.3
 
 PLIST_FILES=	bin/${PORTNAME}
 
-post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
+post-patch:
+	${CP} ${FILESDIR}/bindings_8_0_35_powerpc64_freebsd.rs \
+		${WRKSRC}/cargo-crates/mysqlclient-sys-0.4.2/bindings/
 
 .include <bsd.port.mk>

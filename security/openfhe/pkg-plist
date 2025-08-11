@@ -217,6 +217,7 @@ include/openfhe/core/utils/prng/README.md
 include/openfhe/core/utils/prng/blake2-impl.h
 include/openfhe/core/utils/prng/blake2.h
 include/openfhe/core/utils/prng/blake2engine.h
+include/openfhe/core/utils/prng/prng.h
 include/openfhe/core/utils/serial.h
 include/openfhe/core/utils/serializable.h
 include/openfhe/core/utils/sertype.h
@@ -228,6 +229,7 @@ include/openfhe/pke/README.md
 include/openfhe/pke/ciphertext-fwd.h
 include/openfhe/pke/ciphertext-ser.h
 include/openfhe/pke/ciphertext.h
+include/openfhe/pke/constants-defs.h
 include/openfhe/pke/constants.h
 include/openfhe/pke/cryptocontext-fwd.h
 include/openfhe/pke/cryptocontext-ser.h
@@ -309,9 +311,12 @@ include/openfhe/pke/scheme/ckksrns/ckksrns-utils.h
 include/openfhe/pke/scheme/ckksrns/gen-cryptocontext-ckksrns-internal.h
 include/openfhe/pke/scheme/ckksrns/gen-cryptocontext-ckksrns-params.h
 include/openfhe/pke/scheme/ckksrns/gen-cryptocontext-ckksrns.h
+include/openfhe/pke/scheme/ckksrns/schemeswitching-data-serializer.h
 include/openfhe/pke/scheme/gen-cryptocontext-params-defaults.h
+include/openfhe/pke/scheme/gen-cryptocontext-params-validation.h
 include/openfhe/pke/scheme/gen-cryptocontext-params.h
 include/openfhe/pke/scheme/scheme-id.h
+include/openfhe/pke/scheme/scheme-swch-params.h
 include/openfhe/pke/scheme/scheme-utils.h
 include/openfhe/pke/schemebase/base-advancedshe.h
 include/openfhe/pke/schemebase/base-cryptoparameters.h
@@ -338,6 +343,7 @@ include/openfhe/pke/schemerns/rns-ser.h
 include/openfhe/pke/unittest/utils/BaseTestCase.h
 include/openfhe/pke/unittest/utils/UnitTestCCParams.h
 include/openfhe/pke/unittest/utils/UnitTestCryptoContext.h
+include/openfhe/pke/unittest/utils/UnitTestException.h
 include/openfhe/pke/unittest/utils/UnitTestMetadataTest.h
 include/openfhe/pke/unittest/utils/UnitTestMetadataTestSer.h
 include/openfhe/pke/unittest/utils/UnitTestReadCSVData.h
@@ -349,10 +355,10 @@ lib/OpenFHE/OpenFHETargets-%%CMAKE_BUILD_TYPE%%.cmake
 lib/OpenFHE/OpenFHETargets.cmake
 lib/libOPENFHEbinfhe.so
 lib/libOPENFHEbinfhe.so.1
-lib/libOPENFHEbinfhe.so.1.1.2
+lib/libOPENFHEbinfhe.so.1.2.4
 lib/libOPENFHEcore.so
 lib/libOPENFHEcore.so.1
-lib/libOPENFHEcore.so.1.1.2
+lib/libOPENFHEcore.so.1.2.4
 lib/libOPENFHEpke.so
 lib/libOPENFHEpke.so.1
-lib/libOPENFHEpke.so.1.1.2
+lib/libOPENFHEpke.so.1.2.4

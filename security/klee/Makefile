@@ -1,6 +1,6 @@
 PORTNAME=	klee
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.0
+DISTVERSION=	3.1
 CATEGORIES=	security devel
 
 MAINTAINER=	arrowd@FreeBSD.org
@@ -15,7 +15,7 @@ NOT_FOR_ARCHS=	i386 powerpc
 BUILD_DEPENDS=	gmake:devel/gmake
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}tabulate>0:devel/py-tabulate@${PY_FLAVOR}
 
-USES=		cmake compiler:c++14-lang llvm:min=11,max=14,build,run,noexport localbase \
+USES=		cmake compiler:c++14-lang llvm:min=12,max=16,build,run,noexport localbase \
 		pkgconfig python:run shebangfix sqlite
 USE_GITHUB=	yes
 SHEBANG_FILES=	tools/klee-stats/klee-stats tools/ktest-tool/ktest-tool tools/klee-zesti/klee-zesti
@@ -23,7 +23,7 @@ USE_LDCONFIG=	yes
 
 CMAKE_OFF=	ENABLE_POSIX_RUNTIME ENABLE_UNIT_TESTS ENABLE_SYSTEM_TESTS
 CMAKE_ARGS=	-DLLVM_CONFIG_BINARY=${LOCALBASE}/bin/${LLVM_CONFIG} \
-		-DMAKE_BINARY=${LOCALBASE}/bin/gmake
+		-DMAKE_BINARY=${GMAKE}
 
 OPTIONS_DEFINE=		TCMALLOC
 OPTIONS_DEFAULT=	TCMALLOC Z3 STP

@@ -1,7 +1,5 @@
-# Created by: David O'Brien (obrien@cs.ucdavis.edu)
-
 PORTNAME=	rsync
-DISTVERSION=	3.2.7
+DISTVERSION=	3.4.1
 PORTREVISION=	2
 CATEGORIES=	net
 MASTER_SITES=	https://www.mirrorservice.org/sites/rsync.samba.org/src/ \
@@ -12,8 +10,7 @@ DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
 MAINTAINER=	rodrigo@FreeBSD.org
 COMMENT=	Network file distribution/synchronization utility
-
-CFLAGS+=	-DFREEBSD_NFS4_ACL_SUPPORT
+WWW=		https://rsync.samba.org/
 
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
@@ -22,7 +19,7 @@ LIB_DEPENDS=	liblz4.so:archivers/liblz4 \
 		libxxhash.so:devel/xxhash \
 		libzstd.so:archivers/zstd
 
-USES=		cpe python shebangfix ssl
+USES=		autoreconf:build cpe python shebangfix ssl
 PYTHON_NO_DEPENDS=	yes
 CPE_VENDOR=	samba
 CPE_PRODUCT=	rsync
@@ -31,6 +28,7 @@ USE_RC_SUBR=	rsyncd
 SHEBANG_FILES=	support/rrsync
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--disable-debug \
 		--enable-ipv6 \
 		--with-rsyncd-conf=${ETCDIR}/rsyncd.conf
@@ -43,31 +41,16 @@ LDFLAGS+=	-L${LOCALBASE}/lib
 
 PATCH_STRIP=	-p1
 SUB_LIST=	NAME=rsyncd
-EXTRA_PATCHES+=	files/CVE-2024-12084/0001-Some-checksum-buffer-fixes.patch:-p1
-EXTRA_PATCHES+=	files/CVE-2024-12084/0002-Another-cast-when-multiplying-integers.patch:-p1
-EXTRA_PATCHES+=	files/CVE-2024-12085/0001-prevent-information-leak-off-the-stack.patch:-p1
-EXTRA_PATCHES+=	files/CVE-2024-12086/0001-refuse-fuzzy-options-when-fuzzy-not-selected.patch:-p1
-EXTRA_PATCHES+=	files/CVE-2024-12086/0002-added-secure_relative_open.patch:-p1
-EXTRA_PATCHES+=	files/CVE-2024-12086/0003-receiver-use-secure_relative_open-for-basis-file.patch:-p1
-EXTRA_PATCHES+=	files/CVE-2024-12086/0004-disallow-.-elements-in-relpath-for-secure_relative_o.patch:-p1
-EXTRA_PATCHES+=	files/CVE-2024-12087/0001-Refuse-a-duplicate-dirlist.patch:-p1
-EXTRA_PATCHES+=	files/CVE-2024-12087/0002-range-check-dir_ndx-before-use.patch:-p1
-EXTRA_PATCHES+=	files/CVE-2024-12088/0001-make-safe-links-stricter.patch:-p1
-EXTRA_PATCHES+=	files/CVE-2024-12747/0001-fixed-symlink-race-condition-in-sender.patch:-p1
-EXTRA_PATCHES+=	files/raise-protocol-version-to-32.patch:-p1
-EXTRA_PATCHES+=	files/Fix_use-after-free_in_generator.patch:-p1
-EXTRA_PATCHES+=	files/Fix-FLAG_GOT_DIR_FLIST-collission-with-FLAG_HLINKED.patch:-p1
 
 PORTDOCS=	NEWS.md README.md csprotocol.txt tech_report.tex
 
 # define options
-OPTIONS_DEFINE=		DOCS ICONV POPT_PORT SSH ZLIB_BASE ACL
-OPTIONS_DEFAULT=	FLAGS ICONV SSH ZLIB_BASE ACL
+OPTIONS_DEFINE=		DOCS ICONV POPT_PORT SSH ZLIB_BASE
+OPTIONS_DEFAULT=	FLAGS ICONV SSH ZLIB_BASE
 OPTIONS_RADIO=		PTS
 OPTIONS_RADIO_PTS=	FLAGS RENAMED
 
 # options provided upstream
-ACL_DESC=	Add support for NFSv4 ACLs
 FLAGS_DESC=	File system flags support patch, adds --fileflags
 POPT_PORT_DESC=	Use popt from devel/popt instead of bundled one
 SSH_DESC=	Use SSH instead of RSH
@@ -77,18 +60,15 @@ ZLIB_BASE_DESC=	Use zlib from base instead of bundled one
 PTS_DESC=	Functionality provided by third party patches
 RENAMED_DESC=	Add support for renamed file detection
 
-FLAGS_DISTFILES=	${PORTNAME}-patches-${DISTVERSION}${EXTRACT_SUFX}
 FLAGS_EXTRA_PATCHES=	${WRKSRC}/patches/fileflags.diff \
 			${FILESDIR}/extrapatch-main.c
 
-ICONV_DISTFILES=	${PORTNAME}-patches-${DISTVERSION}${EXTRACT_SUFX}
 ICONV_USES=		iconv:translit
 ICONV_CONFIGURE_ENABLE=	iconv iconv-open
 
 POPT_PORT_LIB_DEPENDS=		libpopt.so:devel/popt
 POPT_PORT_CONFIGURE_OFF=	--with-included-popt
 
-RENAMED_DISTFILES=	${PORTNAME}-patches-${DISTVERSION}${EXTRACT_SUFX}
 RENAMED_EXTRA_PATCHES=	${WRKSRC}/patches/detect-renamed.diff
 
 SSH_CONFIGURE_ON=	--with-rsh=ssh
@@ -96,11 +76,9 @@ SSH_CONFIGURE_OFF=	--with-rsh=rsh
 
 ZLIB_BASE_CONFIGURE_ON=	--with-included-zlib=no
 
-ACL_EXTRA_PATCHES+=	${PATCHDIR}/fix-nfs4_acls.patch
-
 .include <bsd.port.options.mk>
 
-.if make(makesum) || ${PORT_OPTIONS:MRENAMED} || ${PORT_OPTIONS:MICONV} || ${PORT_OPTIONS:MRENAMED}
+.if ${PORT_OPTIONS:MRENAMED} || ${PORT_OPTIONS:MICONV} || ${PORT_OPTIONS:MFLAGS}
 DISTFILES+=	${PORTNAME}-patches-${DISTVERSION}${EXTRACT_SUFX}
 .endif
 
@@ -110,22 +88,28 @@ DISTFILES+=	${PORTNAME}-patches-${DISTVERSION}${EXTRACT_SUFX}
 CONFIGURE_ARGS+=	ac_cv_search_libiconv_open=no
 .endif
 
+.if make(makesum) || ${PORT_OPTIONS:MRENAMED} || ${PORT_OPTIONS:MICONV} || ${PORT_OPTIONS:MFLAGS}
+pre-patch:
+	@${REINPLACE_CMD} 's:+int module_dirlen = 0;:+:' ${WRKSRC}/patches/fileflags.diff
+.endif
+
 post-patch:
 	@${REINPLACE_CMD} -e 's:/etc/r{1,2}sync:${ETCDIR}/:g' \
 					  -e 's:/etc/letsencrypt:${PREFIX}/etc/letsencrypt:g' \
 					  ${WRKSRC}/rsync.1 ${WRKSRC}/rsyncd.conf.5
 	@${REINPLACE_CMD} -e 's|/usr/bin/rsync|${PREFIX}/bin/rsync|g' ${WRKSRC}/support/rrsync
-	truncate -s 10 ${WRKSRC}/mkgitver
-	touch ${WRKSRC}/git-version.h
+
+pre-configure:
+	@(cd ${WRKSRC} && ${SETENVI} ${WRK_ENV} ${MAKE_CMD} -f prepare-source.mak)
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}
 	${INSTALL_DATA} ${FILESDIR}/rsyncd.conf.sample ${STAGEDIR}${ETCDIR}/
 	${INSTALL_SCRIPT} ${WRKSRC}/support/rrsync ${STAGEDIR}${PREFIX}/sbin
-	${INSTALL_MAN} ${WRKSRC}/rrsync.1 ${STAGEDIR}${PREFIX}/man/man1/
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
 	${INSTALL_DATA} ${PORTDOCS:S,^,${WRKSRC}/,} ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${WRKSRC}/support/rrsync.1.md ${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.post.mk>

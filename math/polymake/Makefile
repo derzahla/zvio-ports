@@ -1,5 +1,5 @@
 PORTNAME=	polymake
-DISTVERSION=	4.10
+DISTVERSION=	4.13
 PORTREVISION=	1
 CATEGORIES=	math
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/V${DISTVERSION}/ \

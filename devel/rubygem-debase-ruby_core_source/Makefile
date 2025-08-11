@@ -1,5 +1,5 @@
 PORTNAME=	debase-ruby_core_source
-PORTVERSION=	3.2.3
+PORTVERSION=	3.3.6
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 

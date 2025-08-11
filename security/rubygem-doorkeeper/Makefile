@@ -1,5 +1,5 @@
 PORTNAME=	doorkeeper
-PORTVERSION=	5.6.8
+PORTVERSION=	5.8.1
 CATEGORIES=	security rubygems
 MASTER_SITES=	RG
 

@@ -1,8 +1,8 @@
---- ui/views/test/ui_controls_factory_desktop_aura_ozone.cc.orig	2023-12-23 12:33:28 UTC
+--- ui/views/test/ui_controls_factory_desktop_aura_ozone.cc.orig	2025-01-25 09:34:31 UTC
 +++ ui/views/test/ui_controls_factory_desktop_aura_ozone.cc
-@@ -284,7 +284,7 @@ bool SendTouchEventsNotifyWhenDone(int action,
+@@ -237,7 +237,7 @@ bool SendMouseClick(MouseButton type, gfx::NativeWindo
+                          window_hint);
  }
- #endif
  
 -#if BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)

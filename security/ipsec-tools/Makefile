@@ -1,26 +1,22 @@
-# TODO: - libipsec issue ?
-#       - cleanup...
-#       - SYSCONFDIR
-#       - $LOCALBASE/sbin/setkey Vs /usr/sbin/setkey
-
 PORTNAME=	ipsec-tools
 PORTVERSION=	0.8.2
-PORTREVISION=	12
+PORTREVISION=	13
 CATEGORIES=	security
 MASTER_SITES=	SF
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	eugen@FreeBSD.org
 COMMENT=	KAME racoon IKE daemon, ipsec-tools version
-WWW=		https://ipsec-tools.sourceforge.net/
+WWW=		http://cvsweb.netbsd.org/bsdweb.cgi/src/crypto/dist/ipsec-tools/src/racoon/
 
 LICENSE=	BSD3CLAUSE
 
-USES=		cpe libtool tar:bzip2 ssl
+USES=		compiler cpe libtool tar:bzip2 ssl
 
 CONFLICTS=	racoon
 INSTALL_TARGET=	install-strip
 USE_RC_SUBR=	racoon
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 USE_LDCONFIG=	yes
 CONFIGURE_ARGS=	--enable-shared --sysconfdir=${PREFIX}/etc/racoon \
 		--localstatedir=${STATEDIR:S/\/racoon//}
@@ -74,6 +70,11 @@ NATT_EXTRA_PATCHES=		${FILESDIR}/natt.diff
 WCPSKEY_EXTRA_PATCHES=	${FILESDIR}/wildcard-psk.diff ${FILESDIR}/wildcard-psk-oakley.c.diff
 
 .include <bsd.port.pre.mk>
+
+.if ${COMPILER_TYPE} == clang && ${COMPILER_VERSION} >= 190
+CFLAGS+=	-Wno-deprecated-declarations -Wno-deprecated-non-prototype \
+		-Wno-incompatible-pointer-types-discards-qualifiers
+.endif
 
 .if ${OPSYS} == FreeBSD
 REQUIREMOD?=	ipsec

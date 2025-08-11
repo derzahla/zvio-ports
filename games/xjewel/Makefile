@@ -1,6 +1,6 @@
 PORTNAME=	xjewel
 PORTVERSION=	1.6
-PORTREVISION=	6
+PORTREVISION=	7
 CATEGORIES=	games
 MASTER_SITES=	XCONTRIB/../R5contrib
 EXTRACT_SUFX=	.tar.z
@@ -18,7 +18,7 @@ DESKTOP_ENTRIES="XJewel" "" "" "${PORTNAME}" "" ""
 
 .include <bsd.port.pre.mk>
 
-.if ${OPSYS} == FreeBSD && ( ${OSVERSION} >= 1400079 || ( ${OSVERSION} >= 1302505 && ${OSVERSION} < 1400000 ))
+.if ${OPSYS} == FreeBSD
 CFLAGS+=	-Wno-error=int-conversion
 .endif
 

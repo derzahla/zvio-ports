@@ -20,8 +20,6 @@
     SUBDIR += bootstrap-openjdk17
     SUBDIR += bootstrap-openjdk8
     SUBDIR += bouncycastle
-    SUBDIR += bouncycastle15
-    SUBDIR += cos
     SUBDIR += dbvis
     SUBDIR += eclipse
     SUBDIR += eclipse-EPIC
@@ -31,9 +29,9 @@
     SUBDIR += eclipse-findbugs
     SUBDIR += eclipse-pydev
     SUBDIR += eclipse-shelled
+    SUBDIR += eclipse-yaml-editor
     SUBDIR += hamcrest
     SUBDIR += icedtea-web
-    SUBDIR += infobus
     SUBDIR += intellij
     SUBDIR += intellij-fsnotifier
     SUBDIR += intellij-pty4j
@@ -81,7 +79,6 @@
     SUBDIR += mmake
     SUBDIR += mx4j
     SUBDIR += netbeans
-    SUBDIR += netcomponents
     SUBDIR += netrexx
     SUBDIR += netty
     SUBDIR += openjdk11
@@ -92,13 +89,14 @@
     SUBDIR += openjdk19
     SUBDIR += openjdk20
     SUBDIR += openjdk21
+    SUBDIR += openjdk22
+    SUBDIR += openjdk23
+    SUBDIR += openjdk24
     SUBDIR += openjdk8
     SUBDIR += openjdk8-jre
     SUBDIR += openjfx14
     SUBDIR += phpeclipse
     SUBDIR += proguard
-    SUBDIR += sablevm
-    SUBDIR += sablevm-classpath
     SUBDIR += servingxml
     SUBDIR += sigar
     SUBDIR += springframework

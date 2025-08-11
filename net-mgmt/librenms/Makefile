@@ -1,5 +1,5 @@
 PORTNAME=	librenms
-PORTVERSION=	23.11.0
+PORTVERSION=	25.2.0
 PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	net-mgmt
@@ -13,7 +13,8 @@ WWW=		https://www.librenms.org
 LICENSE=	GPLv3
 
 # perhaps we also need python-memcache python-mysqldb
-RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}pymysql>0:databases/py-pymysql@${PY_FLAVOR} \
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}psutil>0:sysutils/py-psutil@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}pymysql>0:databases/py-pymysql@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}python-dotenv>0:www/py-python-dotenv@${PY_FLAVOR} \
 		bash:shells/bash \
 		dot:graphics/graphviz \
@@ -112,7 +113,7 @@ NAGPLUGINS_RUN_DEPENDS=	${LOCALBASE}/libexec/nagios/check_nagios:net-mgmt/nagios
 NMAP_RUN_DEPENDS=	nmap:security/nmap
 WMIC_RUN_DEPENDS=	wmic:net-mgmt/wmi-client
 X11_RUN_DEPENDS=	mtr:net/mtr
-X11_RUN_DEPENDS_OFF=	mtr:net/mtr-nox11
+X11_RUN_DEPENDS_OFF=	mtr:net/mtr@nox11
 X11_USES=		magick:6
 X11_USES_OFF=		magick:6,nox11
 
@@ -128,7 +129,7 @@ _SCRIPT_FILES=		daily.sh lnms
 # _RELEASE_TIMESTAMP is used for a patch inside the vendor code
 # it represents the release date via: git show --pretty='%H|%ct' -s 1.42.01
 # It sits here so you remember to update it with each release
-_RELEASE_TIMESTAMP=	1700189861
+_RELEASE_TIMESTAMP=	1740048943
 _ROOT_DIRS=		LibreNMS app bootstrap config database doc html \
 			includes lang licenses mibs misc resources routes \
 			scripts tests
@@ -156,7 +157,8 @@ post-patch:
 		${WRKSRC}/config.php.default \
 		${WRKSRC}/includes/html/output/capture.inc.php \
 		${WRKSRC}/poller-wrapper.py \
-		${WRKSRC}/snmp-scan.py
+		${WRKSRC}/snmp-scan.py \
+		${WRKSRC}/daily.sh
 	${REINPLACE_CMD} 's|%%PORTVERSION%%|${PORTVERSION}|g'              ${WRKSRC}/LibreNMS/Util/Version.php
 	${REINPLACE_CMD} 's|%%RELEASE_TIMESTAMP%%|${_RELEASE_TIMESTAMP}|g' ${WRKSRC}/LibreNMS/Util/Version.php
 	${REINPLACE_CMD} 's|%%WWWDIR%%|${WWWDIR}|g'                        ${WRKSRC}/dist/librenms-scheduler.cron
@@ -228,6 +230,7 @@ post-install:
 	${INSTALL_DATA} ${WRKSRC}/.env.example ${STAGEDIR}/${WWWDIR}
 	${ECHO_CMD} "@dir(www,www,0775) ${DBDIR}/storage" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir(www,www,0775) ${DBDIR}" >> ${TMPPLIST}
+	${ECHO_CMD} "@dir(www,www,0775) ${WWWDIR}/html/images/custommap/background" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir(www,www,0775) /var/log/${PORTNAME}" >> ${TMPPLIST}
 	${ECHO_CMD} "@(root,www,0750) ${WWWDIR}/.env.example" >> ${TMPPLIST}
 

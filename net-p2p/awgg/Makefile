@@ -1,6 +1,6 @@
 PORTNAME=	awgg
 DISTVERSION=	0.6.0.6034-beta
-PORTREVISION=	6
+PORTREVISION=	12
 CATEGORIES=	net-p2p
 PKGNAMESUFFIX=	${LAZARUS_PKGNAMESUFFIX}
 
@@ -14,6 +14,8 @@ RUN_DEPENDS=	aria2c:www/aria2 \
 		wget:ftp/wget \
 		curl:ftp/curl \
 		yt-dlp:www/yt-dlp
+
+ONLY_FOR_ARCHS=	amd64 i386
 
 gtk2_CONFLICTS_INSTALL=	${PORTNAME}-qt5 ${PORTNAME}-qt6
 qt5_CONFLICTS_INSTALL=	${PORTNAME}-gtk2 ${PORTNAME}-qt6
@@ -36,7 +38,7 @@ DESKTOP_ENTRIES="AWGG" \
 USE_GNOME_gtk2=	cairo
 USE_GNOME+=	${USE_GNOME_${FLAVOR}}
 
-LAZBUILD_ARGS=	-d
+LAZBUILD_ARGS=	-d --cpu=${ARCH:S/amd64/x86_64/g}
 LAZARUS_PROJECT_FILES=	src/awgg.lpi
 
 post-patch:

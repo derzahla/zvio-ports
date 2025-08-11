@@ -12,6 +12,8 @@ LICENSE_COMB=	dual
 LICENSE_FILE_APACHE20=	${WRKSRC}/LICENSE-APACHE
 LICENSE_FILE_MIT=	${WRKSRC}/LICENSE-MIT
 
+BROKEN=		error[E0635]: unknown feature stdsimd, see https://github.com/ezrosent/frawk/issues/110
+
 BUILD_DEPENDS=	gmake:devel/gmake \
 		rust-nightly>0:lang/rust-nightly
 
@@ -176,8 +178,5 @@ CARGO_CRATES=	ahash-0.7.6 \
 		windows_x86_64_msvc-0.42.0
 
 PLIST_FILES=	bin/${PORTNAME}
-
-post-install:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/${PORTNAME}
 
 .include <bsd.port.mk>

@@ -1,10 +1,10 @@
 PORTNAME=	apache-jmeter
 PORTVERSION=	2.11
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	www benchmarks java
 MASTER_SITES=	https://archive.apache.org/dist/jmeter/binaries/
 
-MAINTAINER=	mi@aldan.algebra.com
+MAINTAINER=	ports@virtual-estates.net
 COMMENT=	Functional behaviour load and performance test application
 WWW=		https://jmeter.apache.org/
 
@@ -39,8 +39,8 @@ RUN_DEPENDS=	\
 		${JAVALIBDIR}/xstream.jar:textproc/xstream	\
 		${LOCALBASE}/share/java/rhino/rhino.jar:lang/rhino
 
-USES=		tar:tgz
-USE_JAVA=	yes
+USES=		java tar:tgz
+
 NO_BUILD=	yes
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}
 SUB_FILES=	jmeter.sh

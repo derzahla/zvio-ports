@@ -1,15 +1,13 @@
---- pyproject.toml.orig	2023-11-08 15:10:58 UTC
+--- pyproject.toml.orig	2024-12-12 13:22:18 UTC
 +++ pyproject.toml
-@@ -2,10 +2,8 @@
+@@ -1,8 +1,8 @@ requires = [
+ [build-system]
  requires = [
-     "setuptools",
-     "scikit-build",
+     "scikit-build-core",
 -    "cython>=3",
--    "cmake",
--    "ninja",
--    "oldest-supported-numpy"]
+-    "numpy>=2.0.0",
 +    "cython",
-+]
++    "numpy",
+ ]
+ build-backend = "scikit_build_core.build"
  
- [project]
- name = "blosc2"

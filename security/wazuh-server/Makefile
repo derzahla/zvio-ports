@@ -1,9 +1,9 @@
 PORTNAME=	wazuh
-PORTVERSION=	4.7.2
+PORTVERSION=	4.11.1
 CATEGORIES=	security
 MASTER_SITES=	LOCAL/acm/${PORTNAME}/:config_samples \
 		https://packages.wazuh.com/4.x/filebeat/:wazuh_module \
-		https://raw.githubusercontent.com/wazuh/wazuh/v4.7.0/extensions/elasticsearch/7.x/:indexer_template
+		https://raw.githubusercontent.com/wazuh/wazuh/v${PORTVERSION}/extensions/elasticsearch/7.x/:indexer_template
 PKGNAMESUFFIX=	-server
 DIST_SUBDIR=	${PORTNAME}-${DISTVERSION}
 
@@ -28,7 +28,7 @@ SUB_FILES=	pkg-message
 ETCDIR=		${PREFIX}/etc/${PORTNAME}${PKGNAMESUFFIX}
 
 WAZUH_LOCALBASE=	/var/ossec
-WAZUH_MODULE_VER=	0.3
+WAZUH_MODULE_VER=	0.4
 
 OPTIONS_DEFINE=		FILEBEAT LOGSTASH WAZUH-MANAGER
 OPTIONS_DEFAULT=	FILEBEAT LOGSTASH WAZUH-MANAGER
@@ -54,7 +54,6 @@ do-install:
 	${INSTALL_DATA} ${WRKDIR}/filebeat.yml ${STAGEDIR}${PREFIX}/etc/${PORTNAME}${PKGNAMESUFFIX}/filebeat.yml
 	${INSTALL_DATA} ${WRKDIR}/logstash.conf ${STAGEDIR}${PREFIX}/etc/${PORTNAME}${PKGNAMESUFFIX}/logstash.conf
 	${INSTALL_DATA} ${WRKDIR}/wazuh-template.json ${STAGEDIR}${PREFIX}/etc/${PORTNAME}${PKGNAMESUFFIX}/wazuh-template.json
-
 
 do-install-FILEBEAT-on:
 	${MKDIR} ${STAGEDIR}${PREFIX}/share/beats/filebeat/module/

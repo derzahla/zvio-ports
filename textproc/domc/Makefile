@@ -1,6 +1,6 @@
 PORTNAME=	domc
 PORTVERSION=	0.8.0
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	textproc
 MASTER_SITES=	http://www.ioplex.com/~miallen/domc/dl/
 
@@ -9,6 +9,9 @@ COMMENT=	Lightweight implementation of the DOM in ANSI C
 WWW=		https://www.ioplex.com/~miallen/domc/
 
 LICENSE=	MIT
+
+DEPRECATED=	Obsolete, doesn't support HTML5, DOM Level 4 and DOM 2020-06
+EXPIRATION_DATE=2025-04-30
 
 LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libmba.so:devel/libmba

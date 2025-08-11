@@ -1,5 +1,7 @@
 lib/cmake/QQC2BreezeStyle/QQC2BreezeStyleConfig.cmake
 lib/cmake/QQC2BreezeStyle/QQC2BreezeStyleConfigVersion.cmake
+lib/cmake/QQC2BreezeStyle/QQC2BreezeStyleTargets-%%CMAKE_BUILD_TYPE%%.cmake
+lib/cmake/QQC2BreezeStyle/QQC2BreezeStyleTargets.cmake
 %%QT_PLUGINDIR%%/kf6/kirigami/platform/org.kde.breeze.so
 %%QT_QMLDIR%%/org/kde/breeze/AbstractButton.qml
 %%QT_QMLDIR%%/org/kde/breeze/ApplicationWindow.qml
@@ -91,4 +93,3 @@ lib/cmake/QQC2BreezeStyle/QQC2BreezeStyleConfigVersion.cmake
 %%QT_QMLDIR%%/org/kde/breeze/kde-qmlmodule.version
 %%QT_QMLDIR%%/org/kde/breeze/libBreezeStyle.so
 %%QT_QMLDIR%%/org/kde/breeze/qmldir
-%%QT_QMLDIR%%/org/kde/kirigami/styles/org.kde.breeze/AbstractApplicationHeader.qml

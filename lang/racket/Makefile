@@ -1,5 +1,6 @@
 PORTNAME=	racket
 PORTVERSION=	8.11.1
+PORTREVISION=	1
 CATEGORIES=	lang scheme
 MASTER_SITES=	http://mirror.racket-lang.org/installers/${PORTVERSION}/ \
 		http://www.cs.utah.edu/plt/installers/${PORTVERSION}/ \
@@ -18,6 +19,8 @@ LICENSE=	APACHE20 MIT
 LICENSE_COMB=	dual
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
+BROKEN=		Fails to build, expand-elf: cannot move SHT_PROGBITS section
+
 NOT_FOR_ARCHS=	riscv64
 NOT_FOR_ARCHS_REASON=	unsupported platform
 
@@ -31,7 +34,7 @@ USE_GNOME=	cairo pango
 GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-liblz4 \
 		--enable-pthread \
-		--mandir=${MANPREFIX}/man
+		--mandir=${PREFIX}/share/man
 WRKSRC=		${WRKDIR}/racket-${PORTVERSION}/src
 PATCH_WRKSRC=	${WRKDIR}/racket-${PORTVERSION}
 USE_LDCONFIG=	yes
