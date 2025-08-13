@@ -1,6 +1,6 @@
 PORTNAME=	gnome-robots
 PORTVERSION=	40.0
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	games gnome
 MASTER_SITES=	GNOME/sources/${PORTNAME}/${PORTVERSION:C/^([0-9]+)\..*/\1/}
 DIST_SUBDIR=	gnome
@@ -27,5 +27,7 @@ USE_GNOME=	cairo gsound gtk30 intlhack librsvg2 libxml2:build
 USE_XORG=	x11
 
 GLIB_SCHEMAS=	org.gnome.Robots.gschema.xml
+
+LDFLAGS+=	-lm
 
 .include <bsd.port.mk>

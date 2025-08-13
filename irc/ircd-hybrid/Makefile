@@ -1,5 +1,5 @@
 PORTNAME=	ircd-hybrid
-PORTVERSION=	8.2.43
+PORTVERSION=	8.2.46
 CATEGORIES=	irc
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}/${PORTNAME}-${PORTVERSION}
 
@@ -12,6 +12,7 @@ LICENSE=	GPLv2
 # :keepla because port uses lt_dlopen
 USES=		cpe gmake libtool:keepla tar:tgz
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 CPPFLAGS+=	-I${LOCALBASE}/include
 LDFLAGS+=	-L${LOCALBASE}/lib
 

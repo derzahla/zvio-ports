@@ -1,5 +1,6 @@
 PORTNAME=	cde
 DISTVERSION=	2.5.2
+PORTREVISION=	5
 CATEGORIES=	x11
 MASTER_SITES=	SF/cdesktopenv/src/
 .if !defined(MASTERDIR)
@@ -38,6 +39,7 @@ RUN_DEPENDS=	ksh93:shells/ksh			\
 		xrdb:x11/xrdb \
 		xset:x11/xset \
 		sessreg:x11/sessreg
+LIB_DEPENDS=	liblmdb.so:databases/lmdb
 
 USES=		autoreconf:build iconv:wchar_t gmake jpeg libtool motif perl5 \
 		shebangfix tcl:86 xorg
@@ -51,15 +53,21 @@ USE_XORG=	ice sm x11 xau xdmcp xext xinerama xmu xscrnsaver xt
 
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_PREFIX=	${DT_PREFIX}
-MANPREFIX=	${DT_PREFIX}/share
+GNU_CONFIGURE_MANPREFIX=	${DT_PREFIX}/share
+MANDIRS=	${DT_PREFIX}/share/man
 INFODIR=	${DT_PREFIX}/share/info
 CONFIGURE_ARGS=	--with-tcl=${LOCALBASE}/lib/tcl8.6 MAKE="gmake"
 MAKE_ARGS+=	PERL=${PERL} "LOCAL_LDFLAGS=${LDFLAGS}"
 MAKE_JOBS_UNSAFE=yes
 MAKE_ENV=	MALLOC_CONF=junk:false
 SUB_FILES=	pkg-message
-CFLAGS+=	-Wno-register -Wno-incompatible-function-pointer-types
+CFLAGS+=	-Wno-register -Wno-incompatible-function-pointer-types \
+		-Wno-implicit-function-declaration
 LDFLAGS+=	-z muldefs #--allow-multiple-definition
+LDFLAGS+=	-lutil
+
+CFFILES=	Xaccess Xconfig Xfailsafe Xreset Xservers Xsetup Xstartup \
+		sys.dtprofile
 
 pre-configure:
 	@cd ${WRKSRC} && ./autogen.sh
@@ -119,5 +127,8 @@ post-install:
 	@cd ${STAGEDIR}/${DT_PREFIX}; ${LN} -s share/examples
 	# Only a problem on armv7 so far
 	${FIND} ${STAGEDIR}/${DT_PREFIX} -type f -name 'ecp.*' -delete
+.for f in ${CFFILES}
+	@${MV} ${STAGEDIR}${PREFIX}/dt/config/${f} ${STAGEDIR}${PREFIX}/dt/config/${f}.sample
+.endfor
 
 .include <bsd.port.mk>

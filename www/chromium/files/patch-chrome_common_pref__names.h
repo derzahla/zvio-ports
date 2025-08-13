@@ -1,15 +1,24 @@
---- chrome/common/pref_names.h.orig	2024-02-23 21:04:38 UTC
+--- chrome/common/pref_names.h.orig	2025-05-28 14:55:43 UTC
 +++ chrome/common/pref_names.h
-@@ -1323,7 +1323,7 @@ inline constexpr char kUseAshProxy[] = "lacros.proxy.u
+@@ -451,7 +451,7 @@ inline constexpr char kPreinstalledAppsInstallState[] 
+     "default_apps_install_state";
  
- // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
- // of lacros-chrome is complete.
--#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS)
-+#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS) || BUILDFLAG(IS_BSD)
+ #if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || \
+-    BUILDFLAG(IS_LINUX)
++    BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
+ // A list of extensions ids that have to be allowed to run in Incognito by the
+ // user in order to use Incognito mode.
+ inline constexpr char kMandatoryExtensionsForIncognitoNavigation[] =
+@@ -1334,7 +1334,7 @@ inline constexpr char kGeminiSettings[] = "browser.gem
+ inline constexpr char kAllowedDomainsForApps[] =
+     "settings.allowed_domains_for_apps";
+ 
+-#if BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
  // Linux specific preference on whether we should match the system theme.
  inline constexpr char kSystemTheme[] = "extensions.theme.system_theme";
  #endif
-@@ -1449,7 +1449,7 @@ inline constexpr char kShowUpdatePromotionInfoBar[] =
+@@ -1511,7 +1511,7 @@ inline constexpr char kShowUpdatePromotionInfoBar[] =
      "browser.show_update_promotion_info_bar";
  #endif
  
@@ -18,7 +27,7 @@
  // Boolean that is false if we should show window manager decorations.  If
  // true, we draw a custom chrome frame (thicker title bar and blue border).
  inline constexpr char kUseCustomChromeFrame[] = "browser.custom_chrome_frame";
-@@ -2001,7 +2001,7 @@ inline constexpr char kDownloadDefaultDirectory[] =
+@@ -2156,7 +2156,7 @@ inline constexpr char kDownloadDefaultDirectory[] =
  inline constexpr char kDownloadDirUpgraded[] = "download.directory_upgrade";
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS) || \
@@ -27,7 +36,7 @@
  inline constexpr char kOpenPdfDownloadInSystemReader[] =
      "download.open_pdf_in_system_reader";
  #endif
-@@ -2439,14 +2439,14 @@ inline constexpr char kMediaStorageIdSalt[] = "media.s
+@@ -2651,14 +2651,14 @@ inline constexpr char kMediaStorageIdSalt[] = "media.s
  inline constexpr char kMediaCdmOriginData[] = "media.cdm.origin_data";
  #endif  // BUILDFLAG(IS_WIN)
  
@@ -44,16 +53,25 @@
  // Records whether the user has seen an HTTP auth "negotiate" header.
  inline constexpr char kReceivedHttpAuthNegotiateHeader[] =
      "net.received_http_auth_negotiate_headers";
-@@ -2524,7 +2524,7 @@ inline constexpr char kAmbientAuthenticationInPrivateM
- inline constexpr char kBasicAuthOverHttpEnabled[] =
-     "auth.basic_over_http_enabled";
+@@ -2750,7 +2750,7 @@ inline constexpr char kIsolatedWebAppInstallForceList[
+ inline constexpr char kIsolatedWebAppPendingInitializationCount[] =
+     "profile.isolated_web_app.install.pending_initialization_count";
  
 -#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_CHROMEOS)
 +#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  // Boolean that specifies whether OK-AS-DELEGATE flag from KDC is respected
  // along with kAuthNegotiateDelegateAllowlist.
  inline constexpr char kAuthNegotiateDelegateByKdcPolicy[] =
-@@ -3575,7 +3575,7 @@ inline constexpr char kFileOrDirectoryPickerWithoutGes
+@@ -3269,7 +3269,7 @@ inline constexpr char kKioskChromeAppsForceAllowed[] =
+ #endif  // BUILDFLAG(IS_CHROMEOS)
+ 
+ #if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || \
+-    BUILDFLAG(IS_ANDROID)
++    BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
+ // Defines administrator-set availability of Chrome for Testing.
+ inline constexpr char kChromeForTestingAllowed[] = "chrome_for_testing.allowed";
+ #endif
+@@ -3795,7 +3795,7 @@ inline constexpr char kScreenCaptureWithoutGestureAllo
  inline constexpr char kSandboxExternalProtocolBlocked[] =
      "profile.sandbox_external_protocol_blocked";
  
@@ -62,18 +80,18 @@
  // Boolean that indicates if system notifications are allowed to be used in
  // place of Chrome notifications.
  inline constexpr char kAllowSystemNotifications[] =
-@@ -3624,7 +3624,7 @@ inline constexpr char kCACertificateManagementAllowed[
+@@ -3991,7 +3991,7 @@ inline constexpr char kLensDesktopNTPSearchEnabled[] =
+     "policy.lens_desktop_ntp_search_enabled";
  #endif
  
- #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
--    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID)
-+    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_BSD)
- inline constexpr char kEnforceLocalAnchorConstraintsEnabled[] =
-     "enforce_local_anchor_constraints_enabled";
+-#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN)
++#if BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_WIN) || BUILDFLAG(IS_BSD)
+ // A dict mapping the edition name with the major version it was shown.
+ inline constexpr char kWhatsNewEditionUsed[] = "browser.whats_new.edition_used";
+ // A list containing the features of each module in order of when they
+@@ -4088,7 +4088,7 @@ inline constexpr char kPrintingOAuth2AuthorizationServ
+     "printing.oauth2_authorization_servers";
  #endif
-@@ -3938,7 +3938,7 @@ inline constexpr char kThrottleNonVisibleCrossOriginIf
- inline constexpr char kNewBaseUrlInheritanceBehaviorAllowed[] =
-     "new_base_url_inheritance_behavior_allowed";
  
 -#if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_LINUX)
 +#if BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)

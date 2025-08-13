@@ -19,11 +19,11 @@ LIB_DEPENDS=	libavcall.so:devel/libffcall \
 USES=		gmake libtool:build localbase makeinfo
 USE_GCC=	yes
 USE_LDCONFIG=	${PREFIX}/lib/gforth/${PORTVERSION}/libcc-named
-
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	GFORTHHIST=${WRKSRC}
 MAKE_ENV=	GFORTHHIST=${WRKSRC}
 ALL_TARGET=	kernel/version.fs more info
+TEST_TARGET=	check
 MAKE_JOBS_UNSAFE=yes
 
 STRIP=		#none

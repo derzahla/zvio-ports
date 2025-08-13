@@ -5,6 +5,7 @@
     SUBDIR += R-cran-BiocManager
     SUBDIR += abyss
     SUBDIR += ad2vcf
+    SUBDIR += andi
     SUBDIR += artemis
     SUBDIR += atac-seq
     SUBDIR += augustus
@@ -40,6 +41,7 @@
     SUBDIR += chip-seq
     SUBDIR += clustal-omega
     SUBDIR += clustalw
+    SUBDIR += coverm
     SUBDIR += cufflinks
     SUBDIR += cytoscape
     SUBDIR += ddocent
@@ -53,6 +55,7 @@
     SUBDIR += fasta
     SUBDIR += fasta3
     SUBDIR += fastahack
+    SUBDIR += fastani
     SUBDIR += fastdnaml
     SUBDIR += fastool
     SUBDIR += fastp
@@ -60,6 +63,7 @@
     SUBDIR += fastqc
     SUBDIR += fasttree
     SUBDIR += fastx-toolkit
+    SUBDIR += fermi-lite
     SUBDIR += figtree
     SUBDIR += flash
     SUBDIR += fluctuate
@@ -71,6 +75,7 @@
     SUBDIR += generand
     SUBDIR += gff2ps
     SUBDIR += gffread
+    SUBDIR += gkl
     SUBDIR += gmap
     SUBDIR += gperiodic
     SUBDIR += graphlan
@@ -103,6 +108,7 @@
     SUBDIR += mafft
     SUBDIR += mapm3
     SUBDIR += mashmap
+    SUBDIR += mca-calling
     SUBDIR += megahit
     SUBDIR += metaeuk
     SUBDIR += migrate
@@ -117,7 +123,6 @@
     SUBDIR += ncbi-cxx-toolkit
     SUBDIR += ncbi-entrez-direct
     SUBDIR += ncbi-toolkit
-    SUBDIR += ncbi-vdb
     SUBDIR += ngs-sdk
     SUBDIR += p5-AcePerl
     SUBDIR += p5-Bio-ASN1-EntrezGene
@@ -142,7 +147,6 @@
     SUBDIR += p5-transdecoder
     SUBDIR += paml
     SUBDIR += pbbam
-    SUBDIR += pbseqan
     SUBDIR += peak-classifier
     SUBDIR += pear-merger
     SUBDIR += phrap
@@ -151,6 +155,7 @@
     SUBDIR += picard-tools
     SUBDIR += plink
     SUBDIR += pooler
+    SUBDIR += preseq
     SUBDIR += primer3
     SUBDIR += prodigal
     SUBDIR += prodigy-lig
@@ -179,8 +184,10 @@
     SUBDIR += py-libsedml
     SUBDIR += py-loompy
     SUBDIR += py-macs2
+    SUBDIR += py-macs3
     SUBDIR += py-mrcfile
     SUBDIR += py-multiqc
+    SUBDIR += py-newick
     SUBDIR += py-ont-fast5-api
     SUBDIR += py-orange3-bioinformatics
     SUBDIR += py-orange3-single-cell
@@ -201,7 +208,6 @@
     SUBDIR += rainbow
     SUBDIR += rampler
     SUBDIR += readseq
-    SUBDIR += recombine
     SUBDIR += rna-seq
     SUBDIR += ruby-bio
     SUBDIR += rubygem-bio
@@ -217,12 +223,10 @@
     SUBDIR += seqan-apps
     SUBDIR += seqan1
     SUBDIR += seqan3
-    SUBDIR += seqio
     SUBDIR += seqkit
     SUBDIR += seqtk
     SUBDIR += seqwish
     SUBDIR += sigviewer
-    SUBDIR += sim4
     SUBDIR += slclust
     SUBDIR += smithwaterman
     SUBDIR += snpeff

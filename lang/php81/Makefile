@@ -1,5 +1,5 @@
 PORTNAME=	php81
-DISTVERSION=	8.1.27
+DISTVERSION=	8.1.32
 PORTREVISION?=	0
 CATEGORIES?=	lang devel www
 MASTER_SITES=	PHP/distributions
@@ -11,8 +11,8 @@ WWW=		https://www.php.net/
 
 LICENSE=	PHP301
 
-DEPRECATED=	Upstream EOL reaches on 2024-11-25
-EXPIRATION_DATE=	2024-11-26
+DEPRECATED=	Upstream EOL reaches on 2025-12-31
+EXPIRATION_DATE=	2025-12-31
 
 USES+=		compiler:c11 cpe gnome localbase pkgconfig tar:xz
 CPE_PRODUCT=	php
@@ -21,17 +21,24 @@ PHP_VER=	81
 CONFLICTS_INSTALL?=	php[0-9][0-9]${PKGNAMESUFFIX}
 
 .if !defined(PKGNAMESUFFIX)
+# For now disable the exra patches for libxml2 until libxml2 is updated
+# Uncomment the following lines when libxml2 is updated
+#PATCH_SITES=	https://github.com/php/php-src/commit/
+#PATCHFILES=	0a39890c967aa57225bb6bdf4821aff7a3a3c082.patch:-p1 \
+#			061058a9b1bbd90d27d97d79aebcf2b5029767b0.patch:-p1
+
 LIB_DEPENDS=	libargon2.so:security/libargon2 \
 		libpcre2-8.so:devel/pcre2
 
-GNU_CONFIGURE=		yes
-CONFIGURE_ARGS+=	--disable-all \
-			--program-prefix="" \
-			--with-config-file-scan-dir=${PREFIX}/etc/php \
-			--with-layout=GNU \
-			--with-libxml \
-			--with-openssl \
-			--with-password-argon2=${LOCALBASE}
+GNU_CONFIGURE=	yes
+CONFIGURE_ARGS+=	\
+		--disable-all \
+		--program-prefix="" \
+		--with-config-file-scan-dir=${PREFIX}/etc/php \
+		--with-layout=GNU \
+		--with-libxml \
+		--with-openssl \
+		--with-password-argon2=${LOCALBASE}
 
 USES+=		autoreconf:build ssl
 USE_GNOME=	libxml2
@@ -40,9 +47,9 @@ LDFLAGS+=	-L${OPENSSLLIB} -lcrypto -lssl
 # PR230207 Allow relocations against read-only segments (override lld default)
 LDFLAGS_i386+=	-Wl,-z,notext
 
-OPTIONS_DEFINE+=	CGI CLI DEBUG DTRACE EMBED FPM IPV6 LINKTHR \
+OPTIONS_DEFINE+=CGI CLI DEBUG DTRACE EMBED FPM IPV6 LINKTHR \
 				MYSQLND PCRE PHPDBG ZTS
-OPTIONS_DEFAULT=		CGI CLI DTRACE EMBED FPM LINKTHR MYSQLND PCRE
+OPTIONS_DEFAULT=	CGI CLI DTRACE EMBED FPM LINKTHR MYSQLND PCRE
 OPTIONS_EXCLUDE_DragonFly=	DTRACE
 # ld(1) fails to link probes: Relocations in generic ELF (EM: 0)
 OPTIONS_EXCLUDE_aarch64=	DTRACE
@@ -78,7 +85,7 @@ FPM_CONFIGURE_ON=	--enable-fpm \
 			--with-fpm-group=${WWWGRP} \
 			--with-fpm-user=${WWWOWN}
 FPM_VARS=		PHP_SAPI+=fpm \
-			USE_RC_SUBR+=php-fpm
+			USE_RC_SUBR+=php_fpm
 IPV6_CONFIGURE_OFF=	--disable-ipv6
 LINKTHR_LIBS=		-lpthread
 MYSQLND_CONFIGURE_ON=	--enable-mysqlnd
@@ -91,7 +98,7 @@ PHPDBG_VARS=		PHP_SAPI+=phpdbg
 ZTS_CONFIGURE_ON=	--enable-zts
 ZTS_CONFIGURE_ENV=	pthreads_working="yes"
 
-DESTDIRNAME=		INSTALL_ROOT
+DESTDIRNAME=	INSTALL_ROOT
 
 .if defined(PKGNAMEPREFIX)
 USES+=			apache
@@ -152,19 +159,20 @@ post-install:
 		${WRKDIR}/php.conf ${STAGEDIR}/${PREFIX}/etc
 
 post-install-CGI-on:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/php-cgi
-
-post-install-PHPDBG-on:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/phpdbg
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/php-cgi
 
 post-install-CLI-on:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/php
-
-post-install-FPM-on:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/php-fpm
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/php
 
 post-install-EMBED-on:
-	@${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libphp.so
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/lib/libphp.so
+
+post-install-FPM-on:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/sbin/php-fpm
+
+post-install-PHPDBG-on:
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/phpdbg
+
 .else
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/${APACHEMODDIR}
@@ -178,7 +186,7 @@ COMMENT=	The ${PHP_MODNAME} shared extension for php
 USES+=		php:ext,noflavors
 PHP_MODNAME=	${PKGNAMESUFFIX:S/-//}
 PHP_VER=	81
-IGNORE_WITH_PHP=	82 83
+IGNORE_WITH_PHP=	82 83 84
 
 EXTSUBDIR=	${DISTNAME}/ext/${PHP_MODNAME}
 WRKSRC=		${WRKDIR}/${EXTSUBDIR}
@@ -255,9 +263,9 @@ USE_GNOME=	libxml2
 .endif
 
 .if ${PHP_MODNAME} == "enchant"
-LIB_DEPENDS+=		libenchant-2.so:textproc/enchant2
-CONFIGURE_ARGS+=	--with-enchant=${LOCALBASE}
-USES+=			pkgconfig
+LIB_DEPENDS+=	libenchant-2.so:textproc/enchant2
+CONFIGURE_ARGS+=--with-enchant=${LOCALBASE}
+USES+=		pkgconfig
 .endif
 
 .if ${PHP_MODNAME} == "exif"
@@ -354,14 +362,8 @@ USES+=		pkgconfig
 CPPFLAGS+=	-DU_USING_ICU_NAMESPACE=1
 .endif
 
-.if ${PHP_MODNAME} == "json"
-CONFIGURE_ARGS+=	--enable-json
-BUILD_DEPENDS=		re2c:devel/re2c
-.endif
-
 .if ${PHP_MODNAME} == "ldap"
-CONFIGURE_ARGS+=	--with-ldap-sasl=${LOCALBASE} \
-			--with-ldap=${LOCALBASE}
+CONFIGURE_ARGS+=--with-ldap=${LOCALBASE} --with-ldap-sasl=${LOCALBASE}
 USES+=	ldap
 .endif
 
@@ -392,8 +394,7 @@ MYSQLND_USES_OFF=	mysql
 .if ${PHP_MODNAME} == "odbc"
 LIB_DEPENDS+=	libodbc.so:databases/unixODBC
 
-CONFIGURE_ARGS+=	--enable-odbc \
-			--with-unixODBC=${LOCALBASE}
+CONFIGURE_ARGS+=	--enable-odbc --with-unixODBC=${LOCALBASE}
 .endif
 
 .if ${PHP_MODNAME} == "opcache"
@@ -486,8 +487,8 @@ CONFIGURE_ARGS+=	--with-pspell=${LOCALBASE}
 .endif
 
 .if ${PHP_MODNAME} == "readline"
-CONFIGURE_ARGS+=	--with-libedit
-USES+=			libedit
+CONFIGURE_ARGS+=--with-libedit
+USES+=		libedit
 .endif
 
 .if ${PHP_MODNAME} == "session"
@@ -552,7 +553,7 @@ CONFIGURE_ARGS+=	--enable-sysvshm
 .if ${PHP_MODNAME} == "tidy"
 CONFIGURE_ARGS+=	--with-tidy=${LOCALBASE}
 
-LIB_DEPENDS+=	libtidy.so:www/tidy-lib
+LIB_DEPENDS+=	libtidy5.so:www/tidy-html5
 .endif
 
 .if ${PHP_MODNAME} == "tokenizer"
@@ -574,18 +575,6 @@ USE_GNOME=	libxml2
 USE_PHP=	dom:build
 .endif
 
-.if ${PHP_MODNAME} == "xmlrpc"
-CONFIGURE_ARGS+=	--with-iconv-dir=${LOCALBASE} \
-			--with-xmlrpc
-
-USES+=		iconv:translit
-USE_GNOME=	libxml2
-
-PHP_HEADER_DIRS=	libxmlrpc
-
-USE_PHP=	xml:build
-.endif
-
 .if ${PHP_MODNAME} == "xmlwriter"
 CONFIGURE_ARGS+=	--enable-xmlwriter
 
@@ -603,8 +592,7 @@ USE_PHP=	dom:build xml:build
 .if ${PHP_MODNAME} == "zip"
 LIB_DEPENDS+=	libzip.so:archivers/libzip
 
-CONFIGURE_ARGS+=	--with-zip \
-			--with-zlib-dir=/usr
+CONFIGURE_ARGS+=	--with-zip --with-zlib-dir=/usr
 USES+=			pkgconfig
 .endif
 

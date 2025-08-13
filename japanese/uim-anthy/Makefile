@@ -1,5 +1,4 @@
 CATEGORIES=	japanese
-PORTREVISION=	2
 .if defined(WITHOUT_X11)
 PKGNAMESUFFIX=	-anthy-nox11
 .else
@@ -9,7 +8,7 @@ PKGNAMESUFFIX=	-anthy
 COMMENT=	Uim plugin using Anthy input method
 
 .if !defined(WITHOUT_X11)
-USE_GNOME=	cairo gdkpixbuf2 gtk30
+USE_GNOME=	cairo gdkpixbuf gtk30
 .endif
 
 LIB_DEPENDS=	libanthy.so:japanese/anthy \

@@ -1,5 +1,5 @@
 Temporarily revert https://gitlab.com/gilrs-project/gilrs/-/commit/7cd001dacfb1
-until https://gitlab.com/gilrs-project/gilrs/-/issues/145
+in order to restore joystick support. Requires downgrading gilrs to 0.10.2.
 
 error[E0432]: unresolved import `nix::sys::epoll`
   --> cargo-crates/gilrs-core-0.5.5/src/platform/linux/gamepad.rs:21:15
@@ -23,89 +23,159 @@ error[E0432]: unresolved imports `nix::sys::epoll`, `nix::sys::eventfd`
    |                |      help: a similar name exists in the module: `event`
    |                no `epoll` in `sys`
 
---- Cargo.lock.orig	2024-02-07 19:13:27 UTC
+--- Cargo.lock.orig	2025-06-11 22:40:37 UTC
 +++ Cargo.lock
-@@ -2407,9 +2407,9 @@ dependencies = [
+@@ -518,7 +518,7 @@ dependencies = [
+  "bitflags 2.9.0",
+  "cexpr",
+  "clang-sys",
+- "itertools 0.10.5",
++ "itertools 0.13.0",
+  "proc-macro2 1.0.95",
+  "quote 1.0.40",
+  "regex",
+@@ -734,7 +734,7 @@ dependencies = [
+  "cap-primitives",
+  "cap-std",
+  "io-lifetimes",
+- "windows-sys 0.52.0",
++ "windows-sys 0.59.0",
+ ]
+ 
+ [[package]]
+@@ -763,7 +763,7 @@ dependencies = [
+  "maybe-owned",
+  "rustix 1.0.7",
+  "rustix-linux-procfs",
+- "windows-sys 0.52.0",
++ "windows-sys 0.59.0",
+  "winx",
+ ]
+ 
+@@ -1650,7 +1650,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "e16e44ab292b1dddfdaf7be62cfd8877df52f2f3fde5858d95bab606be259f20"
+ dependencies = [
+  "bitflags 2.9.0",
+- "libloading 0.7.4",
++ "libloading 0.8.6",
+  "winapi",
+ ]
+ 
+@@ -1876,7 +1876,7 @@ version = "0.5.2"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "330c60081dcc4c72131f8eb70510f1ac07223e5d4163db481a04a0befcffa412"
+ dependencies = [
+- "libloading 0.7.4",
++ "libloading 0.8.6",
+ ]
+ 
+ [[package]]
+@@ -2100,7 +2100,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "976dd42dc7e85965fe702eb8164f21f450704bdde31faefd6471dba214cb594e"
+ dependencies = [
+  "libc",
+- "windows-sys 0.52.0",
++ "windows-sys 0.59.0",
+ ]
+ 
+ [[package]]
+@@ -2194,7 +2194,7 @@ checksum = "0ce92ff622d6dadf7349484f42c93271a0d49b7cc4d466a936405bacbe10aa78"
+ dependencies = [
+  "cfg-if 1.0.0",
+  "rustix 1.0.7",
+- "windows-sys 0.52.0",
++ "windows-sys 0.59.0",
+ ]
+ 
+ [[package]]
+@@ -2407,7 +2407,7 @@ checksum = "94e7099f6313ecacbe1256e8ff9d617b75d1bcb16a6fddef94866d225a01a14a"
+ dependencies = [
+  "io-lifetimes",
+  "rustix 1.0.7",
+- "windows-sys 0.52.0",
++ "windows-sys 0.59.0",
+ ]
+ 
+ [[package]]
+@@ -2622,9 +2622,9 @@ dependencies = [
  
  [[package]]
  name = "gilrs"
--version = "0.10.4"
+-version = "0.11.0"
 +version = "0.10.2"
  source = "registry+https://github.com/rust-lang/crates.io-index"
--checksum = "d8b2e57a9cb946b5d04ae8638c5f554abb5a9f82c4c950fd5b1fee6d119592fb"
+-checksum = "bbb2c998745a3c1ac90f64f4f7b3a54219fd3612d7705e7798212935641ed18f"
 +checksum = "62fd19844d0eb919aca41d3e4ea0e0b6bf60e1e827558b101c269015b8f5f27a"
  dependencies = [
   "fnv",
   "gilrs-core",
-@@ -2421,24 +2421,23 @@ dependencies = [
+@@ -2636,24 +2636,23 @@ dependencies = [
  
  [[package]]
  name = "gilrs-core"
--version = "0.5.10"
+-version = "0.6.4"
 +version = "0.5.7"
  source = "registry+https://github.com/rust-lang/crates.io-index"
--checksum = "0af1827b7dd2f36d740ae804c1b3ea0d64c12533fb61ff91883005143a0e8c5a"
+-checksum = "a6d95ae10ce5aa99543a28cf74e41c11f3b9e3c14f0452bbde46024753cd683e"
 +checksum = "5ccc99e9b8d63ffcaa334c4babfa31f46e156618a11f63efb6e8e6bcb37b830d"
  dependencies = [
-  "core-foundation",
-- "inotify 0.10.2",
+- "core-foundation 0.10.0",
+- "inotify 0.11.0",
++ "core-foundation 0.9.4",
   "io-kit-sys",
   "js-sys",
   "libc",
   "libudev-sys",
   "log",
-- "nix 0.27.1",
+- "nix 0.29.0",
 + "nix 0.26.4",
   "serde",
   "uuid",
   "vec_map",
   "wasm-bindgen",
   "web-sys",
-- "windows 0.52.0",
-+ "windows 0.51.1",
+- "windows 0.61.1",
++ "windows 0.48.0",
  ]
  
  [[package]]
-@@ -2918,7 +2917,7 @@ dependencies = [
-  "iana-time-zone-haiku",
-  "js-sys",
-  "wasm-bindgen",
-- "windows-core 0.52.0",
-+ "windows-core",
+@@ -3534,14 +3533,14 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "2285ddfe3054097ef4b2fe909ef8c3bcd1ea52a8f0d274416caebeef39f04a65"
+ dependencies = [
+  "io-lifetimes",
+- "windows-sys 0.52.0",
++ "windows-sys 0.59.0",
  ]
- 
- [[package]]
-@@ -3088,17 +3087,6 @@ dependencies = [
-  "libc",
- ]
- 
--[[package]]
--name = "inotify"
--version = "0.10.2"
--source = "registry+https://github.com/rust-lang/crates.io-index"
--checksum = "fdd168d97690d0b8c412d6b6c10360277f4d7ee495c5d0d5d5fe0854923255cc"
--dependencies = [
-- "bitflags 1.3.2",
-- "inotify-sys",
-- "libc",
--]
--
- [[package]]
- name = "inotify-sys"
- version = "0.1.5"
-@@ -3140,9 +3128,9 @@ dependencies = [
  
  [[package]]
  name = "io-kit-sys"
--version = "0.4.0"
+-version = "0.4.1"
 +version = "0.3.0"
  source = "registry+https://github.com/rust-lang/crates.io-index"
--checksum = "4769cb30e5dcf1710fc6730d3e94f78c47723a014a567de385e113c737394640"
+-checksum = "617ee6cf8e3f66f3b4ea67a4058564628cde41901316e19f559e14c7c72c5e7b"
 +checksum = "9b2d4429acc1deff0fbdece0325b4997bdb02b2c245ab7023fd5deca0f6348de"
  dependencies = [
   "core-foundation-sys",
   "mach2",
-@@ -3916,6 +3904,17 @@ dependencies = [
+@@ -3588,7 +3587,7 @@ checksum = "e04d7f318608d35d4b61ddd75cbdaee86b023ebe2bd5a66ee0915f0bf93095a9"
+ dependencies = [
+  "hermit-abi 0.5.0",
+  "libc",
+- "windows-sys 0.52.0",
++ "windows-sys 0.59.0",
+ ]
+ 
+ [[package]]
+@@ -3852,7 +3851,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "fc2f4eb4bc735547cfed7c0a4922cbd04a4655978c09b54f1f7b228750664c34"
+ dependencies = [
+  "cfg-if 1.0.0",
+- "windows-targets 0.48.5",
++ "windows-targets 0.52.6",
+ ]
+ 
+ [[package]]
+@@ -4364,6 +4363,17 @@ dependencies = [
   "memoffset 0.6.5",
  ]
  
@@ -122,63 +192,169 @@ error[E0432]: unresolved imports `nix::sys::epoll`, `nix::sys::eventfd`
 +
  [[package]]
  name = "nix"
- version = "0.27.1"
-@@ -3963,7 +3962,7 @@ dependencies = [
-  "crossbeam-channel",
-  "filetime",
-  "fsevent-sys",
-- "inotify 0.9.6",
-+ "inotify",
-  "kqueue",
-  "libc",
-  "log",
-@@ -6785,7 +6784,7 @@ version = "1.6.3"
- source = "registry+https://github.com/rust-lang/crates.io-index"
- checksum = "97fee6b57c6a41524a810daee9286c02d7752c4253064d0b05472833a438f675"
- dependencies = [
-- "cfg-if 1.0.0",
-+ "cfg-if 0.1.10",
-  "rand 0.8.5",
-  "static_assertions",
+ version = "0.29.0"
+@@ -5594,7 +5604,7 @@ dependencies = [
+  "once_cell",
+  "socket2",
+  "tracing",
+- "windows-sys 0.52.0",
++ "windows-sys 0.59.0",
  ]
-@@ -8234,20 +8233,10 @@ version = "0.51.1"
- source = "registry+https://github.com/rust-lang/crates.io-index"
- checksum = "ca229916c5ee38c2f2bc1e9d8f04df975b4bd93f9955dc69fabb5d91270045c9"
+ 
+ [[package]]
+@@ -6082,7 +6092,7 @@ dependencies = [
+  "errno",
+  "libc",
+  "linux-raw-sys 0.4.15",
+- "windows-sys 0.52.0",
++ "windows-sys 0.59.0",
+ ]
+ 
+ [[package]]
+@@ -6095,7 +6105,7 @@ dependencies = [
+  "errno",
+  "libc",
+  "linux-raw-sys 0.9.4",
+- "windows-sys 0.52.0",
++ "windows-sys 0.59.0",
+ ]
+ 
+ [[package]]
+@@ -6170,7 +6180,7 @@ dependencies = [
+  "security-framework",
+  "security-framework-sys",
+  "webpki-root-certs",
+- "windows-sys 0.52.0",
++ "windows-sys 0.59.0",
+ ]
+ 
+ [[package]]
+@@ -6829,7 +6839,7 @@ dependencies = [
+  "cfg-if 1.0.0",
+  "libc",
+  "psm",
+- "windows-sys 0.52.0",
++ "windows-sys 0.59.0",
+ ]
+ 
+ [[package]]
+@@ -7047,7 +7057,7 @@ dependencies = [
+  "fd-lock",
+  "io-lifetimes",
+  "rustix 0.38.44",
+- "windows-sys 0.52.0",
++ "windows-sys 0.59.0",
+  "winx",
+ ]
+ 
+@@ -7090,7 +7100,7 @@ dependencies = [
+  "getrandom 0.3.2",
+  "once_cell",
+  "rustix 1.0.7",
+- "windows-sys 0.52.0",
++ "windows-sys 0.59.0",
+ ]
+ 
+ [[package]]
+@@ -7494,7 +7504,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "69fff37da548239c3bf9e64a12193d261e8b22b660991c6fd2df057c168f435f"
  dependencies = [
-- "windows-core 0.51.1",
-+ "windows-core",
-  "windows-targets 0.48.5",
+  "cc",
+- "windows-targets 0.48.5",
++ "windows-targets 0.52.6",
+ ]
+ 
+ [[package]]
+@@ -9124,7 +9134,7 @@ dependencies = [
+  "js-sys",
+  "khronos-egl",
+  "libc",
+- "libloading 0.7.4",
++ "libloading 0.8.6",
+  "log",
+  "metal",
+  "naga",
+@@ -9247,7 +9257,7 @@ version = "0.1.9"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "cf221c93e13a30d793f7645a0e7762c55d169dbb0a49671918a2319d289b10bb"
+ dependencies = [
+- "windows-sys 0.48.0",
++ "windows-sys 0.59.0",
+ ]
+ 
+ [[package]]
+@@ -9336,28 +9346,6 @@ dependencies = [
+  "windows-targets 0.52.6",
  ]
  
 -[[package]]
 -name = "windows"
--version = "0.52.0"
+-version = "0.61.1"
 -source = "registry+https://github.com/rust-lang/crates.io-index"
--checksum = "e48a53791691ab099e5e2ad123536d0fff50652600abaf43bbf952894110d0be"
+-checksum = "c5ee8f3d025738cb02bad7868bbb5f8a6327501e870bf51f1b455b0a2454a419"
 -dependencies = [
-- "windows-core 0.52.0",
-- "windows-targets 0.52.0",
+- "windows-collections",
+- "windows-core 0.61.0",
+- "windows-future",
+- "windows-link",
+- "windows-numerics",
+-]
+-
+-[[package]]
+-name = "windows-collections"
+-version = "0.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "3beeceb5e5cfd9eb1d76b381630e82c4241ccd0d27f1a39ed41b2760b255c5e8"
+-dependencies = [
+- "windows-core 0.61.0",
 -]
 -
  [[package]]
  name = "windows-core"
  version = "0.51.1"
-@@ -8257,15 +8246,6 @@ dependencies = [
-  "windows-targets 0.48.5",
+@@ -9403,16 +9391,6 @@ dependencies = [
+  "windows-strings 0.4.0",
  ]
  
 -[[package]]
--name = "windows-core"
--version = "0.52.0"
+-name = "windows-future"
+-version = "0.2.0"
 -source = "registry+https://github.com/rust-lang/crates.io-index"
--checksum = "33ab640c8d7e35bf8ba19b884ba838ceb4fba93a4e8c65a9059d08afcfc683d9"
+-checksum = "7a1d6bbefcb7b60acd19828e1bc965da6fcf18a7e39490c5f8be71e54a19ba32"
 -dependencies = [
-- "windows-targets 0.52.0",
+- "windows-core 0.61.0",
+- "windows-link",
 -]
 -
  [[package]]
- name = "windows-sys"
- version = "0.33.0"
+ name = "windows-implement"
+ version = "0.58.0"
+@@ -9463,16 +9441,6 @@ version = "0.1.1"
+ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "76840935b766e1b0a05c0066835fb9ec80071d4c09a16f6bd5f7e655e3c14c38"
+ 
+-[[package]]
+-name = "windows-numerics"
+-version = "0.2.0"
+-source = "registry+https://github.com/rust-lang/crates.io-index"
+-checksum = "9150af68066c4c5c07ddc0ce30421554771e528bde427614c61038bc2c92c2b1"
+-dependencies = [
+- "windows-core 0.61.0",
+- "windows-link",
+-]
+-
+ [[package]]
+ name = "windows-result"
+ version = "0.1.2"
+@@ -9829,7 +9797,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
+ checksum = "3f3fd376f71958b862e7afb20cfe5a22830e1963462f3a17f49d82a6c1d1f42d"
+ dependencies = [
+  "bitflags 2.9.0",
+- "windows-sys 0.52.0",
++ "windows-sys 0.59.0",
+ ]
+ 
+ [[package]]
 --- cargo-crates/gilrs-0.10.2/examples/ev.rs.orig	1970-01-01 00:00:00 UTC
 +++ cargo-crates/gilrs-0.10.2/examples/ev.rs
 @@ -9,6 +9,8 @@ use std::process;
@@ -863,3 +1039,14 @@ error[E0432]: unresolved imports `nix::sys::epoll`, `nix::sys::eventfd`
      }
  
      pub fn gamepad(&self, id: usize) -> Option<&Gamepad> {
+--- voxygen/Cargo.toml.orig	2024-11-23 09:54:48 UTC
++++ voxygen/Cargo.toml
+@@ -101,7 +101,7 @@ levenshtein = "1.0.5"
+ levenshtein = "1.0.5"
+ 
+ # Controller
+-gilrs = { version = "0.11.0", features = ["serde-serialize"] }
++gilrs = { version = "0.10.0", features = ["serde-serialize"] }
+ 
+ # Singleplayer
+ server = { package = "veloren-server", path = "../server", optional = true, default-features = false, features = [

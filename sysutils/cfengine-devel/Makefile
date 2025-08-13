@@ -1,10 +1,11 @@
 PORTNAME=	cfengine
-PORTVERSION=	3.${CFENGINE_COMMIT_DATE}
+PORTVERSION=	3.25.${CFENGINE_COMMIT_DATE}
+PORTEPOCH=	1
 CATEGORIES=	sysutils
 PKGNAMESUFFIX=	-devel
-CFENGINE_HASH=		ec6c4cf1e
-LIBNTECH_HASH=		1899478
-CFENGINE_COMMIT_DATE=	2023.12.22
+CFENGINE_HASH=		7b73e781b
+LIBNTECH_HASH=		8d1bcc7
+CFENGINE_COMMIT_DATE=	20250326
 
 MAINTAINER=	cy@FreeBSD.org
 COMMENT=	Systems administration tool for networks
@@ -30,7 +31,9 @@ USES=		autoreconf:build cpe gmake gnome libtool localbase shebangfix \
 		ssl
 USE_GNOME=	libxml2
 SHEBANG_FILES=	examples/remake_outputs.pl
-CFLAGS+=	-Wno-return-type -fcommon
+CFLAGS+=	-Wno-return-type -fcommon \
+		-Wno-int-conversion \
+		-Wno-implicit-function-declaration
 # EXAMPLESDIR=	${PREFIX}/share/examples/cfengine3
 DOCSDIR=	${PREFIX}/share/doc/cfengine
 MAKE_ENV=	EXPLICIT_VERSION=${PORTVERSION}-${HASH}
@@ -52,7 +55,8 @@ LIB_DEPENDS+=	libpcre.so:devel/pcre \
 		libpcre2-posix.so:devel/pcre2 \
 		liblmdb.so:databases/lmdb \
 		libyaml.so:textproc/libyaml \
-		libcurl.so:ftp/curl
+		libcurl.so:ftp/curl \
+		librsync.so:net/librsync
 
 OPTIONS_DEFINE=	PGSQL MYSQL LIBVIRT
 

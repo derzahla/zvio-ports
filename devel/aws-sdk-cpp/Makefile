@@ -1,5 +1,5 @@
 PORTNAME=	aws-sdk-cpp
-DISTVERSION=	1.11.235
+DISTVERSION=	1.11.536
 CATEGORIES=	devel
 
 MAINTAINER=	eduardo@FreeBSD.org
@@ -25,14 +25,12 @@ LIB_DEPENDS=	libaws-c-auth.so:security/aws-c-auth \
 		libpulse.so:audio/pulseaudio \
 		libs2n.so:security/s2n-tls
 
-USES=		cmake compiler:c++11-lib localbase:ldflags pkgconfig ssl
+USES=		cmake localbase:ldflags pkgconfig ssl
 USE_GITHUB=	yes
 GH_ACCOUNT=	aws
 USE_LDCONFIG=	yes
 
-CMAKE_ARGS+=	-DBUILD_ONLY="${BUILD_ONLY}" \
-		-DCMAKE_INSTALL_LIBDIR=lib \
-		-DCMAKE_PREFIX_PATH=${LOCALBASE}
+CMAKE_ARGS=	-DBUILD_ONLY="${BUILD_ONLY}"
 CMAKE_ON=	BUILD_SHARED_LIBS
 CMAKE_OFF=	BUILD_DEPS
 

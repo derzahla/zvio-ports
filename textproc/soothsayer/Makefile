@@ -1,6 +1,6 @@
 PORTNAME=	soothsayer
 PORTVERSION=	0.6.3
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	textproc
 MASTER_SITES=	SF/presage/${PORTNAME}/${PORTVERSION}
 
@@ -10,10 +10,14 @@ WWW=		http://presage.sourceforge.net/
 
 LICENSE=	GPLv2+
 
+DEPRECATED=	Deprecated upstream, consider using deskutils/presage
+EXPIRATION_DATE=2025-04-30
+
 BUILD_DEPENDS=	help2man:misc/help2man
 
 USES=		compiler libtool localbase ncurses pkgconfig sqlite
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ENV=	ac_cv_path_CPPUNIT_CONFIG=no \
 		ac_cv_path_PYTHON=no \
 		ac_cv_path_SWIG=no \

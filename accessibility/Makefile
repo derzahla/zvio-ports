@@ -7,7 +7,9 @@
     SUBDIR += darkman
     SUBDIR += eflite
     SUBDIR += feedbackd
+    SUBDIR += gammastep
     SUBDIR += gammy
+    SUBDIR += hyprsunset
     SUBDIR += kdeaccessibility
     SUBDIR += kmag
     SUBDIR += kmousetool
@@ -16,6 +18,9 @@
     SUBDIR += linux-c7-at-spi2-atk
     SUBDIR += linux-c7-at-spi2-core
     SUBDIR += linux-c7-atk
+    SUBDIR += linux-rl9-at-spi2-atk
+    SUBDIR += linux-rl9-at-spi2-core
+    SUBDIR += linux-rl9-atk
     SUBDIR += orca
     SUBDIR += py-atspi
     SUBDIR += py-speech-dispatcher

@@ -1,5 +1,6 @@
 PORTNAME=	vkquake
 DISTVERSION=	1.30.1
+PORTREVISION=	1
 CATEGORIES=	games
 
 MAINTAINER=	ports@FreeBSD.org
@@ -28,7 +29,7 @@ ALL_TARGET=	# empty
 
 .include	"${.CURDIR}/../quake-data/Makefile.include"
 
-CFLAGS+=	-DDATADIR='\"${Q1DIR}\"'
+CFLAGS+=	-DDATADIR='\"${Q1DIR}\"' -Wno-error=atomic-alignment
 
 OPTIONS_DEFINE=			USERDIRS WAVE FLAC MP3 VORBIS # OPUS
 OPTIONS_RADIO=			MODPLAYER

@@ -1,5 +1,5 @@
-TIMESTAMP = 1655669851
-SHA256 (DanielBok-nlopt-python-2.7.1_GH0.tar.gz) = 838a46f67309b1e1f63227a27726e8a7be19f9b05f0972d40b98a52ccfb799fb
-SIZE (DanielBok-nlopt-python-2.7.1_GH0.tar.gz) = 6749
-SHA256 (stevengj-nlopt-4a0e93c_GH0.tar.gz) = 3d8036633821df60f387431fde51cd11c125743a24ccbda40221518ad21663a4
-SIZE (stevengj-nlopt-4a0e93c_GH0.tar.gz) = 2044242
+TIMESTAMP = 1731822083
+SHA256 (DanielBok-nlopt-python-2.9.0_GH0.tar.gz) = bd16c2a8af7819efeb6cc1b4f349c4553be02e95e628bca7a5c9891da467b99b
+SIZE (DanielBok-nlopt-python-2.9.0_GH0.tar.gz) = 9154
+SHA256 (stevengj-nlopt-75dd16e_GH0.tar.gz) = 969621b928096094546d77d118e1f3e94496f9160a8b01adc6a7755e301f9568
+SIZE (stevengj-nlopt-75dd16e_GH0.tar.gz) = 2054748

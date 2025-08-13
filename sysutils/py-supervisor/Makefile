@@ -1,11 +1,12 @@
 PORTNAME=	supervisor
-PORTVERSION=	4.2.4
+PORTVERSION=	4.2.5
+PORTREVISION=	1
 PORTEPOCH=	1
 CATEGORIES=	sysutils python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	thomas@gibfest.dk
+MAINTAINER=	otis@FreeBSD.org
 COMMENT=	System for controlling process state under UNIX
 WWW=		http://supervisord.org/
 

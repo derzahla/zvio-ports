@@ -1,6 +1,6 @@
 PORTNAME=	facter
 PORTVERSION=	3.14.24
-PORTREVISION=	4
+PORTREVISION=	9
 CATEGORIES?=	sysutils
 MASTER_SITES=	https://downloads.puppetlabs.com/facter/
 
@@ -11,7 +11,10 @@ WWW=		https://puppetlabs.com/facter
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+BROKEN=		fails to build with Boost>=1.87
 BROKEN_DragonFly=	DragonFly is not supported upstream
+DEPRECATED=	Reached EOL
+EXPIRATION_DATE=2025-05-09
 
 LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libcurl.so:ftp/curl \
@@ -26,13 +29,11 @@ PLIST_SUB=	PORTVERSION="${PORTVERSION}"
 USES=		cmake:noninja compiler:c++11-lib cpe ruby ssl
 CPE_VENDOR=	puppet
 USE_LDCONFIG=	yes
-CMAKE_ARGS+=	-DMAN_PATH=${MANPREFIX}/man
 CMAKE_OFF=	ENABLE_CXX_WERROR
 
 OPTIONS_DEFINE=	FACTER_JAVA
 FACTER_JAVA_DESC=	Build with Java bindings for puppetserver
-FACTER_JAVA_USE=	java=yes
-FACTER_JAVA_VARS=	JAVA_BUILD=yes
+FACTER_JAVA_USES=	java:build
 FACTER_JAVA_CMAKE_ON=	-DJAVA_HOME=${JAVA_HOME}
 
 OPTIONS_DEFAULT=	FACTER_JAVA

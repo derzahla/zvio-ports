@@ -1,7 +1,13 @@
 PORTNAME=	flightgear
 PORTVERSION=	2020.3.19
+PORTREVISION=	6
 CATEGORIES=	games
 MASTER_SITES=	SF/flightgear/release-${PORTVERSION:R}
+
+# Fix for CVE-2025-0781
+# See: https://gitlab.com/frougon/flightgear-flightgear/-/commits/2020.3.6-minimal-fix-for-CVE-2025-0781
+PATCH_SITES=	https://gitlab.com/frougon/flightgear-${PORTNAME}/-/commit/
+PATCHFILES+=	cf99dc921aadab502ff90a1dd943d8bbb897de91.patch:-p1
 
 MAINTAINER=	martymac@FreeBSD.org
 COMMENT=	FlightGear flight simulator
@@ -37,7 +43,6 @@ DOS2UNIX_REGEX=	.*\.(c|h|cxx|cpp|hxx|hpp)
 CMAKE_ARGS+=	-DSYSTEM_SQLITE:BOOL=ON \
 		-DENABLE_HID_INPUT:BOOL=OFF \
 		-DFG_DATA_DIR:PATH=${LOCALBASE}/share/${PORTNAME} \
-		-DCMAKE_INSTALL_MANDIR:PATH=${MANPREFIX}/man \
 		-DFGCOM_DATA_PATH:PATH=${DATADIR}
 LDFLAGS+=	-L${LOCALBASE}/lib
 LDFLAGS_i386=	-Wl,-znotext
@@ -59,7 +64,7 @@ post-patch:
 
 .include <bsd.port.pre.mk>
 
-.if ${COMPILER_TYPE} == "clang" && ${COMPILER_VERSION} >= 150
+.if ${COMPILER_TYPE} == "clang"
 LDFLAGS_i386+=	-Wl,--no-check-dynamic-relocations
 .endif
 

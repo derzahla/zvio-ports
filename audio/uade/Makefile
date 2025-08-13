@@ -1,5 +1,5 @@
 PORTNAME=	uade
-PORTVERSION=	3.03
+DISTVERSION=	3.05
 CATEGORIES=	audio
 MASTER_SITES=	http://zakalwe.fi/uade/uade3/ \
 		LOCAL/ehaupt
@@ -23,7 +23,7 @@ SHEBANG_FILES=	configure write_audio/generate_amiga_oscilloscope_view
 
 HAS_CONFIGURE=	yes
 
-CONFIGURE_ARGS=	--mandir=${MANPREFIX}/man/man1 \
+CONFIGURE_ARGS=	--mandir=${PREFIX}/share/man/man1 \
 		--no-debug \
 		--prefix=${PREFIX} \
 		--without-write-audio
@@ -44,6 +44,9 @@ TEXTSCOPE_CONFIGURE_WITH=	text-scope
 
 post-extract:
 	@${RM} -r ${WRKSRC}/players/S
+
+post-patch:
+	@${REINPLACE_CMD} -e 's|-O2 -g||' ${WRKSRC}/write_audio/Makefile.in
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}

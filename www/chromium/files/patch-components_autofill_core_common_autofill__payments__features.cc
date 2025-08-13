@@ -1,11 +1,11 @@
---- components/autofill/core/common/autofill_payments_features.cc.orig	2024-02-23 21:04:38 UTC
+--- components/autofill/core/common/autofill_payments_features.cc.orig	2025-05-28 14:55:43 UTC
 +++ components/autofill/core/common/autofill_payments_features.cc
-@@ -281,7 +281,7 @@ BASE_FEATURE(kAutofillEnableVirtualCards,
+@@ -297,7 +297,7 @@ BASE_FEATURE(kAutofillSyncEwalletAccounts,
+ #endif  // BUILDFLAG(IS_ANDROID)
+ 
  bool ShouldShowImprovedUserConsentForCreditCardSave() {
- // TODO(crbug.com/1052397): Revisit the macro expression once build flag switch
- // of lacros-chrome is complete.
--#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || \
-+#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_BSD) || \
-     (BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_CHROMEOS_LACROS))
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_APPLE) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
    // The new user consent UI is fully launched on MacOS, Windows and Linux.
    return true;
+ #else

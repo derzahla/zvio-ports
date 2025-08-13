@@ -1,5 +1,6 @@
 PORTNAME=	pastix
 PORTVERSION=	6.3.2
+PORTREVISION=	2
 CATEGORIES=	science
 MASTER_SITES=	https://gitlab.inria.fr/solverstack/pastix/uploads/${GL_TAG}/
 
@@ -8,6 +9,9 @@ COMMENT=	PaStiX: a sparse direct solver
 WWW=		https://solverstack.gitlabpages.inria.fr/pastix/
 
 LICENSE=	LGPL3
+
+DEPRECATED=	Depends on expired lang/julia
+EXPIRATION_DATE=2025-06-01
 
 BUILD_DEPENDS=	bash:shells/bash	\
 		${PYNUMPY}

@@ -1,10 +1,12 @@
     COMMENT = Emulators for other operating systems
 
+    SUBDIR += 86Box
     SUBDIR += adamem
     SUBDIR += almostti
     SUBDIR += anese
     SUBDIR += aqemu
     SUBDIR += aranym
+    SUBDIR += ares
     SUBDIR += atari800
     SUBDIR += bfe
     SUBDIR += bochs
@@ -15,7 +17,6 @@
     SUBDIR += cingb
     SUBDIR += citra
     SUBDIR += citra-qt5
-    SUBDIR += cpmemu
     SUBDIR += cpmtools
     SUBDIR += cpmtools2
     SUBDIR += darcnes
@@ -25,13 +26,18 @@
     SUBDIR += dosbox-staging
     SUBDIR += dosbox-x
     SUBDIR += dps8m
-    SUBDIR += duckstation
     SUBDIR += dynamips-community
     SUBDIR += edumips64
     SUBDIR += elliott-803
     SUBDIR += emu64
     SUBDIR += emulationstation
+    SUBDIR += es-de
+    SUBDIR += fbneo
+    SUBDIR += fbsd-duckstation
     SUBDIR += fceux
+    SUBDIR += firebird-emu
+    SUBDIR += flexemu
+    SUBDIR += flycast
     SUBDIR += fmsx
     SUBDIR += frodo
     SUBDIR += fs-uae
@@ -46,7 +52,6 @@
     SUBDIR += hatari
     SUBDIR += hercules
     SUBDIR += higan
-    SUBDIR += hugo
     SUBDIR += hv_kvp_cmd
     SUBDIR += javatari
     SUBDIR += joytran
@@ -58,7 +63,6 @@
     SUBDIR += libretro-bsnes
     SUBDIR += libretro-flycast
     SUBDIR += libretro-kronos
-    SUBDIR += libretro-mame
     SUBDIR += libretro-pcsx2
     SUBDIR += libretro-ppsspp
     SUBDIR += libretro-reicast
@@ -67,14 +71,15 @@
     SUBDIR += linux-c7
     SUBDIR += linux-power10-functional-sim
     SUBDIR += linux-power9-functional-sim
+    SUBDIR += linux-rl9
     SUBDIR += linux_base-c7
+    SUBDIR += linux_base-rl9
     SUBDIR += magia
     SUBDIR += mame
     SUBDIR += mastergear
     SUBDIR += mednafen
     SUBDIR += mesen
     SUBDIR += mgba
-    SUBDIR += mtools
     SUBDIR += mupen64plus
     SUBDIR += mupen64plus-audio-sdl
     SUBDIR += mupen64plus-core
@@ -95,6 +100,7 @@
     SUBDIR += o2em
     SUBDIR += ods2reader
     SUBDIR += open-simh
+    SUBDIR += open-vm-kmod
     SUBDIR += open-vm-tools
     SUBDIR += openmsx
     SUBDIR += p5-Acme-6502
@@ -106,6 +112,7 @@
     SUBDIR += ppsspp
     SUBDIR += ppsspp-qt5
     SUBDIR += py-gns3-converter
+    SUBDIR += py-m64py
     SUBDIR += py-unicorn
     SUBDIR += qemu
     SUBDIR += qemu-cheri
@@ -113,7 +120,7 @@
     SUBDIR += qemu-powernv
     SUBDIR += qemu-user-static
     SUBDIR += qemu-user-static-devel
-    SUBDIR += qemu7
+    SUBDIR += qemu8
     SUBDIR += qmc2
     SUBDIR += quasi88
     SUBDIR += reicast
@@ -121,6 +128,7 @@
     SUBDIR += riscv-isa-sim
     SUBDIR += rpcs3
     SUBDIR += rubygem-fission
+    SUBDIR += rvvm
     SUBDIR += sameboy
     SUBDIR += simh
     SUBDIR += simh-hp2100
@@ -137,7 +145,6 @@
     SUBDIR += tme
     SUBDIR += tnylpo
     SUBDIR += tpm-emulator
-    SUBDIR += tuxnes
     SUBDIR += uae
     SUBDIR += ucon64
     SUBDIR += uconvert
@@ -149,21 +156,23 @@
     SUBDIR += vgba-bin
     SUBDIR += vice
     SUBDIR += virtualbox-ose
+    SUBDIR += virtualbox-ose-70
     SUBDIR += virtualbox-ose-additions
     SUBDIR += virtualbox-ose-additions-legacy
     SUBDIR += virtualbox-ose-additions-nox11
     SUBDIR += virtualbox-ose-additions-nox11-legacy
     SUBDIR += virtualbox-ose-kmod
+    SUBDIR += virtualbox-ose-kmod-70
     SUBDIR += virtualbox-ose-kmod-legacy
     SUBDIR += virtualbox-ose-legacy
     SUBDIR += virtualbox-ose-nox11
+    SUBDIR += virtualbox-ose-nox11-70
     SUBDIR += virtualbox-ose-nox11-legacy
     SUBDIR += visualboyadvance-m
     SUBDIR += vmips
     SUBDIR += vmsbackup
     SUBDIR += vmw
     SUBDIR += vt100
-    SUBDIR += vxtools
     SUBDIR += wine
     SUBDIR += wine-devel
     SUBDIR += wine-gecko
@@ -171,7 +180,6 @@
     SUBDIR += wine-mono
     SUBDIR += wine-mono-devel
     SUBDIR += wine-proton
-    SUBDIR += wine7
     SUBDIR += winetricks
     SUBDIR += x16-emulator
     SUBDIR += x16-rom

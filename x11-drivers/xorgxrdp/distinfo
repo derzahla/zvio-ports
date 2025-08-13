@@ -1,5 +1,5 @@
-TIMESTAMP = 1704033144
-SHA256 (xrdp/neutrinolabs-xorgxrdp-v0.9.19_GH0.tar.gz) = b9891ad40b0132df4807e2660155669b9f6be5f1ae736e715af23965eaa963b3
-SIZE (xrdp/neutrinolabs-xorgxrdp-v0.9.19_GH0.tar.gz) = 104245
-SHA256 (xrdp/neutrinolabs-xrdp-v0.9.24_GH0.tar.gz) = b5445c1fe52509bd69eb1ca155594a200385961e1edeb79ae66d29072cff889c
-SIZE (xrdp/neutrinolabs-xrdp-v0.9.24_GH0.tar.gz) = 783504
+TIMESTAMP = 1743348155
+SHA256 (xrdp/xorgxrdp-0.10.4.tar.gz) = c2585c73916d68123320c3b3d077d3596c50d71466dbd59e780ca247f9124f14
+SIZE (xrdp/xorgxrdp-0.10.4.tar.gz) = 521041
+SHA256 (xrdp/xrdp-0.10.3.tar.gz) = 52d79732ab87c66390b088429bf495d65c1d0a1ad04e832b95c0f14e1174d096
+SIZE (xrdp/xrdp-0.10.3.tar.gz) = 2480538

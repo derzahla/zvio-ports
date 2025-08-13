@@ -1,6 +1,6 @@
 PORTNAME=	geany
 PORTVERSION=	2.0
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	devel editors
 MASTER_SITES=	https://download.geany.org/ \
 		SF
@@ -17,11 +17,12 @@ LIB_DEPENDS=	libharfbuzz.so:print/harfbuzz
 USES=		compiler:c++11-lang desktop-file-utils gettext-tools gmake \
 		gnome iconv libtool localbase pathfix pkgconfig python:build \
 		shebangfix tar:bzip2
-USE_GNOME=	cairo gdkpixbuf2 gtk30 intltool
+USE_GNOME=	cairo gdkpixbuf gtk30 intltool
 USE_LDCONFIG=	yes
 
 SHEBANG_FILES=	scripts/gen-api-gtkdoc.py
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=		DOCS NLS THEMES VTE

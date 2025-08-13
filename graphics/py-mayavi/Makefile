@@ -1,6 +1,6 @@
 PORTNAME=	mayavi
-DISTVERSION=	4.8.1
-PORTREVISION=	7
+DISTVERSION=	4.8.2
+PORTREVISION=	3
 CATEGORIES=	graphics science python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -38,7 +38,8 @@ USE_PYTHON=	distutils autoplist
 USE_WX=		3.2
 WX_COMPS=	python:run
 
-SHEBANG_FILES=	mayavi/tests/csv_files/csv_2_py
+SHEBANG_FILES=	mayavi/scripts/mayavi2 \
+		mayavi/tests/csv_files/csv_2_py
 
 POST_PLIST=	fix-plist
 

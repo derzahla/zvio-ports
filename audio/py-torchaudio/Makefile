@@ -1,7 +1,7 @@
 PORTNAME=	torchaudio
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.1.1
-PORTREVISION=	1
+DISTVERSION=	2.2.1
+PORTREVISION=	8
 CATEGORIES=	audio python # machine-learning
 MASTER_SITES=	https://downloads.sourceforge.net/project/sox/sox/14.4.2/:sox
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -15,16 +15,18 @@ WWW=		https://pytorch.org/audio/stable/index.html
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytorch>0:misc/py-pytorch@${PY_FLAVOR} \
+BUILD_DEPENDS=	${PY_SETUPTOOLS} \
+		${PYTHON_PKGNAMEPREFIX}pytorch>0:misc/py-pytorch@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR} \
 		cmake:devel/cmake-core \
 		ninja:devel/ninja \
 		pybind11>0:devel/pybind11
-LIB_DEPENDS=	libprotobuf.so:devel/protobuf
+LIB_DEPENDS=	libabsl_symbolize.so:devel/abseil \
+		libprotobuf.so:devel/protobuf
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytorch>0:misc/py-pytorch@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	pep517 autoplist
+USE_PYTHON=	pep517 autoplist pytest
 
 MAKE_ENV=	USE_FFMPEG=0 # ffmpeg integration is broken or unavailable, see https://github.com/pytorch/audio/issues/3716
 

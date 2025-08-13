@@ -1,5 +1,6 @@
 PORTNAME=	APKiD
 PORTVERSION=	2.1.5
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	security
 
@@ -16,8 +17,8 @@ LICENSE_PERMS_RedNaga=	pkg-mirror pkg-sell
 USE_GITHUB=	yes
 GH_ACCOUNT=	rednaga
 
-USES=		pytest python
-USE_PYTHON=	distutils
+USES=		python
+USE_PYTHON=	distutils pytest
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}yara-python-dex>0:security/py-yara-python-dex@${PY_FLAVOR}
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}yara-python-dex>0:security/py-yara-python-dex@${PY_FLAVOR}

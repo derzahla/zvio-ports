@@ -1,5 +1,8 @@
 PORTNAME=	openssl
-PORTVERSION=	3.1.5
+DISTVERSIONPREFIX=	${PORTNAME}-
+PORTVERSION=	3.1.7
+PORTREVISION=	1
+DISTVERSIONSUFFIX=	-quic1
 CATEGORIES=	security devel
 PKGNAMESUFFIX=	31-quictls
 
@@ -10,7 +13,7 @@ WWW=		https://www.github.com/quictls/openssl
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 
-CONFLICTS_INSTALL=	boringssl libressl libressl-devel openssl openssl111 openssl3[12]
+CONFLICTS_INSTALL=	boringssl libressl libressl-devel openssl openssl111 openssl3* openssl-quictls
 
 BROKEN_i386=	ld: error: undefined symbol: __atomic_is_lock_free
 
@@ -24,7 +27,6 @@ USES=		cpe perl5
 USE_PERL5=	build
 USE_GITHUB=	yes
 GH_ACCOUNT=	${PKGNAMESUFFIX:C/.*-//}
-GH_TAGNAME=	opernssl-${PORTVERSION}-quic1
 
 TEST_TARGET=	test
 
@@ -32,6 +34,8 @@ LDFLAGS_i386=	-Wl,-znotext
 
 MAKE_ARGS+=	WHOLE_ARCHIVE_FLAG=--whole-archive CNF_LDFLAGS="${LDFLAGS}"
 MAKE_ENV+=	LIBRPATH="${PREFIX}/lib" GREP_OPTIONS=
+
+EXTRA_PATCHES+=	${.CURDIR}/../openssl/files/patch-crypto_async_arch_async__posix.h
 
 OPTIONS_GROUP=		CIPHERS HASHES MODULES OPTIMIZE PROTOCOLS
 OPTIONS_GROUP_CIPHERS=	ARIA DES GOST IDEA SM4 RC2 RC4 RC5 WEAK-SSL-CIPHERS
@@ -41,13 +45,11 @@ OPTIONS_GROUP_MODULES=	FIPS LEGACY
 OPTIONS_DEFINE_i386=	I386
 OPTIONS_GROUP_PROTOCOLS=NEXTPROTONEG SCTP SSL3 TLS1 TLS1_1 TLS1_2
 
-OPTIONS_DEFINE=	ASYNC CRYPTODEV CT KTLS MAN3 RFC3779 SHARED ZLIB
+OPTIONS_DEFINE=	ASYNC CT KTLS MAN3 RFC3779 SHARED ZLIB
 
 OPTIONS_DEFAULT=ASM ASYNC CT DES EC FIPS GOST KTLS MAN3 MD4 NEXTPROTONEG \
 		RC2 RC4 RMD160 SCTP SHARED SSE2 THREADS TLS1 TLS1_1 TLS1_2
 
-OPTIONS_EXCLUDE=${${OSVERSION} < 1300042:?KTLS:} \
-		${${OSVERSION} > 1300000:?CRYPTODEV:}
 OPTIONS_EXCLUDE_i386=	FIPS
 
 OPTIONS_GROUP_OPTIMIZE_amd64=	EC
@@ -64,7 +66,6 @@ ARIA_DESC=	ARIA (South Korean standard)
 ASM_DESC=	Assembler code
 ASYNC_DESC=	Asynchronous mode
 CIPHERS_DESC=	Block Cipher Support
-CRYPTODEV_DESC=	/dev/crypto support
 CT_DESC=	Certificate Transparency Support
 DES_DESC=	(Triple) Data Encryption Standard
 EC_DESC=	Optimize NIST elliptic curves
@@ -73,7 +74,7 @@ GOST_DESC=	GOST (Russian standard)
 HASHES_DESC=	Hash Function Support
 I386_DESC=	i386 (instead of i486+)
 IDEA_DESC=	International Data Encryption Algorithm
-KTLS_DESC=	Use in-kernel TLS (FreeBSD >13)
+KTLS_DESC=	Use in-kernel TLS
 LEGACY_DESC=	Older algorithms
 MAN3_DESC=	Install API manpages (section 3, 7)
 MD2_DESC=	MD2 (obsolete) (requires LEGACY)
@@ -135,7 +136,17 @@ ZLIB_CONFIGURE_ON=	zlib-dynamic
 
 SHLIBS=			lib/engines-${OPENSSL_SHLIBVER}/loader_attic.so
 
-PORTSCOUT=		limit=^3\.1\.
+PORTSCOUT=		limit:^${DISTVERSION:R:S/./\./g}\.
+
+.include <bsd.port.options.mk>
+
+.if ${ARCH} == powerpc64
+CONFIGURE_ARGS+=	BSD-ppc64
+.elif ${ARCH} == powerpc64le
+CONFIGURE_ARGS+=	BSD-ppc64le
+.elif ${ARCH} == riscv64
+CONFIGURE_ARGS+=	BSD-riscv64
+.endif
 
 .include <bsd.port.pre.mk>
 .if ${PREFIX} == /usr

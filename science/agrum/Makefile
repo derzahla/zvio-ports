@@ -1,13 +1,16 @@
 PORTNAME=	agrum
-DISTVERSION=	1.12.1
+DISTVERSION=	1.17.2
 CATEGORIES=	science math
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Graphical modeler for Bayesian networks, influence diagrams, etc
-WWW=		https://agrum.gitlab.io/
+WWW=		https://agrum.gitlab.io \
+		https://gitlab.com/agrumery/aGrUM
 
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+TEST_DEPENDS=	swig:devel/swig
 
 USES=		cmake compiler:c++20-lang shebangfix # the 'act' executable uses 'python' and is broken, when act is broken CMakeLists.txt builds with default configuration which is fine
 USE_LDCONFIG=	yes
@@ -17,7 +20,7 @@ LLD_UNSAFE=	yes
 USE_GITLAB=	yes
 GL_ACCOUNT=	agrumery
 GL_PROJECT=	aGrUM
-GL_TAGNAME=	826563917bb4bc11e5d54faba5662be9f4b93eab
+GL_TAGNAME=	e26d7c4bccaafd5dcd3b78e8da1198a75a8043e7
 
 SHEBANG_FILES=	act
 
@@ -55,7 +58,7 @@ PYTHON_RUN_DEPENDS=	${PYNUMPY} \
 
 BINARY_ALIAS=	gcc=${CC} g++=${CXX} # only for tests, see https://gitlab.com/agrumery/aGrUM/-/issues/100
 
-do-test:
+do-test: # tests fail to compile, see https://gitlab.com/agrumery/aGrUM/-/issues/148
 	@cd ${WRKSRC} && \
 		${SETENV} ${MAKE_ENV} ./act test release agrum -t all
 

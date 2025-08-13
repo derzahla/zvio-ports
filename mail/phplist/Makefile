@@ -1,5 +1,6 @@
 PORTNAME=	phplist
-DISTVERSION=	3.6.14
+DISTVERSION=	3.6.15
+PORTREVISION=	1
 CATEGORIES=	mail www
 MASTER_SITES=	SF
 PKGNAMESUFFIX=	${PHP_PKGNAMESUFFIX}
@@ -14,8 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 RUN_DEPENDS=	${PEARDIR}/HTTP/Request.php:www/pear-HTTP_Request@${PHP_FLAVOR}
 
 USES=		cpe tar:tgz php:web,flavors
-USE_PHP=	curl gd gettext iconv imap mbstring mysqli session xml zlib
-IGNORE_WITH_PHP=	83
+USE_PHP=	curl gd gettext iconv imap mbstring mysqli session simplexml xml zlib
 
 NO_ARCH=	yes
 NO_BUILD=	yes
@@ -23,7 +23,7 @@ SUB_FILES=	phplist
 
 PLIST_SUB=	WWWOWN=${WWWOWN} \
 		WWWGRP=${WWWGRP}
-PORTDOCS=	CONTRIBUTING.md COPYING INSTALL PEOPLE README.md TODO UPGRADE VERSION
+PORTDOCS=	CONTRIBUTING.md COPYING INSTALL PEOPLE README.* TODO UPGRADE VERSION
 
 OPTIONS_DEFINE=	DOCS
 

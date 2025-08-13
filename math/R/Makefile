@@ -1,6 +1,5 @@
 PORTNAME=	R
-DISTVERSION=	4.3.2
-PORTREVISION=	1
+DISTVERSION=	4.4.3
 CATEGORIES=	math lang
 MASTER_SITES=	CRAN/src/base/R-${PORTVERSION:C|\..*||}
 
@@ -14,6 +13,7 @@ ONLY_FOR_ARCHS=	aarch64 amd64 armv6 armv7 i386 powerpc powerpc64 powerpc64le
 
 BUILD_DEPENDS=	texi2any:print/texinfo
 LIB_DEPENDS=	libcurl.so:ftp/curl \
+		libdeflate.so:archivers/libdeflate \
 		libpcre2-8.so:devel/pcre2
 # R packages may require GNU make or cmake to build
 RUN_DEPENDS=	cmake:devel/cmake-core \
@@ -105,7 +105,7 @@ RBLAS_EXTRA_PATCHES=		${PATCHDIR}/extra-patch-src_extra_blas_Makefile.in \
 RPROF_CONFIGURE_ENABLE=		R-profiling
 TCLTK_IMPLIES=			X11
 TCLTK_USES=			tcl tk
-TCLTK_CONFIGURE_WITH=		tcltk tcl_config=${TCL_LIBDIR}/tclConfig.sh \
+TCLTK_CONFIGURE_WITH=		tcl_config=${TCL_LIBDIR}/tclConfig.sh tcltk \
 				tk_config=${TK_LIBDIR}/tkConfig.sh
 TEXDOCS_USES=			tex
 TEXDOCS_USE=			TEX=dvipsk:build,kpathsea:build,pdftex:build
@@ -122,14 +122,7 @@ X11_CONFIGURE_WITH=		x
 
 _MAJORVER=	${DISTVERSION:R:R}
 
-.include <bsd.port.options.mk>
-
-.if ${ARCH} == powerpc
-LLD_UNSAFE=	yes
-.endif
-
 post-patch:
-	@${REINPLACE_CMD} -e "s|/usr/local|${LOCALBASE}|g" ${WRKSRC}/configure
 	@${REINPLACE_CMD} \
 		-e "s|%%FULLVER%%|${DISTVERSION}|" \
 		-e "s|%%MAJORVER%%|${_MAJORVER}|" \

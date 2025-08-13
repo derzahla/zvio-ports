@@ -1,5 +1,5 @@
 PORTNAME=	golly
-DISTVERSION=	4.2
+DISTVERSION=	4.3
 PORTREVISION=	1
 DISTVERSIONSUFFIX=	-src
 CATEGORIES=	games
@@ -38,6 +38,7 @@ PORTDATA=	Help Patterns Rules Scripts
 pre-build:
 	@${REINPLACE_CMD} -e 's|%%DATADIR%%|${DATADIR}|g' \
 		${WRKSRC}/wxmain.cpp ${WRKSRC}/wxhelp.cpp
+	@${RMDIR} ${WRKSRC}/../Scripts/Python/glife/__pycache__
 
 # There is no install target at makefile-gtk
 do-install:

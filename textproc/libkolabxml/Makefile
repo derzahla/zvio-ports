@@ -1,6 +1,6 @@
 PORTNAME=	libkolabxml
-DISTVERSION=	1.2.1-3
-DISTVERSIONSUFFIX=	-g27d1927
+DISTVERSION=	1.3.1
+PORTREVISION=	4
 CATEGORIES=	textproc
 MASTER_SITES=	LOCAL/kde/${PORTNAME}
 DIST_SUBDIR=	${PORTNAME}
@@ -18,7 +18,7 @@ BUILD_DEPENDS=	libxsd>=4.2.0:devel/libxsd \
 		xsdcxx:devel/xsd
 LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
 		libcurl.so:ftp/curl \
-		libxerces-c.so.3:textproc/xerces-c3
+		libxerces-c.so:textproc/xerces-c3
 
 USES=		cmake tar:xz
 USE_LDCONFIG=	yes
@@ -32,7 +32,7 @@ CMAKE_OFF=	BUILD_TESTS \
 		PHP_BINDINGS \
 		PYTHON_BINDINGS
 
-PLIST_SUB=	SHLIB_VER=${PORTVERSION:R}
+PLIST_SUB=	SHLIB_VER=${PORTVERSION}
 
 create-distfile:
 	${MKDIR} ${DISTDIR}/${DIST_SUBDIR}

@@ -1,7 +1,7 @@
 PORTNAME=	psi4
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.9
-PORTREVISION=	1
+DISTVERSION=	1.9.1
+PORTREVISION=	3
 CATEGORIES=	science # quantum-chemistry
 EXTRACT_ONLY=	${DISTNAME}${EXTRACT_SUFX}
 
@@ -19,6 +19,7 @@ PY_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gau2grid>0:math/py-gau2grid@${PY_FLAVOR} \
 BUILD_DEPENDS=	boost-libs>0:devel/boost-libs \
 		${LOCALBASE}/include/pybind11/pybind11.h:devel/pybind11 \
 		${PY_DEPENDS} \
+		${PY_SETUPTOOLS} \
 		libint2-psi4>0:science/libint2-psi4 # has to be this library
 LIB_DEPENDS=	libgg.so:math/gau2grid \
 		libxc.so:science/libxc
@@ -26,7 +27,7 @@ RUN_DEPENDS=	${PY_DEPENDS} \
 		libint2-psi4>0:science/libint2-psi4
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pytest>0:devel/py-pytest@${PY_FLAVOR}
 
-USES=		blaslapack:openblas cmake compiler:c++17-lang eigen:3 fortran localbase:ldflags pytest python
+USES=		blaslapack:openblas cmake compiler:c++17-lang eigen:3 fortran localbase:ldflags python
 USE_GITHUB=	yes
 
 CMAKE_ARGS=	-DLibxc_DIR=${LOCALBASE} \

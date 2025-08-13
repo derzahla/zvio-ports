@@ -1,19 +1,19 @@
 PORTNAME=	nerdctl
 DISTVERSIONPREFIX=v
-DISTVERSION=	1.2.1
-PORTREVISION=	5
+DISTVERSION=	2.0.3
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
-MAINTAINER=	woodsb02@FreeBSD.org
+MAINTAINER=	laurent.chardon@gmail.com
 COMMENT=	Docker-compatible CLI for containerd
 WWW=		https://github.com/containerd/nerdctl
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:modules
+USES=		go:1.22,modules
 
-GO_MODULE=	github.com/containerd/nerdctl
+GO_MODULE=	github.com/containerd/nerdctl/v2
 GO_TARGET=	./cmd/${PORTNAME}
 GO_BUILDFLAGS=	-ldflags "-s -w -X ${GO_MODULE}/pkg/version.Version=${DISTVERSIONFULL}"
 

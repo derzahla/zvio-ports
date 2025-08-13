@@ -1,5 +1,5 @@
 PORTNAME=	code_saturne
-PORTVERSION=	8.1.0
+PORTVERSION=	8.1.1
 PORTREVISION=	2
 CATEGORIES=	science parallel
 MASTER_SITES=	https://www.code-saturne.org/releases/
@@ -31,7 +31,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}matplotlib>0:math/py-matplotlib@${PY_FLAVOR}
 USES=		autoreconf bison blaslapack compiler:c11 fortran gettext gnome gmake \
 		iconv localbase libtool mpi pyqt:5 python shebangfix xorg
 USE_GNOME=	libxml2
-USE_PYQT=	pyqt5 sip
+USE_PYQT=	pyqt5
 USE_XORG=	x11
 SHEBANG_FILES=	install_saturne.py tests/unittests.py build-aux/*.py
 CFLAGS+=	-D__XSI_VISIBLE -Wno-error=incompatible-function-pointer-types
@@ -47,6 +47,7 @@ CONFIGURE_ARGS=	--without-salome --without-salome-yacs --without-salome-kernel	\
 		--with-scotch-include="${LOCALBASE}/include"
 CONFIGURE_ENV=	ac_cv_path_SED=${LOCALBASE}/bin/gsed ldflags_rpath="-R"	\
 		MUMPS_LIBS="-lmpiseq -llapack"
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 BINARY_ALIAS=	python=${PYTHON_CMD} \

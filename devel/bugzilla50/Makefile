@@ -1,6 +1,6 @@
 PORTNAME=	bugzilla
 PORTVERSION=	5.0.4
-PORTREVISION=	3
+PORTREVISION=	6
 CATEGORIES=	devel
 MASTER_SITES=	MOZILLA/webtools MOZILLA/webtools/archived
 
@@ -12,13 +12,14 @@ LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 # see Bugzilla/Install/Requirements.pm
-# PR 194782: silence Module::Pluggable deprecated warnings
-# PR 196060,196100: explicitly depend on textproc/p5-Text-Tabv
+# FreeBSD PR 194782: silence Module::Pluggable deprecated warnings
+# FreeBSD PR 196060,196100: explicitly depend on textproc/p5-Text-Tabv
 RUN_DEPENDS=	\
 		p5-CGI>=3.51:www/p5-CGI \
 		p5-DBI>=1.614:databases/p5-DBI \
 		p5-DateTime-TimeZone>=1.64:devel/p5-DateTime-TimeZone \
 		p5-DateTime>=0.75:devel/p5-DateTime \
+		p5-Digest-SHA>=0:security/p5-Digest-SHA \
 		p5-Email-MIME>=1.904:mail/p5-Email-MIME \
 		p5-Email-Sender>=1.300011:mail/p5-Email-Sender \
 		p5-Encode-Detect>=0:converters/p5-Encode-Detect \
@@ -48,7 +49,7 @@ EMPTY_DIRS_LIST=data graphs contrib lib t xt
 
 MODPERL_USES=		apache:run
 MYSQL_USES=		mysql
-MYSQL_RUN_DEPENDS=	p5-DBD-mysql>=4.0001:databases/p5-DBD-mysql
+MYSQL_RUN_DEPENDS=	${DBD_MYSQL}
 PGSQL_USES=		pgsql:11+
 PGSQL_RUN_DEPENDS=	p5-DBD-Pg>=3.4.2:databases/p5-DBD-Pg
 SQLITE_USES=		sqlite

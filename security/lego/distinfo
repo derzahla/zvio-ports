@@ -1,5 +1,5 @@
-TIMESTAMP = 1695218535
-SHA256 (go/security_lego/lego-v4.14.2/v4.14.2.mod) = 55130f845f761deb4baea6cf9b0ec20f99aec044a65d39e711359451278a0d90
-SIZE (go/security_lego/lego-v4.14.2/v4.14.2.mod) = 8207
-SHA256 (go/security_lego/lego-v4.14.2/v4.14.2.zip) = fd98498e1991e23bea3e86d2dbfc088f57277aa83c786020d077e72e6972bf1c
-SIZE (go/security_lego/lego-v4.14.2/v4.14.2.zip) = 1187027
+TIMESTAMP = 1739833200
+SHA256 (go/security_lego/lego-v4.22.2/v4.22.2.mod) = dc60d2d04a9fb2268b8a55155a28bc2ca2e4bad313fb0fc22b4ec090c9ac8dbe
+SIZE (go/security_lego/lego-v4.22.2/v4.22.2.mod) = 10411
+SHA256 (go/security_lego/lego-v4.22.2/v4.22.2.zip) = 60134e658ccf9b2205d55a01c7aef7571d0bc09924e8ea13b4c9c63f76182684
+SIZE (go/security_lego/lego-v4.22.2/v4.22.2.zip) = 1417701

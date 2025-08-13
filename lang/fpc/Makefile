@@ -1,13 +1,10 @@
 PORTNAME=	fpc
-PORTVERSION=	3.2.2
-PORTREVISION=	8
+PORTVERSION=	3.2.3
+PORTREVISION=	1
 CATEGORIES=	lang
-MASTER_SITES=	SF/freepascal/Source/${PORTVERSION}:source \
-		https://downloads.freepascal.org/${PORTNAME}/dist/${PORTVERSION}/source/:source \
-		http://leaf.dragonflybsd.org/~marino/dports-src/:DragonFlybootstrap \
+MASTER_SITES=	http://leaf.dragonflybsd.org/~marino/dports-src/:DragonFlybootstrap \
 		LOCAL/acm/freepascal/:bootstrap \
 		LOCAL/acm/freepascal/:man
-DISTFILES=	${DISTNAME:S/$/.source/}${EXTRACT_SUFX}:source
 DIST_SUBDIR=	freepascal
 
 MAINTAINER=	acm@FreeBSD.org
@@ -22,12 +19,17 @@ ONLY_FOR_ARCHS=	amd64 i386
 
 USES+=		gmake iconv
 USE_BINUTILS=	yes
-BOOTVER=	${PORTVERSION}
-MANVER=		${PORTVERSION}
+BOOTVER=	3.2.2
+MANVER=		3.2.2
 
-FPC_LDPATH?=	"${LOCALBASE}/bin/ld.bfd"
+USE_GITLAB=	yes
+GL_SITE=	https://gitlab.com/freepascal.org
+GL_ACCOUNT=	fpc
+GL_PROJECT=	source
+GL_TAGNAME=	57e84ef714df2404341229bd795dd69a8a6a38bb
 
-FPCSRCDIR=	${PORTNAME}-${PORTVERSION}
+FPC_COMMIT_DATE=20241120
+FPCSRCDIR=	source-${GL_TAGNAME}
 
 .include <bsd.port.pre.mk>
 
@@ -83,12 +85,15 @@ do-extract:
 	@${TAR} -xzf ${_DISTDIR}/fpc-${MANVER}.man.tar.gz --directory ${WRKDIR}
 # unpack source distribution
 	@(cd ${WRKDIR} && ${GZIP_CMD} -dc \
-		${_DISTDIR}/${DISTNAME:S/$/.source/}${EXTRACT_SUFX} | \
+		${_DISTDIR}/${PORTNAME}-source-${GL_TAGNAME}_GL0${EXTRACT_SUFX} | \
 		${TAR} -xf -)
 
 post-patch:
 .if ${OPSYS} == FreeBSD
 	@${REINPLACE_CMD} -i "" -e 's|900044|${OSVERSION}|g' \
+				-e 's|1201000|${OSVERSION}|g' \
+				-e 's|1200000|${OSVERSION}|g' \
+				-e 's|1400097|${OSVERSION}|g' \
 		${WRKSRC}/rtl/freebsd/${FPC_ARCH}/*.as \
 		${WRKSRC}/rtl/freebsd/${FPC_ARCH}/*.inc
 .else
@@ -142,6 +147,8 @@ post-patch:
 		${WRKSRC}/packages/opencl/fpmake.pp
 	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
 		${WRKSRC}/packages/proj4/fpmake.pp
+	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
+		${WRKSRC}/packages/ptc/fpmake.pp
 	@${REINPLACE_CMD} -i "" -e 's|os2|freebsd,os2|g' \
 		${WRKSRC}/packages/rexx/fpmake.pp
 	@${REINPLACE_CMD} -i "" -e 's|linux|freebsd,linux|g' \
@@ -166,8 +173,8 @@ do-install:
 		${MAKE_CMD} install ${MAKE_ARGS} ${BOOTPPC})
 
 	# Installing manpages
-	${INSTALL_MAN} ${WRKDIR}/man/man1/* ${STAGEDIR}${MAN1PREFIX}/man/man1
-	${INSTALL_MAN} ${WRKDIR}/man/man5/* ${STAGEDIR}${MAN1PREFIX}/man/man5
+	${INSTALL_MAN} ${WRKDIR}/man/man1/* ${STAGEDIR}${PREFIX}/share/man/man1
+	${INSTALL_MAN} ${WRKDIR}/man/man5/* ${STAGEDIR}${PREFIX}/share/man/man5
 	# symlinking compiler
 	(cd ${STAGEDIR}${PREFIX}/bin && ${LN} -sf ../lib/fpc/${PORTVERSION}/${PPNAME})
 	# creating sample configuration file

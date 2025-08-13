@@ -1,10 +1,10 @@
 PORTNAME=	urbackup-server
-DISTVERSION=	2.5.26
-PORTREVISION=	3
+DISTVERSION=	2.5.33
+PORTREVISION=	1
 CATEGORIES=	archivers
 MASTER_SITES=	https://hndl.urbackup.org/Server/${DISTVERSION}/
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	ek@purplehat.org
 COMMENT=	Server component of the UrBackup backup system
 WWW=		https://www.urbackup.org
 
@@ -25,19 +25,31 @@ GNU_CONFIGURE=	yes
 CONFIGURE_ARGS=	--enable-packaging --with-mountvhd --without-embedded-sqlite3 --without-embedded-lmdb --without-embedded-lua
 LDFLAGS+=	-L${LOCALBASE}/lib
 
+.include <bsd.port.options.mk>
+
+# Fix segmentation fault, PR 266531
+# see also 5a19c08: security/cryptopp: Update to 8.7.0
+.if ${ARCH} == i386 || ${ARCH} == amd64
+CXXFLAGS+=	-DCRYPTOPP_DISABLE_ASM
+.endif
+
 SUB_FILES=	pkg-message urbackupsrv.conf.sample-daemon
 
 USERS=		urbackup
 GROUPS=		urbackup
 
 post-patch:
-	@(cd ${WRKSRC} && ${REINPLACE_CMD} -e 's|/etc/urbackup|${PREFIX}/etc/urbackup|g' \
+	(cd ${WRKSRC} && ${REINPLACE_CMD} -e 's|/etc/urbackup|${PREFIX}/etc/urbackup|g' \
 		mount_helper/main.cpp \
 		urbackupserver/server.cpp \
 		urbackupserver/serverinterface/settings.cpp \
 		urbackupserver/dllmain.cpp \
 		snapshot_helper/main.cpp \
 	)
+	${FIND} ${WRKSRC} -type f -exec ${REINPLACE_CMD} \
+		-e 's|std::char_traits|std::vector|g' \
+		-e 's|std::basic_string|std::vector|g' \
+		-e 's|auto_ptr|unique_ptr|g' {} +
 
 post-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/etc/urbackup
@@ -47,6 +59,6 @@ post-install:
 	${INSTALL_DATA} ${FILESDIR}/urbackupsrv.conf-newsyslog \
 		${STAGEDIR}${PREFIX}/etc/newsyslog.conf.d/urbackupsrv.conf
 
-	${INSTALL_MAN} ${WRKSRC}/docs/urbackupsrv.1 ${STAGEDIR}${PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/docs/urbackupsrv.1 ${STAGEDIR}${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>

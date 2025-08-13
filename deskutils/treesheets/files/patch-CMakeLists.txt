@@ -1,11 +1,25 @@
---- CMakeLists.txt.orig	2023-08-17 20:17:24 UTC
+--- CMakeLists.txt.orig	2024-12-02 18:19:04 UTC
 +++ CMakeLists.txt
-@@ -96,7 +96,7 @@ install(FILES TS/readme.html DESTINATION ${TREESHEETS_
- install(TARGETS treesheets DESTINATION ${TREESHEETS_BINDIR})
+@@ -136,11 +136,11 @@ target_link_libraries(
+ 
+ ########## TREESHEETS INSTALLATION SETTINGS ###############
+ 
+-if(LINUX)
++if(LINUX OR BSD)
+     OPTION(TREESHEETS_RELOCATABLE_INSTALLATION "Install data relative to the TreeSheets binary, instead of respecting the Filesystem Hierarchy Standard" OFF)
+ endif()
+ 
+-if(LINUX AND NOT TREESHEETS_RELOCATABLE_INSTALLATION)
++if((LINUX OR BSD) AND NOT TREESHEETS_RELOCATABLE_INSTALLATION)
+     include(GNUInstallDirs)
+ 
+     set(TREESHEETS_BINDIR ${CMAKE_INSTALL_BINDIR})
+@@ -170,7 +170,7 @@ install(FILES TS/readme.html DESTINATION ${TREESHEETS_
+ install(TARGETS TreeSheets DESTINATION ${TREESHEETS_BINDIR})
  install(DIRECTORY TS/docs DESTINATION ${TREESHEETS_DOCDIR})
  install(FILES TS/readme.html DESTINATION ${TREESHEETS_DOCDIR})
 -install(DIRECTORY TS/examples DESTINATION ${TREESHEETS_DOCDIR})
-+install(DIRECTORY TS/examples DESTINATION %%EXAMPLESDIR%%)
++install(DIRECTORY TS/examples DESTINATION ${CMAKE_INSTALL_DATADIR}/examples/${CMAKE_PROJECT_NAME})
  
  install(DIRECTORY TS/images DESTINATION ${TREESHEETS_PKGDATADIR})
  install(DIRECTORY TS/scripts DESTINATION ${TREESHEETS_PKGDATADIR})

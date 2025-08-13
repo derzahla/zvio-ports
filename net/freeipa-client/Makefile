@@ -1,17 +1,18 @@
 PORTNAME=	freeipa-client
-DISTVERSION=	4.11.0
+DISTVERSION=	4.12.2
 CATEGORIES=	net
 MASTER_SITES=	https://releases.pagure.org/freeipa/
 DISTNAME=	freeipa-${DISTVERSION}
 
-MAINTAINER=	xavier.beaudouin@klarasystems.com
+MAINTAINER=	kiwi@FreeBSD.org
 COMMENT=	FreeIPA Client tools
 WWW=		https://www.freeipa.org/
 
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pip>0:devel/py-pip@${PY_FLAVOR}
+BUILD_DEPENDS=	${PY_SETUPTOOLS} \
+		${PYTHON_PKGNAMEPREFIX}pip>0:devel/py-pip@${PY_FLAVOR}
 
 LIB_DEPENDS=	libcmocka.so:sysutils/cmocka \
 		libcurl.so:ftp/curl \
@@ -27,7 +28,8 @@ LIB_DEPENDS=	libcmocka.so:sysutils/cmocka \
 USES=		autoreconf gettext gmake gssapi:mit ldap libtool \
 		localbase:ldflags pkgconfig python
 
-GNU_CONFIGURE=	YES
+GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--disable-dependency-tracking \
 		--disable-server \
 		--with-ipaplatform=freebsd \
@@ -42,6 +44,8 @@ EXTRACT_AFTER_ARGS=	--exclude client/systemd --exclude daemons/dnssec \
 			--exclude daemons/ipa-otpd --exclude \
 			daemons/ipa-slapi-plugins --exclude init/systemd \
 			--exclude init/tmpfilesd
+
+PLIST_SUB=	DISTVERSION=${DISTVERSION}
 
 # Make sample configuration file
 post-install:

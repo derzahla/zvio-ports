@@ -33,7 +33,7 @@ TEST_TARGET=	check
 
 CONFLICTS_INSTALL=	py[23][0-9]-epsilon
 
-MANPREFIX=	${PREFIX}/${PORTNAME}/share
+MANDIRS=	${PREFIX}/${PORTNAME}/share/man
 NO_MTREE=	yes
 
 WRKSRC=${WRKDIR}/${PORTNAME}-${PORTVERSION}
@@ -42,7 +42,7 @@ PLIST_SUB+=	PORTVERSION=${PORTVERSION}
 
 .include <bsd.port.options.mk>
 
-.if ${OPSYS} == FreeBSD && ( ${OSVERSION} >= 1400091 || ( ${OSVERSION} >= 1302507 && ${OSVERSION} < 1400000 ))
+.if ${OPSYS} == FreeBSD
 USES+=	llvm:max=14
 .endif
 

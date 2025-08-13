@@ -1,6 +1,6 @@
 PORTNAME=	xawtv
 PORTVERSION=	3.107
-PORTREVISION=	1
+PORTREVISION=	2
 CATEGORIES=	multimedia
 MASTER_SITES=	http://linuxtv.org/downloads/xawtv/
 
@@ -29,6 +29,7 @@ OPTIONS_SUB=		yes
 ZVBI_DESC=	Enable libzvbi support
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 USE_XORG=	x11 xaw
 CPPFLAGS+=	-I${WRKSRC}/common
 LIBS+=		-L${LOCALBASE}/lib
@@ -73,7 +74,7 @@ post-patch:
 	@${REINPLACE_CMD} -e 's|/usr/X11R6|${LOCALBASE}|g; \
 		s|/usr/local|${LOCALBASE}|g; \
 		s|LIBV4L="yes"|LIBV4L="no"|g; \
-		s|-lunicode|-liconv &|g' \
+		s|-lunicode|${ICONV_LIB} &|g' \
 		${WRKSRC}/configure
 
 	@${REINPLACE_CMD} -e 's|-ldl||g' \

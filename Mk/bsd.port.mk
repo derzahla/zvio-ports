@@ -42,7 +42,7 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 # OSREL			- The release version of the operating system as a text
 #				  string (e.g., "12.4").
 # OSVERSION		- The operating system version as a comparable integer;
-#				  the value of __FreeBSD_version (e.g., 1302000).
+#				  the value of __FreeBSD_version (e.g., 1501000).
 #
 # This is the beginning of the list of all variables that need to be
 # defined in a port, listed in order that they should be included
@@ -155,8 +155,6 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #				  but distfiles can be put on ftp sites and CDROMs.
 # FORBIDDEN		- Package build should not be attempted because of
 #				  security vulnerabilities.
-# LEGAL_TEXT	- Port has legal issues (e.g., special permission to distribute, lacks a license).
-# LEGAL_PACKAGE - Port has no legal issues but defines NO_PACKAGE
 # IGNORE		- Package build should be skipped entirely (e.g.
 #				  because of serious unfixable problems in the build,
 #				  because it cannot be manually fetched, etc).  Error
@@ -359,18 +357,6 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 ##
 # LDFLAGS_${ARCH} Append the ldflags to LDFLAGS only on the specified architecture
 ##
-# USE_OPENLDAP	- If set, this port uses the OpenLDAP libraries.
-#				  Implies: WANT_OPENLDAP_VER?=24
-# WANT_OPENLDAP_VER
-#				- Legal values are: 24
-#				  If set to an unknown value, the port is marked BROKEN.
-##
-# USE_JAVA		- If set, this port relies on the Java language.
-#				  Implies inclusion of bsd.java.mk.  (Also see
-#				  that file for more information on USE_JAVA_*).
-# USE_OCAML		- If set, this port relies on the OCaml language.
-#				  Implies inclusion of bsd.ocaml.mk.  (Also see
-#				  that file for more information on USE_OCAML*).
 ##
 # USE_GECKO		- If set, this port uses the Gecko/Mozilla product.
 #				  See bsd.gecko.mk for more details.
@@ -386,9 +372,6 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #				  program).
 #				  Implies NO_LICENSES_INSTALL=yes, NO_MTREE=yes, and causes
 #				  Linux ldconfig to be used when USE_LDCONFIG is defined.
-##
-# USE_TEX			- A list of the TeX dependencies the port has.
-#
 ##
 # USE_RC_SUBR	- If set, the ports startup/shutdown script uses the common
 #				  routines found in /etc/rc.subr.
@@ -500,13 +483,6 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #
 #				  Installs all directories and files from ${WRKSRC}/doc
 #				  to ${DOCSDIR} except sed(1) backup files.
-#
-# MANPREFIX		- The directory prefix for manual pages.
-#				  Default: ${PREFIX}
-# MAN<sect>PREFIX
-#				- If manual pages of some sections install in different
-#				  locations than others, use these.
-#				  Default: ${MANPREFIX}
 #
 # Set the following to specify all .info files your port installs.
 #
@@ -676,6 +652,10 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #
 # For options see bsd.options.mk
 #
+# WRK_ENV		- Environment used when running the upstream build system.
+#				  Target-specific environment variables can be defined using
+#				  CONFIGURE_ENV, MAKE_ENV, TEST_ENV, and similar variables.
+#
 # For fetch:
 #
 # FETCH_BINARY	- Path to ftp/http fetch command if not in $PATH.
@@ -756,7 +736,7 @@ FreeBSD_MAINTAINER=	portmgr@FreeBSD.org
 #				- Pass these args to configure if ${HAS_CONFIGURE} is set.
 #				  Default: "--prefix=${GNU_CONFIGURE_PREFIX}
 #				  --infodir=${PREFIX}/${INFO_PATH} --localstatedir=/var
-#				  --mandir=${MANPREFIX}/man --build=${CONFIGURE_TARGET}" if
+#				  --mandir=${PREFIX}/share/man --build=${CONFIGURE_TARGET}" if
 #				  GNU_CONFIGURE is set, "CC=${CC} CFLAGS=${CFLAGS}
 #				  PREFIX=${PREFIX} INSTALLPRIVLIB=${PREFIX}/lib
 #				  INSTALLARCHLIB=${PREFIX}/lib" if USES=perl5 and
@@ -1020,7 +1000,7 @@ LC_ALL=		C
 # These need to be absolute since we don't know how deep in the ports
 # tree we are and thus can't go relative.  They can, of course, be overridden
 # by individual Makefiles or local system make configuration.
-_LIST_OF_WITH_FEATURES=	debug lto ssp pie relro bind_now
+_LIST_OF_WITH_FEATURES=	bind_now debug debuginfo lto pie relro sanitize ssp testing
 _DEFAULT_WITH_FEATURES=	ssp
 PORTSDIR?=		/usr/ports
 LOCALBASE?=		/usr/local
@@ -1184,7 +1164,7 @@ OSVERSION!=	${AWK} '/^\#define[[:blank:]]__FreeBSD_version/ {print $$3}' < ${SRC
 .    endif
 _EXPORTED_VARS+=	OSVERSION
 
-.    if ${OPSYS} == FreeBSD && (${OSVERSION} < 1302000 )
+.    if ${OPSYS} == FreeBSD && (${OSVERSION} < 1304000 || (${OSVERSION} >= 1400000 && ${OSVERSION} < 1402000))
 _UNSUPPORTED_SYSTEM_MESSAGE=	Ports Collection support for your ${OPSYS} version has ended, and no ports\
 								are guaranteed to build on this system. Please upgrade to a supported release.
 .      if defined(ALLOW_UNSUPPORTED_SYSTEM)
@@ -1230,7 +1210,7 @@ _EXPORTED_VARS+=	_PKG_TRANSITIONING_TO_NEW_EXT
 WARNING+=	"It is strongly recommended to upgrade to a newer version of pkg first"
 .      endif
 # XXX End of hack
-_PKG_STATUS!=	${PKG_BIN} version -t ${_PKG_VERSION:C/-.*//g} ${MINIMAL_PKG_VERSION}
+_PKG_STATUS!=	${PKG_VERSION} -t ${_PKG_VERSION:C/-.*//g} ${MINIMAL_PKG_VERSION}
 .      if ${_PKG_STATUS} == "<"
 IGNORE=		pkg(8) must be version ${MINIMAL_PKG_VERSION} or greater, but you have ${_PKG_VERSION}. You must upgrade the ${PKG_ORIGIN} port first
 .      endif
@@ -1329,11 +1309,25 @@ LDCONFIG32_DIR=	libdata/ldconfig32
 TMPDIR?=	/tmp
 .    endif # defined(PACKAGE_BUILDING)
 
-.    if defined(WITH_DEBUG_PORTS)
-.      if ${WITH_DEBUG_PORTS:M${PKGORIGIN}}
-WITH_DEBUG=	yes
+# Enable default features unless they have been disabled by the user, and cleanup
+.    for feature in ${_DEFAULT_WITH_FEATURES}
+.      if !defined(WITHOUT_${feature:tu})
+WITH_${feature:tu}=		yes
+.undef WITHOUT_${feature:tu}
 .      endif
-.    endif
+.    endfor
+
+# For each Feature we support, process the
+# WITH_FEATURE_PORTS and WITHOUT_FEATURE_PORTS variables
+.    for feature in ${_LIST_OF_WITH_FEATURES}
+.      if defined(WITHOUT_${feature:tu}_PORTS) && ${WITHOUT_${feature:tu}_PORTS:M${PKGORIGIN}}
+# Feature disabled for this port, remove WITH_<feat>
+.undef WITH_${feature:tu}
+.      elif defined(WITH_${feature:tu}_PORTS) && ${WITH_${feature:tu}_PORTS:M${PKGORIGIN}}
+# Feature enabled for this port, set WITH_<feat>
+WITH_${feature:tu}=	yes
+.      endif
+.    endfor
 
 .    if defined(USE_LTO)
 WITH_LTO=	${USE_LTO}
@@ -1377,7 +1371,7 @@ PORTEPOCH?=		0
 _SUF2=	,${PORTEPOCH}
 .    endif
 
-PKGVERSION=	${PORTVERSION:C/[-_,]/./g}${_SUF1}${_SUF2}
+PKGVERSION=	${PORTVERSION:C/[-_,]/./g}${_OS_SUFX}${_SUF1}${_SUF2}
 PKGNAME=	${PKGNAMEPREFIX}${PORTNAME}${PKGNAMESUFFIX}-${PKGVERSION}
 DISTVERSIONFULL=	${DISTVERSIONPREFIX}${DISTVERSION:C/:(.)/\1/g}${DISTVERSIONSUFFIX}
 DISTNAME?=	${PORTNAME}-${DISTVERSIONFULL}
@@ -1404,14 +1398,6 @@ PKGCOMPATDIR?=		${LOCALBASE}/lib/compat/pkg
 .    for odir in ${OVERLAYS}
 .sinclude "${odir}/Mk/bsd.overlay.mk"
 .    endfor
-
-.    if defined(USE_JAVA)
-.include "${PORTSDIR}/Mk/bsd.java.mk"
-.    endif
-
-.    if defined(USE_OCAML)
-.include "${PORTSDIR}/Mk/bsd.ocaml.mk"
-.    endif
 
 .    if defined(USE_APACHE_BUILD)
 USES+=	apache:build,${USE_APACHE_BUILD:C/2([0-9])/2.\1/g}
@@ -1442,13 +1428,7 @@ USES+=mysql:${USE_MYSQL}
 .include "${PORTSDIR}/Mk/bsd.wx.mk"
 .    endif
 
-.    if !defined(UID)
-.      if defined(.MAKE.UID)
-UID=	${.MAKE.UID}
-.      else
-UID!=	${ID} -u
-.      endif
-.    endif
+UID?=	${.MAKE.UID}
 
 DESTDIRNAME?=	DESTDIR
 
@@ -1548,7 +1528,7 @@ EXTRACT_SUFX?=			.tar.gz
 .    if defined(USE_LINUX_PREFIX)
 PREFIX=					${LINUXBASE}
 DATADIR?=				${PREFIX}/usr/share/${PORTNAME}
-DOCSDIR?=				${PREFIX}/usr/share/doc/${PORTNAME}-${PORTVERSION}
+DOCSDIR?=				${PREFIX}/usr/share/doc/${PORTNAME}-${DISTVERSION}
 NO_LICENSES_INSTALL=	yes
 NO_MTREE=				yes
 .    endif
@@ -1611,6 +1591,21 @@ PKG_NOTE_expiration_date=	${EXPIRATION_DATE}
 PKG_NOTES+=	flavor
 PKG_NOTE_flavor=	${FLAVOR}
 .    endif
+
+# GIT_CEILING_DIRECTORIES prevents ports that try to find their version
+# using git from finding the ports tree's git repository.
+WRK_ENV+=		HOME=${WRKDIR} \
+				MACHINE_ARCH=${MACHINE_ARCH} \
+				PWD="$${PWD}" \
+				GIT_CEILING_DIRECTORIES=${WRKDIR} \
+				__MAKE_CONF=${NONEXISTENT}
+.    for e in OSVERSION PATH TERM TMPDIR \
+				UNAME_b UNAME_i UNAME_K UNAME_m UNAME_n \
+				UNAME_p UNAME_r UNAME_s UNAME_U UNAME_v
+.      ifdef ${e}
+WRK_ENV+=		${e}=${${e}:Q}
+.      endif
+.    endfor
 
 TEST_ARGS?=		${MAKE_ARGS}
 TEST_ENV?=		${MAKE_ENV}
@@ -1790,7 +1785,7 @@ CFLAGS:=	${CFLAGS:C/${_CPUCFLAGS}//}
 .    endif
 
 .    for f in ${_LIST_OF_WITH_FEATURES}
-.      if defined(WITH_${f:tu}) || ( ${_DEFAULT_WITH_FEATURES:M${f}} &&  !defined(WITHOUT_${f:tu}) )
+.      if defined(WITH_${f:tu})
 .include "${PORTSDIR}/Mk/Features/$f.mk"
 .      endif
 .    endfor
@@ -1857,15 +1852,7 @@ PKG_DEPENDS+=	${LOCALBASE}/sbin/pkg:${PKG_ORIGIN}
 .    if defined(LLD_UNSAFE) && ${/usr/bin/ld:L:tA} == /usr/bin/ld.lld
 LDFLAGS+=	-fuse-ld=bfd
 BINARY_ALIAS+=	ld=${LD}
-.      if !defined(USE_BINUTILS)
-.        if exists(/usr/bin/ld.bfd)
-LD=	/usr/bin/ld.bfd
-CONFIGURE_ENV+=	LD=${LD}
-MAKE_ENV+=	LD=${LD}
-.        else
 USE_BINUTILS=	yes
-.        endif
-.      endif
 .    endif
 
 .    if defined(USE_BINUTILS) && !defined(DISABLE_BINUTILS)
@@ -1895,12 +1882,32 @@ USE_LDCONFIG=	${PREFIX}/lib
 IGNORE=			has USE_LDCONFIG32 set to yes, which is not correct
 .    endif
 
+_ALL_LIB_DIRS=	${LIB_DIRS} ${USE_LDCONFIG}
+PKG_ENV+=	SHLIB_PROVIDE_PATHS_NATIVE="${_ALL_LIB_DIRS:O:u:ts,}"
+.    if defined(HAVE_COMPAT_IA32_KERN)
+_ALL_LIB_DIRS_32= /usr/lib32 ${LOCALBASE}/lib32 ${USE_LDCONFIG32}
+PKG_ENV+=	SHLIB_PROVIDE_PATHS_COMPAT_32="${_ALL_LIB_DIRS_32:O:u:ts,}"
+.    endif
+.    if ${LINUX_DEFAULT} == c7 || ${LINUX_DEFAULT} == rl9
+PKG_ENV+=	SHLIB_PROVIDE_PATHS_COMPAT_LINUX="${LINUXBASE}/usr/lib64"
+PKG_ENV+=	SHLIB_PROVIDE_PATHS_COMPAT_LINUX_32="${LINUXBASE}/usr/lib"
+.    else
+.      warning "Unknown Linux distribution ${LINUX_DEFAULT}, SHLIB_PROVIDE_PATHS_COMPAT_LINUX will not be set!"
+.    endif
+
 .    if defined(USE_LDCONFIG) || defined(USE_LDCONFIG32)
 .      if defined(USE_LINUX_PREFIX)
 PLIST_FILES+=	"@ldconfig-linux ${LINUXBASE}"
 .      else
 PLIST_FILES+=	"@ldconfig"
 .      endif
+.    endif
+
+.    if defined(NO_SHLIB_REQUIRES_GLOB)
+PKG_ENV+=	SHLIB_REQUIRE_IGNORE_GLOB="${NO_SHLIB_REQUIRES_GLOB:ts,}"
+.    endif
+.    if defined(NO_SHLIBS_REQUIRES_REGEX)
+PKG_ENV+=	SHLIB_REQUIRE_IGNORE_REGEX="${NO_SHLIBS_REQUIRES_REGEX:ts,}"
 .    endif
 
 PKG_IGNORE_DEPENDS?=		'this_port_does_not_exist'
@@ -1930,14 +1937,6 @@ PKGPOSTDEINSTALL?=	${PKGDIR}/pkg-post-deinstall
 .    for odir in ${OVERLAYS}
 .sinclude "${odir}/Mk/bsd.overlay.mk"
 .    endfor
-
-.    if defined(USE_JAVA)
-.include "${PORTSDIR}/Mk/bsd.java.mk"
-.    endif
-
-.    if defined(USE_OCAML)
-.include "${PORTSDIR}/Mk/bsd.ocaml.mk"
-.    endif
 
 .    if defined(USE_WX) || defined(USE_WX_NOT)
 .include "${PORTSDIR}/Mk/bsd.wx.mk"
@@ -1981,8 +1980,7 @@ ERROR+=	"Unknown USES=${f:C/\:.*//}"
 .    endif
 
 .    if defined(USE_LOCALE)
-CONFIGURE_ENV+=	LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
-MAKE_ENV+=		LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
+WRK_ENV+=	LANG=${USE_LOCALE} LC_ALL=${USE_LOCALE}
 .    endif
 
 # Macro for doing in-place file editing using regexps.  REINPLACE_ARGS may only
@@ -2028,8 +2026,7 @@ MAKE_ENV+=		PREFIX=${PREFIX} \
 			CC="${CC}" CFLAGS="${CFLAGS}" \
 			CPP="${CPP}" CPPFLAGS="${CPPFLAGS}" \
 			LDFLAGS="${LDFLAGS}" LIBS="${LIBS}" \
-			CXX="${CXX}" CXXFLAGS="${CXXFLAGS}" \
-			MANPREFIX="${MANPREFIX}"
+			CXX="${CXX}" CXXFLAGS="${CXXFLAGS}"
 
 # Add -fno-strict-aliasing to CFLAGS with optimization level -O2 or higher.
 # gcc 4.x enable strict aliasing optimization with -O2 which is known to break
@@ -2577,7 +2574,8 @@ check-categories:
 VALID_CATEGORIES+= accessibility afterstep arabic archivers astro audio \
 	benchmarks biology budgie cad chinese comms converters \
 	databases deskutils devel dns docs \
-	editors education elisp emulators enlightenment finance french ftp \
+	editors education elisp emulators enlightenment \
+	filesystems finance french ftp \
 	games geography german gnome gnustep graphics \
 	hamradio haskell hebrew hungarian irc japanese java \
 	kde ${_KDE_CATEGORIES_SUPPORTED} kld korean \
@@ -2654,7 +2652,7 @@ _SUBPACKAGE_HELPERS_FILE=	DESCR PKGINSTALL PKGDEINSTALL PKGMESSAGE \
 ${v}.${sp}?=	${$v}.${sp}
 .        endfor
 _PKGMESSAGES.${sp}=		${PKGMESSAGE}.${sp}
-.        if !exists(${DESCR.${sp}})
+.        if !exists(${DESCR.${sp}}) && ${sp} != debuginfo
 DESCR.${sp}=	${DESCR}
 DEV_WARNING+=	"DESCR.${sp} needs to point to an existing file."
 .        endif
@@ -2701,7 +2699,7 @@ CONFIGURE_MAX_CMD_LEN!=	${SYSCTL} -n kern.argmax
 .      endif
 _EXPORTED_VARS+=	CONFIGURE_MAX_CMD_LEN
 GNU_CONFIGURE_PREFIX?=	${PREFIX}
-GNU_CONFIGURE_MANPREFIX?=	${MANPREFIX}
+GNU_CONFIGURE_MANPREFIX?=	${PREFIX}/share
 CONFIGURE_ARGS+=	--prefix=${GNU_CONFIGURE_PREFIX} $${_LATE_CONFIGURE_ARGS}
 .      if defined(CROSS_TOOLCHAIN)
 CROSS_HOST=		${ARCH:S/amd64/x86_64/}-unknown-${OPSYS:tl}${OSREL}
@@ -2745,19 +2743,7 @@ SCRIPTS_ENV+=	CURDIR=${MASTERDIR} DISTDIR=${DISTDIR} \
 SCRIPTS_ENV+=	BATCH=yes
 .    endif
 
-.    if ${PREFIX} == /usr
-MANPREFIX?=	/usr/share
-.    else
-MANPREFIX?=	${PREFIX}
 MANDIRS+=	${PREFIX}/share/man
-.    endif
-
-MANDIRS+=	${MANPREFIX}/man
-.    for sect in 1 2 3 4 5 6 7 8 9
-MAN${sect}PREFIX?=	${MANPREFIX}
-.    endfor
-MANLPREFIX?=	${MANPREFIX}
-MANNPREFIX?=	${MANPREFIX}
 INFO_PATH?=	share/info
 
 .    if defined(INFO)
@@ -2905,17 +2891,6 @@ IGNORE=		is marked as broken on ${OPSYS}: ${BROKEN_${OPSYS}}
 .        endif
 .      elif defined(FORBIDDEN)
 IGNORE=		is forbidden: ${FORBIDDEN}
-.      endif
-
-# Define the text to be output to LEGAL
-.      if defined(LEGAL_TEXT)
-LEGAL= ${LEGAL_TEXT}
-.      elif defined(RESTRICTED)
-LEGAL= ${RESTRICTED}
-.      elif defined(NO_CDROM)
-LEGAL= ${NO_CDROM}
-.      elif defined(NO_PACKAGE) && ! defined(LEGAL_PACKAGE)
-LEGAL= ${NO_PACKAGE}
 .      endif
 
 .      if (defined(MANUAL_PACKAGE_BUILD) && defined(PACKAGE_BUILDING))
@@ -3115,9 +3090,8 @@ check-vulnerable:
 			${SH} ${SCRIPTSDIR}/check-vulnerable.sh
 .    endif
 
-# Quote simply quote all variables, except FETCH_ENV, some ports are creative
-# with it, and it needs to be quoted twice to pass through the echo/eval in
-# do-fetch.
+# Quote all variables except FETCH_ENV. Because some ports are creative,
+# quoting twice is necessary to pass through the echo/eval in do-fetch.
 _DO_FETCH_ENV= \
 			dp_DISABLE_SIZE='${DISABLE_SIZE}' \
 			dp_DISTDIR='${_DISTDIR}' \
@@ -3328,7 +3302,7 @@ do-configure:
 	@${MKDIR} ${CONFIGURE_WRKSRC}
 	@(cd ${CONFIGURE_WRKSRC} && \
 	    ${SET_LATE_CONFIGURE_ARGS} \
-		if ! ${SETENV} CC="${CC}" CPP="${CPP}" CXX="${CXX}" \
+		if ! ${SETENVI} ${WRK_ENV} CC="${CC}" CPP="${CPP}" CXX="${CXX}" \
 	    CFLAGS="${CFLAGS}" CPPFLAGS="${CPPFLAGS}" CXXFLAGS="${CXXFLAGS}" \
 	    LDFLAGS="${LDFLAGS}" LIBS="${LIBS}" \
 	    INSTALL="/usr/bin/install -c" \
@@ -3345,7 +3319,8 @@ do-configure:
 .    endif
 
 # Build
-DO_MAKE_BUILD?=	${SETENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS:N${DESTDIRNAME}=*}
+DO_MAKE_BUILD?=	${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${MAKE_CMD} ${MAKE_FLAGS} \
+				${MAKEFILE} ${_MAKE_JOBS} ${MAKE_ARGS:N${DESTDIRNAME}=*}
 .    if !target(do-build)
 do-build:
 	@(cd ${BUILD_WRKSRC}; if ! ${DO_MAKE_BUILD} ${ALL_TARGET}; then \
@@ -3436,13 +3411,15 @@ check-install-conflicts:
 
 .    if !target(do-install) && !defined(NO_INSTALL)
 do-install:
-	@(cd ${INSTALL_WRKSRC} && ${SETENV} ${MAKE_ENV} ${FAKEROOT} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${INSTALL_TARGET})
+	@(cd ${INSTALL_WRKSRC} && ${SETENVI} ${WRK_ENV} ${MAKE_ENV} ${FAKEROOT} \
+		${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${MAKE_ARGS} ${INSTALL_TARGET})
 .    endif
 
 # Test
 
 .    if !target(do-test) && defined(TEST_TARGET)
-DO_MAKE_TEST?=	${SETENV} ${TEST_ENV} ${MAKE_CMD} ${MAKE_FLAGS} ${MAKEFILE} ${TEST_ARGS:N${DESTDIRNAME}=*}
+DO_MAKE_TEST?=	${SETENVI} ${WRK_ENV} ${TEST_ENV} ${MAKE_CMD} ${MAKE_FLAGS} \
+				${MAKEFILE} ${TEST_ARGS:N${DESTDIRNAME}=*}
 do-test:
 	@(cd ${TEST_WRKSRC}; if ! ${DO_MAKE_TEST} ${TEST_TARGET}; then \
 		if [ -n "${TEST_FAIL_MESSAGE}" ] ; then \
@@ -3501,11 +3478,13 @@ ${WRKDIR_PKGFILE${_SP.${sp}}}:	${_PLIST}.${sp} create-manifest ${WRKDIR}/pkg
 
 _EXTRA_PACKAGE_TARGET_DEP+=	${WRKDIR_PKGFILE${_SP.${sp}}}
 
+.      if defined(_HAVE_PACKAGES)
 ${PKGFILE${_SP.${sp}}}: ${WRKDIR_PKGFILE${_SP.${sp}}}
 	@${LN} -f ${WRKDIR_PKGFILE${_SP.${sp}}} ${PKGFILE${_SP.${sp}}} 2>/dev/null \
 		|| ${CP} -f ${WRKDIR_PKGFILE${_SP.${sp}}} ${PKGFILE${_SP.${sp}}}
 
 _EXTRA_PACKAGE_TARGET_DEP+=	${PKGFILE${_SP.${sp}}}
+.      endif
 .    endfor
 # This will be the end of the loop
 
@@ -4418,6 +4397,7 @@ create-manifest.${sp}:
 			dp_PREFIX='${PREFIX}'                                 \
 			dp_USERS='${USERS:u:S/$/,/}'                          \
 			dp_WWW='${WWW}'                                       \
+			dp_VITAL='${VITAL${_SP.${sp}}}'                       \
 			${PKG_NOTES_ENV.${sp}}                                \
 			${SH} ${SCRIPTSDIR}/create-manifest.sh
 .    endfor
@@ -4858,7 +4838,7 @@ pretty-flavors-package-names: .PHONY
 
 flavors-package-names: .PHONY
 .    if empty(FLAVORS)
-	@${ECHO_CMD} "${PKGNAMES}"
+	@${ECHO_CMD} "${PKGNAMES}" | ${XARGS} -n 1
 .    else
 .      for f in ${FLAVORS}
 	@cd ${.CURDIR} && ${SETENV} -i FLAVOR=${f} ${MAKE} -B -V PKGNAMES | ${XARGS} -n 1
@@ -5414,6 +5394,12 @@ show-dev-errors:
 .      endif
 .    endif #DEVELOPER
 
+.    if defined(HAS_SYMBOL_VERSION)
+stage-sanity: check_has_symbol_version
+check_has_symbol_version:
+		${SH} ${SCRIPTSDIR}/check_have_symbols.sh ${STAGEDIR} ${HAS_SYMBOL_VERSION}
+.    endif # HAS_SYMBOL_VERSION
+
 ${_PORTS_DIRECTORIES}:
 	@${MKDIR} ${.TARGET}
 
@@ -5483,9 +5469,9 @@ _STAGE_SEQ=		050:stage-message 100:stage-dir 150:run-depends \
 				860:install-rc-script 870:install-ldconfig-file \
 				880:install-license 890:install-desktop-entries \
 				900:add-plist-info 910:add-plist-docs 920:add-plist-examples \
-				930:add-plist-data 940:add-plist-post ${POST_PLIST:C/^/990:/} \
-				${_OPTIONS_install} ${_USES_install} \
-				${_OPTIONS_stage} ${_USES_stage}
+				930:add-plist-data 940:add-plist-post 994:stage-sanity \
+				${_OPTIONS_install} ${_USES_install} ${POST_PLIST:C/^/990:/} \
+				${_OPTIONS_stage} ${_USES_stage} ${_FEATURES_stage}
 .    if defined(DEVELOPER)
 _STAGE_SEQ+=	995:stage-qa
 .    else
@@ -5502,7 +5488,7 @@ _INSTALL_SEQ=	100:install-message \
 				300:create-manifest
 _INSTALL_SUSEQ=	400:fake-pkg 500:security-check
 
-_PACKAGE_DEP=	stage
+_PACKAGE_DEP=	stage ${_TESTING_PACKAGE_DEP}
 _PACKAGE_SEQ=	100:package-message 300:pre-package 450:pre-package-script \
 				500:do-package 850:post-package-script \
 				${_OPTIONS_package} ${_USES_package}

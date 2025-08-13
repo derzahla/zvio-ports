@@ -1,9 +1,10 @@
 PORTNAME=	openfortivpn
 PORTVERSION=	1.21.0
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	security net-vpn
 
-MAINTAINER=	ygy@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Client for PPP+SSL VPN tunnel services
 WWW=		https://github.com/adrienverge/openfortivpn
 

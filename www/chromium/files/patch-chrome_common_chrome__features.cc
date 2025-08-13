@@ -1,24 +1,15 @@
---- chrome/common/chrome_features.cc.orig	2024-02-23 21:04:38 UTC
+--- chrome/common/chrome_features.cc.orig	2025-06-17 06:32:04 UTC
 +++ chrome/common/chrome_features.cc
-@@ -78,7 +78,7 @@ BASE_FEATURE(kAppShimNotificationAttribution,
- BASE_FEATURE(kAsyncDns,
-              "AsyncDns",
- #if BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_ANDROID) || \
--    BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX)
-+    BUILDFLAG(IS_WIN) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
-              base::FEATURE_ENABLED_BY_DEFAULT
- #else
-              base::FEATURE_DISABLED_BY_DEFAULT
-@@ -86,7 +86,7 @@ BASE_FEATURE(kAsyncDns,
- );
+@@ -81,7 +81,7 @@ BASE_FEATURE(kUseAdHocSigningForWebAppShims,
+ #endif  // BUILDFLAG(IS_MAC)
  
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
--    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA)
-+    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
+-    BUILDFLAG(IS_CHROMEOS)
++    BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_BSD)
  // Enables or disables the Autofill survey triggered by opening a prompt to
  // save address info.
  BASE_FEATURE(kAutofillAddressSurvey,
-@@ -104,7 +104,7 @@ BASE_FEATURE(kAutofillPasswordSurvey,
+@@ -99,7 +99,7 @@ BASE_FEATURE(kAutofillPasswordSurvey,
               base::FEATURE_DISABLED_BY_DEFAULT);
  #endif
  
@@ -27,7 +18,7 @@
  // Enables the Restart background mode optimization. When all Chrome UI is
  // closed and it goes in the background, allows to restart the browser to
  // discard memory.
-@@ -315,7 +315,7 @@ BASE_FEATURE(kDesktopPWAsEnforceWebAppSettingsPolicy,
+@@ -231,7 +231,7 @@ BASE_FEATURE(kDesktopPWAsElidedExtensionsMenu,
  BASE_FEATURE(kDesktopPWAsRunOnOsLogin,
               "DesktopPWAsRunOnOsLogin",
  #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
@@ -36,43 +27,25 @@
               base::FEATURE_ENABLED_BY_DEFAULT
  #else
               base::FEATURE_DISABLED_BY_DEFAULT
-@@ -354,7 +354,7 @@ BASE_FEATURE(kDesktopPWAsTabStripSettings,
+@@ -264,7 +264,7 @@ BASE_FEATURE(kDisplayEdgeToEdgeFullscreen,
               base::FEATURE_DISABLED_BY_DEFAULT);
+ #endif
  
- #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || \
--    BUILDFLAG(IS_FUCHSIA)
-+    BUILDFLAG(IS_FUCHSIA) || BUILDFLAG(IS_BSD)
+-#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX)
++#if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_MAC) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
  // Controls whether Chrome Apps are supported. See https://crbug.com/1221251.
  // If the feature is disabled, Chrome Apps continue to work. If enabled, Chrome
  // Apps will not launch and will be marked in the UI as deprecated.
-@@ -374,7 +374,7 @@ BASE_FEATURE(kDisruptiveNotificationPermissionRevocati
- BASE_FEATURE(kDnsOverHttps,
-              "DnsOverHttps",
- #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_MAC) || \
--    BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_LINUX)
-+    BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
-              base::FEATURE_ENABLED_BY_DEFAULT
- #else
-              base::FEATURE_DISABLED_BY_DEFAULT
-@@ -390,7 +390,7 @@ const base::FeatureParam<bool> kDnsOverHttpsFallbackPa
- const base::FeatureParam<bool> kDnsOverHttpsShowUiParam {
-   &kDnsOverHttps, "ShowUi",
- #if BUILDFLAG(IS_WIN) || BUILDFLAG(IS_CHROMEOS) || BUILDFLAG(IS_MAC) || \
--    BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_LINUX)
-+    BUILDFLAG(IS_ANDROID) || BUILDFLAG(IS_LINUX) || BUILDFLAG(IS_BSD)
-       true
- #else
-       false
-@@ -957,7 +957,7 @@ BASE_FEATURE(kLacrosSharedComponentsDir,
+@@ -1000,7 +1000,7 @@ BASE_FEATURE(kKAnonymityServiceStorage,
+              "KAnonymityServiceStorage",
               base::FEATURE_ENABLED_BY_DEFAULT);
- #endif  // BUILDFLAG(IS_CHROMEOS_ASH)
  
 -#if BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_CHROMEOS)
 +#if (BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_CHROMEOS)) || BUILDFLAG(IS_BSD)
  BASE_FEATURE(kLinuxLowMemoryMonitor,
               "LinuxLowMemoryMonitor",
               base::FEATURE_DISABLED_BY_DEFAULT);
-@@ -970,7 +970,7 @@ constexpr base::FeatureParam<int> kLinuxLowMemoryMonit
+@@ -1013,7 +1013,7 @@ constexpr base::FeatureParam<int> kLinuxLowMemoryMonit
      &kLinuxLowMemoryMonitor, "critical_level", 255};
  #endif  // BUILDFLAG(IS_LINUX) && !BUILDFLAG(IS_CHROMEOS)
  

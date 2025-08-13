@@ -1,6 +1,5 @@
 PORTNAME=	mosquitto
-DISTVERSION=	2.0.15
-PORTREVISION=	1
+DISTVERSION=	2.0.20
 CATEGORIES=	net
 MASTER_SITES=	https://mosquitto.org/files/source/
 

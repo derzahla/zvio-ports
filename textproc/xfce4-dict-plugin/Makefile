@@ -1,6 +1,5 @@
 PORTNAME=	xfce4-dict
-PORTVERSION=	0.8.6
-PORTREVISION=	1
+PORTVERSION=	0.8.8
 CATEGORIES=	textproc xfce
 MASTER_SITES=	XFCE/apps
 PKGNAMESUFFIX=	-plugin
@@ -17,12 +16,13 @@ LIB_DEPENDS=	libharfbuzz.so:print/harfbuzz
 
 USES=		compiler:c11 gettext-tools gmake gnome libtool pkgconfig \
 		tar:bzip2 xfce xorg
-USE_GNOME=	cairo gdkpixbuf2 glib20 gtk30 intltool
+USE_GNOME=	cairo gdkpixbuf glib20 gtk30 intltool
 USE_XFCE=	libmenu panel
 USE_XORG=	x11
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 INSTALL_TARGET=	install-strip
 
 OPTIONS_DEFINE=	NLS

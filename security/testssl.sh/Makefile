@@ -1,11 +1,11 @@
 PORTNAME=	testssl.sh
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.0.8
+DISTVERSION=	3.0.9
 CATEGORIES=	security
 
 MAINTAINER=	adamw@FreeBSD.org
 COMMENT=	Analyze and report TLS/SSL configuration/misconfiguration
-WWW=		https://github.com/drwetter/testssl.sh
+WWW=		https://github.com/testssl/testssl.sh
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -16,7 +16,7 @@ TEST_DEPENDS=	p5-JSON>=0:converters/p5-JSON
 
 USES=		perl5 shebangfix
 USE_GITHUB=	yes
-GH_ACCOUNT=	drwetter
+GH_ACCOUNT=	testssl
 
 SHEBANG_FILES=	testssl.sh utils/*
 
@@ -32,7 +32,7 @@ post-patch:
 
 do-install:
 	${INSTALL_SCRIPT} ${WRKSRC}/testssl.sh ${STAGEDIR}${PREFIX}/bin
-	${INSTALL_MAN} ${WRKSRC}/doc/testssl.1 ${STAGEDIR}${MAN1PREFIX}/man/man1
+	${INSTALL_MAN} ${WRKSRC}/doc/testssl.1 ${STAGEDIR}${PREFIX}/share/man/man1
 	cd ${WRKSRC} && ${COPYTREE_SHARE} "etc utils" ${STAGEDIR}${DATADIR}
 
 do-test:

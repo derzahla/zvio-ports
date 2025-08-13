@@ -1,6 +1,6 @@
 --- build_tools/scripts/core_common/make_common.py.orig	2021-11-16 07:07:24 UTC
 +++ build_tools/scripts/core_common/make_common.py
-@@ -8,19 +8,19 @@ import glob
+@@ -8,20 +8,20 @@ import glob
  import base
  import glob
  
@@ -13,9 +13,10 @@
 +#import icu
 +#import openssl
  import curl
- import websocket
+ import websocket_all
  import v8
  import html2
+ import iwork
 -import hunspell
 +#import hunspell
  import glew
@@ -24,10 +25,10 @@
 -import googletest
 +#import hyphen
 +#import googletest
+ import libvlc
  
  def check_android_ndk_macos_arm(dir):
-   if base.is_dir(dir + "/darwin-x86_64") and not base.is_dir(dir + "/darwin-arm64"):
-@@ -35,17 +35,17 @@ def make():
+@@ -37,18 +37,18 @@ def make():
        if base.is_dir(toolchain):
          check_android_ndk_macos_arm(toolchain + "/prebuilt")
  
@@ -41,6 +42,7 @@
 +#  openssl.make()
    v8.make()
    html2.make()
+   iwork.make(False)
 -  hunspell.make(False)
 -  harfbuzz.make()
 +#  hunspell.make(False)
@@ -50,6 +52,6 @@
 -  googletest.make()
 +#  hyphen.make()
 +#  googletest.make()
-   
-   if config.check_option("module", "mobile"):
-     if (config.check_option("platform", "android")):
+ 
+   if config.check_option("build-libvlc", "1"):
+     libvlc.make()

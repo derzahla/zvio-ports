@@ -1,8 +1,7 @@
 PORTNAME=	gnat12
-DISTVERSION=	12.2.0
-PORTREVISION=	6
+DISTVERSION=	12.3.0
 CATEGORIES=	lang
-MASTER_SITES=	${MASTER_SITE_GCC}:gcc \
+MASTER_SITES=	http://gcc.gnu.org/pub/gcc/releases/gcc-${DISTVERSION}/:gcc \
 		LOCAL/thierry:gnat
 MASTER_SITE_SUBDIR=	releases/gcc-${DISTVERSION}
 DISTFILES=	gcc-${DISTVERSION}.tar.xz:gcc
@@ -14,18 +13,21 @@ WWW=		https://www.adacore.com/community
 LICENSE=	GPLv2 GPLv3 GPLv3RLE
 LICENSE_COMB=	multi
 
+BUILD_DEPENDS=	gcc${_GCC_VER}>0:lang/gcc${_GCC_VER}
 LIB_DEPENDS=	libgmp.so:math/gmp \
 		libisl.so:devel/isl \
 		libmpc.so:math/mpc \
 		libmpfr.so:math/mpfr
-RUN_DEPENDS=	${LOCALBASE}/bin/as:devel/binutils
+RUN_DEPENDS=	${LOCALBASE}/bin/as:devel/binutils \
+		gcc${_GCC_VER}>0:lang/gcc${_GCC_VER}
 
-USES=		bison gmake iconv libtool localbase tar:xz
+USES=		bison gettext-runtime gmake iconv libtool localbase tar:xz
 USE_BINUTILS=	yes
 USE_LDCONFIG=	${_TARGLIB}
 
 GNU_CONFIGURE=		yes
 GNU_CONFIGURE_PREFIX=	${_PKG_PREFIX}
+GNU_CONFIGURE_MANPREFIX=	${_PKG_PREFIX}/share
 CONFIGURE_ARGS=		--disable-bootstrap \
 			--disable-libgomp \
 			--disable-libmudflap \
@@ -49,12 +51,14 @@ CONFIGURE_TARGET=	${_GNAT_ARCH}-portbld-${_PLATFORM}
 
 MAKE_ENV+=	PATH=${_TOOLCHAIN_PATHS}
 INSTALL_TARGET=	install-strip
-MANPREFIX=	${_PKG_PREFIX}
+MANDIRS=	${_PKG_PREFIX}/share/man
 BINARY_ALIAS=	make=${GMAKE}
 WRKSRC=		${WRKDIR}/gcc-${DISTVERSION}
 PLIST_SUB=	ASSET_FILE=${_ASSET_FILE} \
 		CONFTRGT=${CONFIGURE_TARGET} \
 		VER=${DISTVERSION}
+
+PIE_UNSAFE=	yes
 
 OPTIONS_DEFINE=			ASSETS NLS
 .if exists(/usr/lib32/libc.so)
@@ -85,8 +89,9 @@ GCC6AUX_BUILD_DEPENDS=		gcc6-aux>0:lang/gcc6-aux
 GCC6AUX_VARS=			_GCC6AUX_PATH=${LOCALBASE}/gcc6-aux/bin
 .if exists(/usr/lib32/libc.so)
 MULTILIB_CONFIGURE_ENABLE=	multilib
+.else
+CONFIGURE_ARGS+=		--disable-multilib
 .endif
-NLS_USES=			gettext-runtime
 NLS_CONFIGURE_ON=		--enable-nls
 NLS_CONFIGURE_OFF=		--disable-nls
 PREVASSET_DISTFILES+=		${_PREV_ASSET_FILE}.tar.xz:gnat
@@ -104,7 +109,7 @@ _PLATFORM=		${OPSYS:tl}${OSREL}
 _PREV_ASSET_FILE=	gnat-${_GNAT_ARCH}-${OPSYS:tl}.${_PREV_ASSET_OSREL}-${_PREV_ASSET_VER}${_PREV_ASSET_REV}
 _PREV_ASSET_GCC=	${PREV_ASSET_VER:R:R}
 _PREV_ASSET_OSREL?=	${OSREL:R}
-_PREV_ASSET_VER?=	${DISTVERSION}
+_PREV_ASSET_VER?=	12.2.0
 _PREV_ASSET_REV?=	_6
 _REV_FILE=		${WRKSRC}/gcc/REVISION
 _TARGLIB=		${_PKG_PREFIX}/lib ${_PKG_PREFIX}/lib/gcc${_GCC_VER}
@@ -112,25 +117,34 @@ _TOOLCHAIN_PATHS=	/sbin:/bin:/usr/sbin:/usr/bin:${_GCC6AUX_PATH}:${PREFIX}/bin:$
 
 .include <bsd.port.options.mk>
 
-.if ${ARCH} == i386 || ${ARCH} == aarch64
+.if ${ARCH} == i386
 LIB_DIR_32=	""
-PLIST_SUB+=	64BITS="@comment "
+PLIST_SUB+=	LIB32="@comment "
 .else
-PLIST_SUB+=	64BITS=""
 .  if empty(PORT_OPTIONS:MMULTILIB)
 LIB_DIR_32=	""
-PLIST_SUB+=	32BITS="@comment "
+PLIST_SUB+=	LIB32="@comment "
 .  else
 LIB_DIR_32=	"" 32
-PLIST_SUB+=	32BITS=""
+PLIST_SUB+=	LIB32=" "
 .  endif
 .endif
-.if ${ARCH} == aarch64
-PLIST_SUB+=	ARM="" \
-		NOARM="@comment "
-.else
-PLIST_SUB+=	ARM="@comment " \
-		NOARM=""
+
+.if ${ARCH} == amd64
+PLIST_SUB+=	AMD64=" " \
+		AARCH64="@comment " \
+		X86=" " \
+		64BIT=" "
+.elif ${ARCH} == i386
+PLIST_SUB+=	AMD64="@comment " \
+		AARCH64="@comment " \
+		X86=" " \
+		64BIT="@comment "
+.elif ${ARCH} == aarch64
+PLIST_SUB+=	X86="@comment " \
+		AMD64="@comment " \
+		AARCH64=" " \
+		64BIT=" "
 .endif
 
 pre-configure:

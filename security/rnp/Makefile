@@ -1,6 +1,6 @@
 PORTNAME=	rnp
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.17.0
+DISTVERSION=	0.17.1
 PORTREVISION=	1
 CATEGORIES=	security
 
@@ -23,7 +23,7 @@ LIB_DEPENDS=	libbotan-2.so:security/botan2 \
 USES=		cmake compiler:c++11-lang pkgconfig
 USE_GITHUB=	yes
 GH_ACCOUNT=	rnpgp
-GH_TUPLE=	rnpgp:sexp:b6bf033:sexp/src/libsexp
+GH_TUPLE=	rnpgp:sexpp:c641a2f:sexpp/src/libsexpp
 USE_LDCONFIG=	yes
 
 CMAKE_ARGS=	-DBUILD_SHARED_LIBS=on \

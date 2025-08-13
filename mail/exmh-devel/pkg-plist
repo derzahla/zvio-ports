@@ -192,6 +192,7 @@ lib/exmh-%%EXMH_VERSION%%/print.tcl
 lib/exmh-%%EXMH_VERSION%%/ps.tcl
 lib/exmh-%%EXMH_VERSION%%/quote.tcl
 lib/exmh-%%EXMH_VERSION%%/receipt.tcl
+lib/exmh-%%EXMH_VERSION%%/recoll.tcl
 lib/exmh-%%EXMH_VERSION%%/report.tcl
 lib/exmh-%%EXMH_VERSION%%/rich2tk.tcl
 lib/exmh-%%EXMH_VERSION%%/scan.tcl
@@ -227,4 +228,4 @@ lib/exmh-%%EXMH_VERSION%%/widgetText.tcl
 lib/exmh-%%EXMH_VERSION%%/widgets.tcl
 lib/exmh-%%EXMH_VERSION%%/xns.tcl
 lib/exmh-%%EXMH_VERSION%%/xnsgetmail.exp
-man/man1/exmh.1.gz
+share/man/man1/exmh.1.gz

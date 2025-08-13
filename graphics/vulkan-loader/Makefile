@@ -1,6 +1,6 @@
 PORTNAME=	vulkan-loader
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.3.274
+DISTVERSION=	1.4.311
 CATEGORIES=	graphics devel
 
 MAINTAINER=	jbeich@FreeBSD.org
@@ -18,6 +18,7 @@ GH_ACCOUNT=	KhronosGroup
 GH_PROJECT=	Vulkan-Loader
 CMAKE_ON=	CMAKE_SKIP_RPATH
 CMAKE_OFF=	BUILD_TESTS
+PLIST_SUB=	VERSION=${DISTVERSION:C/-.*//}
 
 OPTIONS_DEFINE=	WAYLAND XCB XLIB
 OPTIONS_DEFAULT=WAYLAND XCB XLIB
@@ -44,9 +45,5 @@ post-patch:
 		-e '/FALLBACK/s,/etc,${PREFIX}&,' \
 		-e 's,/usr/local,${PREFIX},' \
 		${WRKSRC}/CMakeLists.txt
-# https://github.com/llvm/llvm-project/issues/46692
-	@if [ "${CHOSEN_COMPILER_TYPE}-${ARCH}-${_OSRELEASE:C/.*-//}" = "clang-i386-CURRENT" ]; then \
-		${ECHO} "disabled" >${WRKSRC}/loader/asm_test_x86.S; \
-	fi
 
 .include <bsd.port.mk>

@@ -1,5 +1,6 @@
 PORTNAME=	eduke32
-PORTVERSION=	20231007
+PORTVERSION=	20241216
+PORTREVISION=	1
 CATEGORIES=	games
 MASTER_SITES=	http://dukeworld.com/eduke32/synthesis/${PORTVERSION}-${GITREVISION}/:eduke32 \
 		LOCAL/pkubaj/:erp \
@@ -34,11 +35,11 @@ USE_GL=		gl glu
 USE_GNOME=	gtk20
 USE_SDL=	sdl2 mixer2
 WRKSRC=		${WRKDIR}/${PORTNAME}_${PORTVERSION}-${GITREVISION}
-GITREVISION=	10494-17844a2f6
+GITREVISION=	10600-d384b22ac
 DATADIR=	${PREFIX}/share/duke3d
 SUB_FILES=	pkg-message
 MAKEFILE=	GNUmakefile
-MAKE_ARGS=	CC=${CC} CXX=${CXX} CLANG=1
+MAKE_ARGS=	CC=${CC} CXX=${CXX} CLANG=1 PRETTY_OUTPUT=0 USE_MIMALLOC=0
 
 PLIST_FILES=	bin/eduke32 bin/mapster32
 PORTEXAMPLES=	*
@@ -70,7 +71,7 @@ FULL_PLIST_FILES=	${DATADIR}/duke3d.grp ${DATADIR}/duke.rts
 
 .include <bsd.port.options.mk>
 
-.if ${ARCH} == i386 || ${ARCH} == riscv64
+.if ${ARCH} == riscv64
 MAKE_ARGS+=	LTO=0
 .endif
 
@@ -92,7 +93,8 @@ post-extract-SHAREWARE-on:
 	@cd ${WRKDIR} && ${UNZIP_NATIVE_CMD} -qo DN3DSW13.SHR
 
 post-patch:
-	@${REINPLACE_CMD} 's|/usr/share/games/eduke32|${DATADIR}|' \
+	@${REINPLACE_CMD} \
+		's|"/usr/local/share/games/" APPBASENAME|"${DATADIR}"|' \
 		${WRKSRC}/source/duke3d/src/common.cpp
 
 do-install:

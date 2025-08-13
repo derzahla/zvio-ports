@@ -1,5 +1,5 @@
 PORTNAME=	darktable
-PORTVERSION=	4.6.0
+PORTVERSION=	5.0.1
 CATEGORIES=	graphics
 MASTER_SITES=	https://github.com/darktable-org/${PORTNAME}/releases/download/release-${PORTVERSION:C/\.rc/rc/}/
 
@@ -41,10 +41,9 @@ LIB_DEPENDS=	libavif.so:graphics/libavif \
 		libtiff.so:graphics/tiff \
 		libwebp.so:graphics/webp
 
-USES=		cmake compiler:gcc-c++11-lib desktop-file-utils gl gnome jpeg \
-		llvm:15,build lua:54 perl5 pkgconfig sdl shebangfix sqlite \
+USES=		cmake compiler:c++11-lib desktop-file-utils gl gnome jpeg \
+		llvm:17,build lua perl5 pkgconfig sdl shebangfix sqlite \
 		tar:xz xorg
-USE_GCC=	yes
 USE_GL=		gl
 USE_GNOME=	cairo gtk30 intltool librsvg2 libxml2
 USE_LDCONFIG=	${PREFIX}/lib/${PORTNAME}
@@ -59,8 +58,7 @@ CMAKE_BOOL+=	BUILD_CMSTEST USE_AVIF USE_CAMERA_SUPPORT USE_HEIF \
 		USE_ISOBMFF USE_KWALLET USE_LUA USE_MAP USE_OPENEXR \
 		USE_OPENJPEG USE_WEBP RAWSPEED_ENABLE_LTO
 
-CFLAGS+=	-fopenmp -I${LOCALBASE}/include/Imath
-LDFLAGS+=	-L${LOCALBASE}/lib
+CFLAGS+=	-fopenmp
 
 WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION:C/\.rc/~rc/}
 

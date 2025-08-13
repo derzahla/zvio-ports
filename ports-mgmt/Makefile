@@ -1,5 +1,6 @@
     COMMENT = Ports for managing, installing, and developing FreeBSD ports and packages
 
+    SUBDIR += appstream-generator
     SUBDIR += bsdadminscripts2
     SUBDIR += caronade
     SUBDIR += create-rb-port
@@ -70,9 +71,11 @@
     SUBDIR += portupgrade-devel
     SUBDIR += poudriere
     SUBDIR += poudriere-devel
+    SUBDIR += poudriere-dsh2dsh
     SUBDIR += psearch
     SUBDIR += py-FreeBSD-ports
-    SUBDIR += py-pytoport
+    SUBDIR += py-nvchecker
+    SUBDIR += py-pnu-portstreelint
     SUBDIR += py-skog
     SUBDIR += rc-subr-jail
     SUBDIR += reprise

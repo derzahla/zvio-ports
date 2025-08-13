@@ -1,14 +1,17 @@
 PORTNAME=	echoping
 PORTVERSION=	6.0.2
-PORTREVISION=	9
+PORTREVISION=	12
 CATEGORIES=	net
 
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Ping-like program that uses TCP and/or HTTP
-WWW=		https://github.com/bortzmeyer/echoping
+WWW=		https://framagit.org/bortzmeyer/echoping
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
+
+DEPRECATED=	Unmaintained upstream as of 2015 and depends on deprecated libidn
+EXPIRATION_DATE=2025-04-30
 
 LIB_DEPENDS=	libpopt.so:devel/popt \
 		libidn.so:dns/libidn
@@ -17,6 +20,7 @@ USES=		autoreconf cpe libtool pkgconfig ssl
 
 CPE_VENDOR=	echoping_project
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--enable-http --enable-icp --enable-smtp --with-ssl \
 		--enable-ttcp --enable-tos --with-libidn=${LOCALBASE} \
 		--enable-plugin="${PING_PLUGINS}"

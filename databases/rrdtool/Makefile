@@ -1,6 +1,5 @@
 PORTNAME=	rrdtool
-DISTVERSION=	1.8.0
-PORTREVISION=	4
+DISTVERSION=	1.9.0
 CATEGORIES=	databases graphics
 MASTER_SITES=	https://github.com/oetiker/rrdtool-1.x/releases/download/v${DISTVERSION}/
 
@@ -18,16 +17,16 @@ USE_LDCONFIG=	yes
 USE_RC_SUBR=	rrdcached
 SHEBANG_FILES=	examples/rrdcached/rrdcached-size.pl examples/stripes.py
 GNU_CONFIGURE=	yes
-GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 CONFIGURE_ARGS=	--disable-tcl
 CONFIGURE_ENV=	RRDDOCDIR=${DOCSDIR:Q}
-CPPFLAGS+=	-I${LOCALBASE}/include -I${LOCALBASE}/include/freetype2
+INSTALL_TARGET=	install-strip
 # Some symbols in the linker version script librrd.sym are undefined when the
 # CACHE option is off. Suppress errors with lld >= 17 due to these undefined
 # symbols.
 LDFLAGS+=	-Wl,--undefined-version
 CONFLICTS=	rrdtool12
 PORTDOCS=	*
+PORTEXAMPLES=	cgi-demo.cgi
 
 OPTIONS_DEFINE=		DEJAVU DOCS EXAMPLES GRAPH LOCKTIMEOUT MMAP NLS PERL \
 			PYTHON RUBY
@@ -45,9 +44,8 @@ DEJAVU_RUN_DEPENDS=		dejavu>0:x11-fonts/dejavu
 DOCS_USES=			groff
 DOCS_CONFIGURE_ENABLE=		docs
 EXAMPLES_CONFIGURE_ENABLE=	examples
-GRAPH_LIB_DEPENDS=		libfreetype.so:print/freetype2 \
-				libharfbuzz.so:print/harfbuzz \
-				libpng.so:graphics/png
+GRAPH_LIB_DEPENDS=		libharfbuzz.so:print/harfbuzz \
+				libpng16.so:graphics/png
 GRAPH_USE=			GNOME=cairo,pango
 GRAPH_CONFIGURE_OFF=		--disable-rrd_graph \
 				--disable-rrdcgi

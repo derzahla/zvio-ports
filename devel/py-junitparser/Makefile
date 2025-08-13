@@ -1,7 +1,7 @@
 PORTNAME=	junitparser
-DISTVERSION=	3.1.1
+DISTVERSION=	3.2.0
 CATEGORIES=	devel net
-MASTER_SITES=	PYPI
+#MASTER_SITES=	PYPI # some test files are missing
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -14,7 +14,10 @@ BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	pep517 concurrent autoplist
+USE_PYTHON=	pep517 concurrent autoplist pytest
+
+USE_GITHUB=	yes
+GH_ACCOUNT=	weiwei
 
 NO_ARCH=	yes
 

@@ -61,6 +61,7 @@
 %%WWWDIR%%/asset/static/font/awesome/fa-solid-900.woff2
 %%WWWDIR%%/asset/static/font/awesome/fa-v4compatibility.ttf
 %%WWWDIR%%/asset/static/font/awesome/fa-v4compatibility.woff2
+%%WWWDIR%%/asset/static/font/icinga-icons/Read Me.txt
 %%WWWDIR%%/asset/static/font/icinga-icons/fonts/Icinga-Icons.svg
 %%WWWDIR%%/asset/static/font/icinga-icons/fonts/Icinga-Icons.ttf
 %%WWWDIR%%/asset/static/font/icinga-icons/fonts/Icinga-Icons.woff
@@ -82,6 +83,7 @@
 %%WWWDIR%%/asset/static/img/select-icon.svg
 %%WWWDIR%%/composer.json
 %%WWWDIR%%/composer.lock
+%%WWWDIR%%/patches/ramsey-collection.patch
 %%WWWDIR%%/vendor/autoload.php
 %%WWWDIR%%/vendor/brick/math/LICENSE
 %%WWWDIR%%/vendor/brick/math/composer.json
@@ -112,6 +114,10 @@
 %%WWWDIR%%/vendor/composer/installed.json
 %%WWWDIR%%/vendor/composer/installed.php
 %%WWWDIR%%/vendor/composer/platform_check.php
+%%WWWDIR%%/vendor/cweagans/composer-patches/composer.json
+%%WWWDIR%%/vendor/cweagans/composer-patches/src/PatchEvent.php
+%%WWWDIR%%/vendor/cweagans/composer-patches/src/PatchEvents.php
+%%WWWDIR%%/vendor/cweagans/composer-patches/src/Patches.php
 %%WWWDIR%%/vendor/doctrine/collections/.doctrine-project.json
 %%WWWDIR%%/vendor/doctrine/collections/LICENSE
 %%WWWDIR%%/vendor/doctrine/collections/composer.json
@@ -333,6 +339,10 @@
 %%WWWDIR%%/vendor/ipl/sql/src/QueryBuilder.php
 %%WWWDIR%%/vendor/ipl/sql/src/Select.php
 %%WWWDIR%%/vendor/ipl/sql/src/Sql.php
+%%WWWDIR%%/vendor/ipl/sql/src/Test/Databases.php
+%%WWWDIR%%/vendor/ipl/sql/src/Test/SqlAssertions.php
+%%WWWDIR%%/vendor/ipl/sql/src/Test/TestAdapter.php
+%%WWWDIR%%/vendor/ipl/sql/src/Test/TestConnection.php
 %%WWWDIR%%/vendor/ipl/sql/src/Update.php
 %%WWWDIR%%/vendor/ipl/sql/src/Where.php
 %%WWWDIR%%/vendor/ipl/sql/src/WhereInterface.php
@@ -399,6 +409,7 @@
 %%WWWDIR%%/vendor/ipl/web/LICENSE
 %%WWWDIR%%/vendor/ipl/web/asset/static/font/icinga-icons/selection.json
 %%WWWDIR%%/vendor/ipl/web/composer.json
+%%WWWDIR%%/vendor/ipl/web/phpstan-baseline-by-php-version.php
 %%WWWDIR%%/vendor/ipl/web/src/Common/BaseItemList.php
 %%WWWDIR%%/vendor/ipl/web/src/Common/BaseItemTable.php
 %%WWWDIR%%/vendor/ipl/web/src/Common/BaseListItem.php

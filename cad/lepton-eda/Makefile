@@ -1,6 +1,6 @@
 PORTNAME=	lepton-eda
 PORTVERSION=	1.9.18
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	cad
 MASTER_SITES=	https://github.com/lepton-eda/lepton-eda/releases/download/${PORTVERSION}-20220529/
 
@@ -21,7 +21,6 @@ LIB_DEPENDS=	libexpat.so:textproc/expat2 \
 		libgtkextra-x11-3.0.so:x11-toolkits/gtkextra \
 		libharfbuzz.so:print/harfbuzz \
 		libltdl.so:devel/libltdl \
-		libpcre.so:devel/pcre \
 		libpng.so:graphics/png \
 		libstroke.so:devel/libstroke \
 		libunistring.so:devel/libunistring
@@ -32,7 +31,7 @@ USES=		desktop-file-utils gettext-tools gnome groff:build \
 		xorg
 USE_XORG=	pixman x11 xau xcb xcomposite xcursor xdamage xdmcp xext xfixes \
 		xi xinerama xrandr xrender
-USE_GNOME=	cairo gdkpixbuf2 gtk20
+USE_GNOME=	cairo gdkpixbuf gtk20
 USE_GL=		egl gl
 USE_LDCONFIG=	yes
 
@@ -41,6 +40,7 @@ SHEBANG_FILES=	utils/pcb_backannotate/lepton-pcb_backannotate \
 		utils/symfix/lepton-symfix
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--enable-guild
 INSTALL_TARGET=	install-strip
 

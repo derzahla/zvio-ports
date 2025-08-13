@@ -1,5 +1,5 @@
 PORTNAME=	puppet
-PORTVERSION=	7.27.0
+PORTVERSION=	7.34.0
 CATEGORIES=	sysutils
 MASTER_SITES=   https://forge.puppet.com/v3/files/:forge
 PKGNAMESUFFIX=	7
@@ -11,6 +11,9 @@ WWW=		https://puppet.com/docs/puppet/latest/puppet_index.html
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
+DEPRECATED=	Reached EOL
+EXPIRATION_DATE=2025-05-09
+
 RUN_DEPENDS=	rubygem-concurrent-ruby>1.0:devel/rubygem-concurrent-ruby \
 		rubygem-deep_merge>1.0:devel/rubygem-deep_merge \
 		rubygem-fast_gettext>=2.1:devel/rubygem-fast_gettext \
@@ -19,8 +22,8 @@ RUN_DEPENDS=	rubygem-concurrent-ruby>1.0:devel/rubygem-concurrent-ruby \
 		rubygem-multi_json>=1.10:devel/rubygem-multi_json \
 		rubygem-puppet-resource_api>=1.5:devel/rubygem-puppet-resource_api \
 		rubygem-ruby-augeas>=0:textproc/rubygem-ruby-augeas \
-		rubygem-scanf>=1:devel/rubygem-scanf \
-		rubygem-semantic_puppet>=1:devel/rubygem-semantic_puppet
+		rubygem-scanf>=1.0:devel/rubygem-scanf \
+		rubygem-semantic_puppet>=1.0:devel/rubygem-semantic_puppet
 
 USES=		cpe ruby
 USE_GITHUB=	yes
@@ -54,16 +57,16 @@ CFACTER_RUN_DEPENDS=	facter>=3.0:sysutils/facter
 
 # Get versions from
 # https://github.com/puppetlabs/puppet-agent/tree/7.x/configs/components
-FORGE_MODULES=	augeas_core=1.3.0 \
-		cron_core=1.2.0 \
-		host_core=1.2.0 \
-		mount_core=1.2.0 \
-		scheduled_task=3.1.1 \
-		selinux_core=1.3.0 \
-		sshkeys_core=2.4.0 \
+FORGE_MODULES=	augeas_core=1.5.0 \
+		cron_core=1.3.0 \
+		host_core=1.3.0 \
+		mount_core=1.3.0 \
+		scheduled_task=3.2.0 \
+		selinux_core=1.4.0 \
+		sshkeys_core=2.5.0 \
 		yumrepo_core=1.2.0 \
-		zfs_core=1.4.0 \
-		zone_core=1.1.0
+		zfs_core=1.5.0 \
+		zone_core=1.2.0
 
 .for module in ${FORGE_MODULES}
 DISTFILES+=	puppetlabs-${module:C/=.*//}-${module:C/.*=//}.tar.gz:forge
@@ -126,7 +129,7 @@ post-install:
 	@${FIND} ${STAGEDIR}${RUBY_SITELIBDIR}/${PORTNAME} -type f | \
 		${SED} 's,^${STAGEDIR}${PREFIX}/,,' >> ${TMPPLIST}
 	${MKDIR} ${STAGEDIR}${PREFIX}/lib/ruby/gems/${RUBY_VER}/specifications
-	${INSTALL_DATA} ${WRKSRC}/.gemspec ${STAGEDIR}${PREFIX}/lib/ruby/gems/${RUBY_VER}/specifications/${PORTNAME}-${PORTVERSION}.gemspec
+	${INSTALL_DATA} ${WRKSRC}/puppet.gemspec ${STAGEDIR}${PREFIX}/lib/ruby/gems/${RUBY_VER}/specifications/${PORTNAME}-${PORTVERSION}.gemspec
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}

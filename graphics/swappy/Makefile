@@ -1,10 +1,10 @@
 PORTNAME=	swappy
 DISTVERSIONPREFIX=	v
 DISTVERSION=	1.5.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics wayland
 
-MAINTAINER=	jbeich@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Snapshot editing for Wayland (a la Snappy on macOS)
 WWW=		https://github.com/jtheoof/swappy
 
@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USES=		compiler:c11 desktop-file-utils gettext-tools gnome meson pkgconfig
 USE_GITHUB=	yes
-USE_GNOME=	cairo gdkpixbuf2 gtk30
+USE_GNOME=	cairo gdkpixbuf gtk30
 GH_ACCOUNT=	jtheoof
 PLIST_FILES=	bin/${PORTNAME} \
 		share/applications/${PORTNAME}.desktop \
@@ -36,7 +36,7 @@ ICONSFONT_RUN_DEPENDS=	font-awesome>0:x11-fonts/font-awesome
 
 MANPAGES_BUILD_DEPENDS=	scdoc:textproc/scdoc
 MANPAGES_MESON_ENABLED=	man-pages
-MANPAGES_PLIST_FILES=	man/man1/${PORTNAME}.1.gz
+MANPAGES_PLIST_FILES=	share/man/man1/${PORTNAME}.1.gz
 
 post-patch:
 # Extract (snapshot) version from the port instead of meson.build

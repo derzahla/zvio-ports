@@ -1,6 +1,6 @@
 PORTNAME=	tools
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.16.1
+DISTVERSION=	0.31.0
 PORTEPOCH=	1
 CATEGORIES=	devel
 PKGNAMEPREFIX=	go-
@@ -12,7 +12,7 @@ WWW=		https://godoc.org/golang.org/x/tools
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:modules
+USES=		go:modules,1.23
 GO_MODULE=	golang.org/x/tools
 GO_TARGET=	./cmd/auth/cookieauth \
 		./cmd/auth/gitauth \
@@ -32,10 +32,8 @@ GO_TARGET=	./cmd/auth/cookieauth \
 		./cmd/goimports \
 		./cmd/gomvpkg \
 		./cmd/gonew \
-		./cmd/gorename \
 		./cmd/gotype \
 		./cmd/goyacc \
-		./cmd/guru \
 		./cmd/html2article \
 		./cmd/present \
 		./cmd/present2md \
@@ -55,8 +53,6 @@ OPTIONS_DEFINE=	RARE
 RARE_DESC=	install rarely used tools
 RARE_VARS=	GO_TARGET+=" \
 		./cmd/auth/authtest \
-		./cmd/benchcmp \
-		./cmd/getgo \
-		./cmd/getgo/server"
+		./cmd/benchcmp
 
 .include <bsd.port.mk>

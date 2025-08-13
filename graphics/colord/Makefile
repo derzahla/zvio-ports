@@ -1,13 +1,14 @@
 PORTNAME=	colord
-PORTVERSION=	1.4.6
+PORTVERSION=	1.4.7
+PORTREVISION=	3
 CATEGORIES=	graphics
 MASTER_SITES=	https://www.freedesktop.org/software/colord/releases/
 
-MAINTAINER=	kwm@FreeBSD.org
+MAINTAINER=	desktop@FreeBSD.org
 COMMENT=	Manage color profiles to accurately color input/output devices
 WWW=		https://www.freedesktop.org/software/colord
 
-LICENSE=	GPLv2
+LICENSE=	LGPL21+
 
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
 		libgusb.so:devel/libgusb \
@@ -19,8 +20,7 @@ RUN_DEPENDS=	hwdata>0:misc/hwdata
 USERS=		colord
 GROUPS=		colord
 
-USES=		gettext gnome libtool localbase meson pathfix pkgconfig sqlite \
-		tar:xz
+USES=		gettext gnome localbase meson pathfix pkgconfig sqlite tar:xz
 USE_GNOME=	glib20 intlhack introspection:build
 
 USE_LDCONFIG=	yes
@@ -28,8 +28,7 @@ MAKE_JOBS_UNSAFE=	yes
 MAKE_ENV=	PYTHONDONTWRITEBYTECODE=1
 MESON_ARGS=	-Dsystemd=false -Dudev_rules=false \
 		-Ddaemon_user=colord -Dlibcolordcompat=true \
-		-Dpnp_ids=${LOCALBASE}/share/hwdata/hwdata/pnp.ids \
-		--localstatedir=/var \
+		-Dpnp_ids=${LOCALBASE}/share/hwdata/pnp.ids
 
 INSTALL_TARGET=	install-strip
 

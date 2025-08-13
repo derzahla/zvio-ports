@@ -1,6 +1,7 @@
 PORTNAME=	pot
-DISTVERSION=	0.16.0
+DISTVERSION=	0.16.1
 CATEGORIES=	sysutils
+MASTER_SITES=	https://github.com/bsdpot/pot/releases/download/${DISTVERSION}/
 
 MAINTAINER=	pizzamig@FreeBSD.org
 COMMENT=	Container framework for FreeBSD
@@ -15,8 +16,6 @@ RUN_DEPENDS=	freebsd-release-manifests>0:misc/freebsd-release-manifests \
 		signify:security/signify
 TEST_DEPENDS=	flock:sysutils/flock
 
-USE_GITHUB=	yes
-GH_ACCOUNT=	bsdpot
 USE_RC_SUBR=	pot pot_early
 
 NO_ARCH=	yes
@@ -54,7 +53,7 @@ do-install:
 		${STAGEDIR}${ETCDIR}/flavours
 	${INSTALL_SCRIPT} ${WRKSRC}/etc/pot/flavours/slim.sh \
 		${STAGEDIR}${ETCDIR}/flavours
-	${INSTALL_MAN} ${WRKDIR}/pot.8 ${STAGEDIR}${MANPREFIX}/man/man8
+	${INSTALL_MAN} ${WRKDIR}/pot.8 ${STAGEDIR}${PREFIX}/share/man/man8
 
 do-install-ZSH-on:
 	( cd ${WRKSRC}/share/zsh && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/share/zsh)

@@ -1,6 +1,6 @@
 PORTNAME=	ringrtc
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.34.4
+DISTVERSION=	2.50.2
 CATEGORIES=	multimedia
 MASTER_SITES=	LOCAL/mikael/ringrtc/:base \
 		LOCAL/mikael/ringrtc/:boringssl \
@@ -13,9 +13,13 @@ MASTER_SITES=	LOCAL/mikael/ringrtc/:base \
 		LOCAL/mikael/ringrtc/:libsrtp \
 		LOCAL/mikael/ringrtc/:libvpx \
 		LOCAL/mikael/ringrtc/:libyuv \
-		LOCAL/mikael/ringrtc/:third_party \
+		LOCAL/mikael/ringrtc/:opus \
+		LOCAL/mikael/ringrtc/:perfetto \
+		LOCAL/mikael/ringrtc/:protobufjs \
+		LOCAL/mikael/ringrtc/:re2 \
 		LOCAL/mikael/ringrtc/:testing \
-		LOCAL/mikael/ringrtc/:opus
+		LOCAL/mikael/ringrtc/:third_party \
+		LOCAL/mikael/ringrtc/:tools
 DISTFILES=	base-${BASE_REV}.tar.gz:base \
 		boringssl-${BORINGSSL_REV}.tar.gz:boringssl \
 		build-${BUILD_REV}.tar.gz:build \
@@ -27,9 +31,13 @@ DISTFILES=	base-${BASE_REV}.tar.gz:base \
 		libsrtp-${LIBSRTP_REV}.tar.gz:libsrtp \
 		libvpx-${LIBVPX_REV}.tar.gz:libvpx \
 		libyuv-${LIBYUV_REV}.tar.gz:libyuv \
-		third_party-${THIRD_PARTY_REV}.tar.gz:third_party \
+		opus-${OPUS_REV}.tar.gz:opus \
+		perfetto-${PERFETTO_REV}.tar.gz:perfetto \
+		protobuf_javascript-${PROTOBUFJS_REV}.tar.gz:protobufjs \
+		re2-${RE2_REV}.tar.gz:re2 \
 		testing-${TESTING_REV}.tar.gz:testing \
-		opus-${OPUS_REV}.tar.gz:opus
+		third_party-${THIRD_PARTY_REV}.tar.gz:third_party \
+		tools-${TOOLS_REV}.tar.gz:tools
 
 MAINTAINER=	mikael@FreeBSD.org
 COMMENT=	Middleware library for Signal-Desktop
@@ -44,9 +52,10 @@ BUILD_DEPENDS=	gn:devel/gn \
 		protoc:devel/protobuf
 LIB_DEPENDS=	libasound.so:audio/alsa-lib \
 		libfreetype.so:print/freetype2 \
+		libharfbuzz.so:print/harfbuzz \
 		libpulse.so:audio/pulseaudio
 
-USES=		cargo gnome localbase:ldflags ninja pkgconfig python:build \
+USES=		cargo gnome jpeg localbase:ldflags ninja pkgconfig python:build \
 		tar:xz
 USE_GNOME=	glib20
 USE_GITHUB=	yes
@@ -55,28 +64,33 @@ GH_TUPLE=	signalapp:ringrtc:${DISTVERSIONPREFIX}${DISTVERSION} \
 		signalapp:webrtc:${WEBRTC_REV}:webrtc
 
 # sh net-im/signal-desktop/get_deps.sh
-WEBRTC_REV=	5845j
+WEBRTC_REV=	6834f
 
 # modify webrtc_fetch.sh, then sh webrtc_fetch.sh
-BASE_REV=		609cafa975c8a29d3b2f686c9a42530a556835fe
-BORINGSSL_REV=		b8e012e1ff736cc794273af4a7db521e6b18bcd5
-BUILD_REV=		115a7079919c25462a7fd8c1d22900378bbc6585
-BUILDTOOLS_REV=		b2043d4f435131d0a1bdd5342c17753ef9236572
-CATAPULT_REV=		b8c4f2d99ac66fe47cb8cceec0dd1a1da5d1b51e
-ICU_REV=		985b9a6f70e13f3db741fed121e4dcc3046ad494
-LIBJPEG_TURBO_REV=	30bdb85e302ecfc52593636b2f44af438e05e784
-LIBSRTP_REV=		5b7c744eb8310250ccc534f3f86a2015b3887a0a
-LIBVPX_REV=		38a707faef72eeff89d669c553e7bfe9e08dba8f
-LIBYUV_REV=		04821d1e7d60845525e8db55c7bcd41ef5be9406
-NASM_REV=		7fc833e889d1afda72c06220e5bed8fb43b2e5ce
-TESTING_REV=		ff8dee88bc0b49f8337cee6e82151c245a63b98c
-THIRD_PARTY_REV=	ee6367daea550c5845a6079cec5fd6555f39144f
-OPUS_REV=		74d8597f47aa680c9f9e21ab0b99c8c0632fe27d
+BASE_REV=		69f3676cdbd05660c136a6cc3b23383cbabe53d8
+BORINGSSL_REV=		0fa9014d861f024e28fb491ed7b1cfd44103dee7
+BUILD_REV=		05874e6c9429039f1747034af61de1fe2ea1ed06
+BUILDTOOLS_REV=		db0eae9640184fb132061f248f6108771a6ea2d4
+CATAPULT_REV=		44791916611acec1cd74c492c7453e46d9b0dbd2
+ICU_REV=		4239b1559d11d4fa66c100543eda4161e060311e
+LIBCUBEB_VER=		0.22.0
+LIBJPEG_TURBO_REV=	927aabfcd26897abb9776ecf2a6c38ea5bb52ab6
+LIBSRTP_REV=		000edd791434c8738455f10e0dd6b268a4852c0b
+LIBVPX_REV=		906334ac1de2b0afa666472dce5545b82c1251fb
+LIBYUV_REV=		a8e59d207483f75b87dd5fc670e937672cdf5776
+NASM_REV=		f477acb1049f5e043904b87b825c5915084a9a29
+OPUS_REV=		0e30966b198ad28943799eaf5b3b08100b6f70c3
+PERFETTO_REV=		e57316a6ae4e85e9bc8ba82a6c6a93eb5d9a72aa
+PROTOBUFJS_REV=		e34549db516f8712f678fcd4bc411613b5cc5295
+RE2_REV=		6dcd83d60f7944926bfd308cc13979fc53dd69ca
+TESTING_REV=		eac4c18f749488d7232af275405e0e1b67d84cb3
+THIRD_PARTY_REV=	9d80a193fbfe8e2f2a29be2efeee93de9a826dcb
+TOOLS_REV=		c809c4133185094fbd75508202221ff14fc92f7c
 
 BINARY_ALIAS=	vpython3=${PYTHON_CMD}
 
-# Keep in sync with https://github.com/signalapp/ringrtc/blob/v${DISTVERSION}/bin/build-electron#L101
-# Run "gn args out/Release --list" for all variables.
+# Keep in sync with https://github.com/signalapp/ringrtc/blob/v${DISTVERSION}/bin/build-electron#L119
+# Run "gn args out/release --list" for all variables.
 # Some parts don't have use_system_* flag, and can be turned on/off by using
 # replace_gn_files.py script, some parts just turned on/off for target host
 # OS "target_os == is_bsd", like libusb, libpci.
@@ -87,12 +101,20 @@ GN_ARGS+=	rtc_build_examples=false \
 		rtc_use_x11=false \
 		rtc_enable_sctp=false \
 		rtc_libvpx_build_vp9=true \
-		rtc_include_ilbc=false \
-		use_custom_libcxx=false \
-		is_debug=false \
-		is_clang=true \
+		rtc_disable_metrics=true \
+		rtc_disable_trace_events=true \
 		clang_use_chrome_plugins=false \
+		fatal_linker_warnings=false \
+		is_clang=true \
 		treat_warnings_as_errors=false \
+		use_custom_libcxx=false \
+		use_custom_libunwind=true \
+		use_lld=true \
+		use_sysroot=false \
+		use_system_freetype=false \
+		use_system_harfbuzz=true \
+		use_system_libjpeg=true \
+		use_udev=false \
 		extra_cxxflags="${CXXFLAGS}" \
 		extra_ldflags="${LDFLAGS}"
 
@@ -126,11 +148,16 @@ post-extract:
 	${MV} ${WRKDIR}/libyuv ${WEBRTCDIR}/third_party
 	${MV} ${WRKDIR}/nasm ${WEBRTCDIR}/third_party
 	${MV} ${WRKDIR}/opus ${WEBRTCDIR}/ringrtc/opus/src
+	${MV} ${WRKDIR}/perfetto ${WEBRTCDIR}/third_party
+	${MV} ${WRKDIR}/protobuf_javascript ${WEBRTCDIR}/third_party/protobuf-javascript/src
+	${MV} ${WRKDIR}/re2 ${WEBRTCDIR}/third_party/re2/src
+	${MV} ${WRKDIR}/tools ${WEBRTCDIR}
 
 post-patch:
 	${REINPLACE_CMD} "s|LOCALBASE|${LOCALBASE}|" \
 		${WEBRTCDIR}/build/toolchain/gcc_toolchain.gni \
 		${WEBRTCDIR}/buildtools/third_party/libc++/BUILD.gn
+	${RM} -r ${CARGO_VENDOR_DIR}/cubeb-sys-${LIBCUBEB_VER}/libcubeb/src/cubeb-pulse-rs
 
 	${ECHO_CMD} "# Generated from 'DEPS'" > ${WEBRTCDIR}/build/config/gclient_args.gni
 	${ECHO_CMD} 1591703586 > ${WEBRTCDIR}/build/util/LASTCHANGE.committime
@@ -144,10 +171,8 @@ pre-build:
 	cd ${WEBRTCDIR} \
 		&& ${MAKE_ENV} CC=ccache CXX=ccache ninja -C out/release
 
-# it's not intended to be used outside of signal-desktop, put that in
-# /usr/local/share/ringrtc instead?
 do-install:
-	${INSTALL_LIB} ${CARGO_TARGET_DIR}/${CARGO_BUILD_TARGET}/release/libringrtc.so \
+	${INSTALL_LIB} ${CARGO_TARGET_DIR}/release/libringrtc.so \
 		${STAGEDIR}${PREFIX}/lib/
 
 .include <bsd.port.mk>

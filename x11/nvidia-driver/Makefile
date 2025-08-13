@@ -28,6 +28,11 @@ LICENSE_FILE=	${WRKSRC}/doc/license.txt
 .include "${.CURDIR}/../nvidia-driver/Makefile.version"
 .include "${.CURDIR}/../nvidia-driver/Makefile.common"
 
+# the package provides lib32 versions of the libraries, which then depends
+# themselves in non existing lib32 libraries, so we don't want the package
+# to end up depending on non existing libraries
+NO_SHLIB_REQUIRES_GLOB=*:32
+
 # Pull GNU sed(1) for "binary" patching of obj/libglvnd/libEGL.so.1 and
 # obj/libEGL_nvidia.so.0 (see below)
 .if ${NVVERSION} >= 410.057
@@ -163,6 +168,9 @@ EXTRA_PATCHES+=	${WRKDIR}/${p}
 .endfor
 
 post-patch: .SILENT
+.if ${NVVERSION} >= 390
+	${REINPLACE_CMD} -e 's|/man/man1|/share/man/man1|' ${WRKSRC}/nvml/man/Makefile
+.endif
 # We should support -CURRENT: kill the check (first #if __FreeBSD_version)
 	linenum=$$(${SED} -ne '/^#if __FreeBSD_version/ { = ; q ; }' \
 		${WRKSRC}/src/${NVSRC}/nv-freebsd.h) ; ${REINPLACE_CMD} \
@@ -368,6 +376,10 @@ post-install: .SILENT
 .endif
 .if ${NVVERSION} < 545.000
 	${REINPLACE_CMD} -e '/libnvidia-gpucomp\.so/d' ${TMPPLIST}
+.endif
+.if ${NVVERSION} < 560.02803
+	${REINPLACE_CMD} -e '/nvidia_gsp_ga10x_fw\.ko/d' ${TMPPLIST}
+	${REINPLACE_CMD} -e '/nvidia_gsp_tu10x_fw\.ko/d' ${TMPPLIST}
 .endif
 
 .if ${NVVERSION} < 410.057

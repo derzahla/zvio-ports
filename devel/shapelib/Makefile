@@ -1,5 +1,5 @@
 PORTNAME=	shapelib
-PORTVERSION=	1.6.0
+PORTVERSION=	1.6.1
 CATEGORIES=	devel geography
 MASTER_SITES=	https://download.osgeo.org/shapelib/ \
 		https://github.com/OSGeo/shapelib/releases/download/v${PORTVERSION}/
@@ -21,8 +21,7 @@ GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip
 USE_LDCONFIG=	yes
 
-# bin/dbfdump
-CONFLICTS_INSTALL=	p5-DBD-XBase
+CONFLICTS_INSTALL=	p5-DBD-XBase # bin/dbfdump
 
 post-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/.libs/shptest ${STAGEDIR}${PREFIX}/bin/

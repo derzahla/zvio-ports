@@ -1,6 +1,6 @@
 PORTNAME=	osv-scanner
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.4.3
+DISTVERSION=	1.9.2
 PORTREVISION=	2
 CATEGORIES=	security
 
@@ -11,10 +11,10 @@ WWW=		https://github.com/google/osv-scanner
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:modules
+USES=		go:1.23,modules
 
 _BUILD_VERSION=	${DISTVERSION}
-_BUILD_COMMIT=	6316373
+_BUILD_COMMIT=	1e295ee
 _BUILD_DATE=	$$(date +%Y-%m-%d)
 
 GO_MODULE=	github.com/google/${PORTNAME}
@@ -25,14 +25,18 @@ GO_BUILDFLAGS=	-ldflags "\
 		-X main.date=${_BUILD_DATE} \
 		-X main.commit=${_BUILD_COMMIT}"
 
-PORTDOCS=	README.md
 PLIST_FILES=	${GO_TARGET:C/.\/cmd/bin/}
+PORTDOCS=	CHANGELOG.md CONTRIBUTING.md README.md
 
 OPTIONS_DEFINE=	DOCS
 
+post-patch:
+	@${REINPLACE_CMD} -e 's,%%GO_SUFFIX%%,${GO_SUFFIX},' \
+		${WRKSRC}/internal/sourceanalysis/go.go
+
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${INSTALL_DATA} ${WRKSRC}/${PORTDOCS} \
+	${INSTALL_DATA} ${PORTDOCS:S|^|${WRKSRC}/|} \
 		${STAGEDIR}${DOCSDIR}
 
 .include <bsd.port.mk>

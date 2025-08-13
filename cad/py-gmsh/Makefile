@@ -1,10 +1,11 @@
 PORTNAME=	gmsh
-DISTVERSION=	4.11.1
-PORTREVISION=	3
+DISTVERSION=	4.13.1
+PORTREVISION=	1
 CATEGORIES=	cad python
 MASTER_SITES=	https://gmsh.info/src/
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 DISTNAME=	${PORTNAME}-${DISTVERSION}-source
+DIST_SUBDIR=	gmsh
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Automatic 3D finite element mesh generator (gmsh's own binding)

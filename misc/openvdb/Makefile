@@ -1,17 +1,16 @@
 PORTNAME=	openvdb
 DISTVERSIONPREFIX=	v
-DISTVERSION=	10.0.1
-PORTREVISION=	11
+DISTVERSION=	12.0.0
+PORTREVISION=	1
 CATEGORIES=	misc
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Tools for storage and manipulation of sparse volumetric data
-WWW=		https://www.openvdb.org/
+WWW=		https://www.openvdb.org/ \
+		https://github.com/AcademySoftwareFoundation/openvdb
 
 LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE
-
-BROKEN_armv7=	compilation fails: LLVM ERROR: out of memory
 
 LIB_DEPENDS=	libblosc.so:archivers/c-blosc \
 		libboost_system.so:devel/boost-libs \
@@ -41,14 +40,12 @@ TOOLS_LIB_DEPENDS=	libglfw.so:graphics/glfw \
 TOOLS_USES=		gl xorg
 TOOLS_USE=		GL=gl,glu XORG=ice,sm,x11,xcursor,xext,xi,xinerama,xrandr,xxf86vm
 
-xpost-patch: # extra fix for OneTBB
-	@cd ${WRKSRC}/openvdb/openvdb && \
-		${MKDIR} thread
-
 # DOCS is broken: https://github.com/AcademySoftwareFoundation/openvdb/issues/899
 #DOCS_CMAKE_BOOL=	OPENVDB_BUILD_DOCS
 #DOCS_BUILD_DEPENDS=	doxygen:devel/doxygen
 
 #PORTDOCS=	*
+
+# 100% tests passed, 0 tests failed out of 1
 
 .include <bsd.port.mk>

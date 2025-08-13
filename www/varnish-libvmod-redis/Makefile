@@ -1,6 +1,5 @@
 PORTNAME=	libvmod-redis
-PORTVERSION=	20230915
-PORTREVISION=	1
+PORTVERSION=	20250104
 CATEGORIES=	www
 PKGNAMEPREFIX=	varnish-
 
@@ -20,6 +19,7 @@ USES=		autoreconf compiler:c11 gmake libtool pkgconfig \
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 CONFIGURE_ARGS=	--disable-static --disable-tls
 INSTALL_TARGET=	install-strip
 DOCSDIR=	${PREFIX}/share/doc/vmod-redis
@@ -29,7 +29,7 @@ CFLAGS+=	-I${WRKSRC}/src
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	carlosabalde
-GH_TAGNAME=	53d35ad
+GH_TAGNAME=	ecc9529
 
 OPTIONS_DEFINE=	DOCS
 

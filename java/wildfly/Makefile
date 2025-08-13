@@ -1,7 +1,7 @@
 PORTNAME=	wildfly
-PORTVERSION=	17.0.1
+DISTVERSION=	35.0.1
 CATEGORIES=	java www
-MASTER_SITES=	https://download.jboss.org/wildfly/${WILDFLY_VERSION}/
+MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/${WILDFLY_VERSION}/
 DISTNAME=	wildfly-${WILDFLY_VERSION}
 
 MAINTAINER=	bofh@FreeBSD.org
@@ -10,7 +10,8 @@ WWW=		https://wildfly.org/
 
 LICENSE=	GPLv2
 
-USE_JAVA=	8+
+USES=		java
+JAVA_VERSION=	17+
 USE_RC_SUBR=	wildfly
 
 NO_BUILD=	yes
@@ -38,8 +39,8 @@ CONFIG_FILES=	appclient/configuration/appclient.xml \
 		domain/configuration/application-users.properties \
 		domain/configuration/default-server-logging.properties \
 		domain/configuration/domain.xml \
-		domain/configuration/host-master.xml \
-		domain/configuration/host-slave.xml \
+		domain/configuration/host-primary.xml \
+		domain/configuration/host-secondary.xml \
 		domain/configuration/host.xml \
 		domain/configuration/logging.properties \
 		domain/configuration/mgmt-groups.properties \
@@ -64,10 +65,24 @@ post-extract:
 do-install:
 	${MKDIR} ${STAGEDIR}${PREFIX}/${PORTNAME}
 	(cd ${WRKSRC} && ${COPYTREE_SHARE} . ${STAGEDIR}${PREFIX}/${PORTNAME})
-	${RMDIR} ${STAGEDIR}${PREFIX}/${PORTNAME}/.installation
+	${RM} -rf ${STAGEDIR}${PREFIX}/${PORTNAME}/.installation
 .for FILE in ${CONFIG_FILES}
 	${MV} ${STAGEDIR}${PREFIX}/${PORTNAME}/${FILE} \
 		${STAGEDIR}${PREFIX}/${PORTNAME}/${FILE}.sample
 .endfor
+	${FIND} -s ${STAGEDIR}${PREFIX}/${PORTNAME} -not -type d | ${SORT} | \
+		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' | \
+		${SED} -E -e '/sample$$/ s#^#@sample #' >> ${TMPPLIST}
+	${FIND} -s ${STAGEDIR}${WWWDIR} -type d | ${SORT} | \
+		${SED} -e 's#^${STAGEDIR}${PREFIX}/#@dir #' >> ${TMPPLIST}
+	${ECHO_CMD} "@dir wildfly/.galleon/hashes/.installation" >> ${TMPPLIST}
+	${ECHO_CMD} "@dir wildfly/.galleon/hashes/.well-known/acme-challenge" >> ${TMPPLIST}
+	${ECHO_CMD} "@dir wildfly/.galleon/hashes/domain/tmp/auth" >> ${TMPPLIST}
+	${ECHO_CMD} "@dir wildfly/.galleon/hashes/standalone/lib/ext" >> ${TMPPLIST}
+	${ECHO_CMD} "@dir wildfly/.galleon/hashes/standalone/tmp/auth" >> ${TMPPLIST}
+	${ECHO_CMD} "@dir wildfly/.well-known/acme-challenge" >> ${TMPPLIST}
+	${ECHO_CMD} "@dir wildfly/domain/tmp/auth" >> ${TMPPLIST}
+	${ECHO_CMD} "@dir wildfly/standalone/lib/ext" >> ${TMPPLIST}
+	${ECHO_CMD} "@dir wildfly/standalone/tmp/auth" >> ${TMPPLIST}
 
 .include <bsd.port.mk>

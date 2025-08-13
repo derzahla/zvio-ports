@@ -1,6 +1,6 @@
 PORTNAME=	zenity
 PORTVERSION=	3.42.1
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	x11 gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
@@ -15,7 +15,7 @@ BUILD_DEPENDS=	itstool:textproc/itstool
 USES=		gettext gnome localbase meson pkgconfig \
 		perl5 tar:xz xorg
 USE_CSTD=	c99
-USE_GNOME=	cairo gdkpixbuf2 gtk30 intlhack
+USE_GNOME=	cairo gdkpixbuf gtk30 intlhack
 USE_XORG=	x11
 MESON_ARGS=	-Dwebkitgtk=false
 

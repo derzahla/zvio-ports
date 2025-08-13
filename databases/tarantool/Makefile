@@ -1,5 +1,6 @@
 PORTNAME=	tarantool
-PORTVERSION=	3.0.0
+PORTVERSION=	3.1.1
+PORTREVISION=	1
 CATEGORIES=	databases
 MASTER_SITES=	https://download.tarantool.org/tarantool/src/
 
@@ -10,7 +11,7 @@ WWW=		https://tarantool.io/
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-NOT_FOR_ARCHS=		armv6 i386 powerpc64 sparc64
+NOT_FOR_ARCHS=		armv6 i386 powerpc64
 NOT_FOR_ARCHS_REASON=	fails to build: Unsupported architecture
 
 BUILD_DEPENDS=	gsed:textproc/gsed \
@@ -56,5 +57,6 @@ post-patch:
 
 post-install:
 	@${RMDIR} ${STAGEDIR}${PREFIX}/lib/tarantool/
+	@${RMDIR} ${STAGEDIR}${DATADIR}
 
 .include <bsd.port.mk>
