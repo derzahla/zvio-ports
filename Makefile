@@ -60,6 +60,7 @@ SUBDIR += x11-servers
 SUBDIR += x11-themes
 SUBDIR += x11-toolkits
 SUBDIR += x11-wm
+SUBDIR += zvault
 
 PORTSTOP=	yes
 
@@ -87,7 +88,7 @@ ${INDEXDIR}/${INDEXFILE}.${INDEX_COMPRESSION_FORMAT}: .PHONY
 	${FETCHINDEX} ${INDEXDIR}/${INDEXFILE}.${INDEX_COMPRESSION_FORMAT} \
 		${MASTER_SITE_INDEX}${INDEXFILE}.${INDEX_COMPRESSION_FORMAT}
 
-MASTER_SITE_INDEX?=	https://download.FreeBSD.org/ports/index/
+#MASTER_SITE_INDEX?=	https://download.FreeBSD.org/ports/index/
 SETENV?=	/usr/bin/env
 FETCHINDEX?=	${SETENV} ${FETCH_ENV} fetch -am -o
 
