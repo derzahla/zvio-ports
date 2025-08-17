@@ -60,6 +60,7 @@ SUBDIR += x11-servers
 SUBDIR += x11-themes
 SUBDIR += x11-toolkits
 SUBDIR += x11-wm
+SUBDIR += zvault
 
 PORTSTOP=	yes
 
