@@ -6,6 +6,7 @@
     SUBDIR += archivemount
     SUBDIR += automount
     SUBDIR += avfs
+    SUBDIR += befuse
     SUBDIR += bindfs
     SUBDIR += cfs
     SUBDIR += chironfs
@@ -20,7 +21,6 @@
     SUBDIR += dsbmd
     SUBDIR += e2fsprogs
     SUBDIR += e2fsprogs-core
-    SUBDIR += e2fsprogs-libblkid
     SUBDIR += e2tools
     SUBDIR += encfs
     SUBDIR += exfat
@@ -42,12 +42,14 @@
     SUBDIR += jmtpfs
     SUBDIR += kio-fuse
     SUBDIR += libbde
+    SUBDIR += libblkid
     SUBDIR += libfsapfs
     SUBDIR += libfsext
     SUBDIR += libfsfat
     SUBDIR += libfshfs
     SUBDIR += libfsntfs
     SUBDIR += libfsxfs
+    SUBDIR += libgedit-gfls
     SUBDIR += libmodi
     SUBDIR += linux-c7-dosfstools
     SUBDIR += lizardfs
@@ -93,15 +95,18 @@
     SUBDIR += py-fsspec-xrootd
     SUBDIR += py-fusepy
     SUBDIR += py-gcsfs
+    SUBDIR += py-kerchunk
     SUBDIR += py-libzfs
     SUBDIR += py-llfuse
     SUBDIR += py-prometheus-zfs
     SUBDIR += py-pyfakefs
     SUBDIR += py-s3fs
+    SUBDIR += py-tahoe-lafs
     SUBDIR += py-zfs-autobackup
     SUBDIR += rar2fs
     SUBDIR += rubygem-chef-winrm-fs
     SUBDIR += rubygem-winrm-fs
+    SUBDIR += rubygem-winrm-fs-gitlab
     SUBDIR += s3backer
     SUBDIR += s3fs
     SUBDIR += sandboxfs
@@ -118,7 +123,6 @@
     SUBDIR += ufs_copy
     SUBDIR += unionfs
     SUBDIR += unreliablefs
-    SUBDIR += vzvol
     SUBDIR += webdavfs
     SUBDIR += wimlib
     SUBDIR += xfsm

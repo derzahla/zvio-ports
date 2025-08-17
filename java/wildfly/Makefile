@@ -1,5 +1,5 @@
 PORTNAME=	wildfly
-DISTVERSION=	35.0.1
+DISTVERSION=	37.0.0
 CATEGORIES=	java www
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/${WILDFLY_VERSION}/
 DISTNAME=	wildfly-${WILDFLY_VERSION}
@@ -18,8 +18,8 @@ NO_BUILD=	yes
 SUB_FILES=	pkg-message
 SUB_LIST=	APP_SHORTNAME=${PORTNAME} \
 		LOG_DIR=${LOG_DIR} \
-		USERS=${USERS} \
-		GROUPS=${GROUPS} \
+		USER=${USERS} \
+		GROUP=${GROUPS} \
 		PID_FILE=${PID_FILE} \
 		APP_HOME=${PREFIX}/${PORTNAME}
 
@@ -31,7 +31,7 @@ PLIST_SUB=	APP_HOME=${PORTNAME}
 VAR_DIR?=	/var
 LOG_DIR?=	${VAR_DIR}/log/${PORTNAME}
 PID_FILE=	${VAR_DIR}/run/${PORTNAME}.pid
-WILDFLY_VERSION=${PORTVERSION}.Final
+WILDFLY_VERSION=${DISTVERSION}.Final
 
 CONFIG_FILES=	appclient/configuration/appclient.xml \
 		appclient/configuration/logging.properties \
@@ -72,17 +72,22 @@ do-install:
 .endfor
 	${FIND} -s ${STAGEDIR}${PREFIX}/${PORTNAME} -not -type d | ${SORT} | \
 		${SED} -e 's#^${STAGEDIR}${PREFIX}/##' | \
-		${SED} -E -e '/sample$$/ s#^#@sample #' >> ${TMPPLIST}
-	${FIND} -s ${STAGEDIR}${WWWDIR} -type d | ${SORT} | \
+		${SED} -E -e '/sample$$/ s#^#@sample #' | \
+		${SED} -E -e '/bin\/.*sh$$/ s#^#@(,,755) #'>> ${TMPPLIST}
+	${FIND} -s ${STAGEDIR}${PORTNAME} -type d | ${SORT} | \
 		${SED} -e 's#^${STAGEDIR}${PREFIX}/#@dir #' >> ${TMPPLIST}
 	${ECHO_CMD} "@dir wildfly/.galleon/hashes/.installation" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir wildfly/.galleon/hashes/.well-known/acme-challenge" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir wildfly/.galleon/hashes/domain/tmp/auth" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir wildfly/.galleon/hashes/standalone/lib/ext" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir wildfly/.galleon/hashes/standalone/tmp/auth" >> ${TMPPLIST}
+	${ECHO_CMD} "@dir wildfly/.galleon/hashes/standalone/tmp/embedded-server/auth" >> ${TMPPLIST}
+	${ECHO_CMD} "@dir wildfly/.galleon/hashes/standalone/tmp/embedded-server/vfs/temp" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir wildfly/.well-known/acme-challenge" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir wildfly/domain/tmp/auth" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir wildfly/standalone/lib/ext" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir wildfly/standalone/tmp/auth" >> ${TMPPLIST}
+	${ECHO_CMD} "@dir wildfly/standalone/tmp/embedded-server/auth" >> ${TMPPLIST}
+	${ECHO_CMD} "@dir wildfly/standalone/tmp/embedded-server/vfs/temp" >> ${TMPPLIST}
 
 .include <bsd.port.mk>

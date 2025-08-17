@@ -1,7 +1,7 @@
 PORTNAME=	carapace
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.2.1
-PORTREVISION=	2
+DISTVERSION=	1.4.1
+PORTREVISION=	1
 CATEGORIES=	shells
 
 MAINTAINER=	tagattie@FreeBSD.org
@@ -11,13 +11,13 @@ WWW=		https://carapace.sh/
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:modules,1.23
+USES=		go:modules
 
 GO_MODULE=	github.com/carapace-sh/carapace-bin
 GO_TARGET=	./cmd/carapace
 GO_BUILDFLAGS=	-ldflags "-s -w -X main.version=${DISTVERSION}"
 
-PLIST_FILES=	bin/carapace
+PLIST_FILES=	bin/${PORTNAME}
 PORTDOCS=	README.md
 
 OPTIONS_DEFINE=	DOCS

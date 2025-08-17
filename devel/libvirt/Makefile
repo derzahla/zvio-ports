@@ -1,5 +1,5 @@
 PORTNAME=	libvirt
-DISTVERSION=	11.1.0
+DISTVERSION=	11.6.0
 CATEGORIES=	devel
 MASTER_SITES=	http://libvirt.org/sources/ \
 		ftp://libvirt.org/libvirt/
@@ -13,7 +13,7 @@ LICENSE=	LGPL3
 LIB_DEPENDS=	libcurl.so:ftp/curl \
 		libgnutls.so:security/gnutls
 BUILD_DEPENDS=	dnsmasq:dns/dnsmasq \
-		${LOCALBASE}/bin/grep:textproc/gnugrep \
+		ggrep:textproc/gnugrep \
 		gsed:textproc/gsed \
 		rst2html:textproc/py-docutils@${PY_FLAVOR} \
 		xsltproc:textproc/libxslt
@@ -120,7 +120,8 @@ MESON_ARGS+=	\
 		-Dwireshark_dissector=disabled \
 		-Dinit_script=none \
 		-Dbash_completion=disabled \
-		-Duserfaultfd_sysctl=disabled
+		-Duserfaultfd_sysctl=disabled \
+		-Drunstatedir=/var/run
 
 # random_data fix can be removed when 8.x is eol
 CONFIGURE_ENV=	ac_cv_type_struct_random_data=""
@@ -139,7 +140,7 @@ USE_PERL5=	build
 USE_LDCONFIG=	yes
 INSTALL_TARGET=	install-strip
 TEST_TARGET=	check
-SHLIB_VER=	0.11001.0
+SHLIB_VER=	0.11006.0
 PLIST_SUB+=	SHLIB_VER=${SHLIB_VER}
 PORTDOCS=	*
 #SHEBANG_FILES=	src/keycodemapdb/tools/keymap-gen
@@ -149,7 +150,7 @@ SUB_FILES=	pkg-message
 
 .include <bsd.port.options.mk>
 
-.if ${PORT_OPTIONS:MQEMU} || ${PORT_OPTIONS:MNSS}
+.if ${PORT_OPTIONS:MBHYVE} || ${PORT_OPTIONS:MQEMU} || ${PORT_OPTIONS:MNSS}
 LIB_DEPENDS+=		libjson-c.so:devel/json-c
 MESON_ARGS+=	-Djson_c=enabled
 .else

@@ -1,8 +1,7 @@
     COMMENT = Instant messaging
 
+    SUBDIR += abaddon
     SUBDIR += beebeep
-    SUBDIR += biboumi
-    SUBDIR += chatterino2
     SUBDIR += coccinella
     SUBDIR += concord
     SUBDIR += conduit
@@ -18,6 +17,7 @@
     SUBDIR += ejabberd
     SUBDIR += farstream
     SUBDIR += finch
+    SUBDIR += flare
     SUBDIR += folks
     SUBDIR += fractal
     SUBDIR += freetalk
@@ -114,13 +114,13 @@
     SUBDIR += py-matrix-synapse
     SUBDIR += py-mattermostdriver
     SUBDIR += py-nbxmpp
-    SUBDIR += py-punjab
     SUBDIR += py-python-telegram-bot
     SUBDIR += py-slack-sdk
     SUBDIR += py-slackeventsapi
     SUBDIR += py-slixmpp
     SUBDIR += py-toxcore-c
     SUBDIR += py-unmessage
+    SUBDIR += py-zapzap
     SUBDIR += qTox
     SUBDIR += quaternion
     SUBDIR += qxmpp
@@ -142,6 +142,7 @@
     SUBDIR += spectral
     SUBDIR += ssh-chat
     SUBDIR += sshout
+    SUBDIR += tde2e
     SUBDIR += tdlib
     SUBDIR += tdlib-purple
     SUBDIR += telegram-cli

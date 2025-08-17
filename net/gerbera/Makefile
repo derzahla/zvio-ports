@@ -1,6 +1,7 @@
 PORTNAME=	gerbera
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.5.0
+DISTVERSION=	2.6.0
+PORTREVISION=	1
 CATEGORIES=	net multimedia
 
 MAINTAINER=	diizzy@FreeBSD.org
@@ -11,6 +12,8 @@ LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
 LIB_DEPENDS=	libfmt.so:devel/libfmt \
+		libicui18n.so:devel/icu \
+		libjsoncpp.so:devel/jsoncpp \
 		libspdlog.so:devel/spdlog \
 		libpugixml.so:textproc/pugixml \
 		libinotify.so:devel/libinotify
@@ -82,6 +85,7 @@ TEST_BUILD_DEPENDS=	googletest>=0:devel/googletest
 TEST_CMAKE_BOOL=	WITH_TESTS
 TEST_TEST_TARGET=	test
 TEST_IMPLIES=		CURL DUKTAPE
+TEST_ENV=		LC_ALL=C.UTF-8 CTEST_PARALLEL_LEVEL=${MAKE_JOBS_NUMBER}
 
 post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/bin/gerbera

@@ -1,8 +1,9 @@
 PORTNAME=	television
-DISTVERSION=	0.10.7
+DISTVERSION=	0.11.9
+PORTREVISION=	2
 CATEGORIES=	textproc
 
-MAINTAINER=	nxjoseph@protonmail.com
+MAINTAINER=	uzsolt@FreeBSD.org
 COMMENT=	Fast and extensible general purpose fuzzy finder TUI
 WWW=		https://github.com/alexpasmantier/television
 
@@ -15,6 +16,11 @@ USES=		cargo
 USE_GITHUB=	yes
 GH_ACCOUNT=	alexpasmantier
 
-PLIST_FILES=	bin/tv
+PLIST_FILES=	bin/television \
+		bin/tv
+
+post-install:
+	@(cd ${STAGEDIR}${PREFIX}/bin && \
+		${LN} tv television)
 
 .include <bsd.port.mk>

@@ -1,6 +1,5 @@
 PORTNAME=	itemloaders
-DISTVERSION=	1.1.0
-PORTREVISION=	1
+DISTVERSION=	1.3.2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -11,9 +10,6 @@ WWW=		https://pypi.org/project/itemloaders/
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
-
-DEPRECATED=	Depends on expired textproc/py-parsel
-EXPIRATION_DATE=2025-06-01
 
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}w3lib>=1.17.0:www/py-w3lib@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}parsel>=1.5.0:textproc/py-parsel@${PY_FLAVOR} \

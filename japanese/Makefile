@@ -13,13 +13,11 @@
     SUBDIR += ajaxzip2-data
     SUBDIR += alias-fonts
     SUBDIR += another-htmllint
-    SUBDIR += anthy
     SUBDIR += anthy-unicode
     SUBDIR += aobook
     SUBDIR += bible_names-fpw
     SUBDIR += boiled-mozc
     SUBDIR += bookview
-    SUBDIR += bugzilla44
     SUBDIR += bugzilla50
     SUBDIR += canna-lib
     SUBDIR += canna-server
@@ -94,9 +92,7 @@
     SUBDIR += font-moralerspace
     SUBDIR += font-moralerspace-hw
     SUBDIR += font-moralerspace-hwjpdoc
-    SUBDIR += font-moralerspace-hwnf
     SUBDIR += font-moralerspace-jpdoc
-    SUBDIR += font-moralerspace-nf
     SUBDIR += font-motoya-al
     SUBDIR += font-mplus-bitmap
     SUBDIR += font-mplus-ipa
@@ -143,7 +139,6 @@
     SUBDIR += jls
     SUBDIR += jvim3
     SUBDIR += kakasi
-    SUBDIR += kasumi
     SUBDIR += kasumi-unicode
     SUBDIR += kbanner
     SUBDIR += kcc
@@ -183,7 +178,6 @@
     SUBDIR += mozc-tool
     SUBDIR += multiskkserv
     SUBDIR += mypaedia-fpw-package
-    SUBDIR += namazu
     SUBDIR += namazu2
     SUBDIR += navi2ch
     SUBDIR += ne
@@ -194,6 +188,7 @@
     SUBDIR += ng-devel
     SUBDIR += ngraph-fonts
     SUBDIR += nkf
+    SUBDIR += open_jtalk
     SUBDIR += p5-2chproxy
     SUBDIR += p5-Date-Japanese-Era
     SUBDIR += p5-Date-Japanese-Holiday
@@ -234,6 +229,7 @@
     SUBDIR += qkc
     SUBDIR += qolibri
     SUBDIR += quit
+    SUBDIR += radish-play
     SUBDIR += roget-fpw
     SUBDIR += rogue_s
     SUBDIR += ruby-romkan
@@ -280,7 +276,7 @@
     SUBDIR += timidity++-slang
     SUBDIR += today
     SUBDIR += tomoe
-    SUBDIR += uim-anthy
+    SUBDIR += uim-anthy-unicode
     SUBDIR += uim-mozc
     SUBDIR += uim-tomoe-gtk
     SUBDIR += vera-fpw
@@ -291,6 +287,7 @@
     SUBDIR += wdic-fpw
     SUBDIR += web1913-fpw
     SUBDIR += webalizer
+    SUBDIR += wnn7egg
     SUBDIR += wordnet-fpw
     SUBDIR += wordpress
     SUBDIR += wwasw-fpw

@@ -1,6 +1,6 @@
 PORTNAME=	consul-template
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.40.0
+DISTVERSION=	0.41.1
 PORTREVISION=	1
 CATEGORIES=	textproc
 
@@ -10,7 +10,7 @@ WWW=		https://github.com/hashicorp/consul-template
 
 LICENSE=	MPL20
 
-USES=		go:1.22,modules
+USES=		go:modules
 USE_RC_SUBR=	consul-template
 
 GO_MODULE=	github.com/hashicorp/consul-template

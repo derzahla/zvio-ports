@@ -1,6 +1,6 @@
 PORTNAME=	terraform-ls
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.36.4
+DISTVERSION=	0.36.5
 PORTREVISION=	2
 CATEGORIES=	devel
 
@@ -13,7 +13,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 RUN_DEPENDS=	terraform:sysutils/terraform
 
-USES=		go:1.23,modules
+USES=		go:1.24,modules
 
 GO_MODULE=	github.com/hashicorp/terraform-ls
 

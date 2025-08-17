@@ -1,6 +1,7 @@
 PORTNAME=	nextcloud-spreed-signaling
 DISTVERSIONPREFIX=v
 DISTVERSION=2.0.2
+PORTREVISION=	1
 CATEGORIES=	net-im
 
 MAINTAINER=	jsm@FreeBSD.org
@@ -110,7 +111,7 @@ post-extract:
 	${MKDIR} ${WRKDIR}/${PORTNAME}-${DISTVERSION}/vendor/src/github.com/strukturag
 	${LN} -s ${WRKDIR}/${PORTNAME}-${DISTVERSION}/ ${WRKDIR}/${PORTNAME}-${DISTVERSION}/vendor/src/github.com/strukturag/${PORTNAME}
 do-build:
-	cd ${WRKSRC} && ${SET_ENV} ${MAKE_ENV} ${GMAKE}
+	cd ${WRKSRC} && ${SETENV} ${MAKE_ENV} ${GMAKE}
 post-patch:
 	@${REINPLACE_CMD} 's|%%DISTVERSION%%|${PORTVERSION}|g' ${WRKSRC}/version.txt
 post-install:

@@ -1,5 +1,5 @@
-TIMESTAMP = 1742575750
-SHA256 (KhronosGroup-Vulkan-Tools-v1.4.311_GH0.tar.gz) = 7113bc0c746b45072e269fada0d684b4ae9de609c38d9e764b59793b14120a7b
-SIZE (KhronosGroup-Vulkan-Tools-v1.4.311_GH0.tar.gz) = 791673
-SHA256 (zeux-volk-1.4.304-23-ge3e9ea8_GH0.tar.gz) = 24fa6f857ee2538b4d3b5a748f8c14895e364322d7c34f28bd40b196390d0b0f
-SIZE (zeux-volk-1.4.304-23-ge3e9ea8_GH0.tar.gz) = 67038
+TIMESTAMP = 1754893380
+SHA256 (KhronosGroup-Vulkan-Tools-v1.4.321_GH0.tar.gz) = f5f75413d21d1508b746a3d0594961d64c7155ee5f4f28245b9547c1b4697d8d
+SIZE (KhronosGroup-Vulkan-Tools-v1.4.321_GH0.tar.gz) = 807369
+SHA256 (105d6c1fede00c3a9055e5a531ebf3d99bac406e.patch) = 16af97557ceb980e5019d04d2909f6539e48ed1f9652fb956429e25381425dc9
+SIZE (105d6c1fede00c3a9055e5a531ebf3d99bac406e.patch) = 3793

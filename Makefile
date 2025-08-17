@@ -60,7 +60,6 @@ SUBDIR += x11-servers
 SUBDIR += x11-themes
 SUBDIR += x11-toolkits
 SUBDIR += x11-wm
-SUBDIR += zvault
 
 PORTSTOP=	yes
 
@@ -88,12 +87,16 @@ ${INDEXDIR}/${INDEXFILE}.${INDEX_COMPRESSION_FORMAT}: .PHONY
 	${FETCHINDEX} ${INDEXDIR}/${INDEXFILE}.${INDEX_COMPRESSION_FORMAT} \
 		${MASTER_SITE_INDEX}${INDEXFILE}.${INDEX_COMPRESSION_FORMAT}
 
-#MASTER_SITE_INDEX?=	https://download.FreeBSD.org/ports/index/
+MASTER_SITE_INDEX?=	https://download.FreeBSD.org/ports/index/
 SETENV?=	/usr/bin/env
 FETCHINDEX?=	${SETENV} ${FETCH_ENV} fetch -am -o
 
 .if !defined(INDEX_JOBS)
+.  if defined(.MAKE.JOBS)
+INDEX_JOBS=	${.MAKE.JOBS}
+.  else
 INDEX_JOBS!=	${SYSCTL} -n kern.smp.cpus
+.  endif
 .endif
 
 .if !defined(INDEX_VERBOSE)
@@ -117,11 +120,7 @@ INDEX_SHELL=		/bin/sh
 INDEX_PORTS=.
 .endif
 
-.if exists(/usr/libexec/make_index)
-MAKE_INDEX=	/usr/libexec/make_index /dev/stdin
-.else
 MAKE_INDEX=	perl ${.CURDIR}/Tools/make_index
-.endif
 
 ${INDEXDIR}/${INDEXFILE}: .PHONY
 	@${INDEX_ECHO_1ST} "Generating ${INDEXFILE} - please wait.."; \

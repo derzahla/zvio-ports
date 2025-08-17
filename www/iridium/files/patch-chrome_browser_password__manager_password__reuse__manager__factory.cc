@@ -1,6 +1,6 @@
---- chrome/browser/password_manager/password_reuse_manager_factory.cc.orig	2025-04-16 18:18:42 UTC
+--- chrome/browser/password_manager/password_reuse_manager_factory.cc.orig	2025-06-19 07:37:57 UTC
 +++ chrome/browser/password_manager/password_reuse_manager_factory.cc
-@@ -137,7 +137,7 @@ PasswordReuseManagerFactory::BuildServiceInstanceForBr
+@@ -128,7 +128,7 @@ PasswordReuseManagerFactory::BuildServiceInstanceForBr
    // Prepare password hash data for reuse detection.
    reuse_manager->PreparePasswordHashData(GetSignInStateForMetrics(profile));
  

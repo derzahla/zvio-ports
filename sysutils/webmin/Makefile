@@ -1,5 +1,5 @@
 PORTNAME=	webmin
-PORTVERSION=	2.401
+PORTVERSION=	2.402
 PORTREVISION=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	http://download.webmin.com/updates/:up \

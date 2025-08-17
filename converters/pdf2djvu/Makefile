@@ -1,6 +1,6 @@
 PORTNAME=	pdf2djvu
 DISTVERSION=	0.9.19
-PORTREVISION=	4
+PORTREVISION=	5
 CATEGORIES=	converters
 MASTER_SITES=	https://github.com/jwilk/${PORTNAME}/releases/download/${PORTVERSION}/
 
@@ -10,6 +10,10 @@ WWW=		https://jwilk.net/software/pdf2djvu
 
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/doc/COPYING
+
+BROKEN=		does not compile with either LLVM or GCC
+DEPRECATED=		Port has been abandoned upstream for almost three years: https://groups.io/g/pdf2djvu/message/146
+EXPIRATION_DATE=	2025-08-31
 
 BUILD_DEPENDS=	${LOCALBASE}/include/pstreams/pstream.h:devel/pstreams
 LIB_DEPENDS=	libdjvulibre.so:graphics/djvulibre \

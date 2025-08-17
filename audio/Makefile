@@ -73,7 +73,6 @@
     SUBDIR += caps-lv2
     SUBDIR += caps-plugins
     SUBDIR += cardinal
-    SUBDIR += carla
     SUBDIR += cava
     SUBDIR += cd-discid
     SUBDIR += cddb-bundle
@@ -233,6 +232,7 @@
     SUBDIR += gstreamer1-plugins-chromaprint
     SUBDIR += gstreamer1-plugins-faac
     SUBDIR += gstreamer1-plugins-faad
+    SUBDIR += gstreamer1-plugins-fdkaac
     SUBDIR += gstreamer1-plugins-flac
     SUBDIR += gstreamer1-plugins-flite
     SUBDIR += gstreamer1-plugins-gme
@@ -280,10 +280,10 @@
     SUBDIR += icecast
     SUBDIR += icegenerator
     SUBDIR += ices
+    SUBDIR += id3edit
     SUBDIR += id3el
     SUBDIR += id3lib
     SUBDIR += id3mtag
-    SUBDIR += id3tool
     SUBDIR += id3v2
     SUBDIR += iir1
     SUBDIR += infamous-plugins-lv2
@@ -334,8 +334,10 @@
     SUBDIR += libbpm
     SUBDIR += libbs2b
     SUBDIR += libcanberra
+    SUBDIR += libcanberra-gstreamer
     SUBDIR += libcanberra-gtk2
     SUBDIR += libcanberra-gtk3
+    SUBDIR += libcanberra-pulse
     SUBDIR += libcdaudio
     SUBDIR += libconvolve
     SUBDIR += libcoverart
@@ -405,7 +407,6 @@
     SUBDIR += linux-c7-openal-soft
     SUBDIR += linux-c7-pulseaudio-libs
     SUBDIR += linux-c7-pulseaudio-utils
-    SUBDIR += linux-c7-sdl_mixer
     SUBDIR += linux-laudio
     SUBDIR += linux-rl9-alsa-lib
     SUBDIR += linux-rl9-alsa-lib-devel
@@ -420,14 +421,11 @@
     SUBDIR += linux-rl9-opus
     SUBDIR += linux-rl9-pulseaudio-libs
     SUBDIR += linux-rl9-pulseaudio-utils
-    SUBDIR += linux-rl9-sdl2_mixer
-    SUBDIR += linux-rl9-sdl_sound
     SUBDIR += linuxsampler
     SUBDIR += linuxwave
     SUBDIR += liquidsfz
     SUBDIR += listener
     SUBDIR += littlefly-lv2
-    SUBDIR += lmms
     SUBDIR += logitechmediaserver
     SUBDIR += logitechmediaserver-dynamicplaylist
     SUBDIR += logitechmediaserver-lazysearch
@@ -480,7 +478,6 @@
     SUBDIR += mp3asm
     SUBDIR += mp3blaster
     SUBDIR += mp3burn
-    SUBDIR += mp3check
     SUBDIR += mp3gain
     SUBDIR += mp3guessenc
     SUBDIR += mp3lint
@@ -523,6 +520,7 @@
     SUBDIR += noise-suppression-for-voice-lv2
     SUBDIR += normalize
     SUBDIR += nosefart
+    SUBDIR += noson
     SUBDIR += noson-app
     SUBDIR += nyquist
     SUBDIR += oaml
@@ -598,6 +596,8 @@
     SUBDIR += pianod2
     SUBDIR += picard
     SUBDIR += picard-plugins
+    SUBDIR += piper
+    SUBDIR += piper-phonemize
     SUBDIR += pipewire-module-xrdp
     SUBDIR += pipewire-spa-oss
     SUBDIR += pithos
@@ -652,7 +652,6 @@
     SUBDIR += py-pydub
     SUBDIR += py-pyjacklib
     SUBDIR += py-pylast
-    SUBDIR += py-pyliblo
     SUBDIR += py-pymad
     SUBDIR += py-pyogg
     SUBDIR += py-pyradio

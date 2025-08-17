@@ -1,8 +1,14 @@
 PORTNAME=	bastille
-DISTVERSION=	0.13.20250126
+DISTVERSION=	1.0.1.250714
+PORTREVISION=	1
 CATEGORIES=	sysutils
+DIST_SUBDIR=	bastille
 
-MAINTAINER=	christer.edwards@gmail.com
+PATCH_SITES=	https://github.com/BastilleBSD/bastille/pull/
+PATCHFILES=	1198.patch:-p1 1204.patch:-p1
+
+MAINTAINER=	jdhurtado@orbiware.com
+# co-maintainer: snarfingcode666@gmail.com
 COMMENT=	Jail automation framework
 WWW=		https://bastillebsd.org
 
@@ -12,8 +18,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 USE_GITHUB=	yes
 GH_ACCOUNT=	bastillebsd
 
-NO_BUILD=	yes
 NO_ARCH=	yes
+NO_BUILD=	yes
 
 post-patch:
 	@${REINPLACE_CMD} \

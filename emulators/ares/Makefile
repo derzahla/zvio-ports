@@ -1,7 +1,10 @@
 PORTNAME=	ares
 DISTVERSIONPREFIX=	v
-DISTVERSION=	143
+DISTVERSION=	145
+PORTREVISION=	1
 CATEGORIES=	emulators
+MASTER_SITES=	https://github.com/${PORTNAME}-emulator/${PORTNAME}/releases/download/${DISTVERSIONFULL}/
+DISTNAME=	${PORTNAME}-source
 
 MAINTAINER=	bsdcode@disroot.org
 COMMENT=	Multi-system emulator
@@ -13,18 +16,15 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	librashader>0:devel/librashader
 
 USES=		cmake compiler:c++17-lang gl gnome pkgconfig xorg
-USE_GITHUB=	yes
-GH_ACCOUNT=	ares-emulator
 USE_GL=		opengl
 USE_GNOME=	gtk30
 USE_XORG=	x11 xext xrandr xrender
 
 CMAKE_ARGS=	-DARES_CORES="${_CORES:S/ /;/gW}" \
-		-DARES_VERSION_OVERRIDE=${DISTVERSIONFULL} \
 		-DENABLE_CCACHE=${CCACHE_ENABLED}
-CMAKE_ON=	ARES_SKIP_DEPS \
-		ARES_UNITY_CORES \
-		WITH_SYSTEM_ZLIB
+CMAKE_ON=	ARES_BUILD_OFFICIAL \
+		ARES_SKIP_DEPS \
+		ARES_UNITY_CORES
 CMAKE_OFF=	ARES_BUILD_LOCAL \
 		ARES_BUNDLE_SHADERS \
 		ARES_ENABLE_MINIMUM_CPU
@@ -32,11 +32,13 @@ CMAKE_OFF=	ARES_BUILD_LOCAL \
 EXTRACT_AFTER_ARGS=	--exclude thirdparty/librashader \
 			--no-same-owner --no-same-permissions
 
-OPTIONS_DEFINE=			SDL TOOLS
-OPTIONS_DEFAULT=		A26 ALSA AO CV FC GB GBA LIBRASHADER LIBRETRO \
-				LTO MD MS MSX MYVISION N64 NG NGP OPENAL \
-				OPTIMIZED_CFLAGS OSS PCE PS1 SDL SFC SG SPEC \
-				UDEV USBHID WS
+WRKSRC=		${WRKDIR}/${PORTNAME}-${DISTVERSION}
+
+OPTIONS_DEFINE=			CHD SDL TOOLS
+OPTIONS_DEFAULT=		A26 ALSA AO CHD CV FC GB GBA LIBRASHADER \
+				LIBRETRO LTO MD MS MSX MYVISION N64 NG NGP \
+				OPENAL OPTIMIZED_CFLAGS OSS PCE PS1 SDL SFC SG \
+				SPEC UDEV USBHID WS
 OPTIONS_GROUP=			AUDIO CORES INPUT OPTIMIZATION SHADER
 OPTIONS_GROUP_AUDIO=		ALSA AO OPENAL OSS PULSEAUDIO
 OPTIONS_GROUP_CORES=		A26 CV FC GB GBA MD MS MSX MYVISION N64 NG NGP \
@@ -55,13 +57,14 @@ OPTIONS_SUB=	yes
 
 A26_DESC=		Atari 2600
 ACCURACY_DESC=		Emulation accuracy over performance
+CHD_DESC=		CHD format support via libchdr
 CV_DESC=		ColecoVision
 FC_DESC=		NES / Famicom
 GBA_DESC=		Game Boy Advance
 GB_DESC=		Game Boy / Game Boy Color
 HOTKEYS_DESC=		Inofficial hotkeys locking patch
 LIBRASHADER_DESC=	Slang-shader support via librashader
-LIBRETRO_DESC=		Install slang-shaders from libretro
+LIBRETRO_DESC=		Install slang-shaders from libretro (implies ${LIBRETRO_IMPLIES})
 MD_DESC=		Sega Mega Drive / Genesis
 MSX_DESC=		Microsoft MSX
 MS_DESC=		Sega Master System / Mark III
@@ -89,6 +92,9 @@ ALSA_CMAKE_BOOL=		ARES_ENABLE_ALSA
 AO_LIB_DEPENDS=			libao.so:audio/libao
 AO_CMAKE_BOOL=			ARES_ENABLE_AO
 
+CHD_CMAKE_BOOL=			ARES_ENABLE_CHD \
+				WITH_SYSTEM_ZLIB
+
 CV_VARS=			_CORES+=cv
 
 FC_VARS=			_CORES+=fc
@@ -103,6 +109,7 @@ LIBRASHADER_LIB_DEPENDS=	librashader.so:devel/librashader
 LIBRASHADER_CMAKE_BOOL=		ARES_ENABLE_LIBRASHADER
 
 LIBRETRO_IMPLIES=		LIBRASHADER
+_LIBRETRO_BR_DEPENDS=		libretro-shaders-slang<0:games/libretro-shaders-slang
 LIBRETRO_BUILD_DEPENDS=		${_LIBRETRO_BR_DEPENDS}
 LIBRETRO_RUN_DEPENDS=		${_LIBRETRO_BR_DEPENDS}
 
@@ -116,6 +123,7 @@ MS_VARS=			_CORES+=ms
 
 MYVISION_VARS=			_CORES+=myvision
 
+_N64_BR_DEPENDS=		vulkan-loader>0:graphics/vulkan-loader
 N64_BUILD_DEPENDS=		${_N64_BR_DEPENDS}
 N64_RUN_DEPENDS=		${_N64_BR_DEPENDS}
 N64_VARS=			_CORES+=n64
@@ -140,7 +148,7 @@ PULSEAUDIO_LIB_DEPENDS=		libpulse-simple.so:audio/pulseaudio \
 PULSEAUDIO_CMAKE_BOOL=		ARES_ENABLE_PULSEAUDIO
 
 SDL_USES=			sdl
-SDL_USE=			SDL=sdl2
+SDL_USE=			SDL=sdl3
 SDL_CMAKE_BOOL=			ARES_ENABLE_SDL
 
 SFC_VARS=			_CORES+=sfc
@@ -149,6 +157,8 @@ SG_VARS=			_CORES+=sg
 
 SPEC_VARS=			_CORES+=spec
 
+# https://github.com/ares-emulator/ares/issues/2090
+TOOLS_IMPLIES=			GBA MD NG SFC
 TOOLS_CMAKE_BOOL=		ARES_BUILD_OPTIONAL_TARGETS
 
 UDEV_LIB_DEPENDS=		libudev.so:devel/libudev-devd
@@ -157,9 +167,6 @@ UDEV_CMAKE_BOOL=		ARES_ENABLE_UDEV
 USBHID_CMAKE_BOOL=		ARES_ENABLE_USBHID
 
 WS_VARS=			_CORES+=ws
-
-_LIBRETRO_BR_DEPENDS=	libretro-shaders-slang<0:games/libretro-shaders-slang
-_N64_BR_DEPENDS=	vulkan-loader>0:graphics/vulkan-loader
 
 post-patch:
 	${REINPLACE_CMD} 's|/usr/local|${LOCALBASE}|g' \

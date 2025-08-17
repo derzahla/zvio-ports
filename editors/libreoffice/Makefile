@@ -1,4 +1,4 @@
-PORTREVISION=	0
+PORTREVISION=	3
 
 .include "${.CURDIR}/Makefile.common"
 
@@ -28,7 +28,7 @@ BUILD_DEPENDS=	p5-Archive-Zip>=0:archivers/p5-Archive-Zip \
 		${LOCALBASE}/include/glm/glm.hpp:math/glm \
 		bash:shells/bash \
 		gsed:textproc/gsed \
-		${PYTHON_PKGNAMEPREFIX}lxml>0:devel/py-lxml@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}lxml5>0:devel/py-lxml5@${PY_FLAVOR} \
 		coreutils>=8.23:sysutils/coreutils \
 		flex>=0.26:textproc/flex
 LIB_DEPENDS=	libapr-1.so:devel/apr1 \
@@ -61,7 +61,7 @@ LIB_DEPENDS=	libapr-1.so:devel/apr1 \
 		libpagemaker-0.0.so:print/libpagemaker \
 		libassuan.so:security/libassuan \
 		libgpgme.so:security/gpgme \
-		libgpgmepp.so:security/gpgme-cpp \
+		libgpgmepp.so:security/gpgmepp \
 		libargon2.so:security/libargon2 \
 		libgpg-error.so:security/libgpg-error \
 		libnss3.so:security/nss \
@@ -119,8 +119,6 @@ NOT_FOR_ARCHS_REASON=	Unsupported host_cpu
 .if defined(PRERELEASE)
 MASTER_SITES+=	https://dev-builds.libreoffice.org/pre-releases/src/
 .endif
-
-CONFLICTS_INSTALL=	libreoffice6
 
 INSTALL_TARGET=	distro-pack-install
 
@@ -230,7 +228,7 @@ JAVA_DISTFILES=	17410483b5b5f267aa18b7e00b65e6e0-hsqldb_1_8_0.zip:src \
 		bsh-2.1.1-src.zip:src \
 		rhino-1.7.15.zip:src
 JAVA_USES=	java
-JAVA_VARS=	JAVA_VERSION=17+
+JAVA_VARS=	JAVA_VERSION=17+ NO_SHLIB_REQUIRES_GLOB=libjawt.so
 
 KF5_CONFIGURE_ENABLE=	kf5
 KF5_USE=	kde=config,coreaddons,i18n,kio,windowsystem
@@ -366,6 +364,11 @@ PIE_UNSAFE=	yes
 .include <bsd.port.options.mk>
 
 .include <bsd.port.pre.mk>
+
+.if ${OPSYS} == FreeBSD && ( \
+    (${OSVERSION} >= 1400051 && ${OSVERSION} < 1400057))
+BROKEN=	please update FreeBSD base system first to fix an ABI incompatibility
+.endif
 
 .if ${ARCH} == powerpc || ${ARCH} == powerpcspe || ${ARCH} == powerpc64
 CONFIGURE_ARGS+=	--disable-skia

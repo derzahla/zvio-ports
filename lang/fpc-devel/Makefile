@@ -1,5 +1,5 @@
 PORTNAME=	fpc
-PORTVERSION=	3.3.1.20250130
+PORTVERSION=	3.3.1.20250807
 CATEGORIES=	lang
 MASTER_SITES=	LOCAL/acm/freepascal/:bootstrap \
 		LOCAL/acm/freepascal/:man
@@ -14,7 +14,7 @@ CONFLICTS=	fpc
 
 RUN_DEPENDS=	${LOCALBASE}/bin/as:devel/binutils
 
-ONLY_FOR_ARCHS=	i386 amd64 aarch64
+ONLY_FOR_ARCHS=	aarch64 amd64 i386
 
 USES+=		gmake iconv
 USE_BINUTILS=	yes
@@ -28,7 +28,7 @@ USE_GITLAB=	yes
 GL_SITE=	https://gitlab.com/freepascal.org
 GL_ACCOUNT=	fpc
 GL_PROJECT=	source
-GL_TAGNAME=	212b0fb7a834df33f9192ad64dac8eebe35921ec
+GL_TAGNAME=	574b03bfb99348067f98320e7da2a788005214d4
 
 FPCSRCDIR=	source-${GL_TAGNAME}
 
