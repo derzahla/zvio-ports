@@ -1,5 +1,5 @@
 PORTNAME=	vmutils
-PORTREVISION=	3
+PORTREVISION=	1
 
 COMMENT=	Ancillary utilities and agent for VictoriaMetrics
 
@@ -19,7 +19,7 @@ do-install:
 
 do-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
-	${CP} -a ${INSTALL_WRKSRC}/docs/victoriametrics/vm* ${STAGEDIR}${DOCSDIR}
+	${INSTALL_DATA} ${INSTALL_WRKSRC}/docs/victoriametrics/vm* ${STAGEDIR}${DOCSDIR}
 
 MASTERDIR=	${.CURDIR}/../victoria-metrics
 

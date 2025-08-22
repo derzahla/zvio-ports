@@ -3,7 +3,7 @@ DISTVERSIONPREFIX=	releases/v
 DISTVERSION=	0.5.7
 CATEGORIES=	security
 
-MAINTAINER=	mauroeldritch@gmail.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Shamir's Secret Sharing Scheme
 WWW=		http://point-at-infinity.org/ssss/
 

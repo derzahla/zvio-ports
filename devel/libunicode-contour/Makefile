@@ -1,7 +1,6 @@
 PORTNAME=	libunicode
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.6.0
-PORTREVISION=	1
 CATEGORIES=	devel
 PKGNAMESUFFIX=	-contour
 
@@ -20,23 +19,17 @@ USES=		cmake:testing
 USE_GITHUB=	yes
 GH_ACCOUNT=	contour-terminal
 
-USE_LDCONFIG=	${PREFIX}/lib/contour
+USE_LDCONFIG=	yes
 
 CMAKE_ARGS=	-DLIBUNICODE_UCD_DIR:STRING=${LOCALBASE}/share/unicode/ucd \
 		${CMAKE_ARGS_${ARCH}}
 CMAKE_ARGS_i386=	-DLIBUNICODE_SIMD_IMPLEMENTATION:STRING=std
 
-REINPLACE_ARGS=	-i ''
+CONFLICTS_INSTALL=	libunicode
 
 PORTDOCS=	README.md TODO.md
 
 OPTIONS_DEFINE=	DOCS
-
-post-install:
-	@${MKDIR} ${STAGEDIR}${PREFIX}/lib/contour
-	${MV} ${STAGEDIR}${PREFIX}/lib/*.* ${STAGEDIR}${PREFIX}/lib/contour
-	${REINPLACE_CMD} -e 's|$${_IMPORT_PREFIX}/lib/|$${_IMPORT_PREFIX}/lib/contour/|' \
-		${STAGEDIR}${PREFIX}/lib/cmake/libunicode/libunicode-targets-${CMAKE_BUILD_TYPE:tl}.cmake
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}

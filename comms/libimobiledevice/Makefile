@@ -1,7 +1,7 @@
 PORTNAME=	libimobiledevice
-DISTVERSION=	1.3.0-300
+DISTVERSION=	1.3.0-241
 PORTREVISION?=	0
-DISTVERSIONSUFFIX=	-gcb34a17
+DISTVERSIONSUFFIX=	-g2a0a6d5
 CATEGORIES?=	comms
 #MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/${DISTVERSION}/
 
@@ -12,8 +12,7 @@ WWW=		https://www.libimobiledevice.org
 LICENSE=	LGPL21+
 LICENSE_FILE=	${WRKSRC}/COPYING.LESSER
 
-USES+=		autoreconf cpe libtool localbase:ldflags pkgconfig \
-		readline ssl
+USES+=		autoreconf cpe libtool localbase:ldflags pathfix pkgconfig ssl
 USE_GITHUB=	yes
 
 GNU_CONFIGURE=	yes

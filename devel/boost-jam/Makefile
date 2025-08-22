@@ -18,9 +18,7 @@ USES=		compiler:c++11-lang
 
 WRKSRC_SUBDIR=	tools/build/src/engine
 
-.include "${.CURDIR:H}/boost-all/common.mk"
-
-EXTRACT_AFTER_ARGS=${DISTNAME}/${WRKSRC_SUBDIR}
+.include "${.CURDIR}/../boost-all/common.mk"
 
 do-install:
 	${INSTALL_PROGRAM} ${WRKSRC}/bjam ${STAGEDIR}${PREFIX}/bin

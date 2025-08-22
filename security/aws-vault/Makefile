@@ -1,10 +1,10 @@
 PORTNAME=	aws-vault
 DISTVERSIONPREFIX=	v
 DISTVERSION=	6.6.2
-PORTREVISION=	20
+PORTREVISION=	18
 CATEGORIES=	security
 
-MAINTAINER=	mauroeldritch@gmail.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Vault for securely storing and accessing AWS credentials
 WWW=		https://github.com/99designs/aws-vault
 

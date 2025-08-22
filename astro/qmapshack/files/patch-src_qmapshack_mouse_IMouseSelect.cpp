@@ -1,10 +1,10 @@
---- src/qmapshack/mouse/IMouseSelect.cpp.orig	2025-07-04 12:38:57 UTC
+--- src/qmapshack/mouse/IMouseSelect.cpp.orig	2021-05-24 09:18:08 UTC
 +++ src/qmapshack/mouse/IMouseSelect.cpp
-@@ -21,6 +21,7 @@
+@@ -24,6 +24,7 @@
  
  #include <QPainterPath>
  #include <QtWidgets>
 +#include <QPainterPath>
  
- #include "gis/CGisDraw.h"
- #include "mouse/CMouseAdapter.h"
+ IMouseSelect::IMouseSelect(CGisDraw* gis, CCanvas* canvas, CMouseAdapter* mouse)
+     : IMouse(gis, canvas, mouse)

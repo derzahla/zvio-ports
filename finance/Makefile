@@ -36,7 +36,6 @@
     SUBDIR += gnucash-docs
     SUBDIR += grisbi
     SUBDIR += homebank
-    SUBDIR += homebox
     SUBDIR += hs-hledger
     SUBDIR += hs-hledger-ui
     SUBDIR += hs-hledger-web
@@ -50,6 +49,7 @@
     SUBDIR += ledgersmb12
     SUBDIR += libbtc
     SUBDIR += libofx
+    SUBDIR += libstocks
     SUBDIR += linux-tradingview
     SUBDIR += lnd
     SUBDIR += moneymanagerex

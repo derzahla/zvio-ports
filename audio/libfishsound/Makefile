@@ -16,7 +16,7 @@ LIB_DEPENDS=	libFLAC.so:audio/flac \
 		libspeex.so:audio/speex \
 		libvorbis.so:audio/libvorbis
 
-USES=		libtool pkgconfig
+USES=		libtool pathfix pkgconfig
 
 CONFIGURE_ARGS=	ac_cv_prog_HAVE_DOXYGEN=false
 GNU_CONFIGURE=	yes

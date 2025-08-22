@@ -1,16 +1,15 @@
 PORTNAME=	pitivi
 DISTVERSION=	2023.03
-PORTREVISION=	1
 CATEGORIES=	multimedia
 MASTER_SITES=	GNOME
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	kwm@FreeBSD.org
 COMMENT=	Gstreamer based non-linear audio/video editor
 WWW=		https://www.pitivi.org
 
 LICENSE=	LGPL21+
 
-BUILD_DEPENDS=	gst-validate-launcher:devel/gstreamer1-devtools \
+BUILD_DEPENDS=	gst-validate-launcher:multimedia/gstreamer1-validate \
 		itstool:textproc/itstool
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}gstreamer1>=1.14.0:multimedia/py-gstreamer1@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}cairo>=0:graphics/py-cairo@${PY_FLAVOR} \

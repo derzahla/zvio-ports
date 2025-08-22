@@ -9,7 +9,7 @@ WWW=		https://github.com/twogood/unshield
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		cmake cpe ssl
+USES=		cmake cpe pathfix ssl
 
 CFLAGS+=	-fPIC
 USE_LDCONFIG=	yes

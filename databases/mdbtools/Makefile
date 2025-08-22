@@ -15,7 +15,7 @@ BUILD_DEPENDS=	bash-completion>=0:shells/bash-completion \
 LIB_DEPENDS=	libodbcinst.so:databases/unixODBC
 RUN_DEPENDS=	bash-completion>=0:shells/bash-completion
 
-USES=		bison cpe gnome iconv:wchar_t libtool \
+USES=		bison cpe gnome iconv:wchar_t libtool pathfix \
 		pkgconfig readline
 CPE_VENDOR=	mdbtools_project
 USE_GNOME=	glib20

@@ -18,7 +18,7 @@ RUN_DEPENDS=	bash:shells/bash \
 		compiz:x11-wm/compiz \
 		sox:audio/sox
 
-USES=		cmake gettext-tools gl gnome localbase:ldflags \
+USES=		cmake gettext-tools gl gnome localbase:ldflags pathfix \
 		pkgconfig shebangfix
 USE_GITHUB=	yes
 GH_ACCOUNT=	Cairo-Dock

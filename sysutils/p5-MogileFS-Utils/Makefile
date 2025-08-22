@@ -5,7 +5,7 @@ MASTER_SITES=	CPAN
 MASTER_SITE_SUBDIR=	CPAN:DORMANDO
 PKGNAMEPREFIX=	p5-
 
-MAINTAINER=	perl@FreeBSD.org
+MAINTAINER=	trociny@FreeBSD.org
 COMMENT=	MogileFS tools
 WWW=		https://metacpan.org/release/MogileFS-Utils
 

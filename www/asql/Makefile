@@ -4,7 +4,7 @@ CATEGORIES=	www
 MASTER_SITES=	http://www.steve.org.uk/Software/asql/ \
 		http://www.c-s.li/ports/
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	joe@thrallingpenguin.com
 COMMENT=	Query Apache logfiles via SQL
 WWW=		http://www.steve.org.uk/Software/asql/
 

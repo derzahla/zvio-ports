@@ -1,5 +1,5 @@
 PORTNAME=	gimp
-DISTVERSION=	3.0.4
+DISTVERSION=	3.0.2
 PORTREVISION=	1
 CATEGORIES?=	graphics gnome
 MASTER_SITES=	GIMP/gimp/v${PORTVERSION:R}
@@ -80,8 +80,8 @@ MESON_ARGS=	-Dappdata-test=disabled \
 
 OPTIONS_DEFINE?=	AALIB GHOSTSCRIPT HEIF HELP OPENJPEG JXL LIBMNG WMF DOCS VALA CFITSIO
 OPTIONS_DEFAULT?=	AALIB GHOSTSCRIPT HEIF OPENJPEG JXL WMF DOCS VALA LUA CFITSIO
-OPTIONS_SINGLE=		SCRIPTS
-OPTIONS_SINGLE_SCRIPTS=	LUA LUAJIT LUA_NONE
+OPTIONS_RADIO=		SCRIPTS
+OPTIONS_RADIO_SCRIPTS=	LUA LUAJIT
 OPTIONS_SUB=	yes
 
 AALIB_LIB_DEPENDS=	libaa.so:graphics/aalib
@@ -121,15 +121,11 @@ VALA_USES=		vala:build
 VALA_MESON_ENABLED=	vala
 
 LUA_USES=		lua:51
-LUA_BUILD_DEPENDS=	${LUA_REFMODLIBDIR}/lgi/corelgilua${LUA_VER_STR}.so:devel/lua-lgi@${LUA_FLAVOR}
-LUA_RUN_DEPENDS=	${LUA_REFMODLIBDIR}/lgi/corelgilua${LUA_VER_STR}.so:devel/lua-lgi@${LUA_FLAVOR}
+LUA_MESON_TRUE=		lua
 
 LUAJIT_DESC?=		Lua scripting language support via Luajit
 LUAJIT_USES=		luajit
-LUAJIT_BROKEN=		LuaJIT cannot use devel/lua-lgi module yet
-
-LUA_NONE_DESC?=		Disable Lua scripting language support
-LUA_NONE_MESON_FALSE=	lua
+LUAJIT_MESON_TRUE=	lua
 
 LIBS+=		-lexecinfo -lm
 CPE_PRODUCT=	gimp
@@ -138,20 +134,11 @@ CPE_VENDOR=	gnu
 SHEBANG_FILES=	plug-ins/python/*.py \
 		plug-ins/python/python-console/*.py \
 		extensions/goat-exercises/*.py \
-		extensions/goat-exercises/*.js \
-		extensions/goat-exercises/*.lua
+		extensions/goat-exercises/*.js
 
 SHEBANG_LANG+=	gjs
 
 PLIST_SUB+=	BINVER=${PORTVERSION:R:R} ABIVER=${PORTVERSION:R} SHLIBVER=${PORTVERSION:E}
-
-.include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MLUA} || ${PORT_OPTIONS:MLUAJIT}
-PLIST_SUB+=	LUASCRIPTS=""
-.else
-PLIST_SUB+=	LUASCRIPTS="@comment "
-.endif
 
 #post-patch:
 #.for s in 16 22 24 32 48 64 256

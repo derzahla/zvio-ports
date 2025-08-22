@@ -133,7 +133,6 @@
     SUBDIR += just
     SUBDIR += kaddressbook
     SUBDIR += kalarm
-    SUBDIR += kanbanapp
     SUBDIR += kcharselect
     SUBDIR += kchmviewer
     SUBDIR += kdeconnect-kde
@@ -153,6 +152,7 @@
     SUBDIR += kronometer
     SUBDIR += kruler
     SUBDIR += ktimetracker
+    SUBDIR += kuserfeedback
     SUBDIR += kweather
     SUBDIR += kweathercore
     SUBDIR += latte-dock
@@ -230,7 +230,6 @@
     SUBDIR += py-calendar_cli
     SUBDIR += py-i3-gnome-pomodoro
     SUBDIR += py-khal
-    SUBDIR += py-khard
     SUBDIR += py-paperless
     SUBDIR += py-paperless-ngx
     SUBDIR += py-py3status
@@ -240,14 +239,12 @@
     SUBDIR += py-term-background
     SUBDIR += py-trash-cli
     SUBDIR += py-vdirsyncer
-    SUBDIR += py-vit
     SUBDIR += py-vobject
     SUBDIR += py-vorta
     SUBDIR += qlipper
     SUBDIR += qmediamanager
     SUBDIR += qownnotes
     SUBDIR += qtfeedback
-    SUBDIR += readur
     SUBDIR += recoll
     SUBDIR += rednotebook
     SUBDIR += remind

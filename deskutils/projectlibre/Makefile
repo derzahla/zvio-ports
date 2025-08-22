@@ -1,5 +1,5 @@
 PORTNAME=	projectlibre
-DISTVERSION=	1.9.8
+PORTVERSION=	1.9.3
 CATEGORIES=	deskutils editors java
 MASTER_SITES=	SF/${PORTNAME}/ProjectLibre/${PORTVERSION:S/.0$//} \
 		LOCAL/cpm/projectlibre/:icons
@@ -8,15 +8,13 @@ DISTFILES=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX} \
 DIST_SUBDIR=	${PORTNAME}
 EXTRACT_ONLY=	${PORTNAME}-${DISTVERSION}${EXTRACT_SUFX}
 
-MAINTAINER=	vvd@FreeBSD.org
+MAINTAINER=	joe@thrallingpenguin.com
 COMMENT=	Open source desktop alternative to Microsoft Project
-WWW=		https://www.projectlibre.com/projectlibre-desktop/
+WWW=		https://www.projectlibre.com/product/1-alternative-microsoft-project-open-source
 
 LICENSE=	CPAL-1.0
-LICENSE_FILE=	${WRKSRC}/license/license.txt
 
 USES=		java
-JAVA_VERSION=	21+
 
 DATADIR=	${JAVASHAREDIR}/${PORTNAME}-${PORTVERSION}
 DESKTOP_ENTRIES="ProjectLibre" \
@@ -28,7 +26,6 @@ DESKTOP_ENTRIES="ProjectLibre" \
 NO_ARCH=	yes
 NO_BUILD=	yes
 SUB_FILES=	projectlibre.sh
-SUB_LIST=	JAVA="${JAVA}"
 
 DATAFILES=	lib projectlibre.jar readme.html
 

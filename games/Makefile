@@ -1140,7 +1140,6 @@
     SUBDIR += xpyraminx
     SUBDIR += xqf
     SUBDIR += xrally
-    SUBDIR += xray-16
     SUBDIR += xray_re-tools
     SUBDIR += xrick
     SUBDIR += xrisk
@@ -1168,7 +1167,6 @@
     SUBDIR += xtron
     SUBDIR += xtruco
     SUBDIR += xtux
-    SUBDIR += xtxf
     SUBDIR += xvier
     SUBDIR += xworm
     SUBDIR += xye

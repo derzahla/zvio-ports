@@ -20,8 +20,6 @@ MESON_ARGS=	--default-library=both -Dgtk_doc=false -Dintrospection=true
 USE_CSTD=	c11
 USE_LDCONFIG=	yes
 
-PLIST_SUB=	PATCH_VERSION=${PORTVERSION:E}
-
 OPTIONS_DEFINE=	VAPI
 OPTIONS_SUB=	yes
 

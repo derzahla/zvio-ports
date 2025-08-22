@@ -1,17 +1,18 @@
 PORTNAME=	libvgm
-DISTVERSION=	g20250714
+DISTVERSION=	g20240608
+PORTREVISION=	1
 CATEGORIES=	audio
 
 MAINTAINER=	tagattie@FreeBSD.org
 COMMENT=	More modular rewrite of most components from VGMPlay
 WWW=		https://github.com/ValleyBell/libvgm
 
-USES=		cmake compiler:c++14-lang iconv
+USES=		cmake compiler:c++14-lang iconv pathfix
 USE_LDCONFIG=	yes
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	ValleyBell
-GH_TAGNAME=	7cad783
+GH_TAGNAME=	34c368c
 
 CMAKE_ON=	AUDIODRV_OSS
 CMAKE_OFF=	CMAKE_CXX_EXTENSIONS

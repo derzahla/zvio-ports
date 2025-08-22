@@ -1,10 +1,11 @@
 PORTNAME=	lxml
-DISTVERSION=	6.0.0
+PORTVERSION=	4.9.3
+PORTREVISION=	2
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	vishwin@FreeBSD.org
+MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Pythonic binding for the libxml2 and libxslt libraries
 WWW=		https://lxml.de/ \
 		https://github.com/lxml/lxml
@@ -12,12 +13,9 @@ WWW=		https://lxml.de/ \
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/doc/licenses/BSD.txt
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}
-
-USES=		compiler cpe gnome python
+USES=		compiler cpe gnome python uniquefiles:dirs
 USE_GNOME=	libxml2 libxslt
-USE_PYTHON=	autoplist concurrent cython3 pep517
+USE_PYTHON=	autoplist concurrent cython distutils
 
 LDFLAGS+=	-Wl,-rpath=${LOCALBASE}/lib
 
@@ -26,12 +24,23 @@ PORTDOCS=	*
 
 OPTIONS_DEFINE=	DOCS
 
+# needed for test to work
+PYDISTUTILS_BUILD_TARGET=	build_ext
+PYDISTUTILS_BUILDARGS=		--inplace
+
 # force regeneration of cython files
 post-extract:
 	@${FIND} ${WRKSRC} -name "*.c" -delete
 
+pre-configure: # remove with update to 5.x
+	@if ! xml2-config --version | ${GREP} -q ^2\.11; then \
+		${REINPLACE_CMD} -e 's|, xmlerror.xmlError\*|, const xmlerror.xmlError*|' \
+			${WRKSRC}/src/lxml/*.pxi; \
+	fi
+
 post-install:
-	@${FIND} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR} -name '*.so' -exec ${STRIP_CMD} {} +
+	@${FIND} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR} \
+		-name '*.so' -exec ${STRIP_CMD} {} +
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}
@@ -39,11 +48,8 @@ post-install-DOCS-on:
 	@cd ${WRKSRC} && ${COPYTREE_SHARE} doc ${STAGEDIR}${DOCSDIR}
 
 # see upstream Makefile, test target
-# tests require compiled extensions in the source directories
 do-test:
-	cd ${BUILD_WRKSRC} && \
-		${SETENV} ${MAKE_ENV} ${PYTHON_CMD} ${PYDISTUTILS_SETUP} build_ext --inplace && \
-		${PYTHON_CMD} test.py -p -v
+	cd ${WRKSRC} && ${PYTHON_CMD} test.py -p -v
 
 .include <bsd.port.pre.mk>
 

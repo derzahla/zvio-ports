@@ -11,7 +11,7 @@ WWW=		https://github.com/x42/libltc
 LICENSE=	LGPL3
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gmake libtool
+USES=		gmake libtool pathfix
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes

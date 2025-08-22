@@ -29,7 +29,7 @@ LIB_DEPENDS=	libavahi-client.so:net/avahi-app \
 		libuuid.so:misc/libuuid
 
 USES=		tar:xz localbase libtool iconv:wchar_t pkgconfig gnome gmake \
-		gperf sqlite gnome
+		gperf sqlite gnome pathfix
 USE_GNOME=	libxml2
 
 GNU_CONFIGURE=	yes

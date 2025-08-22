@@ -1,14 +1,17 @@
 PORTNAME=	SFML
-DISTVERSION=	2.6.2
+PORTVERSION=	2.6.1
+PORTREVISION=	1
 CATEGORIES=	devel
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Simple and Fast Multimedia Library
 WWW=		https://www.sfml-dev.org/ \
 		https://github.com/SFML/SFML
 
 LICENSE=	ZLIB
 LICENSE_FILE=	${WRKSRC}/license.md
+
+BROKEN_FreeBSD_15=	compilation fails with libc++ 19, see PR281540
 
 USES=		cmake compiler:c++11-lang
 USE_GITHUB=	yes
@@ -19,9 +22,6 @@ CONFLICTS=	sfml251
 
 PORTDATA=	*
 PORTDOCS=	*
-
-PLIST_SUB=	LONGVERSION=${DISTVERSION} \
-		SHORTVERSION=${DISTVERSION:R}
 
 OPTIONS_DEFINE=		DOCS DOXYGEN
 OPTIONS_GROUP=		MODULES

@@ -1,22 +1,23 @@
 PORTNAME=	osv-scanner
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.2.1
+DISTVERSION=	1.9.2
+PORTREVISION=	3
 CATEGORIES=	security
 
-MAINTAINER=	dutra@FreeBSD.org
+MAINTAINER=	lcook@FreeBSD.org
 COMMENT=	Vulnerability scanner written in Go which uses the OSV database
 WWW=		https://github.com/google/osv-scanner
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.24,modules,run
+USES=		go:1.23,modules
 
 _BUILD_VERSION=	${DISTVERSION}
-_BUILD_COMMIT=	04a8728
+_BUILD_COMMIT=	1e295ee
 _BUILD_DATE=	$$(date +%Y-%m-%d)
 
-GO_MODULE=	github.com/google/${PORTNAME}/v2
+GO_MODULE=	github.com/google/${PORTNAME}
 GO_TARGET=	./cmd/${PORTNAME}
 GO_BUILDFLAGS=	-ldflags "\
 		-s -w \

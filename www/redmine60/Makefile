@@ -1,6 +1,5 @@
 PORTNAME=	redmine
-PORTVERSION=	6.0.6
-PORTREVISION=	2
+PORTVERSION=	6.0.5
 CATEGORIES=	www
 MASTER_SITES=	https://www.redmine.org/releases/
 PKGNAMESUFFIX=	60
@@ -91,7 +90,7 @@ post-extract:
 	@${MV} ${WRKSRC}/config/settings.yml ${WRKSRC}/config/settings.yml.sample
 	@${MV} ${WRKSRC}/config/database.yml.example ${WRKSRC}/config/database.yml.sample
 
-post-patch:
+Xpost-patch:
 	@${RM} ${WRKSRC}/Gemfile.orig
 
 do-install:

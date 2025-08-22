@@ -1,17 +1,17 @@
 PORTNAME=	burrtools
 PORTVERSION=	0.6.3
-PORTREVISION=	30
+PORTREVISION=	29
 CATEGORIES=	games
 MASTER_SITES=	SF
 
-MAINTAINER=	fuz@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Puzzle solver
 WWW=		https://burrtools.sourceforge.net/
 
 LICENSE=	GPLv2+ # COPYING is GPLv3
 
-BUILD_DEPENDS=	boost-libs>0:devel/boost-libs
-LIB_DEPENDS=	libpng.so:graphics/png \
+LIB_DEPENDS=	libboost_system.so:devel/boost-libs \
+		libpng.so:graphics/png \
 		libfltk.so:x11-toolkits/fltk
 
 USES=		gl gmake localbase lua:51
@@ -24,7 +24,7 @@ CONFIGURE_ENV=	ac_cv_lib_ICE_IceConnectionNumber="no" \
 MAKE_ARGS=	am_lua_liblua_a_OBJECTS='lua/luaclass.$$(OBJEXT)'
 
 LDFLAGS+=	-Wl,--as-needed # fltk deps
-LIBS+=		-llua-${LUA_VER}
+LIBS+=		-llua-${LUA_VER} -lboost_system # _ZN5boost6system15system_categoryEv
 
 DESKTOP_ENTRIES="BurrGui" "" "burricons" "burrGui" "Game;LogicGame;" ""
 
@@ -35,7 +35,7 @@ PORTEXAMPLES=	*
 
 OPTIONS_DEFINE=	DOCS EXAMPLES
 
-pre-configure:
+post-patch:
 	${REINPLACE_CMD} -e '/GL_X_LIBS/d' ${WRKSRC}/configure
 	${REINPLACE_CMD} -e \
 		's|g++ |$$(CXX) | ; \

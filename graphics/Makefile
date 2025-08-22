@@ -118,6 +118,7 @@
     SUBDIR += compupic
     SUBDIR += converseen
     SUBDIR += corrupter
+    SUBDIR += cosmoplayer
     SUBDIR += cptutils
     SUBDIR += crw
     SUBDIR += ctl
@@ -347,7 +348,6 @@
     SUBDIR += hs-tart
     SUBDIR += hugin
     SUBDIR += hyprgraphics
-    SUBDIR += hyprland-protocols
     SUBDIR += icat
     SUBDIR += icc-profiles-adobe-cs4
     SUBDIR += icc-profiles-basiccolor
@@ -831,8 +831,6 @@
     SUBDIR += php83-gd
     SUBDIR += php84-exif
     SUBDIR += php84-gd
-    SUBDIR += php85-exif
-    SUBDIR += php85-gd
     SUBDIR += phplot
     SUBDIR += picpuz
     SUBDIR += piddle

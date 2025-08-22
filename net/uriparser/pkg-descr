@@ -1,3 +1,1 @@
-uriparser is a strictly RFC 3986 compliant URI parsing and handling library
-written in C89 ("ANSI C"). uriparser is cross-platform, fast, supports both
-char and wchar_t
+uriparser is an RFC 3986 URI parsing library written in C++.

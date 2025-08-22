@@ -1,4 +1,3 @@
 bin/snmp_exporter
 bin/snmp_exporter_generator
 @sample %%ETCDIR%%/generator.yml.sample
-@sample %%ETCDIR%%/snmp.yml.sample

@@ -1,5 +1,5 @@
 PORTNAME=	stomp
-DISTVERSION=	2.0.3
+PORTVERSION=	2.0.3
 CATEGORIES=	net-im pear
 
 MAINTAINER=	dbaio@FreeBSD.org
@@ -14,10 +14,4 @@ CONFLICTS=	pecl-stomp-1*
 
 PORTSCOUT=	limit:^2.*
 
-.include <bsd.port.pre.mk>
-
-.if ${OPSYS} == FreeBSD
-CFLAGS+=	-Wno-error=int-conversion
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

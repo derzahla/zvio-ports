@@ -11,7 +11,7 @@ LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libboost_iostreams.so:devel/boost-libs \
-		liblace.so:devel/lace14
+		liblace.so:devel/lace
 
 USES=		cmake:testing
 USE_CXXSTD=	c++14

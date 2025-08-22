@@ -10,6 +10,7 @@ WWW=		https://github.com/appneta/tcpreplay
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/docs/LICENSE
 
+BUILD_DEPENDS=	pcapnav-config:net/libpcapnav
 LIB_DEPENDS=	libdnet.so:net/libdnet \
 		libopts.so:devel/autogen
 
@@ -19,7 +20,9 @@ CPE_VENDOR=	broadcom
 GNU_CONFIGURE=	yes
 # libopts options are required when using autogen
 CONFIGURE_ARGS=	--disable-libopts-install \
-		--disable-local-libopts
+		--disable-local-libopts \
+		--program-transform-name='s|.*\(tcp.*\)|\1|' \
+		--with-pcapnav-config=${LOCALBASE}/bin/pcapnav-config
 
 TEST_TARGET=	test
 

@@ -3,7 +3,8 @@ CATEGORIES=	graphics
 
 COMMENT=	GStreamer OpenExr codec plugin
 
-LIB_DEPENDS=	libOpenEXR.so:graphics/openexr
+LIB_DEPENDS=	libOpenEXR.so:graphics/openexr \
+		libImath-3_1.so:math/Imath
 
 USES+=		compiler:c++11-lang
 

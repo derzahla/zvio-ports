@@ -1,3 +1,0 @@
-jinjanator can be extended through the use of plugins; these are Python
-packages installed into the same environment as the tool itself, which use
-special markers to 'hook' into various features.

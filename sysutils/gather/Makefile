@@ -3,7 +3,7 @@ PORTVERSION=	0.4.1
 PORTREVISION=	1
 CATEGORIES=	sysutils
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	trociny@FreeBSD.org
 COMMENT=	Utility to store and display system statistics
 WWW=		https://github.com/trociny/gather
 

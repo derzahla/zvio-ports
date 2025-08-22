@@ -16,10 +16,4 @@ RUN_DEPENDS=	pdflib-perl>=0:print/pdflib-perl \
 USES=		perl5
 USE_PERL5=	configure
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} >= 504200
-EXTRA_PATCHES=	${PATCHDIR}/extrapatch-Makefile.PL
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

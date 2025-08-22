@@ -12,7 +12,7 @@ WWW=		https://www.xiph.org/ogg/
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		libtool tar:xz
+USES=		libtool pathfix tar:xz
 USE_LDCONFIG=	yes
 
 GNU_CONFIGURE=	yes

@@ -1,5 +1,5 @@
 PORTNAME=	grape_logging
-PORTVERSION=	2.1.1
+PORTVERSION=	1.8.4
 CATEGORIES=	devel rubygems
 MASTER_SITES=	RG
 

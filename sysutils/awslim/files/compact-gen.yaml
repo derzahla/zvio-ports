@@ -7,7 +7,6 @@ services:
   cloudwatchlogs:
   ebs:
   ec2:
-  ecs:
   eventbridge:
   iam:
   kms:

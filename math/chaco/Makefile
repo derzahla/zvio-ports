@@ -1,12 +1,15 @@
 PORTNAME=	chaco
-DISTVERSION=	2.2
+PORTVERSION=	2.2
 CATEGORIES=	math
-MASTER_SITES=	https://ftp.mcs.anl.gov/pub/petsc/externalpackages/
-DISTNAME=	Chaco-${DISTVERSION}
+MASTER_SITES=	http://www.cs.sandia.gov/downloads/papers/bahendr/ \
+		http://bsd1.csme.ru/myports/ \
+		http://bsd2.csme.ru/myports/ \
+		http://bsd3.csme.ru/myports/
+DISTNAME=	Chaco-${PORTVERSION}
 
-MAINTAINER=	alven@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Software for partitioning graphs
-WWW=		https://github.com/sandialabs/Chaco/
+WWW=		http://www.cs.sandia.gov/~bahendr/chaco.html
 
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/../GNU_Lesser_GPL.txt

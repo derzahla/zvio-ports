@@ -5,7 +5,7 @@ DISTVERSIONSUFFIX=	-release
 CATEGORIES=	multimedia python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	OpenCV-based video scene detection program and Python library
 WWW=		https://www.scenedetect.com
 

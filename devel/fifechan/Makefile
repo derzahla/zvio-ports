@@ -3,12 +3,15 @@ PORTVERSION=	0.1.5
 PORTREVISION=	1
 CATEGORIES=	devel games
 
-MAINTAINER=	danfe@FreeBSD.org
+MAINTAINER=	fiziologus@gmail.com
 COMMENT=	Small, efficient C++ GUI library designed for games
-WWW=		https://fifengine.github.io/fifechan/
+WWW=		http://fifengine.net/
 
 LICENSE=	LGPL21+
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
+
+DEPRECATED=	Outdated, unsupported upstream and development has slowed down considerbly for the last years
+EXPIRATION_DATE=2025-06-30
 
 USES=		cmake
 USE_LDCONFIG=	yes

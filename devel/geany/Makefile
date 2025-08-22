@@ -1,5 +1,6 @@
 PORTNAME=	geany
-PORTVERSION=	2.1
+PORTVERSION=	2.0
+PORTREVISION=	2
 CATEGORIES=	devel editors
 MASTER_SITES=	https://download.geany.org/ \
 		SF
@@ -21,18 +22,20 @@ USE_LDCONFIG=	yes
 
 SHEBANG_FILES=	scripts/gen-api-gtkdoc.py
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=${PREFIX}/share
 INSTALL_TARGET=	install-strip
 
-CONFLICTS_INSTALL=	geany-themes
-
-OPTIONS_DEFINE=		DOCS NLS VTE
+OPTIONS_DEFINE=		DOCS NLS THEMES VTE
 OPTIONS_DEFAULT=	VTE
 OPTIONS_SUB=		yes
 
+THEMES_DESC=	Additional color schemes
 VTE_DESC=	Embedded virtual terminal
 
 NLS_USES=		gettext-runtime
 NLS_CONFIGURE_ENABLE=	nls
+
+THEMES_RUN_DEPENDS=	${LOCALBASE}/share/geany/colorschemes/bespin.conf:devel/geany-themes
 
 VTE_USE=		GNOME=vte3
 VTE_CONFIGURE_ENABLE=	vte

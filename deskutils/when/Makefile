@@ -20,8 +20,6 @@ NO_BUILD=	yes
 
 WRKSRC=		${WRKDIR}/ben-crowell-when-965b37762cc7/
 
-PORTSCOUT=	skipv:1.2.00
-
 SHEBANG_FILES=	when
 
 .include <bsd.port.mk>

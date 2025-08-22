@@ -1,11 +1,12 @@
 PORTNAME=	adns
-DISTVERSION=	1.6.0
+DISTVERSION=	1.4
+PORTREVISION=	1
+DISTVERSIONSUFFIX=	-py1
 CATEGORIES=	dns python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DIST_SUBDIR=	${PORTNAME}_python
 
-MAINTAINER=	atanubiswas484@gmail.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Python module to resolve IPs to host names
 WWW=		https://github.com/trolldbois/python3-adns/
 
@@ -17,7 +18,7 @@ LIB_DEPENDS=	libadns.so:dns/adns
 USES=		localbase python
 USE_PYTHON=	autoplist distutils
 
-post-install:
-	${STRIP_CMD} ${STAGEDIR}${PYTHON_SITELIBDIR}/adns*.so
+post-patch:
+	@${REINPLACE_CMD} -e 's|1.4-py1|1.4|g' ${WRKSRC}/setup.py
 
 .include <bsd.port.mk>

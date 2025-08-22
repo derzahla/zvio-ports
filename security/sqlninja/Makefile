@@ -3,8 +3,8 @@ DISTVERSION=	0.2.6
 CATEGORIES=	security
 MASTER_SITES=	SF/${PORTNAME}/${PORTNAME}
 
-MAINTAINER=	mauroeldritch@gmail.com
-COMMENT=	SQL Server exploit toolkit
+MAINTAINER=	ports@FreeBSD.org
+COMMENT=	Sql Server exploit toolkit
 WWW=		https://sqlninja.sourceforge.net/
 
 LICENSE=	GPLv3+

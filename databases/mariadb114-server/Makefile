@@ -1,11 +1,10 @@
 PORTNAME?=	mariadb
-PORTVERSION=	11.4.8
+PORTVERSION=	11.4.7
 PORTREVISION?=	1
 CATEGORIES=	databases
-MASTER_SITES=	\
-		https://ftp.nluug.nl/db/${SITESDIR}/ \
-		https://mirror.nodesdirect.com/${SITESDIR}/ \
+MASTER_SITES=	https://mirror.nodesdirect.com/${SITESDIR}/ \
 		https://mirror.one.com/${SITESDIR}/ \
+		https://ftp.nluug.nl/db/${SITESDIR}/ \
 		https://ftp.icm.edu.pl/pub/unix/database/${SITESDIR}/ \
 		https://mirror.truenetwork.ru/${SITESDIR}/ \
 		https://mirrors.aliyun.com/${SITESDIR}/ \

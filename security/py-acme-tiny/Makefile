@@ -1,15 +1,15 @@
 PORTNAME=	acme-tiny
-DISTVERSION=	5.0.2
+DISTVERSION=	4.1.0
 CATEGORIES=	security python
 
-MAINTAINER=	atanubiswas484@gmail.com
+MAINTAINER=	mat@FreeBSD.org
 COMMENT=	Tiny script to issue and renew TLS certs from Let's Encrypt
 WWW=		https://github.com/diafygi/acme-tiny
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		python shebangfix
+USES=		python shebangfix ssl
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	diafygi

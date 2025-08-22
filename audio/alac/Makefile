@@ -10,7 +10,7 @@ WWW=		https://github.com/mikebrady/alac
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		autoreconf libtool
+USES=		autoreconf libtool pathfix
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes

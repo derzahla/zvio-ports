@@ -1,9 +1,9 @@
 PORTNAME=	gnustep-back
 DISTVERSIONPREFIX=	back-
-DISTVERSION=	0_32_0
+DISTVERSION=	0_31_0
 CATEGORIES=	x11-toolkits gnustep
 
-MAINTAINER=	joe.maloney@icloud.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	GNUstep GUI backend
 WWW=		http://www.gnustep.org/
 

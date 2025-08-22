@@ -1,5 +1,5 @@
 PORTNAME=	sys-uptime
-PORTVERSION=	0.8.0
+PORTVERSION=	0.7.6
 CATEGORIES=	sysutils rubygems
 MASTER_SITES=	RG
 

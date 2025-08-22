@@ -3,7 +3,7 @@ PORTVERSION=	g20180512
 PORTREVISION=	1
 CATEGORIES=	devel
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	joe@thrallingpenguin.com
 COMMENT=	Merge changes from a branch one commit at a time
 WWW=		https://github.com/brooksdavis/mergify
 

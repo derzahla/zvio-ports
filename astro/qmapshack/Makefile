@@ -1,6 +1,7 @@
 PORTNAME=	qmapshack
+PORTVERSION=	1.17.1
 DISTVERSIONPREFIX=	V_
-DISTVERSION=	1.18.0
+PORTREVISION=	6
 CATEGORIES=	astro
 
 MAINTAINER=	bofh@FreeBSD.org
@@ -10,20 +11,21 @@ WWW=		https://github.com/Maproom/qmapshack/
 LICENSE=	GPLv3+
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	vulkan-headers>0:graphics/vulkan-headers
-LIB_DEPENDS=	libalglib.so:math/alglib \
-		libgdal.so:graphics/gdal \
+LIB_DEPENDS=	libgdal.so:graphics/gdal \
 		libproj.so:graphics/proj \
-		libquazip1-qt6.so:archivers/quazip@qt6 \
+		libquazip1-qt5.so:archivers/quazip@qt5 \
 		libroutino.so:astro/routino
 RUN_DEPENDS=	${LOCALBASE}/bin/bsdisks:sysutils/bsdisks
 
-USES=		cmake desktop-file-utils gl jpeg qt:6
+USES=		cmake compiler:c++11-lib desktop-file-utils gl jpeg \
+		pkgconfig qt:5 xorg
 USE_GITHUB=	yes
+USE_GL=		gl
+USE_QT=		buildtools core dbus declarative gui help linguisttools location network \
+		printsupport qmake sql sql-sqlite3 uitools \
+		webchannel webengine widgets xml
+
 GH_ACCOUNT=	Maproom
-USE_GL=	gl
-USE_QT=		5compat base declarative positioning tools webchannel \
-		webengine
 
 OPTIONS_DEFINE=	DOCS
 

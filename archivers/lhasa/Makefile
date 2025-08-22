@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 TEST_DEPENDS=	bash>0:shells/bash
 
-USES=		autoreconf cpe libtool
+USES=		autoreconf cpe libtool pathfix
 CPE_VENDOR=	lhasa_project
 USE_LDCONFIG=	yes
 

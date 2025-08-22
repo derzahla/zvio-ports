@@ -1,5 +1,5 @@
 PORTNAME=	rustrover
-DISTVERSION=	2025.1.5
+DISTVERSION=	2024.3.8
 CATEGORIES=	devel
 MASTER_SITES=	https://download-cdn.jetbrains.com/rustrover/
 PKGNAMEPREFIX=	jetbrains-
@@ -28,7 +28,7 @@ RUN_DEPENDS=	cmake:devel/cmake-core \
 USES=		cpe java python:run
 
 CPE_VENDOR=	jetbrains
-JAVA_VERSION=	21+
+JAVA_VERSION=	17+
 
 DATADIR=	${PREFIX}/share/jetbrains/${PORTNAME}
 

@@ -1,9 +1,9 @@
 PORTNAME=	tkdiff
-DISTVERSION=	6-0
+DISTVERSION=	5-7
 CATEGORIES=	textproc tk
 MASTER_SITES=	SF
 
-MAINTAINER=	eduardo@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Tk frontend for diff(1)
 WWW=		https://sourceforge.net/projects/tkdiff/
 

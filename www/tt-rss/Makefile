@@ -1,5 +1,5 @@
 PORTNAME=	tt-rss
-DISTVERSION=	g20250730
+DISTVERSION=	g20250427
 PORTEPOCH=	2
 CATEGORIES=	www
 MASTER_SITES=	LOCAL/meta
@@ -15,14 +15,13 @@ RUN_DEPENDS=	${LOCALBASE}/bin/git:devel/git
 
 USES=		gettext-tools php:cli,web,flavors shebangfix
 
-# dist download is blocked by cloudflare DDOS.  Need to upload to LOCAL/
 USE_GITLAB=	yes
 GL_SITE=	https://gitlab.tt-rss.org
-GL_TAGNAME=	851ddf4bbe750e30816b6c494165e9860bd39b92
+GL_TAGNAME=	f097c5ed97671f66be71e52c13917c23528ba308
 # phe json/openssl extension is required but it's statically linked in default php
 USE_PHP=	ctype dom exif fileinfo filter iconv intl mbstring pcntl pdo \
-		pdo_pgsql phar posix session simplexml sockets sodium tokenizer \
-		xml xmlwriter zip
+		phar posix session simplexml sockets sodium tokenizer xml \
+		xmlwriter zip
 USE_RC_SUBR=	ttrssd
 
 SHEBANG_FILES=	update.php update_daemon2.php
@@ -32,8 +31,16 @@ REINPLACE_ARGS=	-i ""
 NO_ARCH=	yes
 NO_BUILD=	yes
 
+# Instead of depending on the extact database driver list php packages that tt-rss
+# depends on during install pkg-message as a post install setup.
+# mysql: php-mysqli php-pdo_mysql
+# pgsql: php-pgsql php-pdo_pgsql
+#
+# from Mk/Uses/php.mk create sub vars for mysqli/pdo_mysql pgsql/pdo_pgsql values
 SUB_FILES=	config.php httpd-tt-rss.conf pkg-message
-SUB_LIST=	WWWOWN=${WWWOWN}
+SUB_LIST=	MYSQL_DEPS="${mysqli_DEPENDS:T} ${pdo_mysql_DEPENDS:T}" \
+		PGSQL_DEPS="${pgsql_DEPENDS:T} ${pdo_pgsql_DEPENDS:T}" \
+		WWWOWN=${WWWOWN}
 
 PLIST_SUB=	WWWGRP=${WWWGRP} \
 		WWWOWN=${WWWOWN}

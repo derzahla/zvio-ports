@@ -1,5 +1,5 @@
 PORTNAME=	reticulum
-DISTVERSION=	1.0.0
+DISTVERSION=	0.9.6
 CATEGORIES=	net-p2p
 
 MAINTAINER=	cs@FreeBSD.org
@@ -14,11 +14,10 @@ LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}netifaces>=0:net/py-netifaces@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyserial>0:comms/py-pyserial@${PY_FLAVOR}
 
-WRKSRC=		${WRKDIR}/Reticulum-${GH_TAGNAME}
+WRKSRC=		${WRKDIR}/Reticulum-${PORTVERSION}
 USES=		python
 USE_GITHUB=	yes
 GH_ACCOUNT=	markqvist
-GH_TAGNAME=	8579a7f2a5db6e014a498acfccae82a5f8a9ec7d
 USE_PYTHON=	cryptography distutils
 USE_RC_SUBR=	reticulum
 GROUPS=		_reticulum

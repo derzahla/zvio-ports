@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # PROVIDE: rspamd
-# REQUIRE: LOGIN redis keydb valkey
+# REQUIRE: LOGIN redis
 # BEFORE:  mail
 # KEYWORD: shutdown
 #

@@ -1,11 +1,11 @@
 PORTNAME=	osg
 PORTVERSION=	3.4.1
 DISTVERSIONPREFIX=	OpenSceneGraph-
-PORTREVISION=	65
+PORTREVISION=	64
 CATEGORIES=	graphics
 PKGNAMESUFFIX=	34
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	C++ OpenGL scene graph library for real-time rendering
 WWW=		https://www.openscenegraph.org/
 
@@ -13,9 +13,6 @@ LICENSE=	OSGPL
 LICENSE_NAME=	OpenSceneGraph Public License
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 LICENSE_PERMS=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
-
-DEPRECATED=	Obsolete version released in 2015
-EXPIRATION_DATE=2025-09-10
 
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libtiff.so:graphics/tiff

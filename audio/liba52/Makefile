@@ -12,7 +12,7 @@ WWW=		https://git.adelielinux.org/community/a52dec/
 LICENSE=	GPLv2
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		autoreconf libtool
+USES=		autoreconf libtool pathfix
 USE_CSTD=	gnu89
 USE_LDCONFIG=	yes
 

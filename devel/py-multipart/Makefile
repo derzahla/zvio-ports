@@ -1,8 +1,7 @@
 PORTNAME=	multipart
-PORTVERSION=	1.3.0
+PORTVERSION=	1.2.1
 CATEGORIES=	devel python
-MASTER_SITES=	PYPI \
-		https://github.com/defnull/multipart/releases/download/v${PORTVERSION}/
+MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	sunpoet@FreeBSD.org

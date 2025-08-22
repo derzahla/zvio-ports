@@ -17,8 +17,6 @@
     SUBDIR += akonadi-search
     SUBDIR += alligator
     SUBDIR += aluminum
-    SUBDIR += amnezia-kmod
-    SUBDIR += amnezia-tools
     SUBDIR += amqpcat
     SUBDIR += aoe
     SUBDIR += apache-commons-net
@@ -34,7 +32,6 @@
     SUBDIR += arprelease
     SUBDIR += arrowdl
     SUBDIR += asio
-    SUBDIR += asio130
     SUBDIR += asterisk-chan_sccp
     SUBDIR += asterisk-g72x
     SUBDIR += asterisk18
@@ -117,7 +114,6 @@
     SUBDIR += dbeacon
     SUBDIR += delegate
     SUBDIR += deltachat-rpc-server
-    SUBDIR += devfile
     SUBDIR += deviceatlas-enterprise-c
     SUBDIR += dgd
     SUBDIR += dgd-kernel
@@ -161,6 +157,7 @@
     SUBDIR += file2pcap
     SUBDIR += findmtu
     SUBDIR += findomain
+    SUBDIR += flower
     SUBDIR += foreman-proxy
     SUBDIR += fort
     SUBDIR += fping
@@ -445,6 +442,7 @@
     SUBDIR += libzmq3
     SUBDIR += libzmq4
     SUBDIR += liferea
+    SUBDIR += linknx
     SUBDIR += linphone
     SUBDIR += linux-c7-avahi-libs
     SUBDIR += linux-c7-openldap
@@ -570,7 +568,6 @@
     SUBDIR += olsrd
     SUBDIR += omnitty
     SUBDIR += onedrive
-    SUBDIR += onedrivegui
     SUBDIR += onenetd
     SUBDIR += onioncat
     SUBDIR += onionprobe
@@ -594,6 +591,7 @@
     SUBDIR += openvswitch
     SUBDIR += ortp
     SUBDIR += osrtspproxy
+    SUBDIR += ossp-sa
     SUBDIR += owamp
     SUBDIR += p5-Acme-HTTP
     SUBDIR += p5-AddressBook
@@ -1008,9 +1006,6 @@
     SUBDIR += php84-ldap
     SUBDIR += php84-soap
     SUBDIR += php84-sockets
-    SUBDIR += php85-ldap
-    SUBDIR += php85-soap
-    SUBDIR += php85-sockets
     SUBDIR += phpldapadmin
     SUBDIR += pimcommon
     SUBDIR += pimd
@@ -1610,13 +1605,10 @@
     SUBDIR += tn5250
     SUBDIR += toonel
     SUBDIR += torsocks
-    SUBDIR += toxiproxy-cli
-    SUBDIR += toxiproxy-server
     SUBDIR += traefik
     SUBDIR += traff
     SUBDIR += trafshow
     SUBDIR += trafshow3
-    SUBDIR += trantor
     SUBDIR += trickle
     SUBDIR += trippy
     SUBDIR += ts-warp

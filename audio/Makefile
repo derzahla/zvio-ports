@@ -280,7 +280,6 @@
     SUBDIR += icecast
     SUBDIR += icegenerator
     SUBDIR += ices
-    SUBDIR += id3edit
     SUBDIR += id3el
     SUBDIR += id3lib
     SUBDIR += id3mtag
@@ -520,7 +519,6 @@
     SUBDIR += noise-suppression-for-voice-lv2
     SUBDIR += normalize
     SUBDIR += nosefart
-    SUBDIR += noson
     SUBDIR += noson-app
     SUBDIR += nyquist
     SUBDIR += oaml

@@ -1,5 +1,6 @@
 PORTNAME=	endless-sky
-PORTVERSION=	0.10.14
+PORTVERSION=	0.10.10
+PORTREVISION=	1
 DISTVERSIONPREFIX=	v
 CATEGORIES=	games
 
@@ -14,8 +15,7 @@ LICENSE_FILE_GPLv3+ =	${WRKSRC}/license.txt
 
 LIB_DEPENDS=	libpng.so:graphics/png \
 		libmad.so:audio/libmad \
-		libuuid.so:misc/libuuid \
-		libminizip.so:archivers/minizip
+		libuuid.so:misc/libuuid
 
 USE_GITHUB=	yes
 

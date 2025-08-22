@@ -1,19 +1,19 @@
 PORTNAME=		vm-bhyve
 DISTVERSIONPREFIX=	v
-DISTVERSION=		1.6.2-33
-DISTVERSIONSUFFIX=	-g9e852e6
+DISTVERSION=		1.6.2-15
+DISTVERSIONSUFFIX=	-gd5b493a
 CATEGORIES=		sysutils
 PKGNAMESUFFIX=		-devel
 
 MAINTAINER=	driesm@FreeBSD.org
 COMMENT=	Management system for bhyve virtual machines
-WWW=		https://github.com/freebsd/vm-bhyve
+WWW=		https://github.com/churchers/vm-bhyve
 
 LICENSE=	BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	freebsd
+GH_ACCOUNT=	churchers
 
 CONFLICTS_INSTALL=	vm-bhyve
 

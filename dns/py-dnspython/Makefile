@@ -14,8 +14,8 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}hatchling>0:devel/py-hatchling@${PY_FLAVOR}
 
-USES=		python
-USE_PYTHON=	autoplist concurrent cython pep517 pytest
+USES=		python:3.9+
+USE_PYTHON=	autoplist concurrent cython pep517
 
 BINARY_ALIAS=	git=false
 NO_ARCH=	yes
@@ -40,6 +40,12 @@ DOQ_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}aioquic>=1.0.0:www/py-aioquic@${PY_FLAVO
 IDNA_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}idna>=2.1:dns/py-idna@${PY_FLAVOR}
 TRIO_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}trio>=0.14:net/py-trio@${PY_FLAVOR}
 
+.include <bsd.port.pre.mk>
+
+.if ${PYTHON_REL} < 3900
+IGNORE=		requires Python 3.9 or later
+.endif
+
 post-install-EXAMPLES-on:
 	@${MKDIR} ${STAGEDIR}${EXAMPLESDIR}
 	${INSTALL_DATA} ${PORTEXAMPLES:S,^,${WRKSRC}/examples/,} ${STAGEDIR}${EXAMPLESDIR}
@@ -47,4 +53,4 @@ post-install-EXAMPLES-on:
 do-test:
 	cd ${WRKSRC}/tests && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} utest.py
 
-.include <bsd.port.mk>
+.include <bsd.port.post.mk>

@@ -109,6 +109,7 @@
     SUBDIR += gstreamer1-plugins-x265
     SUBDIR += gstreamer1-rtsp-server
     SUBDIR += gstreamer1-vaapi
+    SUBDIR += gstreamer1-validate
     SUBDIR += gstreamermm
     SUBDIR += gtk-pipe-viewer
     SUBDIR += gtk-youtube-viewer
@@ -357,7 +358,7 @@
     SUBDIR += subtools
     SUBDIR += supersonic
     SUBDIR += svt-av1
-    SUBDIR += svt-av1-hdr
+    SUBDIR += svt-av1-psy
     SUBDIR += svt-hevc
     SUBDIR += svt-vp9
     SUBDIR += syncplay

@@ -1,7 +1,6 @@
 PORTNAME=	emilua
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.11.5
-PORTREVISION=	3
 CATEGORIES=	lang devel
 
 MAINTAINER=	manipuladordedados@gmail.com
@@ -26,7 +25,7 @@ LIB_DEPENDS=	libserd-0.so:devel/serd \
 		libsord-0.so:devel/sord \
 		libfmt.so:devel/libfmt
 
-USES=		localbase luajit meson ncurses pathfix \
+USES=		localbase luajit:luajit-devel meson ncurses pathfix \
 		pkgconfig ssl
 USE_GITLAB=	yes
 

@@ -1,9 +1,10 @@
 PORTNAME=	lxi-tools
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2.8
+DISTVERSION=	2.5
+PORTREVISION=	1
 CATEGORIES=	misc
 
-MAINTAINER=	atanubiswas484@gmail.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Collection of tools that enables control of LXI compatible instruments
 WWW=		https://lxi-tools.github.io/
 
@@ -27,6 +28,7 @@ GUI_USES=	gettext-tools gnome python:build
 GUI_USE=	gnome=cairo,gdkpixbuf,glib20,gtk40,gtksourceview5,libadwaita
 GUI_MESON_OFF=	-Dgui=false
 GUI_BINARY_ALIAS=	python3=${PYTHON_CMD}
+GUI_PLIST_FILES=	bin/lxi-gui
 
 post-install-DOCS-on:
 	@${MKDIR} ${STAGEDIR}${DOCSDIR}

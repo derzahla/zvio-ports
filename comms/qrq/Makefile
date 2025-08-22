@@ -1,14 +1,14 @@
 PORTNAME=	qrq
-DISTVERSION=	0.3.5
+PORTVERSION=	0.3.4
+PORTREVISION=	1
 CATEGORIES=	comms hamradio
-MASTER_SITES=	https://fkurz.net/ham/qrq/
+MASTER_SITES=	http://fkurz.net/ham/qrq/
 
 MAINTAINER=	hamradio@FreeBSD.org
 COMMENT=	Morse telegraphy trainer similar to the classic DOS version by DL4MM
 WWW=		https://fkurz.net/ham/qrq.html
 
 LICENSE=	GPLv2
-LICENSE_FILE=	${WRKSRC}/COPYING
 
 USES=		gmake ncurses shebangfix
 USE_CSTD=	c99

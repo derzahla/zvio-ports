@@ -1,6 +1,6 @@
 PORTNAME=	natten
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.21.0
+DISTVERSION=	0.20.1
 CATEGORIES=	misc python # machine-learning
 #MASTER_SITES=	PYPI # no tests
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -39,6 +39,13 @@ post-install:
 		${STAGEDIR}${PYTHON_SITELIBDIR}/cmake_install.cmake \
 		${STAGEDIR}${PYTHON_SITELIBDIR}/Makefile
 
-# tests as of 0.21.0: 1 passed, 55 skipped, 1 warning in 14.76s
+# tests as of 0.17.4:
+# Results (35.54s):
+#       24 passed
+#        2 failed
+#          - .:?
+#          - .:?
+#       12 xfailed
+#       59 skipped
 
 .include <bsd.port.mk>

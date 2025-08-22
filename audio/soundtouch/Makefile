@@ -10,7 +10,7 @@ WWW=		https://www.surina.net/soundtouch/
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING.TXT
 
-USES=		cmake compiler:c++17-lang cpe
+USES=		cmake compiler:c++17-lang cpe pathfix
 CPE_VENDOR=	surina
 USE_LDCONFIG=	yes
 

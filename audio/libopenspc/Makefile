@@ -5,11 +5,8 @@ CATEGORIES=	audio
 MASTER_SITES=	http://rainbow-runner.nl/freebsd/ \
 		LOCAL/kwm
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	kwm@FreeBSD.org
 COMMENT=	Library for playing SPC (SNES audio) files
-
-DEPRECATED=	Legacy library based on a very old emulator, consider using audio/libgme
-EXPIRATION_DATE=2025-09-30
 
 BUILD_DEPENDS=	nasm:devel/nasm
 

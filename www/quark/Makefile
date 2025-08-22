@@ -1,11 +1,11 @@
 PORTNAME=	quark
-DISTVERSION=	20220816
-PORTREVISION=	1
+DISTVERSION=	g20210222
 CATEGORIES=	www
-MASTER_SITES=	https://freebsd.uzsolt.hu/src/
+MASTER_SITES=	LOCAL/tobik
 PKGNAMESUFFIX=	-server
+DISTNAME=	quark-68b4f733b2755762e43df90f73db5a6ec8d14104
 
-MAINTAINER=	uzsolt@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Small and simple HTTP GET/HEAD-only web server for static content
 WWW=		https://tools.suckless.org/quark/
 

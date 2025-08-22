@@ -15,7 +15,7 @@ LIB_DEPENDS+=	libdbi.so:databases/libdbi
 BUILD_DEPENDS=	libdbi-drivers>=0:databases/libdbi-drivers
 
 GNU_CONFIGURE=	yes
-USES=		libtool localbase:ldflags
+USES=		libtool localbase:ldflags pathfix
 USE_LDCONFIG=	yes
 USE_GCC=	yes
 

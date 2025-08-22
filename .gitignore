@@ -7,7 +7,7 @@ Mk/bsd.local.mk
 Mk/bsd.overlay.mk
 /*/*/work
 /*/*/work-*
-#/INDEX-[0-9]*
+/INDEX-[0-9]*
 *~
 *.rej
 *.orig

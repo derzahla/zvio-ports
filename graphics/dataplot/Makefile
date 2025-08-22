@@ -1,35 +1,40 @@
 PORTNAME=	dataplot
-DISTVERSION=	20240806
+DISTVERSION=	20210713
+PORTREVISION=	2
 CATEGORIES=	graphics
 
-MAINTAINER=	pfg@FreeBSD.org
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Free software system for statistical visualization
 WWW=		https://www.itl.nist.gov/div898/software/dataplot/index.htm
 
 LICENSE=	PD
-LICENSE_FILE=	${WRKSRC}/../LICENSE.txt
 
 LIB_DEPENDS=	libgd.so:graphics/gd \
-		libtiff.so:graphics/tiff
-RUN_DEPENDS=	xclip:x11/xclip
+		libpng.so:graphics/png
 
-USES=		gmake gnome fortran readline xorg
+USES=		gmake gnome fortran jpeg readline xorg
+USE_XORG=	x11 xi
+USE_GNOME=	cairo
+
 USE_GITHUB=	yes
 GH_ACCOUNT=	usnistgov
-GH_TAGNAME=	b779512889cc78757fae29f9546e01b9c6cef95d
-USE_GNOME=	cairo
-USE_XORG=	x11 xft xi
-
-FFLAGS+=	-fdefault-real-8 -fdefault-double-8 -std=legacy
+GH_TAGNAME=	d5eb15dd86dd80098c6535aa68898ab8392ab700
 
 WRKSRC_SUBDIR=	src
 
-PLIST_FILES=	bin/dataplot bin/xdataplot
+MAXOBV?=	450000	# Change if you need more observations/variable
+
+FFLAGS+=	-DLINUX -fdefault-real-8 -fdefault-double-8 -std=legacy
+
 PORTDATA=	*
+
+PLIST_FILES=	bin/dataplot bin/xdataplot
 
 OPTIONS_DEFINE=	DOCS
 
 post-patch:
+	@${REINPLACE_CMD} -e 's/MAXOBV=1500000/MAXOBV=${MAXOBV}/' \
+		${WRKSRC}/DPCOPA.INC
 	@${REINPLACE_CMD} \
 		-e 's;%%FC%%;${FC};' \
 		-e 's;%%CC%%;${CC};' \

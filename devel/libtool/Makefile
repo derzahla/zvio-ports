@@ -1,5 +1,5 @@
 PORTNAME=	libtool
-PORTREVISION=	1
+PORTREVISION=	0
 
 COMMENT=	Generic shared library support script
 WWW=		https://www.gnu.org/software/libtool/
@@ -26,11 +26,5 @@ CC=		cc
 CXX=		c++
 LD=		ld
 .endif
-
-# Perform the patching after the build, because touching m4 files before the
-# configuration step causes autoreconf to be invoked
-post-stage:
-	cd ${STAGEDIR}${PREFIX}/share/aclocal && \
-		${PATCH} --posix -p1 < ${PATCHDIR}/stagepatch-m4_libtool.m4
 
 .include <bsd.port.mk>

@@ -1,1 +1,1 @@
-cython-hidapi is a cython interface to HIDAPI library.
+Cython interface to comms/hidapi.

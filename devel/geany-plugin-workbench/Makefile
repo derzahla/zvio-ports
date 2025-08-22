@@ -1,5 +1,6 @@
 PORTNAME=	geany-plugin-workbench
 PORTVERSION=	${GEANY_VER}
+PORTREVISION=	4
 CATEGORIES=	devel
 
 MAINTAINER=	madpilot@FreeBSD.org

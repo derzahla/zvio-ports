@@ -10,7 +10,7 @@ WWW=		https://www.xiph.org/ao/
 
 LICENSE=	GPLv2
 
-USES=		cpe libtool pkgconfig
+USES=		cpe libtool pathfix pkgconfig
 CPE_VENDOR=	xiph
 USE_LDCONFIG=	yes
 GNU_CONFIGURE=	yes

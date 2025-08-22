@@ -6,7 +6,7 @@ MASTER_SITES=	LOCAL/obrien \
 		http://sepwww.stanford.edu/sep/prof/
 DISTFILES=	ratfor.shar.2 local.ratfor77.shar
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	bofh@FreeBSD.org
 COMMENT=	Rational FORTRAN compiler
 
 LICENSE=	PD

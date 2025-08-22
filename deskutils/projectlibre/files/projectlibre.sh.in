@@ -3,4 +3,6 @@
 PROJECTLIBRE_HOME="%%DATADIR%%"
 export PROJECTLIBRE_HOME
 cd "%%DATADIR%%"
-exec "%%JAVA%%" -jar "$PROJECTLIBRE_HOME/projectlibre.jar" "$@"
+"%%LOCALBASE%%/bin/java" -jar "$PROJECTLIBRE_HOME/projectlibre.jar" "$@" > /dev/null 2>&1
+
+# eof

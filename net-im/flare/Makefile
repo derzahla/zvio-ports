@@ -1,9 +1,10 @@
 PORTNAME=	flare
-DISTVERSION=	0.17.0
+DISTVERSION=	0.16.1
+PORTREVISION=	2
 CATEGORIES=	net-im
 
 MAINTAINER=	nxjoseph@protonmail.com
-COMMENT=	Electron-free Signal app written in Rust
+COMMENT=	Chat with your friends on Signal
 WWW=		https://gitlab.com/schmiddi-on-mobile/flare
 
 LICENSE=	AGPLv3
@@ -12,13 +13,14 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 BUILD_DEPENDS=	blueprint-compiler:devel/blueprint-compiler \
 		protoc:devel/protobuf
 LIB_DEPENDS=	libdbus-1.so:devel/dbus \
+		libgdk_pixbuf-2.0.so:graphics/gdk-pixbuf2 \
 		libsecret-1.so:security/libsecret
 RUN_DEPENDS=	gnome-keyring:security/gnome-keyring
 
-USES=		cargo gettext-tools gnome meson pkgconfig python:build
+USES=		cargo gettext-tools gnome meson pkgconfig python
 USE_GITLAB=	yes
 GL_ACCOUNT=	schmiddi-on-mobile
-USE_GNOME=	cairo gdkpixbuf gtk40 gtksourceview5 libadwaita libxml2 pango
+USE_GNOME=	gtk40 gtksourceview5 libadwaita
 GLIB_SCHEMAS=	de.schmidhuberj.Flare.gschema.xml
 
 CARGO_BUILD=	no

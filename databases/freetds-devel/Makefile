@@ -1,5 +1,5 @@
 PORTNAME=	freetds
-DISTVERSION=	1.5.116
+DISTVERSION=	1.5.93
 PORTEPOCH=	1
 CATEGORIES=	databases
 MASTER_SITES=	https://www.freetds.org/files/current/
@@ -11,7 +11,6 @@ COMMENT=	Sybase/Microsoft TDS protocol library - nightly snapshot
 WWW=		http://www.freetds.org/
 
 LICENSE=	LGPL20
-LICENSE_FILE=	${WRKSRC}/COPYING_LIB.txt
 
 USES=		compiler:c11 cpe gettext-tools gmake iconv \
 	libtool:keepla localbase:ldflags pkgconfig tar:bzip2

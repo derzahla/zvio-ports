@@ -1,10 +1,14 @@
 PORTNAME=	gitg
-DISTVERSION=	44
+PORTVERSION=	41
+PORTREVISION=	10
 CATEGORIES=	devel deskutils gnome
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
-MAINTAINER=	gnome@FreeBSD.org
+PATCH_SITES=	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/commit/
+PATCHFILES+=	1978973b1284.patch:-p1 # https://gitlab.gnome.org/GNOME/gitg/-/merge_requests/175
+
+MAINTAINER=	kwm@FreeBSD.org
 COMMENT=	GTK-based git repository viewer
 WWW=		https://wiki.gnome.org/Apps/Gitg
 
@@ -21,15 +25,14 @@ LIB_DEPENDS=	libsoup-2.4.so:devel/libsoup \
 		libpeas-1.0.so:devel/libpeas1 \
 		libgspell-1.so:textproc/gspell \
 		libdazzle-1.0.so:x11-toolkits/libdazzle \
-		libsecret-1.so:security/libsecret \
-		libgpgme.so:security/gpgme \
-		libhandy-1.so:x11-toolkits/libhandy
+		libsecret-1.so:security/libsecret
 RUN_DEPENDS=	gsettings-desktop-schemas>=0:devel/gsettings-desktop-schemas
 
+CONFLICTS=	gitg0
 PORTSCOUT=	limitw:1,even
 
 USES=		compiler:c11 desktop-file-utils gettext gnome localbase \
-		meson pkgconfig python:build tar:xz vala:build
+		meson pathfix pkgconfig python:build tar:xz vala:build
 USE_GNOME=	cairo gdkpixbuf gtk30 gtksourceview4 intltool introspection
 
 USE_LDCONFIG=	yes

@@ -4,7 +4,7 @@ CATEGORIES=	cad
 MASTER_SITES=	http://opencircuitdesign.com/irsim/archive/
 PKGNAMESUFFIX=	-${FLAVOR}
 
-MAINTAINER=	alven@FreeBSD.org
+MAINTAINER=	alster@vinterdalen.se
 COMMENT=	Event-driven logic-level simulator for MOS circuis
 WWW=		http://opencircuitdesign.com/irsim/
 

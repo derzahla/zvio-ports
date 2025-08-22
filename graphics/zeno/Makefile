@@ -1,6 +1,6 @@
 PORTNAME=	zeno
 DISTVERSION=	2024.10.1
-PORTREVISION=	3
+PORTREVISION=	2
 CATEGORIES=	graphics
 
 MAINTAINER=	freebsd@sysctl.cz
@@ -22,7 +22,7 @@ BUILD_DEPENDS=	alembic>0:graphics/alembic \
 
 LIB_DEPENDS=	libAlembic.so:graphics/alembic \
 		libcryptopp.so:security/cryptopp \
-		libImath.so:math/Imath \
+		libImath-3_1.so:math/Imath \
 		libtiff.so:graphics/tiff \
 		libopencv_highgui.so:graphics/opencv \
 		libopencv_stitching.so:graphics/opencv \

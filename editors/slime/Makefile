@@ -6,7 +6,7 @@ DISTVERSIONSUFFIX=	-gf368e22a
 CATEGORIES=	editors elisp
 PKGNAMESUFFIX=	${EMACS_PKGNAMESUFFIX}
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	joe@thrallingpenguin.com
 COMMENT=	Superior Lisp Interaction Mode for Emacs
 WWW=		https://common-lisp.net/project/slime/
 

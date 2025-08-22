@@ -10,7 +10,7 @@ WWW=		https://liblo.sourceforge.net/ \
 
 LICENSE=	LGPL21
 
-USES=		compiler:c++11-lang gmake libtool
+USES=		compiler:c++11-lang gmake libtool pathfix
 
 GNU_CONFIGURE=	yes
 INSTALL_TARGET=	install-strip

@@ -4,7 +4,7 @@ PORTREVISION=	5
 CATEGORIES=	x11-toolkits
 MASTER_SITES=	GNOME
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	kwm@FreeBSD.org
 COMMENT=	Library for single instance applications
 WWW=		http://live.gnome.org/LibUnique
 

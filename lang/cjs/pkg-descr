@@ -1,3 +1,1 @@
-CJS fork of GJS for Cinnamon. It is functionally identical, and is only
-to maintain stability with the Cinnamon release cycle, and between various
-distributions.
+This module contains JavaScript bindings based on gobject-introspection.

@@ -1,13 +1,12 @@
 PORTNAME=	gemmi
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.7.3
+DISTVERSION=	0.7.1
 CATEGORIES=	science python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Macromolecular crystallography library and utilities
-WWW=		https://gemmi.readthedocs.io/en/latest/ \
-		https://github.com/project-gemmi/gemmi
+WWW=		https://gemmi.readthedocs.io/en/latest/
 
 LICENSE=	MPL20
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
@@ -36,7 +35,5 @@ PLIST_SUB=	VER=${PORTVERSION}
 
 do-test:
 	@cd ${WRKSRC} && ${SETENV} ${TEST_ENV} ${PYTHON_CMD} -m unittest discover -v tests/
-
-# tests as of 0.7.3: test 'test_syntax_error' fails with syntax error, see https://github.com/project-gemmi/gemmi/issues/384
 
 .include <bsd.port.mk>

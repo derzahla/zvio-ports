@@ -1,5 +1,5 @@
 PORTNAME=	oauth
-DISTVERSION=	2.0.7
+PORTVERSION=	2.0.7
 CATEGORIES=	net pear
 
 # https://github.com/php/pecl-web_services-oauth/pull/30
@@ -24,16 +24,4 @@ CONFLICTS=	pecl-oauth-1*
 
 PORTSCOUT=	limit:^2.*
 
-.include <bsd.port.pre.mk>
-
-.if ${PHP_VER} >= 85
-.if ${OPSYS} == FreeBSD
-CFLAGS+=	-Wno-error=int-conversion
-.endif
-
-post-patch:
-	@${REINPLACE_CMD} -e 's|ext/standard/php_smart_string|Zend/zend_smart_string|' \
-		${WRKSRC}/php_oauth.h
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

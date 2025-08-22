@@ -1,12 +1,11 @@
 PORTNAME=	filament
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.62.2
+DISTVERSION=	1.59.3
 CATEGORIES=	graphics
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	Real-time physically based rendering engine
-WWW=		https://google.github.io/filament/ \
-		https://github.com/google/filament
+WWW=		https://google.github.io/filament/
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
@@ -53,9 +52,5 @@ post-install:
 	@cd ${STAGEDIR}${PREFIX} && ${RM} -r README.md LICENSE docs
 	# remove conflicting file, see https://github.com/google/filament/issues/5957
 	@${RM} ${STAGEDIR}${PREFIX}/lib/libzstd.a
-	# remove files installed by the improperly bundled spirv-tools package, see https://github.com/google/filament/issues/8965
-	@${FIND} ${STAGEDIR}${PREFIX} -iname "*spirv*" -delete
-	@${RM} -r ${STAGEDIR}${PREFIX}/include/spirv-tools # workaround for the find(1) -delete bug, see https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=288277
-	@${RMDIR} ${STAGEDIR}${PREFIX}/lib/cmake
 
 .include <bsd.port.mk>

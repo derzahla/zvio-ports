@@ -1,13 +1,11 @@
 PORTNAME=	prometheus
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.5.0
-PORTREVISION=	1
+DISTVERSION=	3.4.1
 CATEGORIES=	net-mgmt
 MASTER_SITES=	https://raw.githubusercontent.com/${GH_ACCOUNT}/${GH_PROJECT}/${DISTVERSIONFULL}/:gomod \
 		https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/releases/download/${DISTVERSIONFULL}/:ui
 PKGNAMESUFFIX=	3
-DISTFILES=	go.mod:gomod \
-		${PORTNAME}-web-ui-${DISTVERSION}.tar.gz:ui
+DISTFILES=	go.mod:gomod ${PORTNAME}-web-ui-${DISTVERSION}.tar.gz:ui
 
 MAINTAINER=	danilo@FreeBSD.org
 COMMENT=	Systems monitoring and alerting toolkit
@@ -18,16 +16,16 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 PATCH_DEPENDS=	bash:shells/bash
 
-USES=		cpe go:modules
+USES=		cpe go:1.23,modules
+
+CONFLICTS_INSTALL=	prometheus1 prometheus
 
 USE_GITHUB=	yes
 USE_RC_SUBR=	prometheus
 
 GO_MODULE=	github.com/prometheus/prometheus
 GO_TARGET=	./cmd/prometheus ./cmd/promtool
-GO_BUILDFLAGS=	-a -ldflags "${LD_FLAG_STRING}" -tags netgo,builtinassets
-
-CONFLICTS_INSTALL=	prometheus1 prometheus
+GO_BUILDFLAGS=	-a -v -ldflags "${LD_FLAG_STRING}" -tags netgo,builtinassets
 
 SUB_LIST+=	PROMETHEUS_CONSOLE_LIBRARIES_DIR=${PROMETHEUS_CONSOLE_LIBRARIES_DIR} \
 		PROMETHEUS_CONSOLES_DIR=${PROMETHEUS_CONSOLES_DIR} \

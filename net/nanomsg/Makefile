@@ -1,6 +1,6 @@
 PORTNAME=	nanomsg
 PORTVERSION=	1.1.5
-PORTREVISION=	3
+PORTREVISION=	2
 CATEGORIES=	net
 
 MAINTAINER=	crest@bultmann.eu
@@ -14,11 +14,14 @@ USES=		cmake pathfix
 USE_LDCONFIG=	yes
 USE_GITHUB=	yes
 
-OPTIONS_DEFINE=	MANPAGES
-OPTIONS_DEFAULT=	MANPAGES
+PORTDOCS=	*
+
+OPTIONS_DEFINE=	DOCS
 OPTIONS_SUB=	yes
 
-MANPAGES_BUILD_DEPENDS=	asciidoctor:textproc/rubygem-asciidoctor
-MANPAGES_CMAKE_BOOL=	NN_ENABLE_DOC
+DOCS_DESC=	Build and/or install HTML and manpages
+
+DOCS_BUILD_DEPENDS=	asciidoctor:textproc/rubygem-asciidoctor
+DOCS_CMAKE_BOOL=	NN_ENABLE_DOC
 
 .include <bsd.port.mk>

@@ -1,4 +1,4 @@
-PORTREVISION=	2
+PORTREVISION=	1
 
 COMMENT=	Backup archiving recovery open sourced (traymonitor)
 

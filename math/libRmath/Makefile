@@ -1,10 +1,10 @@
 PORTNAME=	libRmath
-DISTVERSION=	4.5.1
+DISTVERSION=	4.4.3
 CATEGORIES=	math lang
 MASTER_SITES=	CRAN/src/base/R-${DISTVERSION:C|\..*||}
 DISTNAME=	R-${DISTVERSIONPREFIX}${DISTVERSION}${DISTVERSIONSUFFIX}
 
-MAINTAINER=	alven@FreeBSD.org
+MAINTAINER=	alster@vinterdalen.se
 COMMENT=	Standalone math library from R
 WWW=		https://www.R-project.org/
 

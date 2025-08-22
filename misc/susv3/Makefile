@@ -13,7 +13,6 @@ LICENSE=	NONE
 
 USES=		tar:bzip2
 
-NO_ARCH=	yes
 NO_BUILD=	yes
 PORTDOCS=	*
 

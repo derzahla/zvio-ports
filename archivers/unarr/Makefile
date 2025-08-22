@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 TEST_DEPENDS=	cmocka>0:sysutils/cmocka
 
-USES=		cmake:testing
+USES=		cmake:testing pathfix
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 GH_ACCOUNT=	selmf

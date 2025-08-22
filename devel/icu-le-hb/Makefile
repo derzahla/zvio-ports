@@ -1,5 +1,6 @@
 PORTNAME=	icu-le-hb
-PORTVERSION=	2.0.0
+PORTVERSION=	1.2.3
+PORTREVISION=	4
 CATEGORIES=	devel print
 
 MAINTAINER=	office@FreeBSD.org
@@ -15,7 +16,7 @@ LIB_DEPENDS=	libicuuc.so:devel/icu \
 		libharfbuzz.so:print/harfbuzz
 
 USE_GITHUB=	yes
-GH_ACCOUNT=	harfbuzz
+GH_ACCOUNT=	behdad
 
 USES=		autoreconf compiler:c++11-lib gmake libtool pathfix pkgconfig
 USE_CXXSTD=	gnu++11

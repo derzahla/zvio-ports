@@ -36,10 +36,4 @@ post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Gimp/Net/Net.so
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${SITE_ARCH_REL}/auto/Gimp/UI/UI.so
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} >= 504200
-BROKEN=	fails to build
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

@@ -5,7 +5,7 @@ MASTER_SITES+=	https://download.angie.software/files/:angie
 DISTNAME=	angie-${DISTVERSIONFULL}
 DISTFILES+=	${DISTNAME}${EXTRACT_SUFX}:angie
 
-MAINTAINER?=	sko@rostwald.de
+MAINTAINER?=	oleg@mamontov.net
 COMMENT?=	Efficient, powerful and scalable reverse proxy and web server
 WWW?=		https://angie.software/en/
 

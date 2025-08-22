@@ -4,7 +4,7 @@ CATEGORIES=	devel
 MASTER_SITES=	GNOME
 DIST_SUBDIR=	gnome
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	kwm@FreeBSD.org
 COMMENT=	GObject collection library
 WWW=		https://gitlab.gnome.org/GNOME/libgee
 

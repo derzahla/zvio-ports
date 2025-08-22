@@ -4,7 +4,7 @@ DISTVERSION=	3.2.1
 PORTREVISION=	1
 CATEGORIES=	graphics
 
-MAINTAINER=	alven@FreeBSD.org
+MAINTAINER=	alster@vinterdalen.se
 COMMENT=	SVG rendering and manipulation library in C++
 WWW=		https://github.com/sammycage/lunasvg/
 

@@ -1,5 +1,5 @@
 PORTNAME=	tig
-DISTVERSION=	2.5.12
+DISTVERSION=	2.5.10
 CATEGORIES=	devel
 MASTER_SITES=	https://github.com/jonas/tig/releases/download/${DISTNAME}/
 
@@ -12,8 +12,9 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 
 TEST_DEPENDS=	git:devel/git
 
-USES=		gmake iconv ncurses pkgconfig readline
+USES=		gmake iconv ncurses readline
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 CONFIGURE_ARGS=	${ICONV_CONFIGURE_BASE}
 MAKE_ARGS=	V=1
 

@@ -1,26 +1,29 @@
 PORTNAME=	python-swiftclient
-PORTVERSION=	4.8.0
+PORTVERSION=	3.13.1
+PORTREVISION=	2
 CATEGORIES=	databases python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	python_swiftclient-${PORTVERSION}
 
-MAINTAINER=	sunpoet@FreeBSD.org
-COMMENT=	OpenStack Object Storage API Client Library
-WWW=		https://docs.openstack.org/python-swiftclient/latest/ \
-		https://github.com/openstack/python-swiftclient
+MAINTAINER=	trociny@FreeBSD.org
+COMMENT=	Python client library for OpenStack Object Storage (Swift)
+WWW=		https://launchpad.net/python-swiftclient
 
 LICENSE=	APACHE20
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pbr>=0:devel/py-pbr@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
-RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}requests>=2.4.0:www/py-requests@${PY_FLAVOR}
+BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pbr>=0.5.21:devel/py-pbr@${PY_FLAVOR}
+
+RUN_DEPENDS:=	${BUILD_DEPENDS}
+RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}six>=1.9.0:devel/py-six@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}requests>=1.1:www/py-requests@${PY_FLAVOR}
 
 USES=		python
-USE_PYTHON=	autoplist concurrent pep517
-
+USE_PYTHON=	distutils autoplist
 NO_ARCH=	yes
+
+post-install:
+	${INSTALL_MAN} ${WRKSRC}/doc/manpages/swift.1 \
+	    ${STAGEDIR}${PREFIX}/share/man/man1
 
 .include <bsd.port.mk>

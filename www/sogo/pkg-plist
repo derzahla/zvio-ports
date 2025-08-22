@@ -80,12 +80,12 @@ GNUstep/Local/Library/Frameworks/SOGo.framework/Versions/5/Headers/WOResponse+SO
 GNUstep/Local/Library/Frameworks/SOGo.framework/Versions/5/Resources/CASLogoutRequestMap.plist
 GNUstep/Local/Library/Frameworks/SOGo.framework/Versions/5/Resources/DAVReportMap.plist
 GNUstep/Local/Library/Frameworks/SOGo.framework/Versions/5/Resources/Info-gnustep.plist
-%%SAML2%%GNUstep/Local/Library/Frameworks/SOGo.framework/Versions/5/Resources/SOGoSAML2Metadata.xml
 GNUstep/Local/Library/Frameworks/SOGo.framework/Versions/5/Resources/SOGoDefaults.plist
+%%SAML2%%GNUstep/Local/Library/Frameworks/SOGo.framework/Versions/5/Resources/SOGoSAML2Metadata.xml
 GNUstep/Local/Library/Frameworks/SOGo.framework/Versions/5/sogo/SOGo
 GNUstep/Local/Library/Frameworks/SOGo.framework/Versions/5/sogo/libSOGo.so
-GNUstep/Local/Library/Frameworks/SOGo.framework/Versions/5/sogo/libSOGo.so.%%VERSION%%
 GNUstep/Local/Library/Frameworks/SOGo.framework/Versions/5/sogo/libSOGo.so.5
+GNUstep/Local/Library/Frameworks/SOGo.framework/Versions/5/sogo/libSOGo.so.%%VERSION%%
 GNUstep/Local/Library/Frameworks/SOGo.framework/Versions/Current
 GNUstep/Local/Library/Frameworks/SOGo.framework/sogo/SOGo
 GNUstep/Local/Library/Frameworks/SOGo.framework/sogo/libSOGo.so
@@ -747,8 +747,8 @@ GNUstep/Local/Library/Libraries/sogo/libNGCards.so
 GNUstep/Local/Library/Libraries/sogo/libNGCards.so.4.9
 GNUstep/Local/Library/Libraries/sogo/libNGCards.so.4.9.0
 GNUstep/Local/Library/Libraries/sogo/libSOGo.so
-GNUstep/Local/Library/Libraries/sogo/libSOGo.so.%%VERSION%%
 GNUstep/Local/Library/Libraries/sogo/libSOGo.so.5
+GNUstep/Local/Library/Libraries/sogo/libSOGo.so.%%VERSION%%
 GNUstep/Local/Library/Libraries/sogo/libSOGoUI.so
 GNUstep/Local/Library/Libraries/sogo/libSOGoUI.so.5.12
 GNUstep/Local/Library/Libraries/sogo/libSOGoUI.so.5.12.0
@@ -760,10 +760,6 @@ GNUstep/Local/Library/OCSTypeModels/contact.ocs
 %%ACTIVESYNC%%GNUstep/Local/Library/SOGo/ActiveSync.SOGo/Resources/Info-gnustep.plist
 %%ACTIVESYNC%%GNUstep/Local/Library/SOGo/ActiveSync.SOGo/Resources/product.plist
 %%ACTIVESYNC%%GNUstep/Local/Library/SOGo/ActiveSync.SOGo/stamp.make
-GNUstep/Local/Library/SOGo/API.SOGo/API
-GNUstep/Local/Library/SOGo/API.SOGo/Resources/Info-gnustep.plist
-GNUstep/Local/Library/SOGo/API.SOGo/Resources/product.plist
-GNUstep/Local/Library/SOGo/API.SOGo/stamp.make
 GNUstep/Local/Library/SOGo/AdministrationUI.SOGo/AdministrationUI
 GNUstep/Local/Library/SOGo/AdministrationUI.SOGo/Resources/Arabic.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/AdministrationUI.SOGo/Resources/Basque.lproj/Localizable.strings
@@ -790,7 +786,6 @@ GNUstep/Local/Library/SOGo/AdministrationUI.SOGo/Resources/Info-gnustep.plist
 GNUstep/Local/Library/SOGo/AdministrationUI.SOGo/Resources/Italian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/AdministrationUI.SOGo/Resources/Japanese.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/AdministrationUI.SOGo/Resources/Kazakh.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/AdministrationUI.SOGo/Resources/Korean.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/AdministrationUI.SOGo/Resources/Latvian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/AdministrationUI.SOGo/Resources/Lithuanian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/AdministrationUI.SOGo/Resources/Macedonian.lproj/Localizable.strings
@@ -808,7 +803,6 @@ GNUstep/Local/Library/SOGo/AdministrationUI.SOGo/Resources/Slovenian.lproj/Local
 GNUstep/Local/Library/SOGo/AdministrationUI.SOGo/Resources/SpanishArgentina.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/AdministrationUI.SOGo/Resources/SpanishSpain.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/AdministrationUI.SOGo/Resources/Swedish.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/AdministrationUI.SOGo/Resources/Thai.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/AdministrationUI.SOGo/Resources/TurkishTurkey.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/AdministrationUI.SOGo/Resources/Ukrainian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/AdministrationUI.SOGo/Resources/Welsh.lproj/Localizable.strings
@@ -840,7 +834,6 @@ GNUstep/Local/Library/SOGo/Appointments.SOGo/Resources/Info-gnustep.plist
 GNUstep/Local/Library/SOGo/Appointments.SOGo/Resources/Italian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Appointments.SOGo/Resources/Japanese.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Appointments.SOGo/Resources/Kazakh.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/Appointments.SOGo/Resources/Korean.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Appointments.SOGo/Resources/Latvian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Appointments.SOGo/Resources/Lithuanian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Appointments.SOGo/Resources/MSExchangeFreeBusySOAPRequest.wo/MSExchangeFreeBusySOAPRequest.html
@@ -861,7 +854,6 @@ GNUstep/Local/Library/SOGo/Appointments.SOGo/Resources/Slovenian.lproj/Localizab
 GNUstep/Local/Library/SOGo/Appointments.SOGo/Resources/SpanishArgentina.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Appointments.SOGo/Resources/SpanishSpain.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Appointments.SOGo/Resources/Swedish.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/Appointments.SOGo/Resources/Thai.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Appointments.SOGo/Resources/TurkishTurkey.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Appointments.SOGo/Resources/Ukrainian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Appointments.SOGo/Resources/Welsh.lproj/Localizable.strings
@@ -893,7 +885,6 @@ GNUstep/Local/Library/SOGo/CommonUI.SOGo/Resources/Info-gnustep.plist
 GNUstep/Local/Library/SOGo/CommonUI.SOGo/Resources/Italian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/CommonUI.SOGo/Resources/Japanese.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/CommonUI.SOGo/Resources/Kazakh.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/CommonUI.SOGo/Resources/Korean.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/CommonUI.SOGo/Resources/Latvian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/CommonUI.SOGo/Resources/Lithuanian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/CommonUI.SOGo/Resources/Macedonian.lproj/Localizable.strings
@@ -911,7 +902,6 @@ GNUstep/Local/Library/SOGo/CommonUI.SOGo/Resources/Slovenian.lproj/Localizable.s
 GNUstep/Local/Library/SOGo/CommonUI.SOGo/Resources/SpanishArgentina.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/CommonUI.SOGo/Resources/SpanishSpain.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/CommonUI.SOGo/Resources/Swedish.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/CommonUI.SOGo/Resources/Thai.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/CommonUI.SOGo/Resources/TurkishTurkey.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/CommonUI.SOGo/Resources/Ukrainian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/CommonUI.SOGo/Resources/Welsh.lproj/Localizable.strings
@@ -944,7 +934,6 @@ GNUstep/Local/Library/SOGo/Contacts.SOGo/Resources/Info-gnustep.plist
 GNUstep/Local/Library/SOGo/Contacts.SOGo/Resources/Italian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Contacts.SOGo/Resources/Japanese.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Contacts.SOGo/Resources/Kazakh.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/Contacts.SOGo/Resources/Korean.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Contacts.SOGo/Resources/Latvian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Contacts.SOGo/Resources/Lithuanian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Contacts.SOGo/Resources/Macedonian.lproj/Localizable.strings
@@ -962,7 +951,6 @@ GNUstep/Local/Library/SOGo/Contacts.SOGo/Resources/Slovenian.lproj/Localizable.s
 GNUstep/Local/Library/SOGo/Contacts.SOGo/Resources/SpanishArgentina.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Contacts.SOGo/Resources/SpanishSpain.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Contacts.SOGo/Resources/Swedish.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/Contacts.SOGo/Resources/Thai.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Contacts.SOGo/Resources/TurkishTurkey.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Contacts.SOGo/Resources/Ukrainian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Contacts.SOGo/Resources/Welsh.lproj/Localizable.strings
@@ -994,7 +982,6 @@ GNUstep/Local/Library/SOGo/ContactsUI.SOGo/Resources/Info-gnustep.plist
 GNUstep/Local/Library/SOGo/ContactsUI.SOGo/Resources/Italian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/ContactsUI.SOGo/Resources/Japanese.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/ContactsUI.SOGo/Resources/Kazakh.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/ContactsUI.SOGo/Resources/Korean.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/ContactsUI.SOGo/Resources/Latvian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/ContactsUI.SOGo/Resources/Lithuanian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/ContactsUI.SOGo/Resources/Macedonian.lproj/Localizable.strings
@@ -1012,7 +999,6 @@ GNUstep/Local/Library/SOGo/ContactsUI.SOGo/Resources/Slovenian.lproj/Localizable
 GNUstep/Local/Library/SOGo/ContactsUI.SOGo/Resources/SpanishArgentina.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/ContactsUI.SOGo/Resources/SpanishSpain.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/ContactsUI.SOGo/Resources/Swedish.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/ContactsUI.SOGo/Resources/Thai.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/ContactsUI.SOGo/Resources/TurkishTurkey.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/ContactsUI.SOGo/Resources/Ukrainian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/ContactsUI.SOGo/Resources/Welsh.lproj/Localizable.strings
@@ -1045,7 +1031,6 @@ GNUstep/Local/Library/SOGo/MailPartViewers.SOGo/Resources/Info-gnustep.plist
 GNUstep/Local/Library/SOGo/MailPartViewers.SOGo/Resources/Italian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailPartViewers.SOGo/Resources/Japanese.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailPartViewers.SOGo/Resources/Kazakh.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/MailPartViewers.SOGo/Resources/Korean.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailPartViewers.SOGo/Resources/Latvian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailPartViewers.SOGo/Resources/Lithuanian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailPartViewers.SOGo/Resources/Macedonian.lproj/Localizable.strings
@@ -1063,7 +1048,6 @@ GNUstep/Local/Library/SOGo/MailPartViewers.SOGo/Resources/Slovenian.lproj/Locali
 GNUstep/Local/Library/SOGo/MailPartViewers.SOGo/Resources/SpanishArgentina.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailPartViewers.SOGo/Resources/SpanishSpain.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailPartViewers.SOGo/Resources/Swedish.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/MailPartViewers.SOGo/Resources/Thai.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailPartViewers.SOGo/Resources/TurkishTurkey.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailPartViewers.SOGo/Resources/Ukrainian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailPartViewers.SOGo/Resources/Welsh.lproj/Localizable.strings
@@ -1095,7 +1079,6 @@ GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/Info-gnustep.plist
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/Italian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/Japanese.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/Kazakh.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/Korean.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/Latvian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/Lithuanian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/Macedonian.lproj/Localizable.strings
@@ -1202,10 +1185,6 @@ GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailKazakhForward.wo/SOGoMa
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailKazakhForward.wo/SOGoMailKazakhForward.wod
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailKazakhReply.wo/SOGoMailKazakhReply.html
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailKazakhReply.wo/SOGoMailKazakhReply.wod
-GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailKoreanForward.wo/SOGoMailKoreanForward.html
-GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailKoreanForward.wo/SOGoMailKoreanForward.wod
-GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailKoreanReply.wo/SOGoMailKoreanReply.html
-GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailKoreanReply.wo/SOGoMailKoreanReply.wod
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailLatvianForward.wo/SOGoMailLatvianForward.html
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailLatvianForward.wo/SOGoMailLatvianForward.wod
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailLatvianReply.wo/SOGoMailLatvianReply.html
@@ -1274,10 +1253,6 @@ GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailSwedishForward.wo/SOGoM
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailSwedishForward.wo/SOGoMailSwedishForward.wod
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailSwedishReply.wo/SOGoMailSwedishReply.html
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailSwedishReply.wo/SOGoMailSwedishReply.wod
-GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailThaiForward.wo/SOGoMailThaiForward.html
-GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailThaiForward.wo/SOGoMailThaiForward.wod
-GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailThaiReply.wo/SOGoMailThaiReply.html
-GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailThaiReply.wo/SOGoMailThaiReply.wod
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailTurkishTurkeyForward.wo/SOGoMailTurkishTurkeyForward.html
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailTurkishTurkeyForward.wo/SOGoMailTurkishTurkeyForward.wod
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SOGoMailTurkishTurkeyReply.wo/SOGoMailTurkishTurkeyReply.html
@@ -1297,7 +1272,6 @@ GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/Slovenian.lproj/Localizable.str
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SpanishArgentina.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/SpanishSpain.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/Swedish.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/Thai.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/TurkishTurkey.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/Ukrainian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/Mailer.SOGo/Resources/Welsh.lproj/Localizable.strings
@@ -1329,7 +1303,6 @@ GNUstep/Local/Library/SOGo/MailerUI.SOGo/Resources/Info-gnustep.plist
 GNUstep/Local/Library/SOGo/MailerUI.SOGo/Resources/Italian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailerUI.SOGo/Resources/Japanese.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailerUI.SOGo/Resources/Kazakh.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/MailerUI.SOGo/Resources/Korean.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailerUI.SOGo/Resources/Latvian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailerUI.SOGo/Resources/Lithuanian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailerUI.SOGo/Resources/Macedonian.lproj/Localizable.strings
@@ -1347,7 +1320,6 @@ GNUstep/Local/Library/SOGo/MailerUI.SOGo/Resources/Slovenian.lproj/Localizable.s
 GNUstep/Local/Library/SOGo/MailerUI.SOGo/Resources/SpanishArgentina.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailerUI.SOGo/Resources/SpanishSpain.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailerUI.SOGo/Resources/Swedish.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/MailerUI.SOGo/Resources/Thai.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailerUI.SOGo/Resources/TurkishTurkey.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailerUI.SOGo/Resources/Ukrainian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MailerUI.SOGo/Resources/Welsh.lproj/Localizable.strings
@@ -1404,8 +1376,6 @@ GNUstep/Local/Library/SOGo/MainUI.SOGo/Resources/Japanese.lproj/Locale
 GNUstep/Local/Library/SOGo/MainUI.SOGo/Resources/Japanese.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MainUI.SOGo/Resources/Kazakh.lproj/Locale
 GNUstep/Local/Library/SOGo/MainUI.SOGo/Resources/Kazakh.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/MainUI.SOGo/Resources/Korean.lproj/Locale
-GNUstep/Local/Library/SOGo/MainUI.SOGo/Resources/Korean.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MainUI.SOGo/Resources/Latvian.lproj/Locale
 GNUstep/Local/Library/SOGo/MainUI.SOGo/Resources/Latvian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MainUI.SOGo/Resources/Lithuanian.lproj/Locale
@@ -1454,8 +1424,6 @@ GNUstep/Local/Library/SOGo/MainUI.SOGo/Resources/SpanishSpain.lproj/Locale
 GNUstep/Local/Library/SOGo/MainUI.SOGo/Resources/SpanishSpain.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MainUI.SOGo/Resources/Swedish.lproj/Locale
 GNUstep/Local/Library/SOGo/MainUI.SOGo/Resources/Swedish.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/MainUI.SOGo/Resources/Thai.lproj/Locale
-GNUstep/Local/Library/SOGo/MainUI.SOGo/Resources/Thai.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MainUI.SOGo/Resources/TurkishTurkey.lproj/Locale
 GNUstep/Local/Library/SOGo/MainUI.SOGo/Resources/TurkishTurkey.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/MainUI.SOGo/Resources/Ukrainian.lproj/Locale
@@ -1490,7 +1458,6 @@ GNUstep/Local/Library/SOGo/PreferencesUI.SOGo/Resources/Info-gnustep.plist
 GNUstep/Local/Library/SOGo/PreferencesUI.SOGo/Resources/Italian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/PreferencesUI.SOGo/Resources/Japanese.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/PreferencesUI.SOGo/Resources/Kazakh.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/PreferencesUI.SOGo/Resources/Korean.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/PreferencesUI.SOGo/Resources/Latvian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/PreferencesUI.SOGo/Resources/Lithuanian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/PreferencesUI.SOGo/Resources/Macedonian.lproj/Localizable.strings
@@ -1508,7 +1475,6 @@ GNUstep/Local/Library/SOGo/PreferencesUI.SOGo/Resources/Slovenian.lproj/Localiza
 GNUstep/Local/Library/SOGo/PreferencesUI.SOGo/Resources/SpanishArgentina.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/PreferencesUI.SOGo/Resources/SpanishSpain.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/PreferencesUI.SOGo/Resources/Swedish.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/PreferencesUI.SOGo/Resources/Thai.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/PreferencesUI.SOGo/Resources/TurkishTurkey.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/PreferencesUI.SOGo/Resources/UIxPreferences.toolbar
 GNUstep/Local/Library/SOGo/PreferencesUI.SOGo/Resources/Ukrainian.lproj/Localizable.strings
@@ -1540,7 +1506,6 @@ GNUstep/Local/Library/SOGo/SchedulerUI.SOGo/Resources/Info-gnustep.plist
 GNUstep/Local/Library/SOGo/SchedulerUI.SOGo/Resources/Italian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/SchedulerUI.SOGo/Resources/Japanese.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/SchedulerUI.SOGo/Resources/Kazakh.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/SchedulerUI.SOGo/Resources/Korean.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/SchedulerUI.SOGo/Resources/Latvian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/SchedulerUI.SOGo/Resources/Lithuanian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/SchedulerUI.SOGo/Resources/Macedonian.lproj/Localizable.strings
@@ -1558,7 +1523,6 @@ GNUstep/Local/Library/SOGo/SchedulerUI.SOGo/Resources/Slovenian.lproj/Localizabl
 GNUstep/Local/Library/SOGo/SchedulerUI.SOGo/Resources/SpanishArgentina.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/SchedulerUI.SOGo/Resources/SpanishSpain.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/SchedulerUI.SOGo/Resources/Swedish.lproj/Localizable.strings
-GNUstep/Local/Library/SOGo/SchedulerUI.SOGo/Resources/Thai.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/SchedulerUI.SOGo/Resources/TurkishTurkey.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/SchedulerUI.SOGo/Resources/Ukrainian.lproj/Localizable.strings
 GNUstep/Local/Library/SOGo/SchedulerUI.SOGo/Resources/Welsh.lproj/Localizable.strings
@@ -1688,9 +1652,6 @@ GNUstep/Local/Library/SOGo/Templates/SOGoACLJapaneseRemovalAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoACLKazakhAdditionAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoACLKazakhModificationAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoACLKazakhRemovalAdvisory.wox
-GNUstep/Local/Library/SOGo/Templates/SOGoACLKoreanAdditionAdvisory.wox
-GNUstep/Local/Library/SOGo/Templates/SOGoACLKoreanModificationAdvisory.wox
-GNUstep/Local/Library/SOGo/Templates/SOGoACLKoreanRemovalAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoACLLatvianAdditionAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoACLLatvianModificationAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoACLLatvianRemovalAdvisory.wox
@@ -1739,9 +1700,6 @@ GNUstep/Local/Library/SOGo/Templates/SOGoACLSpanishSpainRemovalAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoACLSwedishAdditionAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoACLSwedishModificationAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoACLSwedishRemovalAdvisory.wox
-GNUstep/Local/Library/SOGo/Templates/SOGoACLThaiAdditionAdvisory.wox
-GNUstep/Local/Library/SOGo/Templates/SOGoACLThaiModificationAdvisory.wox
-GNUstep/Local/Library/SOGo/Templates/SOGoACLThaiRemovalAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoACLTurkishTurkeyAdditionAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoACLTurkishTurkeyModificationAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoACLTurkishTurkeyRemovalAdvisory.wox
@@ -1796,8 +1754,6 @@ GNUstep/Local/Library/SOGo/Templates/SOGoFolderJapaneseAdditionAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoFolderJapaneseRemovalAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoFolderKazakhAdditionAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoFolderKazakhRemovalAdvisory.wox
-GNUstep/Local/Library/SOGo/Templates/SOGoFolderKoreanAdditionAdvisory.wox
-GNUstep/Local/Library/SOGo/Templates/SOGoFolderKoreanRemovalAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoFolderLatvianAdditionAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoFolderLatvianRemovalAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoFolderLithuanianAdditionAdvisory.wox
@@ -1830,8 +1786,6 @@ GNUstep/Local/Library/SOGo/Templates/SOGoFolderSpanishSpainAdditionAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoFolderSpanishSpainRemovalAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoFolderSwedishAdditionAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoFolderSwedishRemovalAdvisory.wox
-GNUstep/Local/Library/SOGo/Templates/SOGoFolderThaiAdditionAdvisory.wox
-GNUstep/Local/Library/SOGo/Templates/SOGoFolderThaiRemovalAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoFolderTurkishTurkeyAdditionAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoFolderTurkishTurkeyRemovalAdvisory.wox
 GNUstep/Local/Library/SOGo/Templates/SOGoFolderUkrainianAdditionAdvisory.wox

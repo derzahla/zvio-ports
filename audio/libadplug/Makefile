@@ -12,7 +12,7 @@ LICENSE=	GPLv2
 
 LIB_DEPENDS=	libbinio.so:devel/libbinio
 
-USES=		autoreconf compiler:c++11-lang cpe libtool makeinfo \
+USES=		autoreconf compiler:c++11-lang cpe libtool makeinfo pathfix \
 		pkgconfig
 CPE_VENDOR=	adplug_project
 USE_CSTD=	gnu89

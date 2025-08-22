@@ -11,7 +11,7 @@ WWW=		https://www.underbit.com/products/mad/ \
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		cmake cpe
+USES=		cmake cpe pathfix
 
 CMAKE_OFF=	MADD_ASM MADD16_ASM
 CMAKE_ON=	BUILD_SHARED_LIBS ${CMAKE_ON_${ARCH}}

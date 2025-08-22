@@ -1,7 +1,6 @@
     COMMENT = Emulators for other operating systems
 
     SUBDIR += 86Box
-    SUBDIR += Ymir
     SUBDIR += adamem
     SUBDIR += almostti
     SUBDIR += anese

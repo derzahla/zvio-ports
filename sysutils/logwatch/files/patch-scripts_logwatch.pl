@@ -1,6 +1,29 @@
---- scripts/logwatch.pl.orig	2025-07-21 23:56:15 UTC
+--- scripts/logwatch.pl.orig	2024-11-30 10:53:34 UTC
 +++ scripts/logwatch.pl
-@@ -106,20 +106,20 @@ $Config{'appendcwdtologdirs'} = 0;
+@@ -61,11 +61,11 @@ use POSIX qw(uname strftime);
+ # SET LIBS, GLOBALS, and DEFAULTS
+ use Getopt::Long;
+ use POSIX qw(uname strftime);
+-use HTML::Entities qw(encode_entities);
++use HTML::HTML5::Entities qw(encode_entities);
+ use File::Temp qw/ tempdir /;
+ use Cwd;
+ 
+-eval "use lib \"$BaseDir/lib\";";
++
+ eval "use Logwatch \':dates\'";
+ 
+ my (%Config, @ServiceList, @LogFileList, %ServiceData, %LogFileData);
+@@ -90,7 +90,7 @@ $Config{'archives'} = 1;
+ $Config{'range'} = "yesterday";
+ $Config{'debug'} = 0;
+ $Config{'archives'} = 1;
+-$Config{'tmpdir'} = "/var/cache/logwatch";
++$Config{'tmpdir'} = "/usr/local/var/logwatch";
+ $Config{'numeric'} = 0;
+ $Config{'pathtocat'} = "cat";
+ $Config{'pathtozcat'} = "zcat";
+@@ -107,20 +107,20 @@ $Config{'appendcwdtologdirs'} = 0;
  $Config{'appendvarlogtologdirs'} = 1;
  $Config{'appendcwdtologdirs'} = 0;
  
@@ -31,7 +54,7 @@
  }
  
  #Added to create switches for different os options -mgt
-@@ -157,10 +157,10 @@ if ($Config{'debug'} > 8) {
+@@ -158,10 +158,10 @@ if ($Config{'debug'} > 8) {
  @ReadConfigNames = ();
  @ReadConfigValues = ();
  
@@ -46,7 +69,7 @@
  
  
  for (my $i = 0; $i <= $#ReadConfigNames; $i++) {
-@@ -350,7 +350,7 @@ my (@CmdList, @CmdArgList, @Separators, $ThisFile, $co
+@@ -351,7 +351,7 @@ my (@CmdList, @CmdArgList, @Separators, $ThisFile, $co
  my (@CmdList, @CmdArgList, @Separators, $ThisFile, $count);
  
  
@@ -55,7 +78,7 @@
     if (-d "$ServicesDir/services") {
        opendir(SERVICESDIR, "$ServicesDir/services") or
           die "$ServicesDir $!";
-@@ -374,13 +374,13 @@ foreach my $f (@services) {
+@@ -375,13 +375,13 @@ foreach my $f (@services) {
     @ReadConfigValues = ();
     @Separators = ();
     push (@Separators, scalar(@ReadConfigNames));
@@ -73,7 +96,7 @@
  
     @CmdList = ();
     @CmdArgList = ();
-@@ -419,7 +419,7 @@ my @logfiles = ();
+@@ -420,7 +420,7 @@ my @logfiles = ();
  
  # Find out what logfiles are defined...
  my @logfiles = ();
@@ -82,7 +105,7 @@
     if (-d "$LogfilesDir/logfiles") {
        opendir(LOGFILEDIR, "$LogfilesDir/logfiles") or
           die "$LogfilesDir $!";
-@@ -440,13 +440,13 @@ for $ThisFile (@logfiles) {
+@@ -441,13 +441,13 @@ for $ThisFile (@logfiles) {
           @ReadConfigValues = ();
           @Separators = ();
           push (@Separators, scalar(@ReadConfigNames));
@@ -100,7 +123,7 @@
  
           @CmdList = ();
           @CmdArgList = ();
-@@ -737,7 +737,7 @@ foreach $LogFile (@LogFileList) {
+@@ -738,7 +738,7 @@ foreach $LogFile (@LogFileList) {
  foreach $LogFile (@LogFileList) {
     next if ($LogFile eq 'none');
  	if (!defined($LogFileData{$LogFile}{'logfiles'})) {
@@ -109,12 +132,9 @@
  		next;
  	}
  
-@@ -1302,18 +1302,14 @@ sub parselogs {
- sub parselogs {
-    my $Service;
+@@ -1305,16 +1305,16 @@ sub parselogs {
  
--   #Load our ignore file order is [assume normal install]  /etc/conf, /usr/share/logwatch/dist.conf and then default.conf -mgt
-+   #Load our ignore file order is [assume normal install]  /etc/logwatch and then /etc/logwatch/defaults -mgt
+    #Load our ignore file order is [assume normal install]  /etc/conf, /usr/share/logwatch/dist.conf and then default.conf -mgt
     my @IGNORE;
 -   if ( -e "$ConfigDir/conf/ignore.conf") {
 -      open( IGNORE, "$ConfigDir/conf/ignore.conf" )  or return undef;
@@ -124,8 +144,10 @@
        close IGNORE;
 -   } elsif ( -e "$BaseDir/dist.conf/ignore.conf") {
 -      open( IGNORE, "$BaseDir/dist.conf/ignore.conf" )  or return undef;
--      @IGNORE = grep {!/(^#|^\s+$)/} <IGNORE>;
--      close IGNORE;
++   } elsif ( -e "$ConfigDir/defaults/ignore.conf") {
++      open( IGNORE, "$ConfigDir/defaults/ignore.conf" )  or return undef;
+       @IGNORE = grep {!/(^#|^\s+$)/} <IGNORE>;
+       close IGNORE;
 -   } elsif ( -e "$BaseDir/default.conf/ignore.conf") {
 -      open( IGNORE, "$BaseDir/default.conf/ignore.conf" )  or return undef;
 +   } elsif ( -e "$ConfigDir/defaults/ignore.conf") {

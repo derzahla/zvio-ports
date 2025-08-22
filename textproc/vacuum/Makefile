@@ -1,19 +1,18 @@
 PORTNAME=	vacuum
 DISTVERSIONPREFIX=	v
-DISTVERSION=	0.17.7
-PORTREVISION=	1
+DISTVERSION=	0.13.2
+PORTREVISION=	2
 CATEGORIES=	textproc
 PKGNAMESUFFIX=	-lint-tool
 
 MAINTAINER=	yuri@FreeBSD.org
 COMMENT=	OpenAPI/Swagger linter and quality analysis tool
-WWW=		https://quobix.com/vacuum/ \
-		https://github.com/daveshanley/vacuum
+WWW=		https://quobix.com/vacuum/
 
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		go:1.23,modules
+USES=		go:1.21,modules
 
 GO_MODULE=	github.com/daveshanley/vacuum
 

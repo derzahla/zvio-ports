@@ -1,5 +1,6 @@
 PORTNAME=	logcheck
-DISTVERSION=	1.4.6
+DISTVERSION=	1.4.4
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	DEBIAN_POOL
 DISTNAME=	${PORTNAME}_${PORTVERSION}
@@ -16,7 +17,6 @@ RUN_DEPENDS=	bash:shells/bash \
 		lockfile-create:sysutils/lockfile-progs \
 		mime-construct:mail/mime-construct
 
-
 # Enable Perl dependency for logtail script
 USES=		perl5 shebangfix tar:xz
 SHEBANG_FILES=	src/detectrotate/*.dtr src/logcheck src/logtail src/logtail2
@@ -26,7 +26,7 @@ SUB_LIST+=	CRON=${PORT_OPTIONS:MCRON} \
 		DBDIR=${DBDIR} \
 		LOGCHECK_GROUP=${LOGCHECK_GROUP} \
 		LOGCHECK_USER=${LOGCHECK_USER}
-WRKSRC=		${WRKDIR}/${PORTNAME}
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 USERS=		${LOGCHECK_USER}
 GROUPS=		${LOGCHECK_GROUP}
 PLIST_SUB+=	CHGRP=${CHGRP} \

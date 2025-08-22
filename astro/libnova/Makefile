@@ -4,7 +4,7 @@ CATEGORIES=	astro
 MASTER_SITES=	https://sourceforge.net/code-snapshots/git/l/li/${PORTNAME}/${PORTNAME}.git/
 DISTNAME=	${PORTNAME}-${PORTNAME}-${GIT_HASH}
 
-MAINTAINER=	alven@FreeBSD.org
+MAINTAINER=	alster@vinterdalen.se
 COMMENT=	Astronomical Calculation Library
 WWW=		https://libnova.sourceforge.net/
 

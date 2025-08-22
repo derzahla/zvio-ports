@@ -1,11 +1,10 @@
 PORTNAME=	gmm++
-DISTVERSION=	5.4.4
-PORTREVISION=	2
+PORTVERSION=	5.4.2
 CATEGORIES=	math
 MASTER_SITES=	http://download-mirror.savannah.gnu.org/releases/getfem/stable/
-DISTNAME=	${PORTNAME:S/+//g}-${DISTVERSION}
+DISTNAME=	${PORTNAME:S/+//g}-${PORTVERSION}
 
-MAINTAINER=	atanubiswas484@gmail.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Generic matrix template library
 WWW=		https://getfem.org/gmm/
 
@@ -20,19 +19,5 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 GNU_CONFIGURE=	yes
 NO_ARCH=	yes
 NO_BUILD=	yes
-
-OPTIONS_DEFAULT=	SUPERLU
-OPTIONS_SINGLE=		SOLVER
-OPTIONS_SINGLE_SOLVER=	MUMPS SUPERLU
-
-SOLVER_DESC=	Simultaneous equations solver
-MUMPS_DESC=	Use MUMPS (math/mumps)
-SUPERLU_DESC=	Use SuperLU (math/superlu)
-
-MUMPS_RUN_DEPENDS=	${LOCALBASE}/include/cmumps_c.h:math/mumps
-MUMPS_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-mumps
-
-SUPERLU_RUN_DEPENDS=	${LOCALBASE}/include/superlu/supermatrix.h:math/superlu
-SUPERLU_EXTRA_PATCHES=	${PATCHDIR}/extra-patch-superlu
 
 .include <bsd.port.mk>

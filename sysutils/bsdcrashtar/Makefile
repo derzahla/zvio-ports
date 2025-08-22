@@ -3,7 +3,7 @@ PORTVERSION=	0.1.3
 PORTREVISION=	2
 CATEGORIES=	sysutils
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	trociny@FreeBSD.org
 COMMENT=	Archive FreeBSD kernel crash files
 WWW=		https://code.google.com/archive/p/bsdcrashtar/
 

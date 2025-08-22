@@ -1,17 +1,17 @@
 PORTNAME=	lbzip2
 PORTVERSION=	2.5
 CATEGORIES=	archivers
-MASTER_SITES=	${WWW}/releases/download/v${PORTVERSION}/ \
-		LOCAL/danfe
+MASTER_SITES=	http://archive.lbzip2.org/ LOCAL/danfe
 
-LICENSE=	GPLv3+
+LICENSE=	GPLv3
 
 MAINTAINER=	danfe@FreeBSD.org
 COMMENT=	Multi-threaded bzip2/bunzip2 filter
-WWW=		https://github.com/kjn/lbzip2
+WWW=		https://lbzip2.org/
 
 USES=		tar:bzip2
 GNU_CONFIGURE=	yes
+GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 
 PLIST_FILES=	bin/lbunzip2 bin/lbzcat bin/lbzip2 \
 		share/man/man1/lbunzip2.1.gz \

@@ -4,7 +4,7 @@ PORTREVISION=		2
 CATEGORIES=		devel
 MASTER_SITES=		https://github.com/ClusterLabs/${PORTNAME}/releases/download/v${DISTVERSION}/
 
-MAINTAINER=		alven@FreeBSD.org
+MAINTAINER=		alster@vinterdalen.se
 COMMENT=		High performance logging, tracing, IPC, and polling library
 WWW=			https://github.com/ClusterLabs/libqb/wiki
 

@@ -1,7 +1,6 @@
 PORTNAME=	blackbox_exporter
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.27.0
-PORTREVISION=	2
 CATEGORIES=	net-mgmt
 
 MAINTAINER=	eduardo@FreeBSD.org

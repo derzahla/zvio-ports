@@ -1,6 +1,6 @@
 PORTNAME=	gnubiff
 PORTVERSION=	2.2.13
-PORTREVISION=	16
+PORTREVISION=	15
 CATEGORIES=	mail
 MASTER_SITES=	SF
 
@@ -12,7 +12,7 @@ LIB_DEPENDS=	libpopt.so:devel/popt
 
 OPTIONS_DEFINE=	NLS
 
-USES=		compiler:c++11-lang cpe fam gmake gnome pkgconfig
+USES=		compiler:c++11-lang cpe fam gmake gnome pathfix pkgconfig
 USE_GNOME=	intlhack libglade2
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
@@ -42,5 +42,6 @@ PLIST_SUB+=		NLS="@comment "
 .endif
 
 CONFIGURE_ARGS+=	--disable-gnome
+PLIST_SUB+=		BONOBODIR="libdata/bonobo"
 
 .include <bsd.port.mk>

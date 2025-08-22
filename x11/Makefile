@@ -16,7 +16,6 @@
     SUBDIR += apwal
     SUBDIR += arandr
     SUBDIR += arcan-trayicon
-    SUBDIR += ashell
     SUBDIR += aterm
     SUBDIR += autorandr
     SUBDIR += babl
@@ -463,7 +462,6 @@
     SUBDIR += wayland-logout
     SUBDIR += waylock
     SUBDIR += wayout
-    SUBDIR += wayst
     SUBDIR += wbar
     SUBDIR += wcm
     SUBDIR += wdisplays

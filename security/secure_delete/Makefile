@@ -5,7 +5,7 @@ CATEGORIES=	security
 MASTER_SITES=	PACKETSTORM/groups/thc \
 		http://freeworld.thc.org/releases/
 
-MAINTAINER=	mauroeldritch@gmail.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Secure data deletion toolkit
 WWW=		https://www.thc.org/
 

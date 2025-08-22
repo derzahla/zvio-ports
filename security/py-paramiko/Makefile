@@ -1,6 +1,6 @@
 PORTNAME=	paramiko
 PORTVERSION=	2.11.0
-PORTREVISION=	4
+PORTREVISION=	3
 CATEGORIES=	security python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -20,7 +20,7 @@ TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}invoke>=0:devel/py-invoke@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytest-relaxed>=0:devel/py-pytest-relaxed@${PY_FLAVOR}
 
 USES=		cpe python
-USE_PYTHON=	autoplist cryptography distutils pytest
+USE_PYTHON=	autoplist cryptography distutils pytest4
 
 NO_ARCH=	yes
 TEST_ARGS=	-p no:relaxed

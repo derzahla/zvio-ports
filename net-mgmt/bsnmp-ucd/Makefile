@@ -3,7 +3,7 @@ PORTVERSION=	0.4.5
 PORTREVISION=	1
 CATEGORIES=	net-mgmt
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	trociny@FreeBSD.org
 COMMENT=	bsnmpd module that implements parts of UCD-SNMP-MIB
 WWW=		https://github.com/trociny/bsnmp-ucd
 

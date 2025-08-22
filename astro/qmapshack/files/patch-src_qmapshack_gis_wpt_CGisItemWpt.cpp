@@ -1,10 +1,10 @@
---- src/qmapshack/gis/wpt/CGisItemWpt.cpp.orig	2025-07-04 12:38:57 UTC
+--- src/qmapshack/gis/wpt/CGisItemWpt.cpp.orig	2021-05-24 09:18:08 UTC
 +++ src/qmapshack/gis/wpt/CGisItemWpt.cpp
-@@ -23,6 +23,7 @@
+@@ -40,6 +40,7 @@
  #include <QPainterPath>
  #include <QtWidgets>
  #include <QtXml>
 +#include <QPainterPath>
  
- #include "CMainWindow.h"
- #include "canvas/CCanvas.h"
+ IGisItem::key_t CGisItemWpt::keyUserFocus;
+ QMap<searchProperty_e, CGisItemWpt::fSearch> CGisItemWpt::keywordLambdaMap;

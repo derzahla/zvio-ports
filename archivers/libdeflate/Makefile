@@ -10,7 +10,7 @@ WWW=		https://github.com/ebiggers/libdeflate
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		cmake:testing
+USES=		cmake:testing pathfix
 USE_LDCONFIG=	yes
 
 CMAKE_ON=	LIBDEFLATE_USE_SHARED_LIB

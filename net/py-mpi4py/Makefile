@@ -1,5 +1,6 @@
 PORTNAME=	mpi4py
-DISTVERSION=	4.1.0
+DISTVERSION=	4.0.3
+PORTREVISION=	1
 CATEGORIES=	net parallel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -14,27 +15,25 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.rst
 USES=		pkgconfig python
 USE_PYTHON=	autoplist concurrent cython3 distutils
 
-LDFLAGS+=	${MPI_LIBS}
-
 MP?=			OPENMPI
 .if ${MP} == "OPENMPI"
 USES+=			mpi:openmpi
 CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}mpi4py-mpich-4*
-MPIOPTIONS=		--oversubscribe --stream-buffering 0
 .elif ${MP} == "MPICH"
 USES+=			fortran mpi:mpich
 LDFLAGS+=		${LOCALBASE}/lib/gcc${GCC_DEFAULT}/libgcc_s.so
 CONFLICTS_INSTALL=	${PYTHON_PKGNAMEPREFIX}mpi4py-4*
-MPIOPTIONS=
 .else
 BROKEN=			invalid parameter MP
 .endif
 
-PORTDOCS=	*
+LDFLAGS+=	${MPI_LIBS}
 
 #SLAVEDIRS=	net/py-mpi4py-mpich
 
 OPTIONS_DEFINE=	DOCS
+
+PORTDOCS=	*
 
 pre-configure:
 	${CP} ${FILESDIR}/mpi.cfg ${WRKSRC}/
@@ -50,6 +49,6 @@ post-install:
 	(cd ${STAGEDIR}${PYTHON_SITELIBDIR}/mpi4py && ${STRIP_CMD} *.so)
 
 do-test:
-	(cd ${WRKSRC} && ${MPIEXEC} ${MPIOPTIONS} -n 5 ${PYTHON_CMD} test/main.py)
+	(cd ${WRKSRC} && ${PYTHON_CMD} ${PYDISTUTILS_SETUP} test)
 
 .include <bsd.port.mk>

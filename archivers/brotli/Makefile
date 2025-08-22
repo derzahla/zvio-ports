@@ -14,7 +14,7 @@ WWW=		https://github.com/google/brotli
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		cmake:testing cpe pkgconfig
+USES=		cmake:testing cpe pathfix pkgconfig
 CPE_VENDOR=	google
 USE_LDCONFIG=	yes
 

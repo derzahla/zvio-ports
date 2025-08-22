@@ -1,5 +1,6 @@
 PORTNAME=	onenetd
-PORTVERSION=	13
+PORTVERSION=	12
+PORTREVISION=	1
 CATEGORIES=	net
 MASTER_SITES=	http://offog.org/files/ \
 		http://ftp.i-scream.org/pub/offog.org/files/
@@ -7,8 +8,6 @@ MASTER_SITES=	http://offog.org/files/ \
 MAINTAINER=	tdb@FreeBSD.org
 COMMENT=	Single-server inetd
 WWW=		https://offog.org/code/onenetd.html
-
-LICENSE=	ISCL
 
 GNU_CONFIGURE=	yes
 GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share

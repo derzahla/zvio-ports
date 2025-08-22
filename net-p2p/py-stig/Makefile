@@ -4,7 +4,7 @@ CATEGORIES=	net-p2p
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	alven@FreeBSD.org
+MAINTAINER=	alster@vinterdalen.se
 COMMENT=	TUI and CLI client for the BitTorrent Transmission daemon
 WWW=		https://github.com/rndusr/stig/
 

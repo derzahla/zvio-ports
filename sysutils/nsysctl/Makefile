@@ -1,5 +1,6 @@
 PORTNAME=	nsysctl
-DISTVERSION=	2.2
+DISTVERSION=	2.1.2
+PORTREVISION=	1
 CATEGORIES=	sysutils
 
 MAINTAINER=	alfix86@gmail.com
@@ -12,10 +13,12 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 LIB_DEPENDS=	libsysctlmibinfo2.so:devel/libsysctlmibinfo2
 
 USE_GITLAB=	yes
-GL_ACCOUNT=	alfix
 
-PLIST_FILES=	sbin/${PORTNAME} \
-		share/man/man8/${PORTNAME}.8.gz
+GL_ACCOUNT=	alfix
+GL_TAGNAME=	5d92b5a19300c56a95db0012c659f64f36fb1bce
+
+PLIST_FILES=	share/man/man8/${PORTNAME}.8.gz \
+		sbin/${PORTNAME}
 PORTDOCS=	CHANGELOG
 PORTEXAMPLES=	file.conf
 

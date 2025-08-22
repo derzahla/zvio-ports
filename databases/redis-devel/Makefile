@@ -1,9 +1,9 @@
 PORTNAME=	redis
-DISTVERSION=	8.0.2.20250630
+DISTVERSION=	7.4.3.20250430
 CATEGORIES=	databases
 PKGNAMESUFFIX=	-devel
 
-MAINTAINER=	bofh@freebsd.org
+MAINTAINER=	yasu@FreeBSD.org
 COMMENT=	Persistent key-value database with built-in net interface
 WWW=		https://redis.io/
 
@@ -18,7 +18,7 @@ LICENSE_PERMS_SSPLv1=	dist-mirror dist-sell pkg-mirror pkg-sell auto-accept
 USES+=		compiler:c11 cpe gmake tcl:test
 CPE_VENDOR=	redislabs
 USE_GITHUB=	yes
-GH_TAGNAME=	96930663b
+GH_TAGNAME=	de16bee70
 USE_RC_SUBR=	redis sentinel
 
 MAKE_ENV=	OPTIMIZATION= \

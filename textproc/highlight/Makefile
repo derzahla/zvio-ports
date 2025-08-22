@@ -4,7 +4,7 @@ PORTEPOCH=	3
 CATEGORIES=	textproc
 MASTER_SITES=	http://andre-simon.de/zip/
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	kwm@FreeBSD.org
 COMMENT=	Customizable syntax highlighter
 WWW=		http://andre-simon.de/
 

@@ -4,7 +4,7 @@ CATEGORIES=	print
 MASTER_SITES=	SF
 DISTFILES=	${DISTNAME}${EXTRACT_SUFX}
 
-MAINTAINER=	alven@FreeBSD.org
+MAINTAINER=	alster@vinterdalen.se
 COMMENT=	C-library for generating multi page PostScript documents
 WWW=		https://pslib.sourceforge.net/
 

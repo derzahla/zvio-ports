@@ -1,3 +1,4 @@
+bin/test-xodr
 cmake/OpenDriveConfig-%%CMAKE_BUILD_TYPE%%.cmake
 cmake/OpenDriveConfig.cmake
 include/CubicBezier.hpp
@@ -12,7 +13,6 @@ include/Junction.h
 include/Lane.h
 include/LaneSection.h
 include/LaneValidityRecord.h
-include/Log.h
 include/Math.hpp
 include/Mesh.h
 include/OpenDriveMap.h
@@ -25,5 +25,6 @@ include/RoadSignal.h
 include/RoutingGraph.h
 include/Utils.hpp
 include/XmlNode.h
-include/earcut.hpp
+include/pugixml/pugiconfig.hpp
+include/pugixml/pugixml.hpp
 lib/libOpenDrive.so

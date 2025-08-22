@@ -3,7 +3,7 @@ PORTVERSION=	0.4.70
 PORTREVISION=	1
 CATEGORIES=	databases
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	trociny@FreeBSD.org
 COMMENT=	LeoFS Web console
 WWW=		https://leo-project.net/
 

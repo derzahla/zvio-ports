@@ -4,7 +4,7 @@ PORTREVISION=	3
 CATEGORIES=	www
 MASTER_SITES=	GNOME
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	kwm@FreeBSD.org
 COMMENT=	The Easy Publish and Consume library
 WWW=		https://live.gnome.org/libepc/
 

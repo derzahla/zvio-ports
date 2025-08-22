@@ -10,7 +10,7 @@ WWW=		https://libirman.sourceforge.io/
 LICENSE=	LGPL20
 LICENSE_FILE=	${WRKSRC}/COPYING
 
-USES=		gmake libtool pkgconfig
+USES=		gmake libtool pkgconfig pathfix
 
 GNU_CONFIGURE=	yes
 USE_LDCONFIG=	yes

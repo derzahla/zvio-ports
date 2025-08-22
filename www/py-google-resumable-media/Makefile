@@ -1,9 +1,8 @@
 PORTNAME=	google-resumable-media
-PORTVERSION=	2.7.2
+PORTVERSION=	2.7.1
 CATEGORIES=	www python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
-DISTNAME=	google_resumable_media-${PORTVERSION}
 
 MAINTAINER=	sunpoet@FreeBSD.org
 COMMENT=	Utilities for Google Media Downloads and Resumable Uploads

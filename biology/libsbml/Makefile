@@ -13,7 +13,7 @@ WWW=		https://sbml.org/software/libsbml/ \
 LICENSE=	LGPL21
 LICENSE_FILE=	${WRKSRC}/COPYING.txt
 
-USES=		cmake:testing iconv:build
+USES=		cmake:testing iconv:build pathfix
 
 CMAKE_OFF=	EXIT_ON_ERROR \
 		LIBSBML_SKIP_SHARED_LIBRARY \

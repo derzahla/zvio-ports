@@ -1,5 +1,5 @@
 PORTNAME=	beidconnect
-DISTVERSION=	2.11
+DISTVERSION=	2.10
 CATEGORIES=	security
 
 MAINTAINER=	tijl@FreeBSD.org

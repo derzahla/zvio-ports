@@ -126,7 +126,6 @@
     SUBDIR += metacity-themes
     SUBDIR += mint-themes
     SUBDIR += mojave-gtk-themes
-    SUBDIR += morewaita-icon-theme
     SUBDIR += nordic-theme
     SUBDIR += numix-gtk-theme
     SUBDIR += numix-icon-theme

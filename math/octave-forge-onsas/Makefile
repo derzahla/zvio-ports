@@ -12,8 +12,6 @@ WWW=		https://packages.octave.org/
 LICENSE=	GPLv3
 LICENSE_FILE=	${WRKDIR}/${OCTAVE_SRC}/COPYING
 
-BROKEN=		this software is incompatible with octave pkg
-
 USES=		octave
 USE_GITHUB=	yes
 GH_ACCOUNT=	ONSAS

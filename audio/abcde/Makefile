@@ -1,6 +1,6 @@
 PORTNAME=	abcde
 DISTVERSION=	2.9.3
-PORTREVISION=	4
+PORTREVISION=	3
 CATEGORIES=	audio
 MASTER_SITES=	http://abcde.einval.com/download/
 
@@ -16,8 +16,7 @@ RUN_DEPENDS=	cd-discid:audio/cd-discid \
 		lame:audio/lame \
 		eyeD3:audio/py-eyed3 \
 		oggenc:audio/vorbis-tools \
-		bash:shells/bash \
-		eject:sysutils/eject
+		bash:shells/bash
 
 USES=		shebangfix
 

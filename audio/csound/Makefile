@@ -1,6 +1,6 @@
 PORTNAME=	csound
 DISTVERSION=	6.15.0
-PORTREVISION=	11
+PORTREVISION=	10
 CATEGORIES=	audio lang
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -99,6 +99,7 @@ JACK_CMAKE_BOOL=	BUILD_JACK_OPCODES USE_JACK
 
 LINALG_DESC=		Build the linear algebra opcodes
 LINALG_CMAKE_BOOL=	BUILD_LINEAR_ALGEBRA_OPCODES
+LINALG_CXXFLAGS=	-DGMM_VERSION=x # workaround based on https://github.com/csound/csound/issues/1069#issuecomment-439648756
 
 LUA_DESC=		Build Lua Interface and module
 LUA_LIB_DEPENDS=	libluajit-5.1.so:lang/luajit

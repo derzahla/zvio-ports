@@ -1,6 +1,7 @@
 PORTNAME=	cp2k
 DISTVERSIONPREFIX=	v
-DISTVERSION=	2025.2
+DISTVERSION=	2025.1
+PORTREVISION=	2
 CATEGORIES=	science
 
 MAINTAINER=	yuri@FreeBSD.org
@@ -60,6 +61,5 @@ do-test: install
 			./tests/do_regtest.py ${BUILD_WRKSRC}/bin ${EXE_VERSION}
 
 # build instructions: https://github.com/cp2k/cp2k/blob/master/INSTALL.md
-# tests as of 2025.2: Summary: correct: 3009 / 3012; failed: 3; 141min
 
 .include <bsd.port.mk>

@@ -1,5 +1,6 @@
 PORTNAME=	udunits2
-PORTVERSION=	0.13.2.2
+PORTVERSION=	0.13.2.1
+PORTREVISION=	1
 CATEGORIES=	science
 DISTNAME=	${PORTNAME}_${DISTVERSION}
 
@@ -9,8 +10,8 @@ WWW=		https://cran.r-project.org/web/packages/udunits2/
 
 LICENSE=	GPLv2
 
-LIB_DEPENDS=	libexpat.so:textproc/expat2 \
-		libudunits2.so:science/udunits
+LIB_DEPENDS=	libudunits2.so:science/udunits \
+		libexpat.so:textproc/expat2
 
 USES=		cran:auto-plist,compiles
 

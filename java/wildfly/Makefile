@@ -1,5 +1,5 @@
 PORTNAME=	wildfly
-DISTVERSION=	37.0.0
+DISTVERSION=	36.0.1
 CATEGORIES=	java www
 MASTER_SITES=	https://github.com/${PORTNAME}/${PORTNAME}/releases/download/${WILDFLY_VERSION}/
 DISTNAME=	wildfly-${WILDFLY_VERSION}
@@ -31,7 +31,7 @@ PLIST_SUB=	APP_HOME=${PORTNAME}
 VAR_DIR?=	/var
 LOG_DIR?=	${VAR_DIR}/log/${PORTNAME}
 PID_FILE=	${VAR_DIR}/run/${PORTNAME}.pid
-WILDFLY_VERSION=${DISTVERSION}.Final
+WILDFLY_VERSION=${PORTVERSION}.Final
 
 CONFIG_FILES=	appclient/configuration/appclient.xml \
 		appclient/configuration/logging.properties \
@@ -81,13 +81,9 @@ do-install:
 	${ECHO_CMD} "@dir wildfly/.galleon/hashes/domain/tmp/auth" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir wildfly/.galleon/hashes/standalone/lib/ext" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir wildfly/.galleon/hashes/standalone/tmp/auth" >> ${TMPPLIST}
-	${ECHO_CMD} "@dir wildfly/.galleon/hashes/standalone/tmp/embedded-server/auth" >> ${TMPPLIST}
-	${ECHO_CMD} "@dir wildfly/.galleon/hashes/standalone/tmp/embedded-server/vfs/temp" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir wildfly/.well-known/acme-challenge" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir wildfly/domain/tmp/auth" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir wildfly/standalone/lib/ext" >> ${TMPPLIST}
 	${ECHO_CMD} "@dir wildfly/standalone/tmp/auth" >> ${TMPPLIST}
-	${ECHO_CMD} "@dir wildfly/standalone/tmp/embedded-server/auth" >> ${TMPPLIST}
-	${ECHO_CMD} "@dir wildfly/standalone/tmp/embedded-server/vfs/temp" >> ${TMPPLIST}
 
 .include <bsd.port.mk>

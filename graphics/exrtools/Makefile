@@ -1,6 +1,6 @@
 PORTNAME=	exrtools
 DISTVERSION=	0.4
-PORTREVISION=	37
+PORTREVISION=	36
 CATEGORIES=	graphics
 MASTER_SITES=	http://scanline.ca/exrtools/ \
 		LOCAL/ehaupt

@@ -1,10 +1,10 @@
 PORTNAME=	dissent
 DISTVERSIONPREFIX=	v
 DISTVERSION=	0.0.34
-PORTREVISION=	5
+PORTREVISION=	3
 CATEGORIES=	net-im
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	nxjoseph@protonmail.com
 COMMENT=	Tiny native Discord app
 WWW=		https://github.com/diamondburned/dissent
 

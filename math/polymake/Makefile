@@ -196,10 +196,4 @@ post-install-TESTS-on: test
 test:
 	@cd ${WRKSRC} && HOME=${WRKDIR} perl/polymake --script run_testcases
 
-.include <bsd.port.pre.mk>
-
-.if ${PERL_LEVEL} >= 504200
-BROKEN=	polymake has not been checked for compatibility with perl 5.42 or newer
-.endif
-
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>

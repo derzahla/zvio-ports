@@ -1,5 +1,5 @@
 PORTNAME=	openssl
-PORTVERSION=	3.2.5
+PORTVERSION=	3.2.4
 CATEGORIES=	security devel
 PKGNAMESUFFIX=	32
 MASTER_SITES=	https://github.com/openssl/openssl/releases/download/${DISTNAME}/

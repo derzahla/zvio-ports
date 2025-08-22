@@ -4,7 +4,7 @@ PORTREVISION=	3
 CATEGORIES=	ftp
 PKGNAMEPREFIX=	proftpd-
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	joe@thrallingpenguin.com
 COMMENT=	Virtual Chroot ProFTPD module
 WWW=		http://www.castaglia.org/proftpd/modules/mod_vroot.html
 

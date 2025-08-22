@@ -1,6 +1,6 @@
 PORTNAME=	duncan
 PORTVERSION=	0.4
-PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES=	textproc gnustep
 MASTER_SITES=	http://www.eskimo.com/~pburns/Dictionaries/files/
 DISTNAME=	Duncan-${PORTVERSION}

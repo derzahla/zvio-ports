@@ -23,6 +23,6 @@ BOOT_LLVM_VERSION=	12
 
 MASTERDIR=	${.CURDIR}/../ghc
 PATCHDIR=	${.CURDIR}/files
-PLIST=		${.CURDIR}/pkg-plist
+# PLIST for this port is set in the master one
 
 .include	"${MASTERDIR}/Makefile"

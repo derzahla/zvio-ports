@@ -1,7 +1,9 @@
 PORTNAME=	cronolog
-DISTVERSION=	1.7.2
+PORTVERSION=	1.7.1
+PORTREVISION=	2
+DISTVERSIONSUFFIX=	-beta
 CATEGORIES=	sysutils
-MASTER_SITES=	https://codeberg.org/BSDforge/${PORTNAME}/archive/${DISTVERSIONFULL}${EXTRACT_SUFX}?dummy=/
+MASTER_SITES=	https://BSDforge.com/projects/source/sysutils/cronolog-devel/
 PKGNAMESUFFIX=	-devel
 
 MAINTAINER=	portmaster@BSDforge.com
@@ -10,17 +12,15 @@ WWW=		https://BSDforge.com/projects/sysutils/cronolog-devel
 
 LICENSE=	APACHE10
 
-USES=		shebangfix
+USES=		shebangfix tar:xz
 
-SHEBANG_FILES=	src/cronosplit
-
-GNU_CONFIGURE=	yes
+GNU_CONFIGURE=		yes
 GNU_CONFIGURE_MANPREFIX=	${PREFIX}/share
 
 CONFLICTS=	cronolog
 
 SHEBANG_FILES=	src/cronosplit
-WRKSRC=		${WRKDIR}/${PORTNAME}
+WRKSRC=		${WRKDIR}/${PORTNAME}-${PORTVERSION}
 INFO=		cronolog
 PLIST_FILES=	sbin/cronolog \
 		sbin/cronosplit \

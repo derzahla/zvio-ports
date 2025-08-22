@@ -15,7 +15,7 @@ OPTIONS_SUB=	yes
 
 WRKSRC=		${WRKDIR}/lib${PORTNAME}
 
-USES=		gnome libtool zip
+USES=		gnome libtool pathfix zip
 USE_GNOME=	intltool
 GNU_CONFIGURE=	yes
 CONFIGURE_ENV=	ac_cv_prog_DOC_TO_MAN=""

@@ -3,7 +3,7 @@ DISTVERSIONPREFIX=	v
 DISTVERSION=	2.5.0
 CATEGORIES=	devel
 
-MAINTAINER=	alven@FreeBSD.org
+MAINTAINER=	alster@vinterdalen.se
 COMMENT=	Terminal rendering library for creating TUIs
 WWW=		https://github.com/termbox/termbox2/
 

@@ -104,7 +104,7 @@ post-patch:
 .endif
 
 post-configure:
-	@${CP} ${DISTFILES:M*\:gamedb:C/\:.*//:S,^,${DISTDIR}/,} \
+	@${CP} ${DISTFILES:M*\:gamedb:C/\:.*//:S,^,${_DISTDIR},} \
 		${BUILD_WRKSRC}/dist/compatibility_list/
 
 .include <bsd.port.post.mk>

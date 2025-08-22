@@ -3,7 +3,7 @@ PORTVERSION=	3.12.2
 CATEGORIES=	sysutils
 MASTER_SITES=	RG
 
-MAINTAINER=	ports@FreeBSD.org
+MAINTAINER=	trociny@FreeBSD.org
 COMMENT=	MogileFS client library for Ruby
 WWW=		https://yhbt.net/mogilefs-client/
 

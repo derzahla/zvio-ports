@@ -12,7 +12,7 @@ LICENSE_FILE=	${WRKSRC}/LICENSE
 
 LIB_DEPENDS=	libiceoryx_binding_c.so:comms/iceoryx
 
-USES=		bison cmake
+USES=		bison cmake pathfix
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	eclipse-cyclonedds

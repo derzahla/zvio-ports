@@ -1,5 +1,5 @@
 PORTNAME=	flag-icons
-PORTVERSION=	7.5.0
+PORTVERSION=	7.3.2
 DISTVERSIONPREFIX=	v
 CATEGORIES=	misc
 
@@ -28,7 +28,6 @@ PKGNAMESUFFIX=	-${FLAVOR}
 .endif
 
 post-extract:
-	@${TEST} $$(${FIND} ${WRKSRC}/flags -type f | wc -l) = $$((271 * 2))
 	cd ${WRKSRC}/flags && ${SH} ${FILESDIR}/makeflags.sh add-missing-flags
 
 do-build:

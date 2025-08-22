@@ -1,22 +1,22 @@
 PORTNAME=	types-urllib3
 PORTVERSION=	1.26.25.14
-PORTREVISION=	2
+PORTREVISION=	1
 CATEGORIES=	devel python
 MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	sunpoet@FreeBSD.org
+MAINTAINER=	amdmi3@FreeBSD.org
 COMMENT=	Typing stubs for urllib3
-WWW=		https://github.com/python/typeshed/tree/main/stubs/urllib3
+WWW=		https://pypi.org/project/types-urllib3/
 
 LICENSE=	APACHE20
 
-BUILD_DEPENDS=	${PYTHON_PKGNAMEPREFIX}setuptools>=0:devel/py-setuptools@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}wheel>=0:devel/py-wheel@${PY_FLAVOR}
+# TODO: deprecate as soon as py-urllib3 is updated to 2.x
+# DEPRECATED=	No longer needed, type annotations are now available in urllib3 module
+# EXPIRATION_DATE=	2023-05-01
 
 USES=		python
-USE_PYTHON=	autoplist concurrent pep517
-
+USE_PYTHON=	autoplist distutils
 NO_ARCH=	yes
 
 .include <bsd.port.mk>

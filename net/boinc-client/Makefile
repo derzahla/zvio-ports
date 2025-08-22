@@ -4,7 +4,7 @@ DISTVERSION=	8.0.2
 PORTREVISION=	2
 CATEGORIES=	net
 
-MAINTAINER=	alven@FreeBSD.org
+MAINTAINER=	alster@vinterdalen.se
 COMMENT=	Berkeley Open Infrastructure for Network Computing client
 WWW=		https://boinc.berkeley.edu/ \
 		https://github.com/BOINC/boinc/

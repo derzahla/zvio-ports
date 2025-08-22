@@ -1,6 +1,7 @@
 PORTNAME=	es-de
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.3.0
+DISTVERSION=	3.2.0
+PORTREVISION=	1
 CATEGORIES=	emulators
 
 MAINTAINER=	bsdcode@disroot.org
@@ -28,7 +29,7 @@ LIB_DEPENDS=	libavcodec.so:multimedia/ffmpeg \
 		libharfbuzz.so:print/harfbuzz \
 		libicuuc.so:devel/icu \
 		liblunasvg.so:graphics/lunasvg \
-		libpoppler-cpp.so:graphics/poppler \
+		libpoppler.so:graphics/poppler \
 		libpugixml.so:textproc/pugixml \
 		librlottie.so:graphics/rlottie
 RUN_DEPENDS=	${_BR_DEPENDS}

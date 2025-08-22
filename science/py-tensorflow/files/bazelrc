@@ -1,5 +1,6 @@
 startup --batch
 
+build --strip=never
 build --verbose_failures --noshow_loading_progress
 test --verbose_test_summary --verbose_failures --noshow_loading_progress
 

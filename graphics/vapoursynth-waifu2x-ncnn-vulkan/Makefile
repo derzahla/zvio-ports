@@ -1,6 +1,6 @@
 PORTNAME=	vapoursynth-waifu2x-ncnn-vulkan
 DISTVERSION=	r5
-PORTREVISION=	4
+PORTREVISION=	3
 CATEGORIES=	graphics
 
 MAINTAINER=	ports@FreeBSD.org

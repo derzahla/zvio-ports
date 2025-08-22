@@ -1,5 +1,6 @@
 PORTNAME=	kid3
-PORTVERSION=	3.9.7
+PORTVERSION=	3.9.6
+PORTREVISION=	1
 CATEGORIES=	audio kde
 MASTER_SITES=	KDE/stable/${PORTNAME}/${PORTVERSION}
 PKGNAMESUFFIX=	-${FLAVOR}
@@ -44,7 +45,7 @@ PLIST_SUB+=	KF="@comment " \
 _KID3_APPS+=	QT
 .elif ${FLAVOR} == kf6
 USES+=		kde:6
-USE_KDE=	colorscheme config configwidgets coreaddons guiaddons kio \
+USE_KDE=	colorscheme config configwidgets coreaddons kio \
 		widgetsaddons xmlgui doctools:build ecm:build
 PLIST_SUB+=	KF="" \
 		QT="@comment " \

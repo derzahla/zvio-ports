@@ -1,7 +1,6 @@
 PORTNAME=	knowit
-DISTVERSION=	0.5.11
+DISTVERSION=	0.5.6
 CATEGORIES=	multimedia python
-MASTER_SITES=	PYPI
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
 MAINTAINER=	eduardo@FreeBSD.org
@@ -20,11 +19,14 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}babelfish>0:devel/py-babelfish@${PY_FLAVOR} 
 		${PYTHON_PKGNAMEPREFIX}pyyaml>0:devel/py-pyyaml@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}trakit>0:multimedia/py-trakit@${PY_FLAVOR}
 TEST_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pint>=0.20.1,<0.25.0:devel/py-pint@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}requests>=2.28.1:www/py-requests@${PY_FLAVOR} \
-		mkvtoolnix>0:multimedia/mkvtoolnix
+		${PYTHON_PKGNAMEPREFIX}requests>=2.28.1:www/py-requests@${PY_FLAVOR}
 
 USES=		python
+USE_GITHUB=	yes
+GH_ACCOUNT=	ratoaq2
 USE_PYTHON=	autoplist pep517 pytest
+
+TESTING_UNSAFE=	https://github.com/ratoaq2/knowit/issues/201
 
 NO_ARCH=	yes
 
