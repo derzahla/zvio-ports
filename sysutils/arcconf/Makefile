@@ -1,5 +1,5 @@
 PORTNAME=	arcconf
-DISTVERSION=	4.09.00.${BUILD}
+DISTVERSION=	4.26.00.${BUILD}
 PORTEPOCH=	1
 CATEGORIES=	sysutils
 MASTER_SITES=	https://download.adaptec.com/raid/storage_manager/
@@ -20,7 +20,7 @@ LIB_DEPENDS=	libstdc++.so.6:lang/gcc${GCC_DEFAULT}
 
 USES=		zip
 USE_GCC=	yes
-BUILD=		25611
+BUILD=		27449
 
 SUB_FILES+=	${PERIODICSCRIPT}
 
