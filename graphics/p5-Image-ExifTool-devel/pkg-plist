@@ -88,6 +88,7 @@ bin/exiftool
 %%SITE_PERL%%/Image/ExifTool/Geolocation.pm
 %%SITE_PERL%%/Image/ExifTool/Geotag.pm
 %%SITE_PERL%%/Image/ExifTool/GoPro.pm
+%%SITE_PERL%%/Image/ExifTool/Google.pm
 %%SITE_PERL%%/Image/ExifTool/H264.pm
 %%SITE_PERL%%/Image/ExifTool/HP.pm
 %%SITE_PERL%%/Image/ExifTool/HTML.pm
@@ -208,6 +209,7 @@ bin/exiftool
 %%SITE_PERL%%/Image/ExifTool/Sony.pm
 %%SITE_PERL%%/Image/ExifTool/SonyIDC.pm
 %%SITE_PERL%%/Image/ExifTool/Stim.pm
+%%SITE_PERL%%/Image/ExifTool/TNEF.pm
 %%SITE_PERL%%/Image/ExifTool/TagInfoXML.pm
 %%SITE_PERL%%/Image/ExifTool/TagLookup.pm
 %%SITE_PERL%%/Image/ExifTool/TagNames.pod
@@ -293,6 +295,7 @@ bin/exiftool
 %%PERL5_MAN3%%/Image::ExifTool::Geolocation.3.gz
 %%PERL5_MAN3%%/Image::ExifTool::Geotag.3.gz
 %%PERL5_MAN3%%/Image::ExifTool::GoPro.3.gz
+%%PERL5_MAN3%%/Image::ExifTool::Google.3.gz
 %%PERL5_MAN3%%/Image::ExifTool::H264.3.gz
 %%PERL5_MAN3%%/Image::ExifTool::HP.3.gz
 %%PERL5_MAN3%%/Image::ExifTool::HTML.3.gz
@@ -412,6 +415,7 @@ bin/exiftool
 %%PERL5_MAN3%%/Image::ExifTool::Sony.3.gz
 %%PERL5_MAN3%%/Image::ExifTool::SonyIDC.3.gz
 %%PERL5_MAN3%%/Image::ExifTool::Stim.3.gz
+%%PERL5_MAN3%%/Image::ExifTool::TNEF.3.gz
 %%PERL5_MAN3%%/Image::ExifTool::TagInfoXML.3.gz
 %%PERL5_MAN3%%/Image::ExifTool::TagLookup.3.gz
 %%PERL5_MAN3%%/Image::ExifTool::TagNames.3.gz

@@ -1,5 +1,5 @@
 PORTNAME=	openzfs
-PORTVERSION=	2.3.3
+PORTVERSION=	2.3.4
 PORTEPOCH=	1
 CATEGORIES=	filesystems sysutils
 MASTER_SITES=   https://github.com/openzfs/zfs/releases/download/zfs-${PORTVERSION}/
@@ -14,7 +14,6 @@ LICENSE=	CDDL
 BROKEN_riscv64=	fails to compile: btree_test.c:462:49: result of comparison of constant -1 with expression of type 'char' is always true
 
 BUILD_DEPENDS=	ksh93:shells/ksh93
-BUILD_DEPENDS=	pkgconf:devel/pkgconf
 RUN_DEPENDS=	openzfs-kmod>=0:filesystems/openzfs-kmod
 
 USES+=		cpe libtool gettext-runtime gmake python:build shebangfix ssl
@@ -46,7 +45,6 @@ CONFIGURE_ARGS+=	--enable-debug --enable-debuginfo
 CONFIGURE_ARGS+=	--with-python=${PYTHON_VER}
 BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}packaging>0:devel/py-packaging@${PY_FLAVOR}
 BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}cffi>0:devel/py-cffi@${PY_FLAVOR}
-BUILD_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}setuptools>0:devel/py-setuptools@${PY_FLAVOR}
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}cffi>0:devel/py-cffi@${PY_FLAVOR}
 RUN_DEPENDS+=	${PYTHON_PKGNAMEPREFIX}sysctl>0:devel/py-sysctl@${PY_FLAVOR}
 .else

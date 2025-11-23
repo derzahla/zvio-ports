@@ -1,9 +1,12 @@
 PORTNAME=	qbs
 DISTVERSIONPREFIX=	src-
-DISTVERSION=	2.6.0
+DISTVERSION=	3.1.1
 CATEGORIES=	devel
 MASTER_SITES=	QT/official_releases/${PORTNAME}/${PORTVERSION}
 DIST_SUBDIR=	KDE/Qt/qbs
+
+PATCH_SITES=	https://github.com/qbs/qbs/commit/ # Prep for Qt 6.10.x
+PATCHFILES+=	ee78fcb399ec5968a43dc0160ee40cdd5357cc1a.patch:-p1
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Qbs Build Suite
@@ -13,13 +16,14 @@ LICENSE=	GPLv3 LGPL21
 LICENSE_COMB=	dual
 
 USES=		cmake compiler:c++20-lang gl python:run qt:6
-USE_GL=		gl
+USE_GL=		opengl
 USE_LDCONFIG=	yes
 USE_QT=		5compat base
 
 CMAKE_ON=	QBS_INSTALL_MAN_PAGE
 
-PLIST_SUB=	SHLIB_VERSION="${PORTVERSION}"
+PLIST_SUB=	QBS_VER="${DISTVERSION:R}" \
+		QBS_VERSION="${DISTVERSION}"
 
 OPTIONS_DEFINE=	DOCS
 

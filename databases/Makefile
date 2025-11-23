@@ -11,7 +11,6 @@
     SUBDIR += R-cran-sqldf
     SUBDIR += WWWdb
     SUBDIR += adminer
-    SUBDIR += adminerevo
     SUBDIR += adodb5
     SUBDIR += akonadi
     SUBDIR += apache-commons-dbutils
@@ -33,7 +32,6 @@
     SUBDIR += cegobridge
     SUBDIR += clickhouse
     SUBDIR += closql
-    SUBDIR += closql-devel
     SUBDIR += cockroach
     SUBDIR += couchdb3
     SUBDIR += courier-authlib-mysql
@@ -48,6 +46,7 @@
     SUBDIR += db
     SUBDIR += db18
     SUBDIR += db5
+    SUBDIR += dbeaver
     SUBDIR += dbf
     SUBDIR += dbh
     SUBDIR += dbixx
@@ -58,7 +57,6 @@
     SUBDIR += duckdb
     SUBDIR += ejdb
     SUBDIR += emacsql
-    SUBDIR += emacsql-devel
     SUBDIR += erlfdb
     SUBDIR += evolution-data-server
     SUBDIR += fastdb
@@ -66,6 +64,7 @@
     SUBDIR += firebird30-server
     SUBDIR += firebird40-client
     SUBDIR += firebird40-server
+    SUBDIR += fmptools
     SUBDIR += fortytwo-bdb
     SUBDIR += foundationdb71-client
     SUBDIR += foundationdb71-server
@@ -131,7 +130,6 @@
     SUBDIR += libgda5-postgresql
     SUBDIR += libgda5-ui
     SUBDIR += libgda6
-    SUBDIR += libgdamm5
     SUBDIR += libhsclient
     SUBDIR += libiodbc
     SUBDIR += libmemcache
@@ -143,6 +141,7 @@
     SUBDIR += libpbl
     SUBDIR += libpg_query
     SUBDIR += libsdb
+    SUBDIR += libvalkey
     SUBDIR += libzdb
     SUBDIR += linux-c7-sqlite3
     SUBDIR += linux-c7-unixODBC
@@ -165,10 +164,9 @@
     SUBDIR += mantis
     SUBDIR += mariadb-connector-c
     SUBDIR += mariadb-connector-odbc
+    SUBDIR += mariadb-java-client
     SUBDIR += mariadb1011-client
     SUBDIR += mariadb1011-server
-    SUBDIR += mariadb105-client
-    SUBDIR += mariadb105-server
     SUBDIR += mariadb106-client
     SUBDIR += mariadb106-server
     SUBDIR += mariadb114-client
@@ -181,7 +179,6 @@
     SUBDIR += memcached
     SUBDIR += metabase
     SUBDIR += mongodb-tools
-    SUBDIR += mongodb50
     SUBDIR += mongodb60
     SUBDIR += mongodb70
     SUBDIR += mongodb80
@@ -194,7 +191,7 @@
     SUBDIR += mysql-connector-c++
     SUBDIR += mysql-connector-j
     SUBDIR += mysql-connector-java51
-    SUBDIR += mysql-connector-odbc-80
+    SUBDIR += mysql-connector-odbc
     SUBDIR += mysql2pgsql
     SUBDIR += mysql80-client
     SUBDIR += mysql80-server
@@ -223,6 +220,8 @@
     SUBDIR += ods2sql
     SUBDIR += opendbviewer
     SUBDIR += opendbx
+    SUBDIR += openvoxdb-terminus8
+    SUBDIR += openvoxdb8
     SUBDIR += ora2pg
     SUBDIR += oracle8-client
     SUBDIR += p5-Amazon-SimpleDB
@@ -513,8 +512,6 @@
     SUBDIR += pear-DB_Table
     SUBDIR += pear-DB_ldap
     SUBDIR += pear-DB_ldap2
-    SUBDIR += pear-DoctrineCommon
-    SUBDIR += pear-DoctrineDBAL
     SUBDIR += pear-Horde_Db
     SUBDIR += pear-Horde_HashTable
     SUBDIR += pear-Horde_Imsp
@@ -559,6 +556,7 @@
     SUBDIR += pg_store_plans
     SUBDIR += pg_tileserv
     SUBDIR += pgaccess
+    SUBDIR += pgactive
     SUBDIR += pgadmin3
     SUBDIR += pgagroal
     SUBDIR += pgbackrest
@@ -579,6 +577,7 @@
     SUBDIR += pgroonga
     SUBDIR += pgrouting
     SUBDIR += pgsanity
+    SUBDIR += pgschema
     SUBDIR += pgtcl
     SUBDIR += pgtop
     SUBDIR += pguri
@@ -633,6 +632,18 @@
     SUBDIR += php84-pdo_sqlite
     SUBDIR += php84-pgsql
     SUBDIR += php84-sqlite3
+    SUBDIR += php85-dba
+    SUBDIR += php85-mysqli
+    SUBDIR += php85-odbc
+    SUBDIR += php85-pdo
+    SUBDIR += php85-pdo_dblib
+    SUBDIR += php85-pdo_firebird
+    SUBDIR += php85-pdo_mysql
+    SUBDIR += php85-pdo_odbc
+    SUBDIR += php85-pdo_pgsql
+    SUBDIR += php85-pdo_sqlite
+    SUBDIR += php85-pgsql
+    SUBDIR += php85-sqlite3
     SUBDIR += phpliteadmin
     SUBDIR += phpminiadmin
     SUBDIR += phpmyadmin
@@ -645,6 +656,7 @@
     SUBDIR += postgis33
     SUBDIR += postgis34
     SUBDIR += postgis35
+    SUBDIR += postgis36
     SUBDIR += postgresql-cstore_fdw
     SUBDIR += postgresql-idn
     SUBDIR += postgresql-jdbc
@@ -736,6 +748,7 @@
     SUBDIR += py-Pyrseas
     SUBDIR += py-aesqlapius
     SUBDIR += py-agate-sql
+    SUBDIR += py-aiodataloader
     SUBDIR += py-aiomcache
     SUBDIR += py-aiomysql
     SUBDIR += py-aiopg
@@ -752,6 +765,7 @@
     SUBDIR += py-couchdb
     SUBDIR += py-cymysql
     SUBDIR += py-databases
+    SUBDIR += py-datafusion
     SUBDIR += py-dbf
     SUBDIR += py-dbt-core
     SUBDIR += py-dbt-duckdb
@@ -820,6 +834,7 @@
     SUBDIR += py-python-memcached
     SUBDIR += py-python-sql
     SUBDIR += py-python-swiftclient
+    SUBDIR += py-qdrant-client
     SUBDIR += py-queries
     SUBDIR += py-rb
     SUBDIR += py-redis
@@ -846,6 +861,7 @@
     SUBDIR += py-sqlite-migrate
     SUBDIR += py-sqlite-utils
     SUBDIR += py-sqlite3
+    SUBDIR += py-sqlmodel
     SUBDIR += py-sqlobject
     SUBDIR += py-sqloxide
     SUBDIR += py-sqlparse
@@ -855,6 +871,7 @@
     SUBDIR += py-tiledb
     SUBDIR += py-txredisapi
     SUBDIR += py-unqlite
+    SUBDIR += py-valkey
     SUBDIR += py-varstack
     SUBDIR += py-whisper
     SUBDIR += py-xapian
@@ -880,8 +897,8 @@
     SUBDIR += redis62
     SUBDIR += redis72
     SUBDIR += redis74
+    SUBDIR += redis80
     SUBDIR += redis_exporter
-    SUBDIR += redisdesktopmanager
     SUBDIR += redisjson
     SUBDIR += retcl
     SUBDIR += rocksdb
@@ -891,7 +908,6 @@
     SUBDIR += rrdman
     SUBDIR += rrdmerge
     SUBDIR += rrdtool
-    SUBDIR += rrdtool12
     SUBDIR += ruby-bdb
     SUBDIR += ruby-qdbm
     SUBDIR += ruby-tokyocabinet
@@ -1035,7 +1051,10 @@
     SUBDIR += rubygem-redis-client
     SUBDIR += rubygem-redis-cluster-client
     SUBDIR += rubygem-redis-clustering
+    SUBDIR += rubygem-redis-clustering-gitlab
+    SUBDIR += rubygem-redis-gitlab
     SUBDIR += rubygem-redis-namespace
+    SUBDIR += rubygem-redis-namespace-gitlab
     SUBDIR += rubygem-redis-namespace110
     SUBDIR += rubygem-ruby-mysql
     SUBDIR += rubygem-sdbm
@@ -1066,6 +1085,7 @@
     SUBDIR += spatialite-tools
     SUBDIR += spatialite_gui
     SUBDIR += speedtables
+    SUBDIR += sq
     SUBDIR += sql-workbench
     SUBDIR += sqlcached
     SUBDIR += sqlcipher
@@ -1096,6 +1116,7 @@
     SUBDIR += tcl-sqlite3
     SUBDIR += tdb
     SUBDIR += tdb1410
+    SUBDIR += tdb1413
     SUBDIR += tdbc
     SUBDIR += tile38
     SUBDIR += tiledb
@@ -1113,6 +1134,7 @@
     SUBDIR += valkey
     SUBDIR += vfront
     SUBDIR += virtualpg
+    SUBDIR += weaviate
     SUBDIR += webdis
     SUBDIR += wfb2sql
     SUBDIR += xapian-bindings

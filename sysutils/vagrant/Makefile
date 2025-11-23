@@ -4,7 +4,7 @@ DISTVERSIONPREFIX=	v
 PORTREVISION=	3
 CATEGORIES=	sysutils rubygems devel
 
-MAINTAINER=	joe@thrallingpenguin.com
+MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Vagrant Virtual Machine Manager
 WWW=		https://www.vagrantup.com/
 

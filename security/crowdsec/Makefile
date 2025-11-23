@@ -1,6 +1,7 @@
 PORTNAME=	crowdsec
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.6.9
+DISTVERSION=	1.7.0
+PORTREVISION=	1
 CATEGORIES=	security
 
 MAINTAINER=	marco@crowdsec.net
@@ -14,7 +15,7 @@ LIB_DEPENDS=	libabsl_base.so:devel/abseil \
 		libre2.so:devel/re2
 
 USES=		go:modules pkgconfig
-_COMMIT=	40b8cfe6
+_COMMIT=	c3036e21
 _BUILD_DATE=	$$(date -u "+%F_%T")
 USE_RC_SUBR=	crowdsec
 
@@ -83,6 +84,9 @@ do-install:
 	@(cd ${WRKSRC}/config && ${COPYTREE_SHARE} . ${STAGEDIR}${ETCDIR})
 
 	@${MV} ${STAGEDIR}${ETCDIR}/acquis.yaml \
+		${STAGEDIR}${ETCDIR}/acquis.yaml.sample
+
+	${INSTALL_DATA} ${FILESDIR}/acquis.yaml.sample \
 		${STAGEDIR}${ETCDIR}/acquis.yaml.sample
 
 	@${MV} ${STAGEDIR}${ETCDIR}/config.yaml \

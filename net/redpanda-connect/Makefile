@@ -1,6 +1,7 @@
 PORTNAME=	connect
 DISTVERSIONPREFIX=	v
-DISTVERSION=	4.59.0
+DISTVERSION=	4.64.0
+PORTREVISION=	1
 CATEGORIES=	net
 PKGNAMEPREFIX=	redpanda-
 
@@ -37,12 +38,13 @@ PLIST_FILES=	"@dir(,,755) %%ETCDIR%%" \
 OPTIONS_DEFINE=		ENTERPRISE
 ENTERPRISE_DESC=	Enable connectors under the RCL license
 
-.include <bsd.port.pre.mk>
+.include <bsd.port.options.mk>
 
-post-patch:
 .if !${PORT_OPTIONS:MENTERPRISE}
-	@${PATCH} -d ${WRKSRC} < ${FILESDIR}/remove-enterprise-connectors.patch
+EXTRA_PATCHES=	${FILESDIR}/extra-patch-public_components_all_package.go
 .endif
+
+.include <bsd.port.pre.mk>
 
 post-install:
 	@${MKDIR} ${STAGEDIR}${ETCDIR}

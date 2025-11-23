@@ -589,25 +589,16 @@ _gnome_ver=	${_version_major}.${_version_minor}
 .    endif
 .  endif
 
-.  if !empty(MASTER_SITES:M*/archive/*)
-_GNOME_PATH=	%SUBDIR%
-.  else
 _GNOME_PATH=	%SUBDIR%/${_gnome_ver}
-.  endif
 
 MASTER_SITE_GNOME+= \
-	https://download.gnome.org/${_GNOME_PATH}/ \
-	http://ftp.belnet.be/mirror/ftp.gnome.org/gnomeftp/${_GNOME_PATH}/ \
-	https://ftp.acc.umu.se/pub/GNOME/${_GNOME_PATH}/ \
-	https://fr2.rpmfind.net/linux/gnome.org/${_GNOME_PATH}/ \
-	https://gitlab.gnome.org/GNOME/${PORTNAME}/-/archive/${PORTVERSION}/
-
+	https://download.gnome.org/${_GNOME_PATH}/
 .endif
 
 .if !defined(IGNORE_MASTER_SITE_GIMP)
 MASTER_SITE_GIMP+= \
-	http://gimp.mirrors.hoobly.com/pub/%SUBDIR%/ \
-	http://gimp.afri.cc/pub/%SUBDIR%/ \
+	https://ftp.gwdg.de/pub/misc/grafik/%SUBDIR%/ \
+	https://www.mirrorservice.org/sites/ftp.gimp.org/pub/%SUBDIR%/ \
 	https://download.gimp.org/pub/%SUBDIR%/
 .endif
 
@@ -719,8 +710,6 @@ MASTER_SITE_MOZILLA_ADDONS+= \
 
 .if !defined(IGNORE_MASTER_SITE_MYSQL)
 MASTER_SITE_MYSQL+= \
-	ftp://ftp.fi.muni.cz/pub/mysql/Downloads/%SUBDIR%/ \
-	ftp://ftp.gwdg.de/pub/misc/mysql/Downloads/%SUBDIR%/ \
 	https://dev.mysql.com/get/Downloads/%SUBDIR%/
 .endif
 

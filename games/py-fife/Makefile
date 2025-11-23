@@ -1,10 +1,10 @@
 PORTNAME=	fife
 PORTVERSION=	0.4.2
-PORTREVISION=	11
+PORTREVISION=	12
 CATEGORIES=	games
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
-MAINTAINER=	fiziologus@gmail.com
+MAINTAINER=	danfe@FreeBSD.org
 COMMENT=	Flexible Isometric Free Engine
 WWW=		https://www.fifengine.net/
 
@@ -70,11 +70,5 @@ post-patch:
 		${WRKSRC}/engine/core/loaders/native/map/maploader.cpp \
 		${WRKSRC}/engine/core/loaders/native/map/objectloader.cpp \
 		${WRKSRC}/engine/core/gui/fifechan/fifechanmanager.cpp
-
-.include <bsd.port.options.mk>
-
-.if ${PORT_OPTIONS:MFIFECHAN}
-DEPRECATED=	Depends on expired devel/fifechan
-.endif
 
 .include <bsd.port.mk>

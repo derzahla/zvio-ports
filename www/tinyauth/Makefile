@@ -1,9 +1,10 @@
 PORTNAME=	tinyauth
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.4.1
+DISTVERSION=	3.6.2
+PORTREVISION=	2
 CATEGORIES=	www
 MASTER_SITES=	LOCAL/dtxdf/${PORTNAME}/
-DISTFILES=	${PORTNAME}-${DISTVERSION}.frontend${EXTRACT_SUFX}
+DISTFILES=	${PORTNAME}-${DISTVERSIONPREFIX}${DISTVERSION}.frontend${EXTRACT_SUFX}
 
 MAINTAINER=	dtxdf@FreeBSD.org
 COMMENT=	Simplest way to protect your apps with a login screen
@@ -35,7 +36,7 @@ PLIST_FILES=	bin/${PORTNAME}
 
 # Run 'git checkout ${DISTVERSIONPREFIX}${DISTVERSION} && git rev-parse HEAD'
 # in the Tinyauth repository to get the value of GITID.
-GITID=		9eb296f14644267410655122e8aff6f0db83371a
+GITID=		5f7f88421ee0d2cc8fd17316fa378b958386a000
 
 BUILD_DATE=	$$(date -u '+%Y-%m-%dT%H:%M:%S')
 

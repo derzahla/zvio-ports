@@ -5,6 +5,144 @@ they are unavoidable.
 You should get into the habit of checking this file for changes each time
 you update your ports collection, before attempting any port upgrades.
 
+20250930:
+  AFFECTS: users of x11/nvidia-driver*
+  AUTHOR: junchoon@dec.sakura.ne.jp
+
+  Because of splitting out kernel modules (kmod) part from x11/nvidia-driver*
+  into newly introduced x11/nvidia-kmod*, you need to deinstall currently
+  installed x11/nvidia-driver* and freshly install it again with new version.
+  This would pull in corresponding x11/nvidia-kmod* because x11/nvidia-driver*
+  explicitly depends on corresponding x11/nvidia-kmod*.
+
+20250918:
+  AFFECTS: users of sysutils/py-mitogen
+  AUTHOR: dch@FreeBSD.org
+
+  Ansible 12 is soft deprecating the ANSIBLE_STRATEGY functionality that
+  mitogen uses to integrate with Ansible. A future version of ansible-core
+  may remove this. See https://github.com/mitogen-hq/mitogen/issues/1278
+
+20250917:
+  AFFECTS: users of mail/pflogsumm
+  AUTHOR: flo@FreeBSD.org
+
+  Some command line arguments were renamed in 1.1.11 and 1.1.12.
+
+  For details, see https://jimsun.linxnet.com/downloads/ChangeLog-1.1.12
+
+20250908:
+  AFFECTS: users of www/mod_wsgi4
+  AUTHOR: michaelo@FreeBSD.org
+
+  This port has been renamed to www/mod_wsgi to be able to upgrade to
+  version 5.
+
+20250828:
+  AFFECTS: users of databases/mongodb70, databases/mongodb80
+  AUTHOR: ronald@FreeBSD.org
+
+  Ports mongodb70 7.0.23 and mongodb80 since 8.0.0 contain a patch to
+  implement waitable atomics for FreeBSD.
+  This patch is developed by me. It did not go through QA of MongoDB Inc.
+  I don't have full QA in place and could only do limited testing. I
+  can't take any responsibility for the quality of the patch.
+  Make backups and test for yourself in your setup before upgrading
+  any critical production environment.
+
+20250817:
+  AFFECTS: users of lang/perl5.*
+  AUTHOR: mat@FreeBSD.org
+
+  The default Perl version has been switched to 5.42.
+
+  See entry 20231017 for updating instructions.
+
+20250815:
+  AFFECTS: users of net/syncthing
+  AUTHOR: dvl@FreeBSD.org
+
+  Old single-dash long options are no longer supported, e.g. -home must be
+  given as --home. Database backend switched from LevelDB to SQLite. No
+  changes to run-time dependencies. There is a migration on first launch
+  which can be lengthy for larger setups.
+
+  More at https://github.com/syncthing/syncthing/releases/tag/v2.0.0
+
+20250804:
+  AFFECTS: users of databases/adminer
+  AUTHOR: pkaipila@gmail.com
+
+  Flavors have been added to the adminer port. Due to the change in PKGNAME,
+  pkg will not notice the update. Replace the package with a flavored one
+  such as php84-adminer.
+
+20250728:
+  AFFECTS: users of www/privatebin
+  AUTHOR: dvl@FreeBSD.org
+
+  This release changes configuration defaults including switching the template
+  and removing legacy features.
+
+  See details at https://github.com/PrivateBin/PrivateBin/releases/tag/2.0.0
+
+20250720:
+  AFFECTS: users of www/phpmyfaq
+  AUTHOR: flo@FreeBSD.org
+
+  Upgrading from 3.2.x is a major upgrade. Your existing templates will not
+  work with phpMyFAQ 4.0. Please make a full backup before you run the
+  upgrade! First, log in as admin into the admin section and enable the
+  maintenance mode. (Configuration >> Edit Configuration >> Set FAQ in
+  maintenance mode) Second, you have to delete all files except:
+
+    in the directory config/
+        keep the file database.php
+        only if using LDAP/ActiveDirectory support also keep the file ldap.php
+        only if using EntraID support also keep the file azure.php
+    the directory attachments/
+    the directory data/
+    the directory images/
+
+  Install the new version then open the following URL in your browser:
+
+  https://www.example.com/faq/update
+
+  Click the button of the update script, your version will automatically be updated.
+
+20250709:
+  AFFECTS: users of sysutils/bastille
+  AUTHOR: jdhurtado@orbiware.com
+
+  Potentially breaking changes since 1.0.20250714
+
+  Network: Bastille now handles all epairs dynamically, allowing both -V and -B
+  VNET jails to coexist. Previous versions only supported one type per system.
+  New naming scheme for network interfaces is e0a_jailname (host side) and
+  e0b_jailname (jail side). Additional interfaces: e1a_jailname, e1b_jailname, etc
+  (incrementing numbers). Long jail names are truncated with xx placeholder due to
+  interface name limitations
+
+  Required action after update:
+  Restart all jails (preferably one at a time) to trigger automatic conversion.
+  Bastille will auto-convert jail.conf and rc.conf files when jails are stopped.
+  Manual intervention required: If you previously used the network sub-command to
+  add interfaces, manually edit jail.conf and rc.conf files to update epair names
+  (increment numbers for additional interfaces).
+
+  Auto-conversion handles most cases, please report bugs if issues occur during the
+  transition.
+
+  Full release announcement: https://github.com/BastilleBSD/bastille/releases/tag/1.0.20250714
+
+20250708:
+  AFFECTS: users of shells/bash
+  AUTHOR: michaelo@FreeBSD.org
+
+  The SYSBASHRC option is now enabled by default. For those who use bash
+  interactively the system-wide RC file shall be sourced automatically
+  giving the user the same experience as invoking it as a login shell.
+
 20250630:
   AFFECTS: users of mail/bogofilter-bdb
   AUTHOR: mandree@FreeBSD.org

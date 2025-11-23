@@ -1,5 +1,6 @@
 PORTNAME=	social-auth-app-django
 DISTVERSION=	5.4.3
+PORTREVISION=	1
 CATEGORIES=	www security python
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
 
@@ -9,6 +10,9 @@ WWW=		https://github.com/python-social-auth/social-app-django
 
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
+
+# Release 5.5.0 dropped support for Django 4.2 and Python 3.9
+PORTSCOUT=	limit:^5\.4\.
 
 BUILD_DEPENDS=	${PY_SETUPTOOLS} \
 		${PYTHON_PKGNAMEPREFIX}wheel>0:devel/py-wheel@${PY_FLAVOR}

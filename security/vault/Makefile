@@ -1,6 +1,7 @@
 PORTNAME=	vault
 DISTVERSIONPREFIX=	v
-DISTVERSION=	1.20.0
+DISTVERSION=	1.20.3
+PORTREVISION=	1
 CATEGORIES=	security
 MASTER_SITES=	https://raw.githubusercontent.com/hashicorp/vault/${DISTVERSIONFULL}/ \
 		LOCAL/bofh/security/${PORTNAME}/:web_ui
@@ -46,7 +47,7 @@ GROUPS=		vault
 
 PLIST_FILES=	bin/${PORTNAME}
 
-GITID=	6fdd6b59e97d97a9e19b0fb5304bf879c190295e
+GITID=	7665ff29d77e5cb3ea9ddbeaed49ee312e53c6b8
 
 .include <bsd.port.pre.mk>
 
@@ -59,7 +60,7 @@ post-patch:
 	${CP} -Rf ${WRKDIR}/web_ui ${WRKSRC}/http/
 
 .if defined(MAINTAINER_MODE)
-_make-web_ui: extract
+_make-web_ui: clean extract
 	cd ${WRKSRC}/ui && ${SETENV} ${MAKE_ENV} yarn
 	cd ${WRKSRC}/ui && ${SETENV} ${MAKE_ENV} npm rebuild node-sass
 	cd ${WRKSRC}/ui && ${SETENV} ${MAKE_ENV} yarn run build

@@ -180,6 +180,7 @@ include/agrum/BN/learning/localSearchWithTabuList_tpl.h
 include/agrum/BN/learning/paramUtils/DAG2BNLearner.h
 include/agrum/BN/learning/paramUtils/DAG2BNLearner_inl.h
 include/agrum/BN/learning/paramUtils/DAG2BNLearner_tpl.h
+include/agrum/BN/learning/paramUtils/EMApproximationScheme.h
 include/agrum/BN/learning/paramUtils/paramEstimator.h
 include/agrum/BN/learning/paramUtils/paramEstimatorML.h
 include/agrum/BN/learning/paramUtils/paramEstimatorML_inl.h
@@ -955,9 +956,9 @@ lib/libagrumID.so.%%VERSION%%
 lib/libagrumMRF.so
 lib/libagrumMRF.so.2
 lib/libagrumMRF.so.%%VERSION%%
-%%PYTHON_SITELIBDIR%%/pyagrum-%%VERSION%%.dist-info/LICENSE
-%%PYTHON_SITELIBDIR%%/pyagrum-%%VERSION%%.dist-info/LICENSE.LGPL
-%%PYTHON_SITELIBDIR%%/pyagrum-%%VERSION%%.dist-info/LICENSE.MIT
+%%PYTHON_SITELIBDIR%%/pyagrum-%%VERSION%%.dist-info/LICENSE.md
+%%PYTHON_SITELIBDIR%%/pyagrum-%%VERSION%%.dist-info/LICENSES/LGPL-3.0-or-later.txt
+%%PYTHON_SITELIBDIR%%/pyagrum-%%VERSION%%.dist-info/LICENSES/MIT.txt
 %%PYTHON_SITELIBDIR%%/pyagrum-%%VERSION%%.dist-info/METADATA
 %%PYTHON_SITELIBDIR%%/pyagrum-%%VERSION%%.dist-info/WHEEL
 %%PYTHON_SITELIBDIR%%/pyagrum/__init__.py
